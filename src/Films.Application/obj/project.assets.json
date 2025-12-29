@@ -468,19 +468,19 @@
     ]
   },
   "packageFolders": {
-    "/home/studioai/.nuget/packages/": {}
+    "/home/coder/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj",
+      "projectUniqueName": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj",
       "projectName": "Films.Application",
-      "projectPath": "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj",
-      "packagesPath": "/home/studioai/.nuget/packages/",
-      "outputPath": "/studio-app/claude-workspace/src/Films.Application/obj/",
+      "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj",
+      "packagesPath": "/home/coder/.nuget/packages/",
+      "outputPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/studioai/.nuget/NuGet/NuGet.Config"
+        "/home/coder/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -492,8 +492,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj": {
-              "projectPath": "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj"
+            "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj": {
+              "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj"
             }
           }
         }
@@ -546,7 +546,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/coder/dotnet/dotnet8/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

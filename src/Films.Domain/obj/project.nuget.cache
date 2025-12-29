@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mP7KoKFPBjo=",
+  "dgSpecHash": "VJm6JHp9IlE=",
   "success": true,
-  "projectFilePath": "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj",
+  "projectFilePath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/studio-app/claude-workspace/src/Films.Web/Films.Web.csproj": {}
+    "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Web/Films.Web.csproj": {}
   },
   "projects": {
-    "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj": {
+    "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj",
+        "projectUniqueName": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj",
         "projectName": "Films.Application",
-        "projectPath": "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj",
-        "packagesPath": "/home/studioai/.nuget/packages/",
-        "outputPath": "/studio-app/claude-workspace/src/Films.Application/obj/",
+        "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj",
+        "packagesPath": "/home/coder/.nuget/packages/",
+        "outputPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/studioai/.nuget/NuGet/NuGet.Config"
+          "/home/coder/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj": {
-                "projectPath": "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj"
+              "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj": {
+                "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj"
               }
             }
           }
@@ -80,21 +80,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/coder/dotnet/dotnet8/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj": {
+    "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj",
+        "projectUniqueName": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj",
         "projectName": "Films.Domain",
-        "projectPath": "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj",
-        "packagesPath": "/home/studioai/.nuget/packages/",
-        "outputPath": "/studio-app/claude-workspace/src/Films.Domain/obj/",
+        "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj",
+        "packagesPath": "/home/coder/.nuget/packages/",
+        "outputPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/studioai/.nuget/NuGet/NuGet.Config"
+          "/home/coder/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -138,21 +138,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/coder/dotnet/dotnet8/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/studio-app/claude-workspace/src/Films.Infrastructure/Films.Infrastructure.csproj": {
+    "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Infrastructure/Films.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/studio-app/claude-workspace/src/Films.Infrastructure/Films.Infrastructure.csproj",
+        "projectUniqueName": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Infrastructure/Films.Infrastructure.csproj",
         "projectName": "Films.Infrastructure",
-        "projectPath": "/studio-app/claude-workspace/src/Films.Infrastructure/Films.Infrastructure.csproj",
-        "packagesPath": "/home/studioai/.nuget/packages/",
-        "outputPath": "/studio-app/claude-workspace/src/Films.Infrastructure/obj/",
+        "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Infrastructure/Films.Infrastructure.csproj",
+        "packagesPath": "/home/coder/.nuget/packages/",
+        "outputPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/studioai/.nuget/NuGet/NuGet.Config"
+          "/home/coder/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -164,11 +164,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj": {
-                "projectPath": "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj"
+              "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj": {
+                "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj"
               },
-              "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj": {
-                "projectPath": "/studio-app/claude-workspace/src/Films.Domain/Films.Domain.csproj"
+              "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj": {
+                "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Domain/Films.Domain.csproj"
               }
             }
           }
@@ -223,21 +223,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/coder/dotnet/dotnet8/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/studio-app/claude-workspace/src/Films.Web/Films.Web.csproj": {
+    "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Web/Films.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/studio-app/claude-workspace/src/Films.Web/Films.Web.csproj",
+        "projectUniqueName": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Web/Films.Web.csproj",
         "projectName": "Films.Web",
-        "projectPath": "/studio-app/claude-workspace/src/Films.Web/Films.Web.csproj",
-        "packagesPath": "/home/studioai/.nuget/packages/",
-        "outputPath": "/studio-app/claude-workspace/src/Films.Web/obj/",
+        "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Web/Films.Web.csproj",
+        "packagesPath": "/home/coder/.nuget/packages/",
+        "outputPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Web/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/studioai/.nuget/NuGet/NuGet.Config"
+          "/home/coder/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -249,11 +249,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj": {
-                "projectPath": "/studio-app/claude-workspace/src/Films.Application/Films.Application.csproj"
+              "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj": {
+                "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Application/Films.Application.csproj"
               },
-              "/studio-app/claude-workspace/src/Films.Infrastructure/Films.Infrastructure.csproj": {
-                "projectPath": "/studio-app/claude-workspace/src/Films.Infrastructure/Films.Infrastructure.csproj"
+              "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Infrastructure/Films.Infrastructure.csproj": {
+                "projectPath": "/modernize-data/studio-data/TNT1001/APP2160/transformed-code/134/studio-workspace/dotnet_backend/src/Films.Infrastructure/Films.Infrastructure.csproj"
               }
             }
           }
@@ -303,7 +303,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/coder/dotnet/dotnet8/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
