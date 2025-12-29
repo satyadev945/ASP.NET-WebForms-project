@@ -1,0 +1,1448 @@
+Now I have all the information needed to perform a comprehensive cloud readiness analysis. Let me analyze the code against all the cloud readiness rules and generate the complete report.
+
+```json
+{
+  "analysisId": "cloudreadiness-analysis-2025-12-15",
+  "status": "success",
+  "cloudType": "AWS",
+  "summary": {
+    "totalBlockers": 23,
+    "criticalBlockers": 6,
+    "highBlockers": 9,
+    "mediumBlockers": 8,
+    "lowBlockers": 0,
+    "estimatedEffort": "65-95 hours",
+    "cloudReadinessScore": 15,
+    "statelessnessIssues": 0,
+    "configurationIssues": 14,
+    "securityIssues": 9
+  },
+  "issues": [
+    {
+      "id": "issue-1",
+      "severity": "critical",
+      "category": "file-system-dependencies",
+      "title": "Hard-coded Absolute File Paths",
+      "description": "Application uses hardcoded absolute file paths for configuration and logging, preventing containerization and cloud deployment where file systems are ephemeral",
+      "filePath": "src/main/java/com/test/MiniApp.java",
+      "lineNumber": 18,
+      "codeSnippet": "private static final String CONFIG_FILE_PATH = \"/opt/app/config/app.properties\";\nprivate static final String LOG_FILE_PATH = \"/var/log/mini-app.log\";",
+      "impact": "Hard-coded paths prevent containerization and cloud deployment where file systems are ephemeral and paths differ across environments. The application will fail to start or lose data when deployed to AWS ECS, EKS, or Lambda.",
+      "remediation": "Use environment variables, classpath resources, or AWS Systems Manager Parameter Store instead of absolute paths. For configuration, use Spring Cloud Config or AWS AppConfig. For logging, write to stdout/stderr and use CloudWatch Logs.",
+      "effort": "medium",
+      "breakingChange": true,
+      "estimatedHours": 4.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-2",
+      "severity": "critical",
+      "category": "file-system-dependencies",
+      "title": "Java.io.File Usage for Data Storage",
+      "description": "Using File API for creating directories and files in local filesystem, which creates local state that's lost in ephemeral containers",
+      "filePath": "src/main/java/com/test/MiniApp.java",
+      "lineNumber": 44,
+      "codeSnippet": "File configFile = new File(CONFIG_FILE_PATH);\nif (configFile.exists()) {\n    Properties props = new Properties();\n    props.load(new FileInputStream(configFile));",
+      "impact": "File API creates local state that's lost in ephemeral containers and doesn't scale across distributed cloud environments. Data written to local filesystem in containers is lost on restart.",
+      "remediation": "Replace File API with cloud storage SDKs (AWS S3 SDK) or databases for persistent data. Use AWS Systems Manager Parameter Store or Secrets Manager for configuration.",
+      "effort": "high",
+      "breakingChange": true,
+      "estimatedHours": 6.0,
+      "requiresArchitecturalChange": true
+    },
+    {
+      "id": "issue-3",
+      "severity": "critical",
+      "category": "file-system-dependencies",
+      "title": "Local Directory Creation and File Operations",
+      "description": "Creating directories and files in local filesystem (/var/log) which violates cloud-native patterns",
+      "filePath": "src/main/java/com/test/MiniApp.java",
+      "lineNumber": 60,
+      "codeSnippet": "File logDir = new File(\"/var/log\");\nif (!logDir.exists()) {\n    logDir.mkdirs();\n}\nFile logFile = new File(LOG_FILE_PATH);\nif (!logFile.exists()) {\n    logFile.createNewFile();",
+      "impact": "Local file writes cause data loss in ephemeral containers and violate cloud-native stateless architecture principles. Logs will be lost when containers restart.",
+      "remediation": "Replace local file writes with AWS CloudWatch Logs. Use stdout/stderr for logging which AWS container services automatically capture. Remove file-based logging entirely.",
+      "effort": "high",
+      "breakingChange": true,
+      "estimatedHours": 5.0,
+      "requiresArchitecturalChange": true
+    },
+    {
+      "id": "issue-4",
+      "severity": "critical",
+      "category": "network-communication",
+      "title": "Hard-coded Port Number",
+      "description": "Fixed port number (8080) prevents dynamic port assignment in containers and cloud orchestration",
+      "filePath": "src/main/java/com/test/MiniApp.java",
+      "lineNumber": 15,
+      "codeSnippet": "private static final int SERVER_PORT = 8080;",
+      "impact": "Fixed ports cause deployment conflicts and prevent dynamic orchestration in containerized environments. AWS ECS and EKS dynamically assign ports, and this hardcoding will cause conflicts.",
+      "remediation": "Use environment variables (SERVER_PORT or PORT) for port configuration. In Spring Boot, use ${server.port:8080} with environment variable override.",
+      "effort": "low",
+      "breakingChange": true,
+      "estimatedHours": 1.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-5",
+      "severity": "critical",
+      "category": "network-communication",
+      "title": "Direct Socket Programming",
+      "description": "Low-level socket programming bypasses cloud networking features and load balancers",
+      "filePath": "src/main/java/com/test/MiniApp.java",
+      "lineNumber": 79,
+      "codeSnippet": "ServerSocket serverSocket = new ServerSocket(SERVER_PORT);",
+      "impact": "Raw sockets bypass AWS load balancers (ALB/NLB), service discovery, and cloud networking features like security groups. This prevents proper cloud deployment patterns.",
+      "remediation": "Use HTTP-based communication with Spring Boot embedded server or migrate to AWS Lambda with API Gateway for serverless approach.",
+      "effort": "high",
+      "breakingChange": true,
+      "estimatedHours": 8.0,
+      "requiresArchitecturalChange": true
+    },
+    {
+      "id": "issue-6",
+      "severity": "critical",
+      "category": "configuration-management",
+      "title": "Hard-coded File Paths in Properties",
+      "description": "Multiple hardcoded absolute file paths in properties file prevent cloud deployment",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 32,
+      "codeSnippet": "app.config.directory=/opt/app/config\napp.log.directory=/var/log/mini-app\napp.temp.directory=/tmp/mini-app\napp.upload.directory=/opt/uploads",
+      "impact": "Hardcoded absolute paths fail in containerized environments where filesystem structure is different. Upload directories need to be replaced with S3 buckets.",
+      "remediation": "Replace all hardcoded paths with environment variables. Use AWS S3 for uploads and persistent storage. Use /tmp for temporary files only (with awareness of size limits).",
+      "effort": "medium",
+      "breakingChange": true,
+      "estimatedHours": 4.0,
+      "requiresArchitecturalChange": true
+    },
+    {
+      "id": "issue-7",
+      "severity": "high",
+      "category": "configuration-management",
+      "title": "Hard-coded Database Credentials in Java Code",
+      "description": "Database credentials hardcoded in Java source code create security vulnerabilities and prevent environment-specific configuration",
+      "filePath": "src/main/java/com/test/DatabaseService.java",
+      "lineNumber": 14,
+      "codeSnippet": "private static final String DB_HOST = \"localhost\";\nprivate static final String DB_PORT = \"3306\";\nprivate static final String DB_NAME = \"mini_app_db\";\nprivate static final String DB_URL = \"jdbc:mysql://\" + DB_HOST + \":\" + DB_PORT + \"/\" + DB_NAME;\nprivate static final String DB_USERNAME = \"root\";\nprivate static final String DB_PASSWORD = \"password123\";",
+      "impact": "Hardcoded credentials create major security vulnerabilities and prevent environment-specific deployments. Cannot deploy to different AWS environments (dev/staging/prod) without code changes.",
+      "remediation": "Use AWS Secrets Manager or Systems Manager Parameter Store for credentials. Use environment variables with Spring Boot's externalized configuration. Never hardcode credentials in source code.",
+      "effort": "medium",
+      "breakingChange": true,
+      "estimatedHours": 3.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-8",
+      "severity": "high",
+      "category": "configuration-management",
+      "title": "Hard-coded Environment URLs in Java Code",
+      "description": "Environment-specific URLs hardcoded in Java code prevent portability across environments",
+      "filePath": "src/main/java/com/test/DatabaseService.java",
+      "lineNumber": 22,
+      "codeSnippet": "private static final String REDIS_HOST = \"127.0.0.1\";\nprivate static final int REDIS_PORT = 6379;\nprivate static final String EXTERNAL_API_URL = \"http://api.example.com:8080/v1\";\nprivate static final String PAYMENT_SERVICE_URL = \"https://payment.internal.company.com/process\";",
+      "impact": "Hard-coded URLs break when services move between environments or use dynamic addressing. Cannot deploy to AWS with proper service discovery or load balancing.",
+      "remediation": "Use environment variables or AWS Cloud Map for service discovery. Use AWS Systems Manager Parameter Store for environment-specific URLs. Implement Spring Cloud Config for centralized configuration.",
+      "effort": "medium",
+      "breakingChange": true,
+      "estimatedHours": 3.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-9",
+      "severity": "high",
+      "category": "configuration-management",
+      "title": "Hard-coded Database Credentials in Properties File",
+      "description": "Database credentials stored in plain text in properties file",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 9,
+      "codeSnippet": "database.url=jdbc:mysql://localhost:3306/mini_app_db\ndatabase.username=root\ndatabase.password=password123",
+      "impact": "Credentials in properties files create security vulnerabilities and get committed to version control. This violates AWS security best practices and compliance requirements.",
+      "remediation": "Remove all credentials from properties files. Use AWS Secrets Manager for database credentials. Configure Spring Boot to fetch credentials from Secrets Manager at runtime.",
+      "effort": "medium",
+      "breakingChange": true,
+      "estimatedHours": 3.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-10",
+      "severity": "high",
+      "category": "configuration-management",
+      "title": "Hard-coded Redis Credentials",
+      "description": "Redis cache credentials hardcoded in properties file",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 17,
+      "codeSnippet": "cache.redis.host=127.0.0.1\ncache.redis.port=6379\ncache.redis.password=redis_secret_123",
+      "impact": "Hardcoded cache credentials prevent secure deployment. Localhost URLs prevent cloud deployment where Redis should be AWS ElastiCache.",
+      "remediation": "Use AWS ElastiCache for Redis instead of self-hosted. Store credentials in AWS Secrets Manager. Use environment variables for endpoint configuration.",
+      "effort": "medium",
+      "breakingChange": true,
+      "estimatedHours": 4.0,
+      "requiresArchitecturalChange": true
+    },
+    {
+      "id": "issue-11",
+      "severity": "high",
+      "category": "configuration-management",
+      "title": "Hard-coded API Keys and Secrets",
+      "description": "API keys and secrets hardcoded in properties file",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 25,
+      "codeSnippet": "external.api.key=hardcoded_api_key_12345\npayment.service.username=payment_user\npayment.service.password=payment_secret_456\nsecurity.jwt.secret=my_super_secret_jwt_key_123456789\nsecurity.admin.username=admin\nsecurity.admin.password=admin123\nsecurity.encryption.key=encryption_key_hardcoded",
+      "impact": "Hardcoded secrets create critical security vulnerabilities. These will be exposed in version control and container images. Violates AWS Well-Architected security pillar.",
+      "remediation": "Move all secrets to AWS Secrets Manager. Use IAM roles for service-to-service authentication. Implement AWS Systems Manager Parameter Store for non-sensitive configuration.",
+      "effort": "high",
+      "breakingChange": true,
+      "estimatedHours": 6.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-12",
+      "severity": "high",
+      "category": "configuration-management",
+      "title": "Hard-coded Monitoring Credentials",
+      "description": "Monitoring endpoint credentials hardcoded in properties",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 44,
+      "codeSnippet": "monitoring.endpoint=http://monitoring.internal.company.com:9090/metrics\nmonitoring.username=monitor_user\nmonitoring.password=monitor_pass",
+      "impact": "Hardcoded monitoring credentials prevent secure cloud deployment. Should use AWS CloudWatch for monitoring instead.",
+      "remediation": "Migrate to AWS CloudWatch for metrics and monitoring. Remove hardcoded monitoring credentials. Use IAM roles for CloudWatch access.",
+      "effort": "medium",
+      "breakingChange": true,
+      "estimatedHours": 4.0,
+      "requiresArchitecturalChange": true
+    },
+    {
+      "id": "issue-13",
+      "severity": "high",
+      "category": "configuration-management",
+      "title": "Hard-coded Messaging Credentials",
+      "description": "RabbitMQ credentials hardcoded in properties file",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 49,
+      "codeSnippet": "messaging.rabbitmq.host=rabbitmq.internal.company.com\nmessaging.rabbitmq.port=5672\nmessaging.rabbitmq.username=rabbitmq_user\nmessaging.rabbitmq.password=rabbitmq_secret",
+      "impact": "Hardcoded messaging credentials create security risks. RabbitMQ should be replaced with AWS managed messaging services.",
+      "remediation": "Migrate to AWS SQS/SNS for messaging. Remove hardcoded credentials. Use IAM roles for AWS service access.",
+      "effort": "high",
+      "breakingChange": true,
+      "estimatedHours": 8.0,
+      "requiresArchitecturalChange": true
+    },
+    {
+      "id": "issue-14",
+      "severity": "high",
+      "category": "logging-monitoring",
+      "title": "File-based Logging Implementation",
+      "description": "Application implements file-based logging which loses logs in ephemeral containers",
+      "filePath": "src/main/java/com/test/MiniApp.java",
+      "lineNumber": 57,
+      "codeSnippet": "private void initializeLogging() {\n    File logDir = new File(\"/var/log\");\n    if (!logDir.exists()) {\n        logDir.mkdirs();\n    }\n    File logFile = new File(LOG_FILE_PATH);",
+      "impact": "File-based logging loses logs when containers restart and doesn't support distributed log analysis. Cannot aggregate logs across multiple instances in AWS.",
+      "remediation": "Remove file-based logging. Use stdout/stderr for all logging. Configure AWS CloudWatch Logs agent to capture container logs automatically.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 3.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-15",
+      "severity": "high",
+      "category": "database-persistence",
+      "title": "Direct JDBC Connection Management",
+      "description": "Application manages JDBC connections directly without connection pooling",
+      "filePath": "src/main/java/com/test/DatabaseService.java",
+      "lineNumber": 39,
+      "codeSnippet": "connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);",
+      "impact": "Direct connections exhaust database limits and prevent efficient resource utilization in cloud environments. No connection pooling means poor performance and resource exhaustion.",
+      "remediation": "Use connection pooling frameworks (HikariCP, Spring Boot DataSource) or AWS RDS Proxy for connection management. Implement proper connection lifecycle management.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 4.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-16",
+      "severity": "medium",
+      "category": "configuration-management",
+      "title": "Properties Files in Classpath",
+      "description": "Configuration files packaged with application prevent runtime configuration changes",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 1,
+      "codeSnippet": "# Mini Java App Configuration - WITH INTENTIONAL CONTAINERIZATION BLOCKERS",
+      "impact": "Classpath configs require rebuilds for changes and prevent environment-specific configurations. Cannot change configuration without rebuilding and redeploying container images.",
+      "remediation": "Externalize configuration using environment variables. Use AWS Systems Manager Parameter Store or AWS AppConfig for runtime configuration management.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 4.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-17",
+      "severity": "medium",
+      "category": "configuration-management",
+      "title": "Localhost References in Configuration",
+      "description": "Multiple localhost and 127.0.0.1 references prevent cloud deployment",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 5,
+      "codeSnippet": "server.host=localhost\ndatabase.url=jdbc:mysql://localhost:3306/mini_app_db\ncache.redis.host=127.0.0.1",
+      "impact": "Localhost references prevent distributed cloud deployment where services are accessed via service discovery or load balancers.",
+      "remediation": "Replace localhost with environment variable-based configuration. Use AWS service discovery (Cloud Map) or configure service endpoints via environment variables.",
+      "effort": "low",
+      "breakingChange": false,
+      "estimatedHours": 2.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-18",
+      "severity": "medium",
+      "category": "configuration-management",
+      "title": "Hard-coded Connection Pool Settings",
+      "description": "Database connection pool settings hardcoded in properties",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 13,
+      "codeSnippet": "database.pool.max-connections=20\ndatabase.pool.timeout=5000",
+      "impact": "Fixed pool sizes don't scale with varying AWS instance sizes. Need to be configurable based on environment resources.",
+      "remediation": "Make pool settings configurable via environment variables. Calculate pool size dynamically based on available resources or instance type.",
+      "effort": "low",
+      "breakingChange": false,
+      "estimatedHours": 1.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-19",
+      "severity": "medium",
+      "category": "configuration-management",
+      "title": "Hard-coded API Timeout Values",
+      "description": "API timeout values hardcoded in configuration",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 24,
+      "codeSnippet": "external.api.timeout=30000",
+      "impact": "Fixed timeout values may not be appropriate for all cloud environments and network conditions. Should be configurable.",
+      "remediation": "Make timeout values configurable via environment variables with sensible defaults. Allow tuning based on cloud environment characteristics.",
+      "effort": "low",
+      "breakingChange": false,
+      "estimatedHours": 1.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-20",
+      "severity": "medium",
+      "category": "logging-monitoring",
+      "title": "System.out.println Usage",
+      "description": "Application uses System.out.println for logging instead of proper logging framework",
+      "filePath": "src/main/java/com/test/DatabaseService.java",
+      "lineNumber": 33,
+      "codeSnippet": "System.out.println(\"Connecting to database...\");\nSystem.out.println(\"Connected to database: \" + DB_URL);\nSystem.err.println(\"Database driver not found: \" + e.getMessage());",
+      "impact": "System.out/err doesn't provide log levels, structured logging, or correlation IDs needed for cloud observability. Difficult to parse and analyze in AWS CloudWatch.",
+      "remediation": "Replace System.out/err with proper logging framework (SLF4J with Logback). Use structured JSON logging for better CloudWatch integration. Add correlation IDs for distributed tracing.",
+      "effort": "low",
+      "breakingChange": false,
+      "estimatedHours": 2.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-21",
+      "severity": "medium",
+      "category": "resource-management",
+      "title": "Missing Connection Timeout Configuration",
+      "description": "Database connections created without explicit timeout configuration",
+      "filePath": "src/main/java/com/test/DatabaseService.java",
+      "lineNumber": 39,
+      "codeSnippet": "connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);",
+      "impact": "Missing timeouts cause applications to hang indefinitely in cloud network environments with transient failures.",
+      "remediation": "Set appropriate connection and read timeouts for all network connections. Use connection pool with timeout configuration.",
+      "effort": "low",
+      "breakingChange": false,
+      "estimatedHours": 1.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-22",
+      "severity": "medium",
+      "category": "resource-management",
+      "title": "Potential Resource Leak - Connection Not in Try-With-Resources",
+      "description": "Database connection not managed with try-with-resources, potential resource leak",
+      "filePath": "src/main/java/com/test/DatabaseService.java",
+      "lineNumber": 31,
+      "codeSnippet": "public void connect() {\n    try {\n        connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);",
+      "impact": "Resource leaks exhaust cloud container memory and connection limits. Improper resource management causes instability in long-running cloud applications.",
+      "remediation": "Use try-with-resources statements for all JDBC resources. Implement proper connection lifecycle management with connection pooling.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 2.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-23",
+      "severity": "medium",
+      "category": "configuration-management",
+      "title": "Environment-Specific Value Hardcoded",
+      "description": "Environment value hardcoded in properties file",
+      "filePath": "src/main/resources/application.properties",
+      "lineNumber": 55,
+      "codeSnippet": "environment=production\ndebug.enabled=false\nlogging.level=INFO",
+      "impact": "Hardcoded environment prevents proper deployment to different AWS environments (dev/staging/prod). Need to rebuild application for different environments.",
+      "remediation": "Remove environment hardcoding. Detect environment via environment variables or AWS tags. Use Spring profiles for environment-specific configuration.",
+      "effort": "low",
+      "breakingChange": false,
+      "estimatedHours": 1.0,
+      "requiresArchitecturalChange": false
+    }
+  ],
+  "recommendations": [
+    "CRITICAL PRIORITY: Remove all hardcoded credentials and secrets. Migrate to AWS Secrets Manager immediately for security compliance.",
+    "CRITICAL PRIORITY: Replace all file-based storage and logging with cloud-native alternatives (S3 for storage, CloudWatch for logs).",
+    "CRITICAL PRIORITY: Remove hardcoded absolute file paths and migrate to environment variable-based configuration.",
+    "HIGH PRIORITY: Externalize all configuration to environment variables and AWS Systems Manager Parameter Store.",
+    "HIGH PRIORITY: Replace direct JDBC connections with proper connection pooling (HikariCP) or AWS RDS Proxy.",
+    "HIGH PRIORITY: Migrate from file-based logging to stdout/stderr with CloudWatch Logs integration.",
+    "HIGH PRIORITY: Replace localhost references with AWS service discovery or environment-based endpoint configuration.",
+    "MEDIUM PRIORITY: Implement proper logging framework (SLF4J/Logback) with structured JSON logging and correlation IDs.",
+    "MEDIUM PRIORITY: Add connection timeouts and proper resource management with try-with-resources.",
+    "MEDIUM PRIORITY: Make all fixed configuration values (pool sizes, timeouts) configurable via environment variables.",
+    "Consider migrating to Spring Boot with Spring Cloud AWS for better AWS integration and cloud-native patterns.",
+    "Implement AWS-specific services: ElastiCache for Redis, RDS for MySQL, SQS/SNS for messaging, S3 for storage.",
+    "Add health check endpoints for AWS load balancer integration.",
+    "Implement distributed tracing with AWS X-Ray for better observability."
+  ],
+  "cloudSpecificGuidance": {
+    "aws": [
+      "Use AWS Secrets Manager for all credentials (database, API keys, encryption keys)",
+      "Replace local file storage with AWS S3 for uploads and persistent storage",
+      "Use AWS CloudWatch Logs for centralized logging - configure log groups per service",
+      "Migrate to AWS RDS for MySQL with automated backups and multi-AZ deployment",
+      "Use AWS ElastiCache for Redis instead of self-managed Redis",
+      "Replace RabbitMQ with AWS SQS for queues and AWS SNS for pub/sub messaging",
+      "Use AWS Systems Manager Parameter Store for non-sensitive configuration",
+      "Implement AWS IAM roles for service-to-service authentication instead of hardcoded credentials",
+      "Use AWS Application Load Balancer with target groups for traffic distribution",
+      "Configure AWS ECS task definitions with environment variables for runtime configuration",
+      "Use AWS RDS Proxy for connection pooling and improved database scalability",
+      "Enable AWS X-Ray for distributed tracing and performance analysis",
+      "Implement AWS CloudWatch Container Insights for container-level metrics",
+      "Use AWS Cloud Map for service discovery in microservices architecture",
+      "Configure AWS Security Groups for network security instead of application-level IP filtering"
+    ]
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1861/transformed-code/9/studio-workspace/test comp",
+    "cloudType": "AWS",
+    "platform": "linux",
+    "timestamp": "2025-12-15T00:00:00Z",
+    "claudeModel": "sonnet-4.5",
+    "rulesVersion": "1.0"
+  }
+}
+```
+
+---
+
+# AWS Cloud Readiness Analysis Report
+
+## Executive Summary
+
+**Analysis ID:** cloudreadiness-analysis-2025-12-15  
+**Cloud Platform:** AWS  
+**Overall Cloud Readiness Score:** 15/100 (Critical - Not Ready for Cloud Deployment)
+
+### Issue Summary
+
+| Severity | Count | Estimated Hours |
+|----------|-------|-----------------|
+| **Critical** | 6 | 28-34 hours |
+| **High** | 9 | 30-40 hours |
+| **Medium** | 8 | 14-21 hours |
+| **Low** | 0 | 0 hours |
+| **TOTAL** | **23** | **65-95 hours** |
+
+### Category Breakdown
+
+- **Configuration Issues:** 14 issues (majority are hardcoded values, credentials)
+- **Security Issues:** 9 issues (hardcoded secrets, credentials, API keys)
+- **File System Dependencies:** 3 critical issues
+- **Network/Communication:** 2 critical issues
+- **Database/Persistence:** 1 high issue
+- **Logging/Monitoring:** 2 issues
+- **Resource Management:** 3 medium issues
+
+---
+
+## Detailed Findings
+
+### CRITICAL ISSUES (6)
+
+#### 1. Hard-coded Absolute File Paths
+**Location:** `src/main/java/com/test/MiniApp.java:18-19`
+
+```java
+private static final String CONFIG_FILE_PATH = "/opt/app/config/app.properties";
+private static final String LOG_FILE_PATH = "/var/log/mini-app.log";
+```
+
+**Impact:** These hardcoded absolute paths will cause immediate failure in AWS container environments (ECS, EKS, Fargate, Lambda). Container filesystems are ephemeral, and these specific paths won't exist or won't persist across container restarts.
+
+**AWS-Specific Impact:**
+- ECS/Fargate: Containers don't have persistent /opt or /var/log directories
+- EKS: Pods are ephemeral, data written to these paths is lost on pod restart
+- Lambda: Read-only filesystem except for /tmp (512MB limit)
+
+**Remediation:**
+1. Configuration: Use AWS Systems Manager Parameter Store or AWS AppConfig
+2. Logging: Write to stdout/stderr and let AWS CloudWatch capture logs
+3. Use environment variables for any path configuration
+4. For Spring Boot, use `classpath:` resources or externalized config
+
+**Effort:** 4 hours | **Breaking Change:** Yes
+
+---
+
+#### 2. Java.io.File Usage for Data Storage
+**Location:** `src/main/java/com/test/MiniApp.java:44-48`
+
+```java
+File configFile = new File(CONFIG_FILE_PATH);
+if (configFile.exists()) {
+    Properties props = new Properties();
+    props.load(new FileInputStream(configFile));
+```
+
+**Impact:** This pattern creates a dependency on persistent local filesystem, which doesn't exist in cloud containers. Any data written to local filesystem is lost when containers are replaced or scaled.
+
+**AWS-Specific Impact:**
+- Data loss during auto-scaling events
+- Inconsistent state across multiple container instances
+- Breaks in blue-green deployments
+
+**Remediation:**
+1. Replace File API with AWS S3 SDK for persistent storage
+2. Use AWS Systems Manager Parameter Store for configuration
+3. Use Spring Cloud Config with AWS backend
+4. For temporary files, use /tmp with size awareness (512MB in Lambda)
+
+**Effort:** 6 hours | **Breaking Change:** Yes | **Architectural Change:** Yes
+
+---
+
+#### 3. Local Directory Creation and File Operations
+**Location:** `src/main/java/com/test/MiniApp.java:60-68`
+
+```java
+File logDir = new File("/var/log");
+if (!logDir.exists()) {
+    logDir.mkdirs();
+}
+File logFile = new File(LOG_FILE_PATH);
+if (!logFile.exists()) {
+    logFile.createNewFile();
+}
+```
+
+**Impact:** Creating directories and files in /var/log violates cloud-native principles. Logs written to files are lost when containers restart, making debugging impossible.
+
+**AWS-Specific Impact:**
+- CloudWatch Logs cannot capture file-based logs
+- No log aggregation across multiple instances
+- Cannot use CloudWatch Insights for log analysis
+
+**Remediation:**
+1. **Remove all file-based logging code**
+2. Use SLF4J/Logback with stdout appender
+3. Configure AWS CloudWatch Logs agent in ECS/EKS
+4. Use AWS X-Ray for distributed tracing
+
+**Effort:** 5 hours | **Breaking Change:** Yes | **Architectural Change:** Yes
+
+---
+
+#### 4. Hard-coded Port Number
+**Location:** `src/main/java/com/test/MiniApp.java:15,79`
+
+```java
+private static final int SERVER_PORT = 8080;
+...
+ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
+```
+
+**Impact:** Hardcoded ports prevent AWS container orchestration from dynamically assigning ports. This causes port conflicts and prevents proper load balancer integration.
+
+**AWS-Specific Impact:**
+- ECS dynamic port mapping requires port to be configurable
+- ALB target groups need dynamic port registration
+- Cannot run multiple containers on same host
+- Service discovery breaks with fixed ports
+
+**Remediation:**
+1. Use environment variable: `int port = Integer.parseInt(System.getenv().getOrDefault("SERVER_PORT", "8080"));`
+2. For Spring Boot: Use `server.port=${PORT:8080}` in application.yml
+3. Configure ECS task definition with dynamic port mapping
+4. Update ALB target group to use dynamic ports
+
+**Effort:** 1 hour | **Breaking Change:** Yes
+
+---
+
+#### 5. Direct Socket Programming
+**Location:** `src/main/java/com/test/MiniApp.java:79`
+
+```java
+ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
+```
+
+**Impact:** Raw socket programming bypasses AWS networking infrastructure (load balancers, service mesh, security groups). This prevents proper cloud deployment patterns.
+
+**AWS-Specific Impact:**
+- Cannot use Application Load Balancer health checks
+- No integration with AWS Target Groups
+- Service discovery (AWS Cloud Map) won't work
+- Security groups can't properly filter HTTP traffic
+
+**Remediation:**
+1. **Replace with Spring Boot embedded server** (Tomcat/Jetty) - accepts HTTP requests
+2. Configure Spring Boot with actuator endpoints for ALB health checks
+3. Use proper HTTP-based communication
+4. Alternatively, migrate to AWS Lambda with API Gateway for serverless
+
+**Effort:** 8 hours | **Breaking Change:** Yes | **Architectural Change:** Yes
+
+---
+
+#### 6. Hard-coded File Paths in Properties
+**Location:** `src/main/resources/application.properties:32-35`
+
+```properties
+app.config.directory=/opt/app/config
+app.log.directory=/var/log/mini-app
+app.temp.directory=/tmp/mini-app
+app.upload.directory=/opt/uploads
+```
+
+**Impact:** These hardcoded paths prevent cloud deployment. Upload directory should be AWS S3, not local filesystem.
+
+**AWS-Specific Impact:**
+- Uploads are lost when containers restart
+- Cannot share uploads across multiple instances
+- No backup/versioning for uploaded files
+- Wastes container storage
+
+**Remediation:**
+1. **Replace upload directory with AWS S3**
+   - Use AWS SDK for Java v2
+   - Implement S3Client with pre-signed URLs for uploads
+2. Use environment variables for all paths
+3. Only use /tmp for truly temporary files (understand size limits)
+4. Remove config and log directories entirely
+
+**Effort:** 4 hours | **Breaking Change:** Yes | **Architectural Change:** Yes
+
+---
+
+### HIGH SEVERITY ISSUES (9)
+
+#### 7. Hard-coded Database Credentials in Java Code
+**Location:** `src/main/java/com/test/DatabaseService.java:14-19`
+
+```java
+private static final String DB_HOST = "localhost";
+private static final String DB_PORT = "3306";
+private static final String DB_NAME = "mini_app_db";
+private static final String DB_URL = "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
+private static final String DB_USERNAME = "root";
+private static final String DB_PASSWORD = "password123";
+```
+
+**Impact:** This is a **critical security vulnerability**. Hardcoded credentials in source code:
+- Are visible in Git history forever
+- Are embedded in container images
+- Cannot be rotated without code changes
+- Violate AWS security best practices and compliance requirements
+
+**AWS-Specific Impact:**
+- Fails AWS Security Hub checks
+- Violates PCI-DSS, HIPAA, SOC2 compliance
+- Cannot use AWS RDS IAM authentication
+- Credentials exposed in container image layers
+
+**Remediation:**
+1. **Use AWS Secrets Manager** (recommended):
+```java
+// Fetch from Secrets Manager
+SecretsManagerClient client = SecretsManagerClient.create();
+GetSecretValueResponse secret = client.getSecretValue(
+    r -> r.secretId("mini-app/db-credentials")
+);
+// Parse JSON secret value
+```
+
+2. **Use Spring Cloud AWS Secrets Manager integration**:
+```yaml
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+aws:
+  secretsmanager:
+    enabled: true
+```
+
+3. **Use environment variables** (minimum):
+```java
+String dbUrl = System.getenv("DB_URL");
+String dbUser = System.getenv("DB_USERNAME");
+String dbPass = System.getenv("DB_PASSWORD");
+```
+
+**Effort:** 3 hours | **Breaking Change:** Yes
+
+---
+
+#### 8. Hard-coded Environment URLs in Java Code
+**Location:** `src/main/java/com/test/DatabaseService.java:22-27`
+
+```java
+private static final String REDIS_HOST = "127.0.0.1";
+private static final int REDIS_PORT = 6379;
+private static final String EXTERNAL_API_URL = "http://api.example.com:8080/v1";
+private static final String PAYMENT_SERVICE_URL = "https://payment.internal.company.com/process";
+```
+
+**Impact:** Hardcoded service URLs prevent:
+- Deployment to different AWS environments (dev/staging/prod)
+- Service discovery in microservices architecture
+- Load balancer integration
+- Localhost references won't work in AWS
+
+**AWS-Specific Impact:**
+- Cannot use AWS ElastiCache endpoint
+- Cannot use AWS Cloud Map service discovery
+- Cannot use Application Load Balancer DNS names
+- Internal company URLs won't be accessible from AWS VPC
+
+**Remediation:**
+1. **Use AWS Systems Manager Parameter Store**:
+```java
+SsmClient ssmClient = SsmClient.create();
+String redisHost = ssmClient.getParameter(
+    r -> r.name("/mini-app/redis-host")
+).parameter().value();
+```
+
+2. **Use environment variables**:
+```java
+String redisHost = System.getenv("REDIS_HOST");
+int redisPort = Integer.parseInt(System.getenv("REDIS_PORT"));
+String externalApiUrl = System.getenv("EXTERNAL_API_URL");
+```
+
+3. **For Redis, use AWS ElastiCache**:
+   - Create ElastiCache Redis cluster
+   - Use cluster endpoint from environment variable
+   - Enable encryption in-transit and at-rest
+
+**Effort:** 3 hours | **Breaking Change:** Yes
+
+---
+
+#### 9. Hard-coded Database Credentials in Properties File
+**Location:** `src/main/resources/application.properties:9-11`
+
+```properties
+database.url=jdbc:mysql://localhost:3306/mini_app_db
+database.username=root
+database.password=password123
+```
+
+**Impact:** Same security vulnerability as #7, but in properties file. Gets committed to version control and baked into container images.
+
+**Remediation:** Same as issue #7 - use AWS Secrets Manager
+
+**Effort:** 3 hours | **Breaking Change:** Yes
+
+---
+
+#### 10. Hard-coded Redis Credentials
+**Location:** `src/main/resources/application.properties:17-19`
+
+```properties
+cache.redis.host=127.0.0.1
+cache.redis.port=6379
+cache.redis.password=redis_secret_123
+```
+
+**Impact:** Security vulnerability + localhost reference prevents cloud deployment.
+
+**AWS-Specific Remediation:**
+1. Create AWS ElastiCache for Redis cluster
+2. Use cluster configuration endpoint
+3. Store AUTH token in AWS Secrets Manager
+4. Configure security group for ECS/EKS access
+
+```yaml
+# Spring Boot configuration with AWS ElastiCache
+spring:
+  redis:
+    host: ${REDIS_HOST}  # ElastiCache endpoint from environment
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD}  # From Secrets Manager
+    ssl: true  # Enable for production
+```
+
+**Effort:** 4 hours | **Breaking Change:** Yes | **Architectural Change:** Yes
+
+---
+
+#### 11. Hard-coded API Keys and Secrets
+**Location:** `src/main/resources/application.properties:25-41`
+
+```properties
+external.api.key=hardcoded_api_key_12345
+payment.service.username=payment_user
+payment.service.password=payment_secret_456
+security.jwt.secret=my_super_secret_jwt_key_123456789
+security.admin.username=admin
+security.admin.password=admin123
+security.encryption.key=encryption_key_hardcoded
+```
+
+**Impact:** **CRITICAL SECURITY VULNERABILITY**. Multiple secrets exposed:
+- API keys visible in container images
+- JWT secret compromise allows token forgery
+- Admin credentials expose full system access
+- Encryption key exposure compromises encrypted data
+
+**AWS-Specific Impact:**
+- Violates AWS Well-Architected Framework security pillar
+- Fails AWS Security Hub compliance checks
+- Cannot pass security audits (PCI-DSS, HIPAA, SOC2)
+- Secrets visible in CloudFormation templates if used
+
+**Remediation:**
+1. **Migrate ALL secrets to AWS Secrets Manager**:
+
+```json
+// Create secrets in AWS Secrets Manager
+{
+  "external_api_key": "...",
+  "payment_service_username": "...",
+  "payment_service_password": "...",
+  "jwt_secret": "...",
+  "admin_username": "...",
+  "admin_password": "...",
+  "encryption_key": "..."
+}
+```
+
+2. **Use AWS SDK to fetch at runtime**:
+```java
+@Configuration
+public class SecretsConfig {
+    @Bean
+    public SecretsManager secretsManager() {
+        SecretsManagerClient client = SecretsManagerClient.create();
+        // Fetch and parse secrets
+    }
+}
+```
+
+3. **Use IAM roles** for service-to-service auth instead of API keys where possible
+
+**Effort:** 6 hours | **Breaking Change:** Yes
+
+---
+
+#### 12. Hard-coded Monitoring Credentials
+**Location:** `src/main/resources/application.properties:44-46`
+
+```properties
+monitoring.endpoint=http://monitoring.internal.company.com:9090/metrics
+monitoring.username=monitor_user
+monitoring.password=monitor_pass
+```
+
+**Impact:** Security vulnerability + using external monitoring instead of AWS CloudWatch.
+
+**AWS-Specific Remediation:**
+1. **Replace with AWS CloudWatch**:
+   - Use CloudWatch Metrics for application metrics
+   - Use CloudWatch Logs for log aggregation
+   - Use CloudWatch Container Insights for container metrics
+2. **Use Micrometer with CloudWatch integration**:
+```xml
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-cloudwatch2</artifactId>
+</dependency>
+```
+3. **Remove monitoring credentials entirely**
+4. **Use IAM roles** for CloudWatch access
+
+**Effort:** 4 hours | **Breaking Change:** Yes | **Architectural Change:** Yes
+
+---
+
+#### 13. Hard-coded Messaging Credentials
+**Location:** `src/main/resources/application.properties:49-52`
+
+```properties
+messaging.rabbitmq.host=rabbitmq.internal.company.com
+messaging.rabbitmq.port=5672
+messaging.rabbitmq.username=rabbitmq_user
+messaging.rabbitmq.password=rabbitmq_secret
+```
+
+**Impact:** Security vulnerability + using self-managed RabbitMQ instead of AWS managed services.
+
+**AWS-Specific Remediation:**
+1. **Migrate to AWS SQS** for queues:
+```java
+@Configuration
+public class AwsSqsConfig {
+    @Bean
+    public SqsClient sqsClient() {
+        return SqsClient.builder()
+            .region(Region.US_EAST_1)
+            .build();  // Uses IAM role, no credentials needed
+    }
+}
+```
+
+2. **Use AWS SNS** for pub/sub messaging:
+```java
+@Bean
+public SnsClient snsClient() {
+    return SnsClient.create();  // IAM role authentication
+}
+```
+
+3. **Benefits of AWS SQS/SNS**:
+   - Fully managed (no infrastructure)
+   - Automatic scaling
+   - Integrated with CloudWatch
+   - IAM-based access control (no credentials to manage)
+   - Server-side encryption
+
+**Effort:** 8 hours | **Breaking Change:** Yes | **Architectural Change:** Yes
+
+---
+
+#### 14. File-based Logging Implementation
+**Location:** `src/main/java/com/test/MiniApp.java:57-74`
+
+**Impact:** Already covered in Critical Issue #3
+
+**Effort:** 3 hours
+
+---
+
+#### 15. Direct JDBC Connection Management
+**Location:** `src/main/java/com/test/DatabaseService.java:39`
+
+```java
+connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+```
+
+**Impact:** 
+- No connection pooling = poor performance
+- Cannot handle connection failures gracefully
+- Exhausts database connection limits
+- No connection retry logic
+
+**AWS-Specific Impact:**
+- AWS RDS has connection limits
+- No integration with AWS RDS Proxy
+- Cannot handle RDS failover properly
+- Poor performance under load
+
+**Remediation:**
+1. **Use HikariCP** (Spring Boot default):
+```yaml
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+```
+
+2. **Use AWS RDS Proxy** (recommended for serverless):
+   - Connection pooling at infrastructure level
+   - Automatic failover handling
+   - IAM authentication support
+   - Reduced database connection overhead
+
+**Effort:** 4 hours
+
+---
+
+### MEDIUM SEVERITY ISSUES (8)
+
+#### 16. Properties Files in Classpath
+**Location:** `src/main/resources/application.properties:1`
+
+**Impact:** Configuration baked into container image requires rebuild for any change.
+
+**Remediation:** Use environment variables for all configuration, AWS Parameter Store for complex config.
+
+**Effort:** 4 hours
+
+---
+
+#### 17. Localhost References in Configuration
+**Location:** `src/main/resources/application.properties:5,9,17`
+
+```properties
+server.host=localhost
+database.url=jdbc:mysql://localhost:3306/mini_app_db
+cache.redis.host=127.0.0.1
+```
+
+**Impact:** Localhost references prevent distributed deployment.
+
+**AWS-Specific Remediation:**
+- Database: Use AWS RDS endpoint
+- Redis: Use AWS ElastiCache endpoint
+- Server: Use 0.0.0.0 or omit (default)
+
+**Effort:** 2 hours
+
+---
+
+#### 18. Hard-coded Connection Pool Settings
+**Location:** `src/main/resources/application.properties:13-14`
+
+```properties
+database.pool.max-connections=20
+database.pool.timeout=5000
+```
+
+**Impact:** Fixed pool size doesn't adapt to AWS instance types (t3.micro vs m5.large).
+
+**Remediation:** Calculate dynamically or use environment variables.
+
+**Effort:** 1 hour
+
+---
+
+#### 19-23. Additional Medium Issues
+
+*See JSON output above for complete details on remaining medium severity issues including:*
+- Hard-coded API timeouts
+- System.out.println usage instead of proper logging
+- Missing connection timeouts
+- Resource leak potential
+- Environment-specific hardcoded values
+
+**Combined Effort:** 7 hours
+
+---
+
+## AWS Migration Recommendations
+
+### Phase 1: Security & Credentials (CRITICAL - Week 1)
+**Estimated Effort: 20-25 hours**
+
+1. **Migrate all secrets to AWS Secrets Manager**
+   - Database credentials
+   - Redis/cache credentials
+   - API keys and tokens
+   - JWT secrets
+   - Encryption keys
+   - Third-party service credentials
+
+2. **Implement Secrets Manager integration**
+   - Add AWS SDK dependency
+   - Create SecretsConfig class
+   - Update application to fetch secrets at startup
+   - Test secret rotation
+
+3. **Remove ALL hardcoded credentials from code and properties**
+
+---
+
+### Phase 2: File System & Storage (CRITICAL - Week 2)
+**Estimated Effort: 15-18 hours**
+
+1. **Replace file-based logging**
+   - Implement SLF4J/Logback
+   - Configure stdout appender
+   - Set up CloudWatch Log Groups
+   - Configure log retention policies
+
+2. **Replace file-based storage**
+   - Implement AWS S3 SDK
+   - Create S3 buckets for uploads
+   - Implement pre-signed URL generation
+   - Update upload/download logic
+
+3. **Remove all hardcoded file paths**
+   - Make paths configurable via environment variables
+   - Use /tmp only for temporary files
+
+---
+
+### Phase 3: Configuration Externalization (HIGH - Week 3)
+**Estimated Effort: 15-20 hours**
+
+1. **Externalize all configuration**
+   - Migrate to environment variables
+   - Set up AWS Systems Manager Parameter Store
+   - Implement Spring Cloud AWS
+   - Create environment-specific parameters
+
+2. **Fix localhost references**
+   - Update to use AWS service endpoints
+   - Implement service discovery
+   - Configure ALB/NLB endpoints
+
+3. **Fix hardcoded ports**
+   - Make port configurable
+   - Update ECS task definitions
+   - Configure dynamic port mapping
+
+---
+
+### Phase 4: Database & Caching (HIGH - Week 4)
+**Estimated Effort: 15-20 hours**
+
+1. **Database improvements**
+   - Implement connection pooling (HikariCP)
+   - Set up AWS RDS instance
+   - Configure AWS RDS Proxy
+   - Implement proper connection lifecycle
+
+2. **Migrate to AWS ElastiCache**
+   - Create ElastiCache Redis cluster
+   - Update connection configuration
+   - Enable encryption
+   - Configure security groups
+
+---
+
+### Phase 5: Messaging & Monitoring (MEDIUM - Week 5)
+**Estimated Effort: 12-15 hours**
+
+1. **Migrate to AWS SQS/SNS**
+   - Replace RabbitMQ with SQS
+   - Implement SNS for pub/sub
+   - Update message handling code
+
+2. **Migrate to CloudWatch**
+   - Set up CloudWatch metrics
+   - Configure Micrometer
+   - Implement X-Ray tracing
+   - Set up CloudWatch alarms
+
+---
+
+### AWS Services Required
+
+| AWS Service | Purpose | Priority |
+|-------------|---------|----------|
+| **AWS Secrets Manager** | Store all credentials and secrets | CRITICAL |
+| **AWS Systems Manager Parameter Store** | Store configuration | CRITICAL |
+| **AWS S3** | File storage and uploads | CRITICAL |
+| **AWS CloudWatch Logs** | Centralized logging | CRITICAL |
+| **AWS RDS (MySQL)** | Managed database | HIGH |
+| **AWS ElastiCache (Redis)** | Managed caching | HIGH |
+| **AWS RDS Proxy** | Connection pooling | HIGH |
+| **AWS SQS** | Message queuing | MEDIUM |
+| **AWS SNS** | Pub/sub messaging | MEDIUM |
+| **AWS CloudWatch Metrics** | Application monitoring | MEDIUM |
+| **AWS X-Ray** | Distributed tracing | LOW |
+| **AWS Cloud Map** | Service discovery | LOW |
+
+---
+
+### Container Deployment Options
+
+**Option 1: AWS ECS with Fargate (Recommended)**
+- Serverless container orchestration
+- No infrastructure management
+- Integrated with ALB, CloudWatch, X-Ray
+- Dynamic port mapping support
+
+**Option 2: AWS EKS (Kubernetes)**
+- Full Kubernetes compatibility
+- More complex but more flexible
+- Better for microservices architecture
+- Requires more operational overhead
+
+**Option 3: AWS App Runner**
+- Simplest deployment option
+- Automatic scaling
+- Limited customization
+- Good for simple web applications
+
+---
+
+### Sample AWS Architecture
+
+```
+Internet
+   │
+   ├─── AWS Application Load Balancer
+   │      │
+   │      ├─── Target Group (Dynamic Ports)
+   │      │      │
+   │      │      ├─── ECS Fargate Task 1 (Mini App Container)
+   │      │      ├─── ECS Fargate Task 2 (Mini App Container)
+   │      │      └─── ECS Fargate Task N (Auto-scaling)
+   │      │             │
+   │      │             ├─── AWS Secrets Manager (Credentials)
+   │      │             ├─── AWS Systems Manager Parameter Store (Config)
+   │      │             ├─── AWS RDS MySQL (via RDS Proxy)
+   │      │             ├─── AWS ElastiCache Redis
+   │      │             ├─── AWS S3 (File Storage)
+   │      │             ├─── AWS SQS (Queues)
+   │      │             ├─── AWS SNS (Notifications)
+   │      │             └─── AWS CloudWatch (Logs & Metrics)
+```
+
+---
+
+### Infrastructure as Code (IaC)
+
+**Recommendation: Use AWS CDK (Cloud Development Kit)**
+
+```java
+// Example CDK code for Mini App infrastructure
+public class MiniAppStack extends Stack {
+    public MiniAppStack(Construct scope, String id) {
+        super(scope, id);
+        
+        // VPC
+        Vpc vpc = Vpc.Builder.create(this, "MiniAppVpc")
+            .maxAzs(2)
+            .build();
+        
+        // RDS MySQL
+        DatabaseInstance database = DatabaseInstance.Builder.create(this, "Database")
+            .engine(DatabaseInstanceEngine.mysql(MySqlInstanceEngineProps.builder()
+                .version(MysqlEngineVersion.VER_8_0_33)
+                .build()))
+            .vpc(vpc)
+            .credentials(Credentials.fromSecret(
+                Secret.fromSecretNameV2(this, "DBSecret", "mini-app/db-credentials")
+            ))
+            .build();
+        
+        // ElastiCache Redis
+        CfnReplicationGroup redis = CfnReplicationGroup.Builder.create(this, "Redis")
+            .replicationGroupDescription("Mini App Cache")
+            .engine("redis")
+            .cacheNodeType("cache.t3.micro")
+            .numCacheClusters(2)
+            .automaticFailoverEnabled(true)
+            .build();
+        
+        // ECS Cluster
+        Cluster cluster = Cluster.Builder.create(this, "MiniAppCluster")
+            .vpc(vpc)
+            .build();
+        
+        // Fargate Service
+        ApplicationLoadBalancedFargateService service = 
+            ApplicationLoadBalancedFargateService.Builder.create(this, "MiniAppService")
+                .cluster(cluster)
+                .taskImageOptions(ApplicationLoadBalancedTaskImageOptions.builder()
+                    .image(ContainerImage.fromRegistry("mini-app:latest"))
+                    .environment(Map.of(
+                        "DB_HOST", database.getDbInstanceEndpointAddress(),
+                        "REDIS_HOST", redis.getAttrPrimaryEndPoint().getAddress()
+                    ))
+                    .secrets(Map.of(
+                        "DB_PASSWORD", Secret.fromSecretsManager(dbSecret)
+                    ))
+                    .build())
+                .desiredCount(2)
+                .build();
+    }
+}
+```
+
+---
+
+## Compliance & Security Assessment
+
+### AWS Well-Architected Framework Alignment
+
+| Pillar | Current Score | Issues |
+|--------|---------------|--------|
+| **Operational Excellence** | ❌ Poor | Hardcoded config, no proper logging |
+| **Security** | ❌ Critical | Hardcoded credentials, exposed secrets |
+| **Reliability** | ❌ Poor | No connection pooling, file dependencies |
+| **Performance Efficiency** | ⚠️ Fair | Direct JDBC, no caching strategy |
+| **Cost Optimization** | ⚠️ Fair | Could use serverless, managed services |
+| **Sustainability** | ⚠️ Fair | No rightsizing, inefficient resource usage |
+
+### Security Compliance Issues
+
+**❌ FAILS:**
+- PCI-DSS (hardcoded credentials)
+- HIPAA (insecure secret management)
+- SOC2 (no audit trail for secret access)
+- AWS Security Hub checks
+- CIS AWS Foundations Benchmark
+
+**Required Remediations for Compliance:**
+1. Move ALL secrets to AWS Secrets Manager
+2. Enable CloudTrail for audit logging
+3. Implement IAM roles and policies
+4. Enable encryption at rest and in transit
+5. Implement secret rotation
+6. Add security group restrictions
+
+---
+
+## Deployment Readiness Checklist
+
+### Critical Blockers (MUST FIX before cloud deployment)
+- [ ] Remove all hardcoded credentials from code
+- [ ] Remove all hardcoded credentials from properties files
+- [ ] Migrate secrets to AWS Secrets Manager
+- [ ] Remove hardcoded file paths
+- [ ] Replace file-based logging with CloudWatch
+- [ ] Replace file-based storage with S3
+- [ ] Make port configurable
+- [ ] Replace raw socket with HTTP server
+
+### High Priority (Should fix before production)
+- [ ] Externalize all configuration to environment variables
+- [ ] Implement connection pooling
+- [ ] Set up AWS RDS instance
+- [ ] Set up AWS ElastiCache
+- [ ] Replace localhost references
+- [ ] Implement proper logging framework
+- [ ] Add health check endpoints
+- [ ] Set up CloudWatch monitoring
+
+### Medium Priority (Fix during migration)
+- [ ] Migrate to AWS SQS/SNS
+- [ ] Implement distributed tracing (X-Ray)
+- [ ] Add correlation IDs to logs
+- [ ] Implement proper error handling
+- [ ] Add resource timeouts
+- [ ] Use try-with-resources
+- [ ] Make pool sizes configurable
+
+---
+
+## Cost Estimation for AWS Services
+
+### Monthly AWS Cost Estimate (Production)
+
+| Service | Configuration | Monthly Cost |
+|---------|--------------|--------------|
+| **ECS Fargate** | 2 tasks, 0.5 vCPU, 1GB RAM | $30 |
+| **Application Load Balancer** | 1 ALB, moderate traffic | $25 |
+| **RDS MySQL** | db.t3.micro, Multi-AZ | $40 |
+| **RDS Proxy** | 1 proxy | $15 |
+| **ElastiCache Redis** | cache.t3.micro, 2 nodes | $35 |
+| **S3** | 100GB storage, 10K requests | $5 |
+| **CloudWatch Logs** | 10GB logs, 30 day retention | $7 |
+| **Secrets Manager** | 10 secrets | $4 |
+| **Systems Manager Parameter Store** | 20 parameters (free) | $0 |
+| **SQS** | 1M requests | $0.40 |
+| **SNS** | 100K notifications | $0.50 |
+| **Data Transfer** | 100GB outbound | $9 |
+| **TOTAL** | | **~$170/month** |
+
+*Note: Costs vary by region and actual usage. This is estimate for us-east-1 with moderate traffic.*
+
+---
+
+## Testing Strategy for Cloud Migration
+
+### Phase 1: Local Testing
+1. Run application with environment variables (no hardcoded values)
+2. Test with LocalStack (AWS service emulator)
+3. Validate secret fetching from Secrets Manager
+4. Test S3 upload/download functionality
+
+### Phase 2: AWS Development Environment
+1. Deploy to AWS ECS Fargate (dev cluster)
+2. Test with real AWS RDS and ElastiCache
+3. Validate CloudWatch Logs integration
+4. Test auto-scaling behavior
+5. Validate secret rotation
+
+### Phase 3: Load Testing
+1. Use AWS Load Testing tool or JMeter
+2. Test connection pool under load
+3. Validate auto-scaling triggers
+4. Test failover scenarios
+
+### Phase 4: Production Deployment
+1. Blue-green deployment using ECS
+2. Monitor CloudWatch metrics
+3. Validate health checks
+4. Smoke tests in production
+5. Gradual traffic migration
+
+---
+
+## Migration Timeline
+
+### Aggressive Schedule (5 weeks)
+- **Week 1:** Security & credentials migration
+- **Week 2:** File system & storage migration
+- **Week 3:** Configuration externalization
+- **Week 4:** Database & caching setup
+- **Week 5:** Testing & production deployment
+
+### Conservative Schedule (8 weeks)
+- **Weeks 1-2:** Security & credentials
+- **Weeks 3-4:** Infrastructure setup (RDS, ElastiCache, S3)
+- **Weeks 5-6:** Application changes & testing
+- **Week 7:** Integration testing & load testing
+- **Week 8:** Production deployment & monitoring
+
+---
+
+## Success Criteria
+
+### Application Runs Successfully When:
+- [x] No hardcoded credentials in code or config files
+- [x] All secrets fetched from AWS Secrets Manager
+- [x] Configuration externalized to environment variables
+- [x] Logging to CloudWatch (no file-based logging)
+- [x] File storage uses S3 (no local filesystem)
+- [x] Database uses RDS with connection pooling
+- [x] Cache uses ElastiCache
+- [x] Messaging uses SQS/SNS
+- [x] Application scales horizontally (multiple instances)
+- [x] Health checks pass in ALB
+- [x] Zero downtime deployment works
+- [x] Auto-scaling based on CloudWatch metrics
+- [x] All compliance checks pass
+
+---
+
+## Conclusion
+
+**Current State:** This application has **23 cloud readiness blockers** with a readiness score of **15/100**, making it **NOT READY** for AWS cloud deployment.
+
+**Critical Issues:** 6 critical blockers must be fixed before any cloud deployment attempt:
+1. Hardcoded file paths
+2. File-based storage and logging
+3. Hardcoded network ports
+4. Raw socket programming
+5. Configuration file dependencies
+
+**Security Vulnerabilities:** 9 high-severity security issues related to hardcoded credentials and secrets that violate AWS security best practices and compliance requirements.
+
+**Recommended Approach:**
+1. **Phase 1 (Critical):** Fix all security issues and hardcoded credentials - migrate to AWS Secrets Manager
+2. **Phase 2 (Critical):** Remove file system dependencies - migrate to S3 and CloudWatch
+3. **Phase 3 (High):** Externalize configuration and set up AWS managed services
+4. **Phase 4 (Medium):** Implement monitoring, tracing, and operational excellence
+
+**Estimated Total Effort:** 65-95 hours of development work
+
+**AWS Services Required:** Secrets Manager, S3, CloudWatch, RDS, ElastiCache, ECS/Fargate, ALB, SQS, SNS
+
+**Total Monthly AWS Cost:** ~$170 (production environment)
+
+With proper remediation following this analysis, the application can be successfully migrated to AWS and will achieve cloud-native compliance, security, scalability, and operational excellence.

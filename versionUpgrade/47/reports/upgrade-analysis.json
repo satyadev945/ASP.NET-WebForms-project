@@ -1,0 +1,52 @@
+{
+  "analysisResults" : {
+    "cached" : false,
+    "message" : "Claude Engine service encountered an error during .NET analysis. Service internal error - likely a processing issue in the Claude CLI service.  | TROUBLESHOOTING: Check service logs for detailed error information.",
+    "status" : "error"
+  },
+  "dependencyAnalysis" : {
+    "incompatibleDependencies" : [ {
+      "issue" : "Needs update for .NET 8 compatibility",
+      "artifactId" : "Microsoft.EntityFrameworkCore",
+      "groupId" : "Microsoft.EntityFrameworkCore",
+      "currentVersion" : "6.0.0",
+      "recommendedVersion" : "8.0"
+    } ],
+    "dependenciesNeedingUpdates" : [ {
+      "artifactId" : "Microsoft.AspNetCore.App",
+      "reason" : "Full .NET 8 compatibility and performance improvements",
+      "groupId" : "Microsoft.AspNetCore.App",
+      "currentVersion" : "6.0.0",
+      "recommendedVersion" : "8.0"
+    } ]
+  },
+  "reportMetadata" : {
+    "version" : "1.0",
+    "reportType" : ".NET Upgrade Analysis Report",
+    "analysisId" : "47",
+    "timestamp" : "2025-12-18T00:54:32.223552661"
+  },
+  "buildToolAnalysis" : {
+    "upgradeSteps" : [ "Update TargetFramework in .csproj files", "Update NuGet package references", "Enable nullable reference types", "Review breaking changes documentation" ],
+    "compatibilityIssues" : [ "TargetFramework needs update to net8", "Some NuGet packages may need updates for .NET 8 compatibility" ],
+    "currentVersion" : "6.0",
+    "tool" : "dotnet",
+    "recommendedVersion" : "8"
+  },
+  "upgradeSummary" : {
+    "estimatedEffort" : "Error - Service unavailable",
+    "criticalBlockers" : 0,
+    "deprecatedApisFound" : 0,
+    "blockersFound" : 0,
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Error - Service unavailable"
+  },
+  "recommendations" : [ "Update TargetFramework to net8 in project files", "Update NuGet packages to latest versions compatible with .NET 8", "Enable nullable reference types if not already enabled", "Review breaking changes in .NET 8", "Update to minimal APIs if using ASP.NET Core", "Thoroughly test all functionality after migration" ],
+  "projectInformation" : {
+    "targetVersion" : "8",
+    "platform" : "linux",
+    "projectType" : "dotnet",
+    "currentVersion" : "4.7.2",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1937/transformed-code/39/studio-workspace/dotnetBackend"
+  }
+}

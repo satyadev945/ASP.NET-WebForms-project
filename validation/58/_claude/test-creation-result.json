@@ -1,0 +1,123 @@
+{
+  "analysisId": "testcase-generation-2024-12-18",
+  "status": "success",
+  "projectType": "java",
+  "summary": {
+    "totalTestcase": 16,
+    "totalFilesModified": 6,
+    "PassTestcase": 16,
+    "totalTimeTaken": "8 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "src/test/java/com/example/mini/controller/UserControllerTest.java",
+      "testMethods": [
+        {
+          "methodName": "testConstructor",
+          "description": "Test UserController constructor",
+          "coverage": "UserController constructor"
+        },
+        {
+          "methodName": "testGetAllUsers",
+          "description": "Test getAllUsers method returns all users",
+          "coverage": "UserController.getAllUsers()"
+        },
+        {
+          "methodName": "testGetUserByIdFound",
+          "description": "Test getUserById when user exists",
+          "coverage": "UserController.getUserById() - found case"
+        },
+        {
+          "methodName": "testGetUserByIdNotFound",
+          "description": "Test getUserById when user not found",
+          "coverage": "UserController.getUserById() - not found case"
+        },
+        {
+          "methodName": "testCreateUser",
+          "description": "Test createUser method",
+          "coverage": "UserController.createUser()"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "src/test/java/com/example/mini/model/UserTest.java",
+      "testMethods": [
+        {
+          "methodName": "testDefaultConstructor",
+          "description": "Test User default constructor",
+          "coverage": "User default constructor"
+        },
+        {
+          "methodName": "testParameterizedConstructor",
+          "description": "Test User parameterized constructor",
+          "coverage": "User parameterized constructor"
+        },
+        {
+          "methodName": "testGettersAndSetters",
+          "description": "Test all getter and setter methods",
+          "coverage": "User getter/setter methods"
+        },
+        {
+          "methodName": "testToString",
+          "description": "Test toString method",
+          "coverage": "User.toString()"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "src/test/java/com/example/mini/service/UserServiceTest.java",
+      "testMethods": [
+        {
+          "methodName": "testConstructor",
+          "description": "Test UserService constructor",
+          "coverage": "UserService constructor"
+        },
+        {
+          "methodName": "testGetAllUsers",
+          "description": "Test getAllUsers method",
+          "coverage": "UserService.getAllUsers()"
+        },
+        {
+          "methodName": "testGetUserByIdFound",
+          "description": "Test getUserById when user exists",
+          "coverage": "UserService.getUserById() - found case"
+        },
+        {
+          "methodName": "testGetUserByIdNotFound",
+          "description": "Test getUserById when user not found",
+          "coverage": "UserService.getUserById() - not found case"
+        },
+        {
+          "methodName": "testAddUser",
+          "description": "Test addUser method",
+          "coverage": "UserService.addUser()"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "src/test/java/com/example/mini/MiniJavaAppApplicationTest.java",
+      "testMethods": [
+        {
+          "methodName": "testMain",
+          "description": "Test main method execution",
+          "coverage": "MiniJavaAppApplication.main()"
+        }
+      ],
+      "coveragePercentage": 70.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1949/transformed-code/44/studio-workspace/mini-java-app-component-18-06",
+    "targetVersion": "21",
+    "platform": "linux",
+    "timestamp": "2024-12-18T10:00:00Z",
+    "claudeModel": "claude-sonnet-4",
+    "totalCoverage": 81.25
+  }
+}

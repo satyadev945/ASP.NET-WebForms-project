@@ -1,0 +1,75 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 1,
+    "deprecatedApisFound" : 0,
+    "totalIssues" : 2,
+    "compatibilityScore" : 98,
+    "criticalIssues" : 0,
+    "highIssues" : 0,
+    "lowIssues" : 1,
+    "breakingChanges" : 0,
+    "estimatedEffort" : "0-1 hours",
+    "upgradeComplexity" : "Simple"
+  },
+  "metadata" : {
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "N/A",
+    "source" : "Claude AI Analysis",
+    "currentVersion" : ".NET 6",
+    "targetVersion" : ".NET 8",
+    "timestamp" : "2025-12-26T14:33:54.305994117Z"
+  },
+  "buildToolAnalysis" : { },
+  "analysisId" : "dotnet-upgrade-analysis-2025-12-26",
+  "issues" : [ {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update Swashbuckle.AspNetCore to version 6.5.0 or later for better .NET 8 compatibility and latest features. Change to: <PackageReference Include=\"Swashbuckle.AspNetCore\" Version=\"6.5.0\" />",
+    "breakingChange" : false,
+    "filePath" : "MinimalAPIProject.csproj",
+    "impact" : "Minor - No breaking changes expected. May gain access to improved OpenAPI documentation features and bug fixes.",
+    "description" : "The project uses Swashbuckle.AspNetCore version 6.4.0, which is not the latest stable version compatible with .NET 8. While this version works with .NET 8, newer versions provide better compatibility and security updates.",
+    "effort" : "low",
+    "id" : "issue-1",
+    "category" : "package-references",
+    "title" : "Swashbuckle.AspNetCore Package Not Using Latest Version",
+    "lineNumber" : 9
+  }, {
+    "severity" : "low",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Consider using a thread-safe collection like ConcurrentBag<Student> or implement proper locking mechanisms. For a proper solution, replace the in-memory collection with a database or use a singleton service with proper synchronization.",
+    "breakingChange" : false,
+    "filePath" : "Mock-Data/StudentMock.cs",
+    "impact" : "Low - May cause data inconsistencies under concurrent load, but not related to .NET version upgrade.",
+    "description" : "The StudentMock class uses a static IEnumerable that is mutated across requests without thread-safety mechanisms. While not a .NET 8 upgrade issue, this pattern can cause race conditions in a concurrent environment like ASP.NET Core.",
+    "effort" : "low",
+    "id" : "issue-2",
+    "category" : "code-quality",
+    "title" : "Thread-Safety Issue in StudentMock Static Collection",
+    "lineNumber" : 5
+  } ],
+  "recommendations" : [ {
+    "category" : "package-updates",
+    "priority" : "medium",
+    "recommendation" : "Update Swashbuckle.AspNetCore to the latest version (6.5.0 or higher) to ensure full compatibility with .NET 8 and benefit from the latest features and security patches.",
+    "estimatedEffort" : "5-10 minutes"
+  }, {
+    "category" : "code-quality",
+    "priority" : "low",
+    "recommendation" : "Review the in-memory data storage pattern in StudentMock.cs and consider implementing proper thread-safety or moving to a database solution for production scenarios.",
+    "estimatedEffort" : "30-60 minutes"
+  }, {
+    "category" : "best-practices",
+    "priority" : "low",
+    "recommendation" : "The project already follows .NET 8 best practices with ImplicitUsings and Nullable reference types enabled. Consider adding XML documentation comments for public APIs to improve code maintainability.",
+    "estimatedEffort" : "15-30 minutes"
+  } ],
+  "dependencies" : {
+    "incompatible" : [ ],
+    "upgradeable" : [ ]
+  }
+}

@@ -1,0 +1,39 @@
+@page "{id:int}"
+@model eShop.Web.Pages.Catalog.DetailsModel
+@{
+    ViewData["Title"] = "Catalog Item Details";
+}
+
+<h1>Catalog Item Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Item?.Name</dd>
+
+        <dt class="col-sm-2">Description</dt>
+        <dd class="col-sm-10">@Model.Item?.Description</dd>
+
+        <dt class="col-sm-2">Price</dt>
+        <dd class="col-sm-10">@Model.Item?.Price.ToString("C")</dd>
+
+        <dt class="col-sm-2">Brand</dt>
+        <dd class="col-sm-10">@Model.Item?.CatalogBrand?.Brand</dd>
+
+        <dt class="col-sm-2">Type</dt>
+        <dd class="col-sm-10">@Model.Item?.CatalogType?.Type</dd>
+
+        <dt class="col-sm-2">Available Stock</dt>
+        <dd class="col-sm-10">@Model.Item?.AvailableStock</dd>
+
+        <dt class="col-sm-2">Picture</dt>
+        <dd class="col-sm-10">
+            <img src="~/Pics/@Model.Item?.PictureFileName" alt="@Model.Item?.Name" style="max-width: 300px;" onerror="this.src='/Pics/dummy.png'">
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Item?.Id" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

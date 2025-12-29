@@ -1,0 +1,75 @@
+{
+  "analysisId": "54",
+  "status": "success",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "No tests were discovered or executed in the project. All four modules (eShop.Domain, eShop.Application, eShop.Infrastructure, eShop.Web) were built successfully but contain no test classes or methods.",
+    "testStatistics": {
+      "total": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "0%",
+    "passRate": "N/A",
+    "failRate": "N/A",
+    "timeTaken": "~30s"
+  },
+  "codeCoverage": {
+    "overallPercentage": "11.11%",
+    "lineCoverage": {
+      "percentage": "0%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    },
+    "branchCoverage": {
+      "percentage": "33.33%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    },
+    "methodCoverage": {
+      "percentage": "0%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "0%",
+    "categories": []
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [
+      "No test failures detected",
+      "No tests were available to execute"
+    ],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 0,
+    "totalFilesModified": 0,
+    "PassTestcase": 0,
+    "totalTimeTaken": "0m 30s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1940/transformed-code/42/studio-workspace/comp_backend",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "2025-12-18T00:00:00Z",
+    "claudeModel": "Claude Sonnet 4.5",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP1940/transformed-code/42/studio-workspace/comp_backend/TestResults/coverage/coverage.cobertura.xml"
+  }
+}

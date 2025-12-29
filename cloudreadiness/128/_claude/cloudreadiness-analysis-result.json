@@ -1,0 +1,1553 @@
+Now let me analyze the code thoroughly for cloud readiness issues. Based on my analysis, I'll generate the comprehensive report:
+
+```json
+{
+  "analysisId": "cloudreadiness-analysis-2025-12-22",
+  "status": "success",
+  "cloudType": "AWS",
+  "summary": {
+    "totalBlockers": 8,
+    "criticalBlockers": 0,
+    "highBlockers": 2,
+    "mediumBlockers": 4,
+    "lowBlockers": 2,
+    "estimatedEffort": "16-24 hours",
+    "cloudReadinessScore": 78,
+    "statelessnessIssues": 0,
+    "configurationIssues": 2,
+    "securityIssues": 0
+  },
+  "issues": [
+    {
+      "id": "issue-1",
+      "severity": "medium",
+      "category": "database-persistence",
+      "title": "Direct JDBC Connection Management",
+      "description": "The application uses direct JDBC connections via DriverManager.getConnection() without connection pooling, which prevents efficient resource utilization in cloud environments",
+      "filePath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith/mini-java-app/src/main/java/com/test/DatabaseService.java",
+      "lineNumber": 39,
+      "codeSnippet": "connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);",
+      "impact": "Direct JDBC connections without pooling exhaust database connection limits and prevent efficient resource utilization in cloud environments. Each connection creates overhead and doesn't scale well under load in AWS RDS or Aurora deployments.",
+      "remediation": "Implement connection pooling using HikariCP (recommended for Spring Boot) or use AWS RDS Proxy for connection management. Configure appropriate pool sizes based on expected load and available database connections.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 4.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-2",
+      "severity": "medium",
+      "category": "database-persistence",
+      "title": "Direct JDBC Connection in Health Check",
+      "description": "Health check endpoint creates direct JDBC connections without pooling for database connectivity verification",
+      "filePath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith/mini-java-app/src/main/java/com/test/HealthController.java",
+      "lineNumber": 123,
+      "codeSnippet": "try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword)) {",
+      "impact": "Health checks creating new connections on every request can exhaust database connection limits during frequent health check polling by AWS ECS, EKS, or ALB target groups. This can cause application failures during deployment or scaling events.",
+      "remediation": "Use connection pooling or implement a cached connection check. Consider using Spring Boot Actuator health indicators that reuse existing connection pools. For AWS, ensure health check intervals are configured appropriately.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 3.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-3",
+      "severity": "high",
+      "category": "logging-monitoring",
+      "title": "Console-based Logging with System.out/System.err",
+      "description": "Application uses System.out.println and System.err.println for logging instead of structured logging framework",
+      "filePath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith/mini-java-app/src/main/java/com/test/MiniApp.java",
+      "lineNumber": 24,
+      "codeSnippet": "System.out.println(\"Starting Mini Java Application...\");",
+      "impact": "While console logging works in containers, using System.out.println prevents structured logging, log levels, and integration with AWS CloudWatch Logs Insights for efficient querying and analysis. Lacks correlation IDs for distributed tracing in microservices architectures.",
+      "remediation": "Implement SLF4J with Logback or Log4j2 for structured logging. Configure JSON output format for better CloudWatch integration. Add correlation IDs using Spring Cloud Sleuth or AWS X-Ray for distributed tracing.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 4.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-4",
+      "severity": "medium",
+      "category": "logging-monitoring",
+      "title": "Missing Correlation IDs for Distributed Tracing",
+      "description": "Application logs lack correlation IDs and trace context for distributed request tracking across services",
+      "filePath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith/mini-java-app/src/main/java/com/test/MiniApp.java",
+      "lineNumber": 88,
+      "codeSnippet": "System.out.println(\"[INFO] \" + java.time.LocalDateTime.now() + \" - \" + message);",
+      "impact": "Without correlation IDs, debugging distributed systems in AWS becomes extremely difficult. Cannot trace requests across multiple services in ECS, EKS, or Lambda. AWS X-Ray integration is not possible without proper trace context propagation.",
+      "remediation": "Implement AWS X-Ray SDK for Java or Spring Cloud Sleuth for automatic trace ID propagation. Add trace IDs to all log statements using MDC (Mapped Diagnostic Context). Configure X-Ray daemon for container environments.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 5.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-5",
+      "severity": "high",
+      "category": "network-communication",
+      "title": "Direct Socket Programming for Server",
+      "description": "Application uses low-level ServerSocket for HTTP server implementation instead of using embedded servlet container or cloud-native HTTP frameworks",
+      "filePath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith/mini-java-app/src/main/java/com/test/MiniApp.java",
+      "lineNumber": 98,
+      "codeSnippet": "ServerSocket serverSocket = new ServerSocket(SERVER_PORT);",
+      "impact": "Low-level socket programming bypasses AWS load balancer features like connection draining, health checks, and proper request routing. Doesn't integrate with ALB/NLB target groups properly. Lacks HTTP protocol features needed for AWS services.",
+      "remediation": "Use Spring Boot embedded Tomcat or Jetty server that properly integrates with AWS load balancers. Implement proper HTTP server that supports connection keep-alive, chunked transfer encoding, and graceful shutdown for ECS/EKS deployment.",
+      "effort": "high",
+      "breakingChange": true,
+      "estimatedHours": 6.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-6",
+      "severity": "low",
+      "category": "configuration-management",
+      "title": "Properties File Configuration Loading",
+      "description": "Application loads configuration from classpath properties file which requires rebuild for configuration changes",
+      "filePath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith/mini-java-app/src/main/java/com/test/MiniApp.java",
+      "lineNumber": 50,
+      "codeSnippet": "try (var stream = getClass().getClassLoader().getResourceAsStream(CONFIG_FILE_PATH)) {",
+      "impact": "Classpath configuration requires application rebuild for any configuration changes. Not suitable for 12-Factor App configuration management. Better to use AWS Systems Manager Parameter Store, AWS Secrets Manager, or external configuration service.",
+      "remediation": "Use Spring Cloud Config Server with AWS Parameter Store or Secrets Manager backend. Alternatively, rely entirely on environment variables which are already partially implemented. Remove file-based configuration loading.",
+      "effort": "low",
+      "breakingChange": false,
+      "estimatedHours": 2.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-7",
+      "severity": "medium",
+      "category": "resource-management",
+      "title": "Missing Connection Timeouts for Database",
+      "description": "Database connections lack explicit connection and query timeouts which can cause hangs in cloud network environments",
+      "filePath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith/mini-java-app/src/main/java/com/test/DatabaseService.java",
+      "lineNumber": 39,
+      "codeSnippet": "connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);",
+      "impact": "Without connection timeouts, application can hang indefinitely when connecting to AWS RDS instances during network issues, AZ failures, or failover events. Query timeout is set but connection timeout is missing.",
+      "remediation": "Set explicit connection timeout properties using JDBC URL parameters: connectTimeout, socketTimeout. Configure appropriate values based on network latency in AWS (typically 5-10 seconds for connection timeout, 30-60 seconds for socket timeout).",
+      "effort": "low",
+      "breakingChange": false,
+      "estimatedHours": 1.0,
+      "requiresArchitecturalChange": false
+    },
+    {
+      "id": "issue-8",
+      "severity": "low",
+      "category": "startup-initialization",
+      "title": "Synchronous Initialization Blocking Startup",
+      "description": "Application performs synchronous database connection during initialization which can delay startup and fail health checks",
+      "filePath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith/mini-java-app/src/main/java/com/test/MiniApp.java",
+      "lineNumber": 40,
+      "codeSnippet": "DatabaseService dbService = new DatabaseService();\n        dbService.connect();",
+      "impact": "Synchronous database connection during startup can cause long initialization times and health check failures in AWS ECS/EKS. If database is unavailable, application won't start, preventing rolling deployments and auto-scaling.",
+      "remediation": "Implement lazy database connection initialization or use connection pooling with validation on borrow. Use Spring Boot's datasource auto-configuration with proper health checks. Separate readiness from liveness probes.",
+      "effort": "medium",
+      "breakingChange": false,
+      "estimatedHours": 3.0,
+      "requiresArchitecturalChange": false
+    }
+  ],
+  "recommendations": [
+    "Implement connection pooling using HikariCP to improve database connection management and scalability",
+    "Replace System.out logging with structured logging framework (SLF4J + Logback) with JSON output for CloudWatch integration",
+    "Add AWS X-Ray SDK for distributed tracing and correlation ID propagation across services",
+    "Replace low-level ServerSocket with Spring Boot embedded server for proper AWS load balancer integration",
+    "Add explicit connection and socket timeouts for all database connections",
+    "Move to environment variable-only configuration or use AWS Systems Manager Parameter Store",
+    "Implement lazy initialization for database connections to improve startup time and health check reliability",
+    "Configure proper readiness and liveness probes for AWS ECS/EKS deployment",
+    "Consider using AWS RDS Proxy for connection pooling and improved database scalability",
+    "Add structured JSON logging for better CloudWatch Logs Insights query performance"
+  ],
+  "cloudSpecificGuidance": {
+    "aws": [
+      "Use AWS RDS Proxy for connection pooling and improved database connection management at infrastructure level",
+      "Configure CloudWatch Logs with JSON log format for efficient querying using CloudWatch Logs Insights",
+      "Implement AWS X-Ray SDK for distributed tracing across ECS tasks, EKS pods, or Lambda functions",
+      "Use AWS Systems Manager Parameter Store or Secrets Manager for configuration and secrets management",
+      "Configure proper health check endpoints for Application Load Balancer (ALB) or Network Load Balancer (NLB) target groups",
+      "Set appropriate health check intervals and thresholds in ECS/EKS service definitions to account for connection pooling initialization",
+      "Use AWS App Mesh or similar service mesh for advanced traffic management if deploying as microservices",
+      "Consider AWS Lambda + API Gateway if workload is suitable for serverless architecture",
+      "Implement AWS CloudWatch Container Insights for enhanced monitoring of ECS/EKS deployments",
+      "Use AWS Elastic Container Registry (ECR) for container image storage with image scanning enabled"
+    ]
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1980/transformed-code/91/studio-workspace/monolith",
+    "cloudType": "AWS",
+    "platform": "linux",
+    "timestamp": "2025-12-22T00:00:00Z",
+    "claudeModel": "claude-sonnet-4-5",
+    "rulesVersion": "1.0"
+  }
+}
+```
+
+---
+
+# AWS Cloud Readiness Analysis Report
+**Analysis ID:** cloudreadiness-analysis-2025-12-22  
+**Project:** mini-java-app  
+**Cloud Platform:** AWS  
+**Analysis Date:** 2025-12-22
+
+---
+
+## Executive Summary
+
+The Java application has been analyzed for AWS cloud readiness compatibility. The application demonstrates **good cloud-readiness fundamentals** with environment variable-based configuration already implemented for most settings. However, there are **8 compatibility issues** that should be addressed before production deployment on AWS.
+
+### Overall Assessment
+
+- **Cloud Readiness Score:** 78/100 (Good - Minor improvements needed)
+- **Total Issues Found:** 8
+- **Estimated Remediation Effort:** 16-24 hours
+- **Deployment Readiness:** Ready with modifications
+
+### Issue Severity Breakdown
+
+| Severity | Count | Issues |
+|----------|-------|--------|
+| Critical | 0 | None |
+| High | 2 | Direct socket programming, unstructured logging |
+| Medium | 4 | Connection pooling, health check connections, correlation IDs, missing timeouts |
+| Low | 2 | Properties file loading, synchronous initialization |
+
+### Key Strengths
+
+✅ **Environment variable-based configuration** - Application correctly uses environment variables for most configuration parameters  
+✅ **Health check endpoints** - Implements `/health`, `/ready`, and `/live` endpoints suitable for AWS ECS/EKS  
+✅ **JAR packaging** - Uses JAR packaging suitable for containerization  
+✅ **Graceful shutdown** - Implements shutdown hooks for graceful container termination  
+✅ **Java 11** - Uses modern Java version with container awareness  
+✅ **Console logging** - Logs to stdout/stderr suitable for container environments
+
+---
+
+## Detailed Findings
+
+### 1. Direct JDBC Connection Management (Medium Severity)
+
+**Category:** Database Persistence  
+**Location:** `DatabaseService.java:39`  
+**Effort:** 4 hours | **Breaking Change:** No | **Architectural Change:** No
+
+#### Issue Description
+The application uses `DriverManager.getConnection()` for direct JDBC connections without implementing connection pooling. This approach doesn't scale efficiently in cloud environments.
+
+#### Code Location
+```java
+// DatabaseService.java:39
+connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+```
+
+#### Impact on AWS Deployment
+- **Connection Exhaustion:** Direct connections can exhaust AWS RDS connection limits under load
+- **Poor Performance:** Each connection creation has significant overhead in AWS RDS/Aurora
+- **Scaling Issues:** Doesn't scale efficiently when deployed across multiple ECS tasks or EKS pods
+- **Resource Waste:** Connections aren't reused, leading to inefficient resource utilization
+- **Slow Response Times:** Connection establishment latency affects response times (typically 50-200ms per connection in AWS)
+
+#### Recommended Solution
+Implement HikariCP connection pooling (Spring Boot default):
+
+```java
+// Recommended approach with Spring Boot
+@Configuration
+public class DataSourceConfig {
+    @Bean
+    public DataSource dataSource() {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(System.getenv("DATABASE_URL"));
+        config.setUsername(System.getenv("DB_USERNAME"));
+        config.setPassword(System.getenv("DB_PASSWORD"));
+        config.setMaximumPoolSize(20);
+        config.setMinimumIdle(5);
+        config.setConnectionTimeout(10000);
+        config.setIdleTimeout(600000);
+        config.setMaxLifetime(1800000);
+        return new HikariDataSource(config);
+    }
+}
+```
+
+#### AWS-Specific Recommendations
+- Use AWS RDS Proxy for additional connection pooling at infrastructure level
+- Configure appropriate pool sizes based on RDS instance connection limits
+- Monitor connection pool metrics using CloudWatch
+- Set `max-connections` to 70% of RDS max_connections setting
+
+---
+
+### 2. Direct JDBC Connection in Health Check (Medium Severity)
+
+**Category:** Database Persistence  
+**Location:** `HealthController.java:123`  
+**Effort:** 3 hours | **Breaking Change:** No | **Architectural Change:** No
+
+#### Issue Description
+The `/ready` health check endpoint creates a new database connection on every request, which can exhaust connection limits during frequent health check polling.
+
+#### Code Location
+```java
+// HealthController.java:123
+try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword)) {
+    // Connection successful
+}
+```
+
+#### Impact on AWS Deployment
+- **Health Check Failures:** Frequent polling by AWS ALB/ECS can exhaust RDS connections
+- **Deployment Failures:** Rolling deployments may fail due to connection exhaustion
+- **False Negatives:** Health checks may fail even when application is healthy
+- **Connection Storm:** During scaling events, multiple new instances create connection storms
+- **RDS Performance:** Connection creation overhead impacts RDS performance metrics
+
+**AWS Health Check Frequency Impact:**
+- ECS/EKS default health check: Every 10 seconds
+- ALB target health check: Every 30 seconds (default)
+- With 10 ECS tasks: 60+ connection attempts per minute
+
+#### Recommended Solution
+Use connection pool health check or cached validation:
+
+```java
+// Option 1: Use connection pool validation
+private static DataSource dataSource; // Injected connection pool
+
+private static void checkDatabaseConnection() throws SQLException {
+    try (Connection connection = dataSource.getConnection()) {
+        if (!connection.isValid(5)) { // 5 second timeout
+            throw new SQLException("Connection validation failed");
+        }
+    }
+}
+
+// Option 2: Cached health check result
+private static volatile boolean dbHealthy = true;
+private static long lastCheckTime = 0;
+private static final long HEALTH_CHECK_CACHE_MS = 5000; // 5 seconds
+
+private static void checkDatabaseConnection() throws SQLException {
+    long now = System.currentTimeMillis();
+    if (now - lastCheckTime < HEALTH_CHECK_CACHE_MS) {
+        if (!dbHealthy) throw new SQLException("Database unhealthy (cached)");
+        return;
+    }
+    // Perform actual check with cached result
+}
+```
+
+#### AWS-Specific Recommendations
+- Configure ALB health check interval to 30 seconds minimum
+- Use separate health check port if needed (already done on port 8081)
+- Implement caching for health check results (5-10 second cache)
+- Consider using Spring Boot Actuator which handles this properly
+
+---
+
+### 3. Console-based Logging with System.out/System.err (High Severity)
+
+**Category:** Logging & Monitoring  
+**Location:** `MiniApp.java:24, 33, 41, 42, 66, 67, 76, 77, 88, 92` (22 occurrences across 3 files)  
+**Effort:** 4 hours | **Breaking Change:** No | **Architectural Change:** No
+
+#### Issue Description
+Application uses `System.out.println()` and `System.err.println()` instead of a structured logging framework, preventing effective log analysis in AWS CloudWatch.
+
+#### Code Locations
+```java
+// MiniApp.java:24
+System.out.println("Starting Mini Java Application...");
+
+// MiniApp.java:88
+System.out.println("[INFO] " + java.time.LocalDateTime.now() + " - " + message);
+
+// DatabaseService.java:33
+System.out.println("Connecting to database...");
+```
+
+#### Impact on AWS Deployment
+- **No Log Levels:** Cannot filter logs by severity in CloudWatch Logs
+- **Poor Searchability:** CloudWatch Logs Insights queries are inefficient with unstructured logs
+- **Missing Context:** No thread information, class names, or stack traces
+- **No Correlation:** Cannot correlate logs across distributed services
+- **Limited Alerting:** CloudWatch metric filters and alarms are harder to configure
+- **Debugging Difficulty:** Troubleshooting production issues in AWS is significantly harder
+
+#### CloudWatch Logs Impact
+Current log format:
+```
+Starting Mini Java Application...
+[INFO] 2025-12-22T10:30:45.123 - Application logging configured for container environment
+```
+
+Ideal structured JSON format for CloudWatch:
+```json
+{
+  "timestamp": "2025-12-22T10:30:45.123Z",
+  "level": "INFO",
+  "thread": "main",
+  "logger": "com.test.MiniApp",
+  "message": "Application logging configured for container environment",
+  "traceId": "abc123",
+  "spanId": "xyz789"
+}
+```
+
+#### Recommended Solution
+Implement SLF4J with Logback and JSON output:
+
+**1. Add dependencies to pom.xml:**
+```xml
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.4.11</version>
+</dependency>
+<dependency>
+    <groupId>ch.qos.logback.contrib</groupId>
+    <artifactId>logback-json-classic</artifactId>
+    <version>0.1.5</version>
+</dependency>
+<dependency>
+    <groupId>ch.qos.logback.contrib</groupId>
+    <artifactId>logback-jackson</artifactId>
+    <version>0.1.5</version>
+</dependency>
+```
+
+**2. Configure logback-spring.xml:**
+```xml
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter"/>
+                <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
+            </layout>
+        </encoder>
+    </appender>
+    <root level="${LOG_LEVEL:-INFO}">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
+```
+
+**3. Update code:**
+```java
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class MiniApp {
+    private static final Logger logger = LoggerFactory.getLogger(MiniApp.class);
+    
+    public static void main(String[] args) {
+        logger.info("Starting Mini Java Application...");
+    }
+    
+    private void logInfo(String message) {
+        logger.info(message);
+    }
+}
+```
+
+#### AWS-Specific Recommendations
+- Use CloudWatch Logs JSON log format for efficient querying
+- Configure log retention policies (7-30 days for development, longer for production)
+- Create CloudWatch metric filters for error rates and business metrics
+- Set up CloudWatch alarms for ERROR level log patterns
+- Use CloudWatch Logs Insights queries like: `fields @timestamp, level, message | filter level = "ERROR"`
+
+---
+
+### 4. Missing Correlation IDs for Distributed Tracing (Medium Severity)
+
+**Category:** Logging & Monitoring  
+**Location:** `MiniApp.java:88, 92` and throughout all logging statements  
+**Effort:** 5 hours | **Breaking Change:** No | **Architectural Change:** No
+
+#### Issue Description
+Application logs lack correlation IDs and trace context, making it impossible to track requests across distributed services or correlate logs in AWS CloudWatch.
+
+#### Code Location
+```java
+// MiniApp.java:88
+private void logInfo(String message) {
+    System.out.println("[INFO] " + java.time.LocalDateTime.now() + " - " + message);
+}
+```
+
+**Current log output:**
+```
+[INFO] 2025-12-22T10:30:45 - Server started on port: 8080
+[INFO] 2025-12-22T10:30:46 - Executing query: SELECT * FROM users
+```
+
+**Desired log output with trace context:**
+```
+[INFO] 2025-12-22T10:30:45 [trace=abc123 span=xyz789] - Server started on port: 8080
+[INFO] 2025-12-22T10:30:46 [trace=abc123 span=def456] - Executing query: SELECT * FROM users
+```
+
+#### Impact on AWS Deployment
+- **Debugging Difficulty:** Cannot trace requests across multiple ECS tasks/EKS pods
+- **Root Cause Analysis:** Impossible to correlate logs from different services
+- **Performance Monitoring:** Cannot identify slow requests end-to-end
+- **X-Ray Integration:** Cannot integrate with AWS X-Ray for distributed tracing
+- **Microservices Issues:** Critical blocker if transitioning to microservices architecture
+- **Support Escalations:** Support teams cannot trace user requests through system
+
+#### Recommended Solution
+Implement AWS X-Ray SDK for automatic trace propagation:
+
+**Option 1: AWS X-Ray SDK (Recommended for AWS)**
+
+**1. Add X-Ray dependencies:**
+```xml
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-xray-recorder-sdk-core</artifactId>
+    <version>2.14.0</version>
+</dependency>
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-xray-recorder-sdk-aws-sdk-v2</artifactId>
+    <version>2.14.0</version>
+</dependency>
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-xray-recorder-sdk-sql-mysql</artifactId>
+    <version>2.14.0</version>
+</dependency>
+```
+
+**2. Configure X-Ray filter:**
+```java
+@Configuration
+public class XRayConfig {
+    @Bean
+    public Filter tracingFilter() {
+        return new AWSXRayServletFilter("mini-java-app");
+    }
+}
+```
+
+**3. Update logging to include X-Ray trace ID:**
+```java
+import com.amazonaws.xray.AWSXRay;
+import com.amazonaws.xray.entities.TraceID;
+
+private void logInfo(String message) {
+    TraceID traceId = AWSXRay.getGlobalRecorder().getTraceEntity().getTraceId();
+    logger.info("[trace={}] {}", traceId, message);
+}
+```
+
+**Option 2: Spring Cloud Sleuth (Alternative)**
+
+**1. Add Sleuth dependency:**
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+    <version>3.1.8</version>
+</dependency>
+```
+
+**2. Configure logging pattern:**
+```yaml
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId}/%X{spanId}] %-5level %logger{36} - %msg%n"
+```
+
+**3. Sleuth automatically adds trace/span IDs to MDC**
+
+#### AWS-Specific Recommendations
+- Deploy X-Ray daemon as sidecar container in ECS or DaemonSet in EKS
+- Configure X-Ray sampling rules to control tracing overhead (start with 5% sampling)
+- Enable X-Ray trace export to S3 for long-term analysis
+- Use X-Ray service map to visualize service dependencies
+- Configure X-Ray groups for filtering traces by service or operation
+- Set up X-Ray alarms for high error rates or latency anomalies
+
+---
+
+### 5. Direct Socket Programming for Server (High Severity)
+
+**Category:** Network Communication  
+**Location:** `MiniApp.java:98`  
+**Effort:** 6 hours | **Breaking Change:** Yes | **Architectural Change:** No
+
+#### Issue Description
+Application uses low-level `ServerSocket` for implementing HTTP server instead of using embedded servlet container or proper HTTP framework.
+
+#### Code Location
+```java
+// MiniApp.java:98
+ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
+logInfo("Server started on port: " + SERVER_PORT);
+```
+
+#### Impact on AWS Deployment
+- **Load Balancer Incompatibility:** Doesn't properly integrate with AWS ALB/NLB
+- **No HTTP Features:** Missing HTTP/1.1 features like keep-alive, chunked encoding
+- **Health Check Issues:** AWS load balancers expect proper HTTP responses
+- **Connection Draining:** No support for graceful connection draining during deployments
+- **SSL/TLS Termination:** Cannot handle HTTPS if termination not at load balancer
+- **WebSocket Support:** No support for WebSocket connections if needed
+- **HTTP/2:** No support for HTTP/2 protocol
+- **Request Parsing:** Low-level socket doesn't handle HTTP request parsing properly
+
+#### AWS ALB/NLB Integration Issues
+1. **Target Health Checks:** ALB expects HTTP responses, not raw socket connections
+2. **Connection Draining:** ECS/EKS deployments need graceful connection handling
+3. **Sticky Sessions:** ALB sticky sessions require proper HTTP cookie handling
+4. **Path-based Routing:** ALB path routing won't work without HTTP layer
+5. **Host-based Routing:** ALB host routing requires HTTP Host header handling
+
+#### Recommended Solution
+Use Spring Boot embedded Tomcat server (already included in dependencies):
+
+**1. Convert to Spring Boot application:**
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MiniApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MiniApp.class, args);
+    }
+}
+```
+
+**2. Configure server properties:**
+```yaml
+# application.yml
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 20s
+    threads:
+      max: 200
+      min-spare: 10
+    accept-count: 100
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+```
+
+**3. Create REST controller:**
+```java
+@RestController
+public class AppController {
+    
+    @GetMapping("/")
+    public Map<String, String> home() {
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "running");
+        response.put("application", "mini-java-app");
+        return response;
+    }
+}
+```
+
+#### Benefits of Embedded Server
+- ✅ Proper HTTP/1.1 protocol support
+- ✅ AWS load balancer integration
+- ✅ Graceful shutdown for ECS/EKS
+- ✅ Connection pooling and keep-alive
+- ✅ Thread pool management
+- ✅ SSL/TLS support if needed
+- ✅ Request/response compression
+- ✅ HTTP/2 support
+
+#### AWS-Specific Recommendations
+- Configure ALB target group with HTTP protocol
+- Set deregistration delay (connection draining) to 30-60 seconds
+- Use ALB health check path `/health` from HealthController
+- Configure proper timeout values: ALB idle timeout > application timeout
+- Enable ALB access logs to S3 for request analysis
+- Use X-Forwarded-For header for client IP tracking behind ALB
+
+---
+
+### 6. Properties File Configuration Loading (Low Severity)
+
+**Category:** Configuration Management  
+**Location:** `MiniApp.java:50`  
+**Effort:** 2 hours | **Breaking Change:** No | **Architectural Change:** No
+
+#### Issue Description
+Application loads configuration from classpath properties file, which requires application rebuild for any configuration changes.
+
+#### Code Location
+```java
+// MiniApp.java:50
+try (var stream = getClass().getClassLoader().getResourceAsStream(CONFIG_FILE_PATH)) {
+    if (stream != null) {
+        props.load(stream);
+        System.out.println("Configuration loaded from classpath: " + CONFIG_FILE_PATH);
+    }
+}
+```
+
+#### Impact on AWS Deployment
+- **Rebuild Required:** Any configuration change requires rebuild and redeployment
+- **Environment Portability:** Same binary can't be used across dev/staging/prod
+- **12-Factor Violation:** Violates "Config" principle of 12-Factor App methodology
+- **Deployment Time:** Increases deployment time for simple config changes
+- **Secret Management:** Secrets in properties file create security risks
+- **Hot Reloading:** Cannot update configuration without restart
+
+#### Current Configuration Flow
+1. Developer edits `application.properties`
+2. Application rebuild required
+3. New Docker image built
+4. Image pushed to ECR
+5. ECS/EKS deployment triggered
+6. **Total time:** 10-20 minutes for simple config change
+
+#### Recommended Solution
+**Option 1: Environment Variables Only (Current Partial Implementation)**
+
+The application already uses environment variables extensively. Complete the migration:
+
+```java
+// Remove file loading completely
+private void loadConfiguration() {
+    // All configuration loaded from environment variables
+    String dbUrl = System.getenv().getOrDefault("DATABASE_URL", "jdbc:mysql://localhost:3306/mini_app_db");
+    String serverPort = System.getenv().getOrDefault("SERVER_PORT", "8080");
+    // ... etc
+    
+    logger.info("Configuration loaded from environment variables");
+}
+```
+
+**Option 2: AWS Systems Manager Parameter Store (Recommended for AWS)**
+
+```xml
+<!-- Add AWS Systems Manager dependency -->
+<dependency>
+    <groupId>software.amazon.awssdk</groupId>
+    <artifactId>ssm</artifactId>
+    <version>2.20.0</version>
+</dependency>
+```
+
+```java
+import software.amazon.awssdk.services.ssm.SsmClient;
+import software.amazon.awssdk.services.ssm.model.GetParameterRequest;
+
+public class ConfigurationService {
+    private final SsmClient ssmClient = SsmClient.create();
+    
+    public String getParameter(String parameterName) {
+        GetParameterRequest request = GetParameterRequest.builder()
+            .name("/mini-app/" + parameterName)
+            .withDecryption(true)
+            .build();
+        return ssmClient.getParameter(request).parameter().value();
+    }
+}
+```
+
+**Option 3: AWS Secrets Manager for Sensitive Data**
+
+```xml
+<dependency>
+    <groupId>software.amazon.awssdk</groupId>
+    <artifactId>secretsmanager</artifactId>
+    <version>2.20.0</version>
+</dependency>
+```
+
+```java
+import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
+import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
+
+public String getDatabasePassword() {
+    SecretsManagerClient client = SecretsManagerClient.create();
+    GetSecretValueRequest request = GetSecretValueRequest.builder()
+        .secretId("mini-app/db-password")
+        .build();
+    return client.getSecretValue(request).secretString();
+}
+```
+
+#### AWS-Specific Recommendations
+- Use AWS Systems Manager Parameter Store for non-sensitive configuration
+- Use AWS Secrets Manager for database credentials and API keys
+- Enable automatic secret rotation in Secrets Manager
+- Use IAM roles (ECS task role / EKS service account) for accessing SSM/Secrets Manager
+- Cache configuration values with reasonable TTL (5-10 minutes)
+- Implement configuration reload without restart for non-critical settings
+
+**Cost Consideration:**
+- Parameter Store: Free for standard parameters (10,000 requests/month free tier)
+- Secrets Manager: $0.40 per secret per month + $0.05 per 10,000 API calls
+
+---
+
+### 7. Missing Connection Timeouts for Database (Medium Severity)
+
+**Category:** Resource Management  
+**Location:** `DatabaseService.java:39`  
+**Effort:** 1 hour | **Breaking Change:** No | **Architectural Change:** No
+
+#### Issue Description
+Database connections lack explicit connection timeout configuration, which can cause application hangs during AWS RDS network issues or failover events.
+
+#### Code Location
+```java
+// DatabaseService.java:39
+connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+```
+
+**Current JDBC URL:**
+```
+jdbc:mysql://localhost:3306/mini_app_db
+```
+
+#### Impact on AWS Deployment
+- **Application Hangs:** Indefinite waits during RDS failover or AZ issues
+- **Health Check Failures:** Health checks timeout waiting for connection
+- **Cascading Failures:** Connection hangs block application threads
+- **Poor User Experience:** User requests timeout waiting for database
+- **RDS Multi-AZ Failover:** Can take 60-120 seconds, application hangs without timeout
+- **Network Partition:** Partial network failure causes indefinite hangs
+
+#### AWS RDS Failure Scenarios
+1. **RDS Multi-AZ Failover:** 60-120 seconds DNS propagation
+2. **Network Partition:** Temporary loss of connectivity between AZs
+3. **Security Group Changes:** Temporary connection rejection
+4. **RDS Maintenance:** Connection termination during maintenance windows
+5. **Read Replica Lag:** Connection to heavily loaded read replica
+
+#### Recommended Solution
+Add JDBC connection timeout parameters:
+
+```java
+// Recommended JDBC URL with timeouts
+private static final String DB_URL = String.format(
+    "jdbc:mysql://%s:%s/%s?" +
+    "connectTimeout=10000&" +        // 10 seconds to establish connection
+    "socketTimeout=30000&" +         // 30 seconds for socket read operations
+    "autoReconnect=false&" +         // Don't auto-reconnect on stale connections
+    "failOverReadOnly=false&" +      // Allow writes after failover
+    "maxReconnects=1&" +             // Limit reconnection attempts
+    "enabledTLSProtocols=TLSv1.2," + // Enforce TLS 1.2+
+    DB_HOST, DB_PORT, DB_NAME
+);
+```
+
+**With connection pooling (recommended):**
+```java
+HikariConfig config = new HikariConfig();
+config.setJdbcUrl(DB_URL);
+config.setUsername(DB_USERNAME);
+config.setPassword(DB_PASSWORD);
+
+// Connection timeout configuration
+config.setConnectionTimeout(10000);      // 10 seconds max to get connection from pool
+config.setValidationTimeout(5000);       // 5 seconds to validate connection
+config.setIdleTimeout(600000);          // 10 minutes idle before eviction
+config.setMaxLifetime(1800000);         // 30 minutes max connection lifetime
+config.setLeakDetectionThreshold(60000); // Warn if connection held > 60 seconds
+
+// Pool size configuration
+config.setMaximumPoolSize(20);           // Max connections in pool
+config.setMinimumIdle(5);                // Min idle connections to maintain
+
+// Health check query
+config.setConnectionTestQuery("SELECT 1");
+
+return new HikariDataSource(config);
+```
+
+#### Timeout Configuration Guidelines
+
+| Timeout Type | Recommended Value | Use Case |
+|-------------|-------------------|----------|
+| connectTimeout | 10 seconds | Initial TCP connection |
+| socketTimeout | 30 seconds | Query execution time |
+| connectionTimeout (pool) | 10 seconds | Get connection from pool |
+| validationTimeout | 5 seconds | Test connection validity |
+| maxLifetime | 30 minutes | Maximum connection age |
+| idleTimeout | 10 minutes | Idle connection eviction |
+
+#### AWS-Specific Recommendations
+- Set `connectTimeout` to 10-15 seconds to handle RDS Multi-AZ failover
+- Set `socketTimeout` based on longest query execution time (30-60 seconds typical)
+- Use connection pool validation query: `SELECT 1`
+- Configure `maxLifetime` below AWS RDS `wait_timeout` parameter (default 28800s = 8 hours)
+- Monitor connection pool metrics in CloudWatch
+- Use RDS Performance Insights to identify slow queries causing timeouts
+
+---
+
+### 8. Synchronous Initialization Blocking Startup (Low Severity)
+
+**Category:** Startup & Initialization  
+**Location:** `MiniApp.java:40-41`  
+**Effort:** 3 hours | **Breaking Change:** No | **Architectural Change:** No
+
+#### Issue Description
+Application performs synchronous database connection during initialization, which can delay startup and cause health check failures in AWS ECS/EKS if database is temporarily unavailable.
+
+#### Code Location
+```java
+// MiniApp.java:40-41
+DatabaseService dbService = new DatabaseService();
+dbService.connect();
+```
+
+#### Impact on AWS Deployment
+- **Slow Startup:** Database connection delays application startup
+- **Health Check Failures:** Container marked unhealthy if database unavailable at startup
+- **Deployment Failures:** ECS/EKS rolling deployments fail if new tasks don't pass health checks
+- **Scaling Issues:** Auto-scaling delayed by slow container startup
+- **Blue/Green Deployments:** New environment fails to start if database temporarily unavailable
+- **RDS Failover Impact:** Application won't start during RDS Multi-AZ failover
+
+#### Startup Failure Scenario
+```
+1. ECS launches new task
+2. Application starts initialization
+3. Attempts to connect to RDS (currently failing over)
+4. Connection hangs or fails
+5. Application startup fails
+6. ECS health check fails
+7. Task killed and restarted
+8. Loop continues...
+```
+
+#### AWS ECS/EKS Health Check Timing
+- **Start Period:** 60 seconds (time before health checks start)
+- **Health Check Interval:** 30 seconds
+- **Healthy Threshold:** 2 consecutive successes
+- **Unhealthy Threshold:** 2 consecutive failures
+- **Total time to healthy:** ~90-120 seconds
+
+If database connection takes >60 seconds, container never passes health checks.
+
+#### Recommended Solution
+**Option 1: Lazy Connection Initialization (Simplest)**
+
+```java
+public class DatabaseService {
+    private Connection connection;
+    private boolean initialized = false;
+    
+    // Don't connect at startup, wait for first use
+    private void ensureConnection() {
+        if (!initialized) {
+            connect();
+            initialized = true;
+        }
+    }
+    
+    public void executeQuery(String sql) {
+        ensureConnection(); // Connect on first use
+        // ... execute query
+    }
+}
+
+// In MiniApp.java - remove synchronous connect()
+private void initializeApplication() {
+    DatabaseService dbService = new DatabaseService();
+    // Don't call dbService.connect() here
+}
+```
+
+**Option 2: Spring Boot with Connection Pooling (Recommended)**
+
+```java
+@SpringBootApplication
+public class MiniApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MiniApp.class, args);
+    }
+}
+
+// Spring Boot DataSource configuration
+@Configuration
+public class DataSourceConfig {
+    
+    @Bean
+    @ConfigurationProperties("spring.datasource.hikari")
+    public HikariDataSource dataSource() {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(System.getenv("DATABASE_URL"));
+        config.setUsername(System.getenv("DB_USERNAME"));
+        config.setPassword(System.getenv("DB_PASSWORD"));
+        
+        // Initialize pool with minimum connections
+        // but don't fail startup if database unavailable
+        config.setInitializationFailTimeout(-1); // Don't fail on startup
+        config.setMinimumIdle(0); // Start with 0 connections
+        
+        return new HikariDataSource(config);
+    }
+}
+```
+
+**Option 3: Separate Readiness from Liveness (Best Practice)**
+
+```java
+// HealthController.java - Update ready check
+static class ReadyHandler implements HttpHandler {
+    @Override
+    public void handle(HttpExchange exchange) throws IOException {
+        // Check if application is READY (database connected)
+        boolean isReady = checkDatabaseConnection();
+        // Return 503 if not ready yet (but application is alive)
+        sendResponse(exchange, isReady ? 200 : 503, "...");
+    }
+}
+
+static class LiveHandler implements HttpHandler {
+    @Override
+    public void handle(HttpExchange exchange) throws IOException {
+        // Always return 200 if application process is alive
+        // Don't check external dependencies here
+        sendResponse(exchange, 200, "{\"status\":\"ALIVE\"}");
+    }
+}
+```
+
+#### Kubernetes Probe Configuration
+```yaml
+livenessProbe:
+  httpGet:
+    path: /live
+    port: 8081
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 1
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8081
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  timeoutSeconds: 3
+  successThreshold: 1
+  failureThreshold: 3
+```
+
+#### ECS Task Definition Health Check
+```json
+{
+  "healthCheck": {
+    "command": ["CMD-SHELL", "curl -f http://localhost:8081/health || exit 1"],
+    "interval": 30,
+    "timeout": 5,
+    "retries": 3,
+    "startPeriod": 60
+  }
+}
+```
+
+#### AWS-Specific Recommendations
+- Set ECS/EKS `startPeriod` to 60-90 seconds to allow database connection
+- Use separate `/live` and `/ready` endpoints
+- Configure readiness probe to check database connectivity
+- Configure liveness probe to only check application process health
+- Use CloudWatch alarms to alert on repeated container restarts
+- Implement exponential backoff for connection retries
+- Consider using AWS RDS Proxy for faster connection establishment
+
+---
+
+## AWS Deployment Recommendations
+
+### 1. Amazon ECS Deployment Configuration
+
+**Task Definition Example:**
+```json
+{
+  "family": "mini-java-app",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "containerDefinitions": [
+    {
+      "name": "app",
+      "image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/mini-java-app:latest",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "tcp"
+        },
+        {
+          "containerPort": 8081,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {"name": "SERVER_PORT", "value": "8080"},
+        {"name": "HEALTH_CHECK_PORT", "value": "8081"},
+        {"name": "LOG_LEVEL", "value": "INFO"},
+        {"name": "DB_HOST", "value": "mini-app-db.cluster-xxxxx.us-east-1.rds.amazonaws.com"},
+        {"name": "DB_PORT", "value": "3306"},
+        {"name": "DB_NAME", "value": "mini_app_db"}
+      ],
+      "secrets": [
+        {
+          "name": "DB_USERNAME",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:123456789012:secret:mini-app/db-username"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:123456789012:secret:mini-app/db-password"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/mini-java-app",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "app"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:8081/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      }
+    }
+  ],
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::123456789012:role/miniAppTaskRole"
+}
+```
+
+### 2. Amazon EKS Deployment Configuration
+
+**Deployment YAML:**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mini-java-app
+  namespace: production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mini-java-app
+  template:
+    metadata:
+      labels:
+        app: mini-java-app
+    spec:
+      serviceAccountName: mini-app-sa
+      containers:
+      - name: app
+        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/mini-java-app:latest
+        ports:
+        - containerPort: 8080
+          name: http
+        - containerPort: 8081
+          name: health
+        env:
+        - name: SERVER_PORT
+          value: "8080"
+        - name: HEALTH_CHECK_PORT
+          value: "8081"
+        - name: LOG_LEVEL
+          value: "INFO"
+        - name: DB_HOST
+          value: "mini-app-db.cluster-xxxxx.us-east-1.rds.amazonaws.com"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_NAME
+          value: "mini_app_db"
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: password
+        resources:
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: 8081
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 5
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 3
+```
+
+### 3. Application Load Balancer Configuration
+
+**Target Group Settings:**
+```
+Protocol: HTTP
+Port: 8080
+Health Check Protocol: HTTP
+Health Check Path: /health
+Health Check Port: 8081
+Health Check Interval: 30 seconds
+Health Check Timeout: 5 seconds
+Healthy Threshold: 2
+Unhealthy Threshold: 2
+Deregistration Delay: 60 seconds
+Stickiness: Disabled (stateless application)
+```
+
+### 4. AWS RDS Configuration
+
+**Recommended Settings:**
+- **Instance Type:** db.t3.medium or larger (2 vCPU, 4GB RAM minimum)
+- **Multi-AZ:** Enabled for high availability
+- **Storage:** GP3 with 100GB minimum, autoscaling enabled
+- **Backup Retention:** 7 days minimum
+- **Parameter Group Settings:**
+  - `max_connections`: 150 (adjust based on connection pool * instance count)
+  - `wait_timeout`: 28800 (8 hours)
+  - `interactive_timeout`: 28800
+  - `max_connect_errors`: 100
+- **Security Group:** Allow inbound 3306 from ECS/EKS security group only
+- **Enhanced Monitoring:** Enabled with 60-second granularity
+- **Performance Insights:** Enabled with 7-day retention
+
+### 5. AWS Systems Manager Parameter Store
+
+**Configuration Parameters:**
+```
+/mini-app/db-host                  (String)
+/mini-app/db-port                  (String)
+/mini-app/db-name                  (String)
+/mini-app/external-api-url         (String)
+/mini-app/payment-service-url      (String)
+/mini-app/redis-host               (String)
+/mini-app/redis-port               (String)
+```
+
+**Secrets (AWS Secrets Manager):**
+```
+mini-app/db-credentials            (JSON: {username, password})
+mini-app/jwt-secret                (SecureString)
+mini-app/encryption-key            (SecureString)
+mini-app/external-api-key          (SecureString)
+```
+
+### 6. CloudWatch Logging and Monitoring
+
+**Log Groups:**
+- `/ecs/mini-java-app` - Application logs
+- `/aws/rds/instance/mini-app-db/error` - RDS error logs
+
+**Metric Filters:**
+```
+Filter Pattern: [ERROR]
+Metric Name: ApplicationErrors
+Metric Namespace: MiniApp/Errors
+```
+
+**CloudWatch Alarms:**
+1. **High Error Rate:** ERROR logs > 10 per minute
+2. **Database Connection Failures:** DB connection errors > 5 per minute
+3. **High Response Time:** P99 latency > 1 second
+4. **Container Restart Rate:** Container restarts > 3 per hour
+5. **RDS CPU Utilization:** > 80% for 5 minutes
+6. **RDS Connection Count:** > 80% of max_connections
+
+### 7. IAM Roles and Policies
+
+**ECS Task Execution Role:**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+**ECS/EKS Task/Pod Role:**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetParameter",
+        "ssm:GetParameters",
+        "ssm:GetParametersByPath"
+      ],
+      "Resource": "arn:aws:ssm:us-east-1:123456789012:parameter/mini-app/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:mini-app/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+---
+
+## Implementation Priority
+
+### Phase 1: Critical (Do Before Deployment)
+**Effort:** 10 hours
+
+1. ✅ **Implement Connection Pooling (Issue #1, #2)** - 7 hours
+   - Add HikariCP configuration
+   - Update DatabaseService to use connection pool
+   - Update health check to use pool validation
+   
+2. ✅ **Add Connection Timeouts (Issue #7)** - 1 hour
+   - Configure JDBC URL with timeouts
+   - Test failover scenarios
+
+3. ✅ **Fix Direct Socket Programming (Issue #5)** - 6 hours
+   - Migrate to Spring Boot embedded Tomcat
+   - Update server startup logic
+   - Test with AWS ALB integration
+
+**Result:** Application ready for basic AWS deployment
+
+### Phase 2: High Priority (Do Within Sprint)
+**Effort:** 9 hours
+
+4. ✅ **Implement Structured Logging (Issue #3)** - 4 hours
+   - Add SLF4J + Logback dependencies
+   - Replace System.out with logger calls
+   - Configure JSON logging format
+
+5. ✅ **Add Distributed Tracing (Issue #4)** - 5 hours
+   - Integrate AWS X-Ray SDK
+   - Add trace ID to logs
+   - Configure X-Ray daemon
+
+**Result:** Production-ready monitoring and debugging
+
+### Phase 3: Medium Priority (Do Before Scale-Out)
+**Effort:** 5 hours
+
+6. ✅ **Remove Properties File Loading (Issue #6)** - 2 hours
+   - Migrate to environment variables only
+   - Or integrate AWS Parameter Store
+
+7. ✅ **Fix Synchronous Initialization (Issue #8)** - 3 hours
+   - Implement lazy database initialization
+   - Separate liveness from readiness probes
+   - Test startup scenarios
+
+**Result:** Ready for auto-scaling and high availability
+
+---
+
+## Cost Estimation for AWS Deployment
+
+**Monthly AWS Cost Estimate (us-east-1 region):**
+
+| Service | Configuration | Monthly Cost |
+|---------|--------------|--------------|
+| **ECS Fargate** | 3 tasks × 0.5 vCPU × 1GB RAM × 730 hours | ~$36 |
+| **Application Load Balancer** | 1 ALB + ~1M LCU | ~$25 |
+| **RDS MySQL** | db.t3.medium Multi-AZ + 100GB GP3 | ~$180 |
+| **CloudWatch Logs** | 10GB ingestion + 30-day retention | ~$7 |
+| **CloudWatch Alarms** | 10 alarms | ~$1 |
+| **Secrets Manager** | 5 secrets | ~$2 |
+| **Parameter Store** | Standard parameters (free tier) | $0 |
+| **X-Ray** | 100K traces/month (beyond free tier) | ~$5 |
+| **ECR** | 5GB storage | ~$0.50 |
+| **Data Transfer** | ~100GB out | ~$9 |
+| **Total** | | **~$265/month** |
+
+**Cost Optimization Options:**
+- Use RDS Reserved Instances: Save ~40% (~$100/month savings)
+- Use ECS EC2 instead of Fargate: Save ~50% on compute (~$18/month savings)
+- Reduce CloudWatch log retention to 7 days: Save ~$3/month
+- Use X-Ray sampling: Reduce to $0-1/month
+
+**Optimized Monthly Cost:** ~$140-150/month with reserved instances
+
+---
+
+## Testing Recommendations
+
+### 1. Connection Pool Testing
+```bash
+# Test connection pool behavior under load
+ab -n 10000 -c 100 http://localhost:8080/
+
+# Monitor connection count
+mysql> SHOW STATUS LIKE 'Threads_connected';
+
+# Test connection timeout
+# Temporarily block database port
+iptables -A INPUT -p tcp --dport 3306 -j DROP
+curl http://localhost:8081/ready
+# Should return 503 within 10 seconds
+```
+
+### 2. Health Check Testing
+```bash
+# Test liveness probe (should always return 200)
+curl http://localhost:8081/live
+
+# Test readiness probe (depends on database)
+curl http://localhost:8081/ready
+
+# Test health check during database outage
+# Stop database
+systemctl stop mysql
+curl http://localhost:8081/ready  # Should return 503
+curl http://localhost:8081/live   # Should still return 200
+```
+
+### 3. Logging Testing
+```bash
+# Generate test logs
+curl http://localhost:8080/
+
+# Verify JSON log format
+tail -f /var/log/mini-app.log | jq '.'
+
+# Test CloudWatch log export
+aws logs tail /ecs/mini-java-app --follow
+
+# Test X-Ray trace capture
+aws xray get-trace-summaries --start-time $(date -u +%s -d '5 minutes ago') --end-time $(date -u +%s)
+```
+
+### 4. Load Testing
+```bash
+# Load test with connection pooling
+ab -n 50000 -c 200 -t 60 http://localhost:8080/
+
+# Monitor metrics
+- Response time P50, P95, P99
+- Error rate
+- Connection pool utilization
+- Database connection count
+- CPU and memory usage
+```
+
+### 5. Failover Testing
+```bash
+# Test RDS Multi-AZ failover
+aws rds reboot-db-instance --db-instance-identifier mini-app-db --force-failover
+
+# Monitor application behavior
+- Connection timeout handling
+- Connection pool recovery
+- Health check status
+- Error rate during failover
+```
+
+---
+
+## Summary and Next Steps
+
+### Overall Assessment
+The mini-java-app demonstrates **good cloud-readiness fundamentals** with environment variable configuration and health check endpoints already implemented. The application is **78% cloud-ready** with 8 issues requiring remediation before production deployment.
+
+### Key Achievements
+- ✅ Environment variable-based configuration
+- ✅ Health check endpoints for container orchestration
+- ✅ JAR packaging for containerization
+- ✅ Graceful shutdown hooks
+- ✅ Modern Java 11 with container awareness
+
+### Critical Actions Required
+1. **Implement HikariCP connection pooling** - 4 hours
+2. **Replace ServerSocket with Spring Boot embedded server** - 6 hours
+3. **Add structured logging (SLF4J + Logback)** - 4 hours
+4. **Integrate AWS X-Ray for distributed tracing** - 5 hours
+5. **Configure connection timeouts** - 1 hour
+
+**Total Effort:** 20 hours (2.5 developer days)
+
+### Deployment Readiness Timeline
+- **Phase 1 (Critical):** 10 hours - Deployment ready for dev/test
+- **Phase 2 (High Priority):** 9 hours - Production monitoring ready
+- **Phase 3 (Medium Priority):** 5 hours - Ready for scale-out
+
+**Total Implementation Time:** 24 hours (3 developer days)
+
+### Success Criteria
+After implementing all recommendations:
+- ✅ Application starts in <30 seconds
+- ✅ Health checks respond in <1 second
+- ✅ Handles RDS failover gracefully (<60 seconds recovery)
+- ✅ Database connection pool prevents connection exhaustion
+- ✅ Structured logs enable CloudWatch Insights queries
+- ✅ X-Ray traces enable end-to-end request tracking
+- ✅ Auto-scaling works without manual intervention
+- ✅ Rolling deployments complete without downtime
+
+### AWS Deployment Checklist
+- [ ] Set up AWS RDS MySQL Multi-AZ instance
+- [ ] Create ECS cluster or EKS cluster
+- [ ] Configure Application Load Balancer with target groups
+- [ ] Set up CloudWatch log groups and metric filters
+- [ ] Create Secrets Manager secrets for database credentials
+- [ ] Configure IAM roles for ECS tasks or EKS pods
+- [ ] Deploy X-Ray daemon as sidecar or DaemonSet
+- [ ] Set up CloudWatch alarms for monitoring
+- [ ] Configure auto-scaling policies
+- [ ] Test deployment with rolling update strategy
+
+**The application is well-architected for AWS deployment and requires only moderate effort to achieve production readiness.**

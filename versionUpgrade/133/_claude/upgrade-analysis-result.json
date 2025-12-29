@@ -1,0 +1,117 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 2,
+    "deprecatedApisFound" : 3,
+    "totalIssues" : 5,
+    "compatibilityScore" : 75,
+    "criticalIssues" : 0,
+    "highIssues" : 3,
+    "lowIssues" : 0,
+    "estimatedEffort" : "4-6 hours",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Moderate"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1994/transformed-code/93/studio-workspace/Component ",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "17",
+    "timestamp" : "2025-12-22T09:22:59.788543069Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 17", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 17", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-22",
+  "issues" : [ {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update to the latest MySQL connector version and consider migrating to the new artifact name:\\n<dependency>\\n    <groupId>com.mysql</groupId>\\n    <artifactId>mysql-connector-j</artifactId>\\n    <version>8.2.0</version>\\n</dependency>",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The current mysql-connector-java version 8.0.33 is compatible with Java 17, but should be upgraded to the latest stable version (8.0.33+) and consider migrating to the renamed artifact com.mysql:mysql-connector-j for better long-term support.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "MySQL Connector Version Requires Update for Java 17",
+    "lineNumber" : 20
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update Maven compiler plugin to 3.11.0+ and change source/target to 17:\\n<plugin>\\n    <groupId>org.apache.maven.plugins</groupId>\\n    <artifactId>maven-compiler-plugin</artifactId>\\n    <version>3.11.0</version>\\n    <configuration>\\n        <source>17</source>\\n        <target>17</target>\\n        <release>17</release>\\n    </configuration>\\n</plugin>",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Maven compiler plugin version 3.8.1 is outdated and should be upgraded to 3.11.0+ for better Java 17 support and compatibility with newer language features.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Plugin Version Outdated",
+    "lineNumber" : 35
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Consider upgrading to Spring Boot 3.2.x for better Java 17 support:\\n<parent>\\n    <groupId>org.springframework.boot</groupId>\\n    <artifactId>spring-boot-starter-parent</artifactId>\\n    <version>3.2.0</version>\\n</parent>\\n\\nNote: This requires migrating from javax.* to jakarta.* packages, which is a significant effort but recommended for long-term maintainability.",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Spring Boot 2.7.0 supports Java 17 but Spring Boot 3.x is recommended for full Java 17+ optimization and Jakarta EE 9+ support. Spring Boot 2.x uses javax.* packages while 3.x uses jakarta.* packages.",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot 2.7.0 Should Be Upgraded for Java 17 Optimization",
+    "lineNumber" : 25
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update the Maven properties to target Java 17:\\n<properties>\\n    <maven.compiler.source>17</maven.compiler.source>\\n    <maven.compiler.target>17</maven.compiler.target>\\n    <maven.compiler.release>17</maven.compiler.release>\\n    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\\n    <java.version>17</java.version>\\n</properties>",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The Maven compiler configuration specifies Java 11 as source and target. This needs to be updated to Java 17 to compile for the target version.",
+    "effort" : "medium",
+    "id" : "issue-4",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Source and Target Need Update to Java 17",
+    "lineNumber" : 13
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Remove the explicit driver loading:\\n// Remove this line - driver auto-loads in JDBC 4.0+\\n// Class.forName(\\",
+    "breakingChange" : true,
+    "filePath" : "src/main/java/com/test/DatabaseService.java",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The code uses Class.forName() to explicitly load the JDBC driver, which is unnecessary since JDBC 4.0+ (Java 6+). Modern JDBC drivers are auto-loaded via the Service Provider Interface.",
+    "effort" : "medium",
+    "id" : "issue-5",
+    "category" : "upgrade-analysis",
+    "title" : "Legacy JDBC Driver Loading Pattern",
+    "lineNumber" : 40
+  } ],
+  "recommendations" : [ "\"description\": \"The current mysql-connector-java version 8.0.33 is compatible with Java 17, but should be upgraded to the latest stable version (8.0.33+) and consider migrating to the renamed artifact com.mysql:mysql-connector-j for better long-term support.\",", "\"description\": \"Maven compiler plugin version 3.8.1 is outdated and should be upgraded to 3.11.0+ for better Java 17 support and compatibility with newer language features.\",", "\"description\": \"Spring Boot 2.7.0 supports Java 17 but Spring Boot 3.x is recommended for full Java 17+ optimization and Jakarta EE 9+ support. Spring Boot 2.x uses javax.* packages while 3.x uses jakarta.* packages.\",", "\"remediation\": \"Consider upgrading to Spring Boot 3.2.x for better Java 17 support:\\n<parent>\\n    <groupId>org.springframework.boot</groupId>\\n    <artifactId>spring-boot-starter-parent</artifactId>\\n    <version>3.2.0</version>\\n</parent>\\n\\nNote: This requires migrating from javax.* to jakarta.* packages, which is a significant effort but recommended for long-term maintainability.\",", "\"recommendedVersion\": \"Maven 3.8.1+ with Java 17 configuration\",", "\"maven-compiler-plugin version 3.8.1 is outdated - recommend 3.11.0+\",", "\"recommendedVersion\": \"8.2.0 (as com.mysql:mysql-connector-j)\",", "\"recommendedVersion\": \"3.2.0 or later\",", "\"recommendedVersion\": \"3.11.0 or later\"," ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "17",
+      "issue" : "Targets Java 11 instead of 17",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 17 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

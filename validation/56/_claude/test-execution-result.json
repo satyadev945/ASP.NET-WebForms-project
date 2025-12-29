@@ -1,0 +1,75 @@
+{
+  "analysisId": "56",
+  "status": "failed",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "No test projects found in the solution. The solution contains only 5 production projects (eShopOnWeb.Domain, eShopOnWeb.Application, eShopOnWeb.Infrastructure, eShopOnWeb.Web, eShopOnWeb.Domain.Contracts) but no test projects. Build succeeded with 0 warnings and 0 errors in 2.03s, but no tests were executed.",
+    "testStatistics": {
+      "total": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "N/A",
+    "passRate": "N/A",
+    "failRate": "N/A",
+    "timeTaken": "2.03s"
+  },
+  "codeCoverage": {
+    "overallPercentage": "0.0%",
+    "lineCoverage": {
+      "percentage": "0.0%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    },
+    "branchCoverage": {
+      "percentage": "0.0%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    },
+    "methodCoverage": {
+      "percentage": "0.0%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "0.0%",
+    "categories": []
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [
+      "No test projects found in solution",
+      "Unable to execute tests or generate coverage reports"
+    ],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0.0%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 0,
+    "totalFilesModified": 0,
+    "PassTestcase": 0,
+    "totalTimeTaken": "2.03s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": "No test projects found in the solution. The solution contains 5 production projects but no test assemblies with xUnit, NUnit, or MSTest frameworks configured."
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1947/transformed-code/43/studio-workspace/dotnetCOmp",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "2025-12-18T08:54:32Z",
+    "claudeModel": "Claude Sonnet 4.5",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP1947/transformed-code/43/studio-workspace/dotnetCOmp/TestResults/coverage/coverage.cobertura.xml"
+  }
+}

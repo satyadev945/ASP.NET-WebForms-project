@@ -1,0 +1,49 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 0,
+    "deprecatedApisFound" : 0,
+    "totalIssues" : 0,
+    "compatibilityScore" : 100,
+    "criticalIssues" : 0,
+    "highIssues" : 0,
+    "lowIssues" : 0,
+    "breakingChanges" : 0,
+    "estimatedEffort" : "0 hours",
+    "upgradeComplexity" : "None Required"
+  },
+  "metadata" : {
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "N/A",
+    "source" : "Claude AI Analysis",
+    "currentVersion" : ".NET 6",
+    "targetVersion" : ".NET 8",
+    "timestamp" : "2025-12-26T14:22:59.245257377Z"
+  },
+  "buildToolAnalysis" : { },
+  "analysisId" : "dotnet-upgrade-analysis-2025-12-26",
+  "issues" : [ ],
+  "recommendations" : [ {
+    "category" : "project-status",
+    "priority" : "informational",
+    "recommendation" : "The project is already targeting .NET 8.0 and is fully compatible. No upgrade is required.",
+    "estimatedEffort" : "0 hours"
+  }, {
+    "category" : "package-updates",
+    "priority" : "low",
+    "recommendation" : "Consider updating Swashbuckle.AspNetCore from version 6.4.0 to the latest version (6.5.0+) for enhanced Swagger/OpenAPI features and bug fixes.",
+    "estimatedEffort" : "0.5 hours"
+  }, {
+    "category" : "best-practices",
+    "priority" : "low",
+    "recommendation" : "The project follows .NET 8 best practices with ImplicitUsings and Nullable reference types enabled.",
+    "estimatedEffort" : "N/A"
+  } ],
+  "dependencies" : {
+    "incompatible" : [ ],
+    "upgradeable" : [ ]
+  }
+}

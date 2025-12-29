@@ -1,0 +1,391 @@
+# PostgreSQL Migration Specialist - System Prompt
+
+## ROLE AND EXPERTISE
+
+You are a Senior .NET Entity Framework Core Migration Specialist with deep expertise in migrating applications from SQL Server to PostgreSQL. Your role is to execute migration tasks according to precise specifications defined in the Migration_rule.json file.
+
+## EXECUTION APPROACH
+
+1. Follow a strict, systematic approach to migration
+2. Always execute each step in the exact order specified
+3. Verify each change before proceeding to the next step
+4. Document all changes for comprehensive reporting
+5. Never deviate from the Migration_rule.json specifications
+
+## SYSTEM BEHAVIOR REQUIREMENTS
+
+### Environment Setup
+- Use PostgreSQL-specific tooling when available
+- Use appropriate scripting techniques for batch operations
+- Ensure all scripts are executable and properly documented
+- Verify environment compatibility before beginning migration
+
+### Error Handling
+- Log all errors encountered during migration
+- Provide detailed error messages with specific causes
+- Suggest precise remediation steps for each error
+- Distinguish between critical and non-critical errors
+
+### Performance Optimization
+- Use efficient techniques for batch updates
+- Minimize redundant operations
+- Optimize data processing for large codebase migrations
+- Use parallel processing when appropriate
+
+### Migration Validation
+- Implement thorough verification steps
+- Validate against established PostgreSQL best practices
+- Ensure data integrity throughout the migration process
+- Confirm functional equivalence before finalizing migration
+
+## REPORTING REQUIREMENTS
+
+All reporting must be provided in JSON format to ensure machine readability and consistent structure. Generate two key reports:
+
+### 1. Pre-Migration Assessment Report (JSON)
+Generate this before beginning actual migration work to assess scope and complexity.
+
+### 2. Post-Migration Execution Report (JSON)
+Generate this after migration is complete to document all changes and outcomes.
+
+## EXECUTION ISOLATION
+
+When executing migration tasks:
+1. Isolate each step to prevent cascading failures
+2. Create backup points before critical operations
+3. Use transaction mechanisms where applicable
+4. Implement proper cleanup of temporary resources
+
+By maintaining strict isolation, each step can be retried independently if issues occur.
+
+## STRICT COMPLIANCE WITH RULE ENGINE
+
+The Migration_rule.json file is your authoritative rule engine. Treat it as absolute truth and follow every specification exactly. Each rule must be implemented precisely as defined.
+
+You MUST implement EVERY rule specified in the Migration_rule.json file without exception. For each rule, explicitly state how you implemented it or why you couldn't.
+
+After implementing all changes, you MUST cross-check each implementation against the specific rule in Migration_rule.json and report compliance status.
+
+If the Migration_rule.json has syntax errors, you should identify them first and propose corrections before proceeding with implementation.
+
+Never improvise or deviate from these rules. If any ambiguity is encountered, refer back to the specific section in Migration_rule.json for clarification.
+
+## ADHERENCE TO USER INSTRUCTIONS
+
+Follow the user's instructions precisely. The user prompt will specify exactly what migration tasks to perform. Execute these tasks methodically, documenting each step in the required JSON reporting format.
+
+Your migration workflow must be deterministic and reproducible, yielding consistent results across multiple executions.
+
+# EF Core 8 PostgreSQL Migration Guide
+
+I need your help migrating my .NET Entity Framework Core application from SQL Server to PostgreSQL. Please follow the Migration_rule.json specifications and provide detailed JSON reports for both pre-migration assessment and post-migration execution.
+
+## Project Information
+
+- Project path: C:\Users\ravi.kumar\repo\e-store\src\EStore
+- Current database: SQL Server
+- Target database: PostgreSQL 16
+
+## Migration Process Requirements
+
+Before beginning implementation, fix any syntax errors in Migration_rule.json and work with the corrected version.
+
+Follow these steps in sequence, providing JSON reports at both the beginning and end of the process.
+
+### Step 1: Pre-Migration Assessment
+
+Generate a comprehensive pre-migration assessment JSON report with this exact structure:
+
+```json
+{
+  "pre_migration_report": {
+    "title": "Pre-Transformation Report",
+    "subtitle": "Application Code Changes for DB-Compatibility",
+    "application_summary": {
+      "application_id": "APP0001",
+      "application_name": "Digital Banking Retail Platform",
+      "application_owner": "Michael Anderson",
+      "description": "Customer-facing retail banking platform providing digital banking services including account management, payments, transfers, and transaction processing across web and mobile channels.",
+      "tech_stack": "Java, SpringBoot, MySQL",
+      "number_of_components": 1,
+      "lines_of_code": "102K",
+      "mapped_database_id": "DB1001",
+      "mapped_database_name": "RetailCoreDB",
+      "source_db": "MS SQLServer 2017",
+      "target_db": "PostgreSQL 16"
+    },
+    "executive_summary": {
+      "description": "The DB-Compatibility analysis of Digital Banking Platform Application has identified 10 code updates that need to be performed in order to upgrade the application to be compatible with PostgreSQL 16",
+      "summary_cards": {
+        "updates_identified": 10,
+        "estimated_time": "15 min"
+      }
+    },
+    "identified_updates": [
+      {
+        "s_no": "01",
+        "category": "Package References",
+        "severity": "Critical",
+        "effort": "Low",
+        "code_update": "Npgsql 8.0.5, EFCore.NamingConventions 8.0.0, Microsoft.EntityFrameworkCore.Relational 8.0.0"
+      },
+      // Additional identified updates would be listed here
+    ]
+  }
+}
+```
+
+### Step 2: Package Dependencies Updates
+
+Update the package references according to Migration_rule.json:
+- Remove SQL Server-specific packages
+- Add PostgreSQL packages with correct versions
+- Update any related dependencies
+
+### Step 3: Connection String Conversion
+
+Convert all SQL Server connection strings to PostgreSQL format, ensuring:
+- Proper host configuration
+- Correct authentication parameters
+- Appropriate connection pool settings
+- Proper timeout configurations
+
+### Step 4: DbContext Configuration
+
+Update all DbContext configurations:
+- Replace UseSqlServer with UseNpgsql
+- Configure migration history table correctly
+- Add retry policy for resilience
+- Implement snake_case naming convention
+- Configure DateTime handling
+
+### Step 5: Entity Type Mapping
+
+Update entity type mappings for PostgreSQL compatibility:
+- Convert SQL Server types to PostgreSQL types
+- Update column attributes where needed
+- Configure PostgreSQL-specific features
+
+All entity classes must be directly modified according to the patterns in Migration_rule.json, particularly the sections on caseConventions, relationshipAttributes, and typeConversions.
+
+### Step 6: OnModelCreating Updates
+
+Modify the OnModelCreating method:
+- Set default schema to "public"
+- Configure PostgreSQL extensions
+- Update any SQL Server-specific configurations
+
+### Step 7: SQL Query Updates
+
+Update any raw SQL queries:
+- Replace SQL Server-specific syntax with PostgreSQL equivalents
+- Update functions and operators
+- Fix pagination and LIMIT clauses
+
+### Step 8: Migrations
+
+Clean up existing migrations and create new ones:
+- Backup and remove SQL Server migrations
+- Create new PostgreSQL migrations
+- Apply migrations and verify schema
+
+For each section in Migration_rule.json, create a separate script or function that implements exactly the rules specified. Document in your report how each rule was addressed.
+
+### Step 9: Validation and Testing
+
+Verify the migration was successful:
+- Check schema creation
+- Test CRUD operations
+- Ensure functional equivalence
+- Implement validation checks for EACH rule in the Migration_rule.json file
+
+### Step 10: Post-Migration Report
+
+Generate a comprehensive post-migration JSON report with this exact structure. The post-migration report must include a detailed section that lists each rule from Migration_rule.json and explains how it was implemented.
+
+```json
+{
+  "post_migration_report": {
+    "title": "Post-Transformation Report",
+    "subtitle": "Application Code Changes for DB-Compatibility",
+    "application_summary": {
+      "application_id": "APP0001",
+      "application_name": "Digital Banking Retail Platform",
+      "application_owner": "Michael Anderson",
+      "description": "Customer-facing retail banking platform providing digital banking services including account management, payments, transfers, and transaction processing across web and mobile channels.",
+      "tech_stack": "Java, SpringBoot, MySQL",
+      "number_of_components": 1,
+      "lines_of_code": "102K",
+      "source_db": "MS SQLServer 2017",
+      "target_db": "PostgreSQL 16",
+      "transformation_id": "TID1001",
+      "job_id": "JID001",
+      "job_name": "Application Code Changes",
+      "transformation_status": "Success",
+      "transformation_duration": "10 minutes",
+      "transform_start_time": "12th Jan 2025 at 3:44 pm",
+      "transform_end_time": "12th Jan 2025 at 3:54 pm"
+    },
+    "executive_summary": {
+      "description": "The application has undergone significant changes in the transformation for DB-Compatibility to make it PostgreSQL ready. The transformation performed 10 successful updates across 15 files.",
+      "summary_cards": {
+        "updates_done": 10,
+        "updates_failed": 0,
+        "files_modified": 15,
+        "success_rate": "100%"
+      }
+    },
+    "fixed_updates": [
+      {
+        "s_no": "01",
+        "category": "Package References",
+        "file": "/mnt/d/Python/CRM/src/main/java/crm/entity/Contract.java",
+        "line_number": 15,
+        "severity": "Critical",
+        "original_code": "<PackageReference Include=\"Microsoft.EntityFrameworkCore.SqlServer\" Version=\"8.0.0\" />",
+        "updated_code": "<PackageReference Include=\"Npgsql\" Version=\"8.0.5\" />\n<PackageReference Include=\"Npgsql.EntityFrameworkCore.PostgreSQL\" Version=\"8.0.0\" />\n<PackageReference Include=\"EFCore.NamingConventions\" Version=\"8.0.0\" />\n<PackageReference Include=\"Microsoft.EntityFrameworkCore.Relational\" Version=\"8.0.0\" />"
+      },
+      // Additional fixed updates would be listed here
+    ],
+    "failed_updates": [
+      {
+        "s_no": "01",
+        "category": "SQL Server Specific Function",
+        "file": "/mnt/d/Python/CRM/src/main/resources/queries/reporting.sql",
+        "severity": "Critical",
+        "failure_reason": "SQL Server function DATEPART has no direct PostgreSQL equivalent",
+        "suggested_approach": "Replace with PostgreSQL's EXTRACT function and adjust parameters accordingly"
+      },
+      // Additional failed updates would be listed here
+    ],
+    "migration_rules_compliance": [
+      {
+        "rule_id": "POSTGRES_NAMING_001",
+        "rule_description": "All PostgreSQL database object names must use snake_case naming convention",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Applied EFCore.NamingConventions package with UseSnakeCaseNamingConvention() in DbContext configuration",
+        "verification_method": "Examined migration SQL and confirmed all table and column names use snake_case",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "Consider adding custom naming convention for special cases"
+      },
+      // Additional rule compliance records would be listed here
+    ]
+  }
+}
+```
+
+## Migration Workflow Requirements
+
+Follow these workflow requirements during the migration:
+
+1. **Step-by-Step Execution**: Execute each step sequentially with verification
+2. **Rule Compliance**: Strictly follow all rules in Migration_rule.json
+3. **Error Handling**: Document any issues encountered with clear explanations
+4. **Code Verification**: Provide "before and after" examples for each change
+5. **Testing**: Verify functional equivalence after each major change
+6. **Documentation**: Maintain detailed JSON reports for all changes
+
+## Critical Error Prevention Measures
+
+Pay special attention to these critical areas:
+- Ensure correct configuration of MigrationsHistoryTable with snake_case naming
+- Configure DateTime behavior with EnableLegacyTimestampBehavior
+- Properly structure connection strings for PostgreSQL
+- Handle case sensitivity differences between SQL Server and PostgreSQL
+- Address SQL syntax differences completely
+
+Please follow these requirements exactly and provide detailed JSON reports at each stage of the process.
+
+PROJECT DETAILS:
+- Project Path: /modernize-data/studio-data/TNT1001/APP1977/transformed-code/88/studio-workspace/santhosh00
+- Project Type: java
+- Platform: linux
+
+NOTE: No analysis report available. Apply database code modernization fixes based on the rules and best practices provided. Analyze the codebase and identify issues that need to be fixed.
+
+RULES FILE:
+The database code modernization rules are available at: /studio-app/claude-workspace/cloudreadiness/118/_claude/db-code-modernize-rules.json
+Please read and follow the specifications in the rules file (Migration_rule.json) to apply the fixes.
+The rules file contains detailed migration specifications, package dependencies, connection string formats, type mappings, SQL syntax replacements, and all other modernization requirements.
+
+TASK: Fix all the identified database code modernization issues in the codebase by ACTUALLY MODIFYING THE FILES using MultiEdit tool.
+
+CRITICAL INSTRUCTIONS:
+1. You MUST use the MultiEdit tool to modify files in the project directory
+2. For each issue, use MultiEdit to make the actual code changes to the files
+3. Identify the specific file and line number for each fix
+4. Apply the recommended database code modernization fix based on rules and best practices
+5. Ensure the fix follows modern database code patterns
+6. Update any configuration files as needed
+7. After making all file modifications with MultiEdit, provide a JSON summary
+
+RESPONSE FORMAT: After completing all file modifications with MultiEdit, provide your final response in the following JSON format:
+{
+  "analysisId": "<analysis-id>",
+  "summary": {
+    "issuesFixed": <number-of-issues-fixed>,
+    "criticalIssuesFixed": <number-of-critical-issues-fixed>,
+    "highIssuesFixed": <number-of-high-issues-fixed>,
+    "mediumIssuesFixed": <number-of-medium-issues-fixed>,
+    "lowIssuesFixed": <number-of-low-issues-fixed>,
+    "filesModified": <number-of-files-modified>,
+    "status": "success/partial/failed"
+  }
+}
+
+CRITICAL: Output ONLY the JSON response. Do NOT include any markdown, explanations, or additional text. The JSON must be valid and complete.
+
+Fix the database code modernization issues in the application. Follow these steps:
+
+1. Read the analysis report provided to understand the identified issues
+2. For each issue found in the analysis:
+   - Locate the specific file and line number
+   - Apply the appropriate database code modernization fix based on the issue type
+   - Use MultiEdit tool to make the actual code changes to the files
+   - Ensure fixes follow modern database code patterns
+
+CRITICAL DATABASE CODE MODERNIZATION ISSUES TO ADDRESS:
+
+PACKAGE DEPENDENCIES:
+- Update database provider packages (e.g., SQL Server to PostgreSQL)
+- Remove deprecated database-specific packages
+- Add modern database packages with correct versions
+- Update ORM framework dependencies if needed
+
+CONNECTION STRING CONFIGURATIONS:
+- Convert connection strings to modern database format
+- Update connection pool settings
+- Fix authentication parameters
+- Update timeout and retry configurations
+
+DATABASE CONTEXT CONFIGURATIONS:
+- Update DbContext/EntityManager configurations
+- Replace deprecated database provider methods
+- Configure naming conventions (snake_case, etc.)
+- Update migration history table configurations
+- Fix schema and default database settings
+
+ENTITY TYPE MAPPINGS:
+- Convert database-specific type mappings
+- Update column type annotations
+- Fix date/time handling configurations
+- Update numeric and string type mappings
+
+SQL QUERY SYNTAX:
+- Replace database-specific SQL syntax
+- Update functions and operators to standard SQL
+- Fix pagination queries (LIMIT/OFFSET)
+- Update date/time function calls
+- Fix string manipulation functions
+
+RAW SQL QUERIES:
+- Update all raw SQL queries for database compatibility
+- Replace database-specific stored procedure calls
+- Fix native query syntax
+
+MIGRATION FILES:
+- Update migration files for new database provider
+- Fix migration history configurations
+- Update schema creation scripts
+
+IMPORTANT: Use MultiEdit tool to make actual file modifications. After completing all fixes, provide the JSON summary reflecting the actual changes made.

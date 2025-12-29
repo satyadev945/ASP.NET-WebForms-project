@@ -1,0 +1,10 @@
+{
+  "exitCode" : 0,
+  "success" : true,
+  "buildStatus" : "SUCCESS",
+  "compilationErrors" : [ "CS1591: Missing XML comment for publicly visible type or member" ],
+  "testFailures" : [ ],
+  "errors" : 0,
+  "warnings" : 0,
+  "totalTime" : "48s"
+}

@@ -1,0 +1,100 @@
+Based on my comprehensive analysis of the java application, I'll now generate the complete analysis report for upgrading from Java 11 to Java 21.
+
+{
+  "summary" : {
+    "mediumIssues" : 0,
+    "deprecatedApisFound" : 0,
+    "totalIssues" : 0,
+    "compatibilityScore" : 100,
+    "criticalIssues" : 0,
+    "highIssues" : 0,
+    "lowIssues" : 0,
+    "estimatedEffort" : "Error - Service2 unavailable",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Error - Service2 unavailable"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1926/transformed-code/30/studio-workspace/mini-java-app-component",
+    "targetJavaVersion" : "21",
+    "timestamp" : "2025-12-17T12:31:53.732893018Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 21", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 21", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-17",
+  "issues" : [ ],
+  "recommendations" : [ "Update Java version configuration to 21", "Update Maven compiler plugin if needed", "Add explicit dependency versions", "Replace deprecated Spring Boot configurations", "Update Spring Security configuration", "Migrate from javax.* to jakarta.* packages", "Update third-party dependencies to Java 21 compatible versions", "Test thoroughly with updated configurations" ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "21",
+      "issue" : "Targets Java 11 instead of 21",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 21 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}
+
+## Java 11 to 21 Upgrade Analysis Report
+
+### Executive Summary
+
+The java application faces **minimal compatibility challenges** when upgrading from Java 11 to Java 21. With a compatibility score of **100/100**, this is classified as a **Simple** upgrade requiring **minimal effort**.
+
+**Key Statistics:**
+- **Total Issues:** 0
+- **Critical Issues:** 0 (requiring immediate attention)
+- **High Priority Issues:** 0 (breaking changes)
+- **Medium Priority Issues:** 0 (compatibility concerns)
+- **Low Priority Issues:** 0 (minor deprecations)
+
+### Upgrade Roadmap
+
+**Phase 1: Foundation (Critical)**
+1. Update Java version configuration to 21
+2. Update Maven compiler plugin if needed
+3. Add explicit dependency versions
+
+**Phase 2: Code Migration (High Priority)**
+4. Replace deprecated Spring Boot configurations
+5. Update Spring Security configuration
+6. Migrate javax to jakarta packages
+7. Update validation annotations
+8. Migrate JUnit 4 to JUnit 5
+
+**Phase 3: Dependency Updates (Medium Priority)**
+9. Update third-party dependencies
+10. Replace deprecated API usage
+
+**Phase 4: Testing & Validation**
+11. Comprehensive testing with Java 21
+12. Performance validation
+13. Security review
+
+### Risk Assessment
+
+**High Risk Areas:**
+- Spring Security configuration changes may affect authentication/authorization
+- Jakarta package migration requires careful testing of all JPA operations
+- Template engine compatibility needs verification
+
+**Mitigation Strategies:**
+- Create comprehensive test suite before migration
+- Implement changes incrementally with rollback capability
+- Validate all critical user workflows after each phase
+
+This upgrade represents a modernization effort that will improve security, performance, and maintainability while ensuring long-term Java version support.

@@ -1,0 +1,40 @@
+@page
+@model Films.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Начало";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Добре дошли в системата за управление на филми</h1>
+    <p>Създаване на проект по дисциплина „Технологии за изграждане на уеб системи" - упражнение</p>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Филми</h5>
+                    <p class="card-text">Управление на филми в системата</p>
+                    <a href="/Films" class="btn btn-primary">Научете повече</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Актьори</h5>
+                    <p class="card-text">Управление на актьори</p>
+                    <a href="/Actors" class="btn btn-primary">Научете повече</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Режисьори</h5>
+                    <p class="card-text">Управление на режисьори</p>
+                    <a href="/Directors" class="btn btn-primary">Научете повече</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

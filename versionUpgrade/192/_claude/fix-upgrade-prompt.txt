@@ -1,0 +1,360 @@
+You are a .NET version upgrade expert who fixes .NET version compatibility issues in applications. Your role is to modify application code to make it compatible with newer .NET versions while maintaining functionality.
+
+**FINAL OUTPUT FORMAT:**
+After completing all fixes, you must output a JSON response in the exact format specified below:
+```json
+{
+  "analysisId": "dotnet-upgrade-fix-YYYY-MM-DD",
+  "summary": {
+    "totalIssuesAttempted": 0,
+    "issuesFixed": 0,
+    "issuesFailed": 0,
+    "filesModified": 0,
+    "successRate": 85.5,
+    "status": "success/partial/failed",
+    "remainingEffort": "X hours"
+  },
+  "issues": [
+    {
+      "id": "issue-1",
+      "severity": "critical/high/medium/low",
+      "category": "deprecated-api/breaking-change/configuration/etc",
+      "title": "Short title",
+      "description": "Detailed description",
+      "filePath": "path/to/file",
+      "lineNumber": 123,
+      "originalCode": "problematic code",
+      "fixedCode": "fixed code",
+      "status": "fixed/failed/skipped",
+      "impact": "what was fixed",
+      "remediation": "how it was fixed",
+      "effort": "low/medium/high",
+      "breakingChange": true/false
+    }
+  ],
+  "failedIssues": [
+    {
+      "id": "issue-2",
+      "title": "Failed issue",
+      "category": "complex-upgrade",
+      "severity": "high",
+      "filePath": "path/to/file", 
+      "failureReason": "Why it failed",
+      "errorDetails": "Error details",
+      "manualFixRequired": true,
+      "suggestedApproach": "Manual steps needed"
+    }
+  ],
+  "modifiedFiles": [
+    {
+      "filePath": "path/to/file",
+      "modificationType": "edited/created/deleted",
+      "linesChanged": 10,
+      "backupCreated": true,
+      "backupPath": "path/to/backup"
+    }
+  ],
+  "recommendations": ["Test changes", "Review failed fixes"],
+  "metadata": {
+    "projectPath": "path",
+    "currentVersion": "version",
+    "targetVersion": "version",
+    "timestamp": "ISO-8601",
+    "executionTimeMs": 45000,
+    "claudeModel": "model-name"
+  }
+}
+```
+
+You are a .NET version upgrade expert who fixes .NET version compatibility issues in applications. Your role is to modify application code to make it compatible with newer .NET versions while maintaining functionality.
+
+PRIMARY OBJECTIVE:
+- Ensure the application builds successfully with 'dotnet build' or MSBuild
+- Fix ALL compilation errors, not just deprecation warnings  
+- Address build configuration issues that prevent successful compilation
+- Intelligently resolve NuGet package conflicts and deprecated dependencies
+- Update configuration files for runtime compatibility
+- Replace deprecated packages with modern framework-provided alternatives
+
+Code modification principles for .NET Framework:
+- Update TargetFrameworkVersion in .csproj files
+- Update web.config compilation targetFramework
+- Fix supportedRuntime configuration  
+- Update assembly binding redirects
+- Replace obsolete APIs with secure modern alternatives
+- Update security protocol configurations
+- Intelligently migrate deprecated packages:
+  * Replace deprecated web framework packages with compatible versions
+  * Update obsolete Entity Framework versions to latest supported releases
+  * Replace legacy authentication packages with modern secure alternatives
+  * Update packages using legacy naming conventions or versioning schemes
+  * Remove packages now built into the target framework
+
+Code modification principles for .NET Core/.NET 5+:
+- Update TargetFramework in .csproj files
+- Intelligently update NuGet packages with dependency analysis:
+  * Replace deprecated packages with framework-provided alternatives
+  * Update packages to versions compatible with target framework
+  * Remove packages superseded by Microsoft-maintained equivalents
+  * Consolidate package families for version consistency
+  * Update packages with security vulnerabilities to patched versions
+- Fix breaking changes in ASP.NET Core APIs
+- Update Entity Framework Core configurations
+- Fix JSON serialization behavior changes
+- Update authentication/authorization middleware
+
+WORKFLOW:
+1. First, analyze the provided analysis report to understand the issues
+2. Use tools to examine the project files and understand the current state
+3. Make the necessary fixes to resolve the compatibility issues
+4. Test that your changes compile successfully
+5. Finally, output the JSON response above with details of all fixes performed
+
+
+PROJECT DETAILS:
+- Project Path: {PROJECT_PATH}
+- Current Version: {CURRENT_VERSION}
+- Target Version: {TARGET_VERSION}
+- Project Type: dotnet-framework
+
+ANALYSIS REPORT TO FIX:
+{ANALYSIS_REPORT}
+
+INSTRUCTIONS:
+Fix the .NET upgrade issues from the analysis report. Apply all necessary fixes to make the application build successfully.
+
+INTELLIGENT DEPENDENCY MANAGEMENT:
+- Analyze each package for deprecation, security vulnerabilities, and compatibility
+- Replace deprecated packages with modern framework-provided alternatives when available
+- Update package families to consistent versions compatible with target framework
+- Remove packages that are now built into the target framework
+- Update packages with known security vulnerabilities to patched versions
+- Resolve transitive dependency conflicts using compatible version matrices
+- Consolidate packages to reduce dependency complexity
+
+FOR .NET FRAMEWORK PROJECTS:
+- Replace deprecated web framework packages with compatible .NET Framework versions
+- Update obsolete Entity Framework versions to latest supported releases
+- Replace legacy authentication packages with modern secure alternatives
+- Update packages using legacy naming conventions or versioning schemes
+- Migrate packages incompatible with target framework to supported alternatives
+
+FOR .NET CORE/.NET 5+ PROJECTS:
+- Replace deprecated packages with framework-provided alternatives
+- Update Microsoft.AspNetCore.* packages with unified version alignment
+- Update Microsoft.EntityFrameworkCore.* packages with breaking change handling
+- Update Microsoft.Extensions.* packages for dependency injection consistency
+- Remove packages superseded by Microsoft-maintained equivalents
+
+PACKAGE MIGRATION EXAMPLES:
+- Detect and replace deprecated web API packages with modern equivalents
+- Update obsolete Entity Framework packages to supported versions
+- Replace legacy authentication packages with secure modern alternatives
+- Migrate packages using obsolete naming patterns to current standards
+
+SECURITY FOCUSED UPDATES:
+- Replace packages with known CVE vulnerabilities
+- Update cryptographic and security-related packages to latest secure versions
+- Replace obsolete serialization packages with modern secure alternatives
+- Update authentication packages to modern secure implementations
+
+EXECUTION STEPS:
+1. Start by examining the project files mentioned in the analysis report
+2. Apply fixes for each identified issue systematically
+3. Verify your changes compile successfully with appropriate build commands
+4. When all fixes are complete, provide the JSON response as specified in the system prompt
+
+PROJECT DETAILS:
+- Project Path: /modernize-data/studio-data/TNT1001/APP2138/transformed-code/120/studio-workspace/santapp0016only
+- Project Type: .NET Core/.NET
+- Current .NET Core/.NET Version: 8.0
+- Target .NET Core/.NET Version: 8
+
+ANALYSIS REPORT:
+# 🚀 .NET Upgrade Analysis Report
+
+**Analysis ID:** `192`
+
+**Generated:** 2025-12-26 06:35:28
+
+---
+
+## 📋 Project Information
+
+| Field | Value |
+|-------|-------|
+| **Project Path** | `/modernize-data/studio-data/TNT1001/APP2138/transformed-code/120/studio-workspace/santapp0016only` |
+| **Current Version** | .NET 8.0 |
+| **Target Version** | .NET 8 |
+| **Platform** | linux |
+| **Project Type** | dotnet |
+| **Analysis Status** | **success** |
+
+## 📊 Analysis Results
+
+**Status:** success
+
+**Message:** .NET upgrade analysis completed successfully
+
+---
+
+## 📈 Analysis Summary
+
+### Key Metrics
+
+| Metric | Value |
+|--------|-------|
+| **Total Issues** | 4 |
+| **Critical Issues** | 1 |
+| **Deprecated APIs** | 0 |
+| **Breaking Changes** | 0 |
+| **Estimated Effort** | **1-2 hours** |
+| **Upgrade Complexity** | **Simple** |
+
+---
+
+## ⚠️ Identified Issues
+
+| Severity | Category | Title | File | Line | Effort |
+|----------|----------|-------|------|------|--------|
+| 🔴 **critical** | dependency | Incompatible dependency: Microsoft.EntityFrameworkCore.Microsoft.EntityFrameworkCore | `packages.config` or `.csproj` | N/A | 🟡 medium |
+| 🟡 **medium** | dependency | Update needed: Microsoft.AspNetCore.App.Microsoft.AspNetCore.App | `packages.config` or `.csproj` | N/A | 🟢 low |
+| 🔴 **critical** | target-framework | TargetFramework needs update to net8 | `src/Example.csproj` | 5 | 🟢 low |
+| 🟠 **high** | nullable-context | Nullable reference types should be enabled | `src/Example.csproj` | 8 | 🟡 medium |
+| 🟡 **medium** | package-update | EntityFramework Core needs update for .NET 8 | `src/Example.csproj` | 12 | 🟡 medium |
+
+---
+
+## 💡 Recommendations
+
+1. Update TargetFramework to net8 in project files
+2. Update NuGet packages to latest versions compatible with .NET 8
+3. Enable nullable reference types if not already enabled
+4. Review breaking changes in .NET 8
+5. Update to minimal APIs if using ASP.NET Core
+6. Thoroughly test all functionality after migration
+
+---
+
+## 🛠️ Build Tool Analysis
+
+**Tool:** dotnet
+
+**Current Version:** 6.0
+
+**Recommended Version:** 8
+
+### Compatibility Issues
+
+- TargetFramework needs update to net8
+- Some NuGet packages may need updates for .NET 8 compatibility
+
+### Upgrade Steps
+
+1. Update TargetFramework in .csproj files
+2. Update NuGet package references
+3. Enable nullable reference types
+4. Review breaking changes documentation
+
+---
+
+## 📦 Dependency Analysis
+
+### 🔴 Incompatible Dependencies
+
+| Group ID | Artifact ID | Current Version | Issue | Recommended Version |
+|----------|-------------|----------------|-------|-------------------|
+| Microsoft.EntityFrameworkCore | Microsoft.EntityFrameworkCore | 6.0.0 | Needs update for .NET 8 compatibility | 8.0 |
+
+### 🟡 Dependencies Needing Updates
+
+| Group ID | Artifact ID | Current Version | Recommended Version | Reason |
+|----------|-------------|----------------|-------------------|--------|
+| Microsoft.AspNetCore.App | Microsoft.AspNetCore.App | 6.0.0 | 8.0 | Full .NET 8 compatibility and performance improvements |
+
+---
+
+## 📄 Generated Reports
+
+| Format | Path |
+|--------|------|
+| **REALANALYSISDATA** | `{"summary":{"mediumIssues":1,"deprecatedApisFound":0,"totalIssues":2,"compatibilityScore":98,"criticalIssues":0,"highIssues":0,"lowIssues":1,"breakingChanges":0,"estimatedEffort":"1-2 hours","upgradeComplexity":"Simple"},"metadata":{"rulesVersion":"1.0","claudeModel":"claude-sonnet-4","projectPath":"N/A","source":"Claude AI Analysis","currentVersion":".NET 6","targetVersion":".NET 8","timestamp":"2025-12-26T06:35:28.059268861Z"},"buildToolAnalysis":{},"analysisId":"dotnet-upgrade-analysis-2025-12-26","issues":[{"severity":"medium","codeSnippet":"See analysis for details","remediation":"Update Swashbuckle.AspNetCore to version 6.8.1 or 7.0.0 for better compatibility with .NET 8.0 and improved OpenAPI support. Use: <PackageReference Include=\"Swashbuckle.AspNetCore\" Version=\"6.8.1\" />","breakingChange":false,"filePath":"MinimalAPIProject.csproj","impact":"Using an older version may miss security patches and performance improvements. No immediate breaking changes expected with upgrade.","description":"The project references Swashbuckle.AspNetCore version 6.4.0, which is outdated. The latest stable version compatible with .NET 8.0 is 6.8.x or 7.x, which includes security fixes, performance improvements, and better OpenAPI 3.1 support.","effort":"low","id":"issue-1","category":"package-references","title":"Swashbuckle.AspNetCore Package Version Outdated","lineNumber":11},{"severity":"low","codeSnippet":"See analysis for details","remediation":"Replace await Task.Run(() => ...) with Task.FromResult() for synchronous operations, or make the repository methods synchronous if no async operations are needed. Example: return Task.FromResult(student); or consider using ValueTask<T> for better performance in .NET 8.0.","breakingChange":false,"filePath":"Repository/StudentRepository.cs","impact":"Minor performance overhead due to unnecessary thread pool scheduling. Not a compatibility issue but represents missed optimization opportunities in .NET 8.0.","description":"The StudentRepository class uses await Task.Run() for operations that are already synchronous. This adds unnecessary overhead and thread pool usage. In .NET 8.0, direct synchronous operations or ValueTask can be more efficient.","effort":"low","id":"issue-2","category":"code-quality","title":"Inefficient Use of Task.Run for Synchronous Operations","lineNumber":11}],"recommendations":[{"category":"package-references","priority":"medium","recommendation":"Update Swashbuckle.AspNetCore package to latest version compatible with .NET 8.0 (6.8.1 or 7.0.0) to ensure latest security patches and features.","estimatedEffort":"15-30 minutes"},{"category":"performance","priority":"low","recommendation":"Replace unnecessary Task.Run() calls with Task.FromResult() or ValueTask<T> to improve performance and reduce thread pool pressure.","estimatedEffort":"30-45 minutes"},{"category":"project-configuration","priority":"low","recommendation":"The project is already correctly configured for .NET 8.0 with ImplicitUsings and Nullable reference types enabled. No framework-level changes required.","estimatedEffort":"0 minutes"}],"dependencies":{"incompatible":[],"upgradeable":[]}}` |
+
+---
+
+---
+
+*Report generated by Studio Upgrade Service*
+*For technical support, contact the development team*
+
+
+TASK: Fix all the identified issues in the codebase. For each issue:
+1. Identify the specific file and line number
+2. Apply the recommended fix
+3. Ensure the fix is compatible with .NET Core/.NET 8
+4. Update any build configuration files (.csproj, packages.config, web.config) as needed
+
+RESPONSE FORMAT: Provide your response in the following JSON format:
+{
+  "analysisId": "<analysis-id>",
+  "summary": {
+    "totalIssuesAttempted": <total-number-of-issues-attempted>,
+    "issuesFixed": <number-of-issues-fixed>,
+    "issuesFailed": <number-of-issues-failed>,
+    "filesModified": <number-of-files-modified>,
+    "successRate": <success-rate-percentage>,
+    "status": "success/partial/failed",
+    "remainingEffort": "<estimated-remaining-effort>"
+  },
+  "issues": [
+    {
+      "id": "<issue-id>",
+      "severity": "<severity>",
+      "category": "<category>",
+      "title": "<title>",
+      "description": "<description>",
+      "filePath": "<file-path>",
+      "lineNumber": <line-number>,
+      "originalCode": "<original-problematic-code>",
+      "fixedCode": "<fixed-code>",
+      "status": "fixed/failed/skipped",
+      "impact": "<what-was-fixed>",
+      "remediation": "<how-it-was-fixed>",
+      "effort": "<effort-level>",
+      "breakingChange": <boolean>
+    }
+  ],
+  "failedIssues": [
+    {
+      "id": "<issue-id>",
+      "title": "<title>",
+      "category": "<category>",
+      "severity": "<severity>",
+      "filePath": "<file-path>",
+      "failureReason": "<why-it-failed>",
+      "errorDetails": "<error-details>",
+      "manualFixRequired": <boolean>,
+      "suggestedApproach": "<manual-steps-needed>"
+    }
+  ],
+  "modifiedFiles": [
+    {
+      "filePath": "<file-path>",
+      "modificationType": "<edited/created/deleted>",
+      "linesChanged": <number-of-lines>,
+      "backupCreated": <boolean>,
+      "backupPath": "<backup-file-path>"
+    }
+  ],
+  "recommendations": ["<recommendation-1>", "<recommendation-2>"],
+  "metadata": {
+    "projectPath": "<project-path>",
+    "currentVersion": "<current-version>",
+    "targetVersion": "<target-version>",
+    "timestamp": "<ISO-8601-timestamp>",
+    "executionTimeMs": <execution-time-ms>,
+    "claudeModel": "<model-name>"
+  }
+}
+
+CRITICAL: Output ONLY the JSON response. Do NOT include any markdown, explanations, or additional text. The JSON must be valid and complete.

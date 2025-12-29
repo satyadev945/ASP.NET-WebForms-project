@@ -1,0 +1,74 @@
+{
+  "analysisResults" : {
+    "message" : "WebForms migration analysis completed successfully",
+    "status" : "success",
+    "cached" : false
+  },
+  "dependencyAnalysis" : {
+    "incompatibleDependencies" : [ {
+      "groupId" : "Microsoft.EntityFrameworkCore",
+      "currentVersion" : "6.0.0",
+      "recommendedVersion" : "8.0",
+      "issue" : "Needs update for .NET 8 compatibility",
+      "artifactId" : "Microsoft.EntityFrameworkCore"
+    } ],
+    "dependenciesNeedingUpdates" : [ {
+      "reason" : "Full .NET 8 compatibility and performance improvements",
+      "groupId" : "Microsoft.AspNetCore.App",
+      "currentVersion" : "6.0.0",
+      "recommendedVersion" : "8.0",
+      "artifactId" : "Microsoft.AspNetCore.App"
+    } ]
+  },
+  "reportMetadata" : {
+    "version" : "1.0",
+    "reportType" : ".NET Upgrade Analysis Report",
+    "analysisId" : "53",
+    "timestamp" : "2025-12-18T05:23:35.54696141"
+  },
+  "buildToolAnalysis" : {
+    "upgradeSteps" : [ "Update TargetFramework in .csproj files", "Update NuGet package references", "Enable nullable reference types", "Review breaking changes documentation" ],
+    "compatibilityIssues" : [ "TargetFramework needs update to net8", "Some NuGet packages may need updates for .NET 8 compatibility" ],
+    "currentVersion" : "6.0",
+    "tool" : "dotnet",
+    "recommendedVersion" : "8"
+  },
+  "upgradeSummary" : {
+    "deprecatedApisFound" : 18,
+    "blockersFound" : 47,
+    "criticalBlockers" : 12,
+    "breakingChanges" : 11,
+    "estimatedEffort" : "240-320 hours",
+    "upgradeComplexity" : "Complex"
+  },
+  "identifiedIssues" : [ {
+    "effort" : "low",
+    "severity" : "critical",
+    "title" : "TargetFramework needs update to net8",
+    "file" : "src/Example.csproj",
+    "category" : "target-framework",
+    "line" : 5
+  }, {
+    "effort" : "medium",
+    "severity" : "high",
+    "title" : "Nullable reference types should be enabled",
+    "file" : "src/Example.csproj",
+    "category" : "nullable-context",
+    "line" : 8
+  }, {
+    "effort" : "medium",
+    "severity" : "medium",
+    "title" : "EntityFramework Core needs update for .NET 8",
+    "file" : "src/Example.csproj",
+    "category" : "package-update",
+    "line" : 12
+  } ],
+  "recommendations" : [ "Update TargetFramework to net8 in project files", "Update NuGet packages to latest versions compatible with .NET 8", "Enable nullable reference types if not already enabled", "Review breaking changes in .NET 8", "Update to minimal APIs if using ASP.NET Core", "Thoroughly test all functionality after migration" ],
+  "projectInformation" : {
+    "platform" : "linux",
+    "projectType" : "dotnet",
+    "currentVersion" : "4.7.2",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1940/transformed-code/42/studio-workspace/comp_backend",
+    "targetVersion" : "8"
+  }
+}

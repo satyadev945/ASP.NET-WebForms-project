@@ -1,0 +1,121 @@
+[ {
+  "id" : "java_blocker_001",
+  "name" : "Hardcoded absolute file paths",
+  "description" : "Java applications with hardcoded absolute file paths fail in containers as the directory structure differs from development environments.",
+  "remediation" : "Use relative paths or environment variables to configure file paths. Load resources from the classpath when possible.",
+  "category" : "FileIO",
+  "examples" : {
+    "before" : "File config = new File(\"/home/user/app/config.properties\");",
+    "after" : "File config = new File(System.getenv(\"CONFIG_PATH\") + \"/config.properties\");"
+  },
+  "detection_pattern" : [ "new File\\(\\\"/.*\\\"\\)", "Paths\\.get\\(\\\"/.*\\\"\\)", "\\\"/([A-Za-z0-9_-]+/)+\\\"" ],
+  "requires_arch_change" : false
+}, {
+  "id" : "java_blocker_002",
+  "name" : "Hardcoded server hostnames",
+  "description" : "Applications with hardcoded hostnames like 'localhost' or specific IP addresses fail in container environments where service discovery mechanisms should be used instead.",
+  "remediation" : "Use environment variables or configuration files to define service endpoints. In Kubernetes, use service names for discovery.",
+  "category" : "Networking",
+  "examples" : {
+    "before" : "String apiUrl = \"http://analytics-server:8080/api\";",
+    "after" : "String apiUrl = System.getenv(\"ANALYTICS_API_URL\");"
+  },
+  "detection_pattern" : [ "\"localhost\"", "\"127.0.0.1\"", "\"http://[a-zA-Z0-9\\.]+:[0-9]+\"" ],
+  "requires_arch_change" : false
+}, {
+  "id" : "java_blocker_003",
+  "name" : "Fixed server ports",
+  "description" : "Applications with hardcoded server ports cannot adapt to port mappings in container environments, leading to connectivity issues.",
+  "remediation" : "Make server port configurable via environment variables or configuration files.",
+  "category" : "Networking",
+  "examples" : {
+    "before" : "server.port=8080",
+    "after" : "server.port=${PORT:8080}"
+  },
+  "detection_pattern" : [ "\\.setPort\\([0-9]+\\)", "server\\.port=[0-9]+", "port=[0-9]+" ],
+  "requires_arch_change" : false
+}, {
+  "id" : "java_blocker_004",
+  "name" : "Local filesystem storage",
+  "description" : "Applications that store data locally (file uploads, temp files, etc.) lose this data when containers restart or scale.",
+  "remediation" : "Use volume mounts for persistent data or migrate to cloud storage services/databases for stateful data.",
+  "category" : "StateManagement",
+  "examples" : {
+    "before" : "File uploadDir = new File(\"/app/uploads\");\nFile uploadedFile = new File(uploadDir, fileName);",
+    "after" : "// Use volume mount or cloud storage\nString uploadPath = System.getenv(\"UPLOAD_PATH\", \"/data/uploads\");\nFile uploadDir = new File(uploadPath);"
+  },
+  "detection_pattern" : [ "new FileOutputStream", "createTempFile", "new File\\(.*\\.write", "Files\\.write" ],
+  "requires_arch_change" : true
+}, {
+  "id" : "java_blocker_005",
+  "name" : "Log files written to local filesystem",
+  "description" : "Applications writing logs to the local filesystem lose log data when containers are terminated.",
+  "remediation" : "Configure logging to output to stdout/stderr for container log collection.",
+  "category" : "Logging",
+  "examples" : {
+    "before" : "<appender name=\"FILE\" class=\"ch.qos.logback.core.FileAppender\">\n  <file>logs/app.log</file>\n</appender>",
+    "after" : "<appender name=\"STDOUT\" class=\"ch.qos.logback.core.ConsoleAppender\">\n  <encoder>\n    <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>\n  </encoder>\n</appender>"
+  },
+  "detection_pattern" : [ "FileAppender", "RollingFileAppender", "\\.log", "logs/" ],
+  "requires_arch_change" : false
+}, {
+  "id" : "java_blocker_006",
+  "name" : "Static configuration files",
+  "description" : "Applications relying on static configuration files baked into the application cannot adapt to dynamic container environments.",
+  "remediation" : "Externalize configurations using environment variables or Spring profiles.",
+  "category" : "Configuration",
+  "examples" : {
+    "before" : "Properties props = new Properties();\nprops.load(new FileInputStream(\"config.properties\"));",
+    "after" : "String dbUrl = System.getenv(\"DB_URL\");\nString dbUser = System.getenv(\"DB_USER\");"
+  },
+  "detection_pattern" : [ "new File\\(.*\\.properties\\)", "ClassLoader\\.getResource\\(.*\\.properties\\)" ],
+  "requires_arch_change" : false
+}, {
+  "id" : "java_blocker_007",
+  "name" : "Fixed JVM memory settings",
+  "description" : "Java applications with fixed JVM heap settings that don't account for container memory limits can cause out-of-memory issues.",
+  "remediation" : "Use percentage-based memory settings or container-aware JVM options (Java 10+).",
+  "category" : "JVMConfiguration",
+  "examples" : {
+    "before" : "JAVA_OPTS=\"-Xms2g -Xmx4g\"",
+    "after" : "JAVA_OPTS=\"-XX:MaxRAMPercentage=75.0 -XX:+UseContainerSupport\""
+  },
+  "detection_pattern" : [ "-Xmx[0-9]+[mMgG]", "-Xms[0-9]+[mMgG]", "setMaxHeapSize" ],
+  "requires_arch_change" : false
+}, {
+  "id" : "java_blocker_008",
+  "name" : "Database filesystem access",
+  "description" : "Applications that access local database files directly (H2, SQLite) lose data when containers restart.",
+  "remediation" : "Use external database services or persistent volumes for database files.",
+  "category" : "Database",
+  "examples" : {
+    "before" : "String jdbcUrl = \"jdbc:h2:file:/data/sample\"",
+    "after" : "String jdbcUrl = \"jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}\""
+  },
+  "detection_pattern" : [ "jdbc:h2:file", "jdbc:sqlite:file", "jdbc:.*:.*\\.db" ],
+  "requires_arch_change" : true
+}, {
+  "id" : "java_blocker_009",
+  "name" : "OS-specific commands execution",
+  "description" : "Applications that execute OS-specific commands using Runtime.exec() may fail in containers.",
+  "remediation" : "Include required binaries in the container image or refactor to use Java libraries.",
+  "category" : "OSOperations",
+  "examples" : {
+    "before" : "Process p = Runtime.getRuntime().exec(\"convert image.jpg -resize 100x100 thumbnail.jpg\");",
+    "after" : "// Include ImageMagick in Dockerfile or use Java image libraries"
+  },
+  "detection_pattern" : [ "Runtime\\.getRuntime\\(\\)\\.exec", "new ProcessBuilder", "Process p =" ],
+  "requires_arch_change" : true
+}, {
+  "id" : "java_blocker_010",
+  "name" : "Missing health check endpoints",
+  "description" : "Applications lacking health check endpoints hinder container orchestrators from managing application lifecycle.",
+  "remediation" : "Implement health check endpoints using Spring Boot Actuator or custom endpoints.",
+  "category" : "Monitoring",
+  "examples" : {
+    "before" : "// No health endpoint defined",
+    "after" : "@RestController\npublic class HealthController {\n    @GetMapping(\"/health\")\n    public String health() {\n        return \"OK\";\n    }\n}"
+  },
+  "detection_pattern" : [ ],
+  "requires_arch_change" : true
+} ]

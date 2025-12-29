@@ -1,0 +1,14 @@
+```json
+{
+  "analysisId": "APP1977-DB-MIGRATION-001",
+  "summary": {
+    "issuesFixed": 4,
+    "criticalIssuesFixed": 4,
+    "highIssuesFixed": 0,
+    "mediumIssuesFixed": 0,
+    "lowIssuesFixed": 0,
+    "filesModified": 3,
+    "status": "success"
+  }
+}
+```

@@ -1,0 +1,1202 @@
+{
+  "name": "ASP.NET Web Forms to .NET 8 Migration Ruleset",
+  "version": "1.1.0",
+  "description": "Comprehensive ruleset for migrating ASP.NET Web Forms applications to .NET 8 with clean architecture and full compatibility verification",
+
+  "corePrinciples": [
+    {
+      "principle": "Completeness",
+      "description": "Generate ALL files needed for a working .NET 8 application"
+    },
+    {
+      "principle": "Separation of Concerns",
+      "description": "Business logic separate from UI"
+    },
+    {
+      "principle": "Modern Patterns",
+      "description": "Async/await, DI, repository pattern, clean architecture"
+    },
+    {
+      "principle": "Production Ready",
+      "description": "Error handling, logging, validation, security"
+    },
+    {
+      "principle": "Testability",
+      "description": "Unit tests and integration tests included"
+    },
+    {
+      "principle": "Documentation",
+      "description": "README files, code comments, migration notes"
+    },
+    {
+      "principle": "Build Verification",
+      "description": "Ensure the generated code compiles successfully"
+    },
+    {
+      "principle": "Error Resolution",
+      "description": "Automatically identify and fix build errors"
+    }
+  ],
+
+  "targetStructure": {
+    "description": "Clean architecture with four main layers",
+    "layers": [
+      {
+        "name": "Domain",
+        "path": "src/[ProjectName].Domain",
+        "folders": ["Entities", "Interfaces/Repositories", "Interfaces/Services", "Enums", "ValueObjects", "Exceptions"],
+        "responsibilities": ["Domain entities", "Domain interfaces", "Domain logic", "Business rules"]
+      },
+      {
+        "name": "Application",
+        "path": "src/[ProjectName].Application",
+        "folders": ["Services", "DTOs", "Mappings", "Validators"],
+        "responsibilities": ["Business logic implementation", "Service layer", "Data transfer objects", "Validation rules"]
+      },
+      {
+        "name": "Infrastructure",
+        "path": "src/[ProjectName].Infrastructure",
+        "folders": ["Data", "Data/Configurations", "Data/Migrations", "Repositories", "Services"],
+        "responsibilities": ["Database context", "Repository implementations", "Data access", "External services"]
+      },
+      {
+        "name": "Web",
+        "path": "src/[ProjectName].Web",
+        "folders": ["Pages", "Pages/Shared", "ViewModels", "wwwroot/css", "wwwroot/js", "wwwroot/lib", "Extensions"],
+        "responsibilities": ["UI layer", "Razor Pages", "View models", "Static files", "DI configuration"]
+      }
+    ],
+    "testProjects": [
+      {
+        "name": "UnitTests",
+        "path": "tests/[ProjectName].UnitTests",
+        "folders": ["Services", "Validators", "Builders"]
+      },
+      {
+        "name": "IntegrationTests",
+        "path": "tests/[ProjectName].IntegrationTests",
+        "folders": ["Repositories", "Pages", "Fixtures"]
+      }
+    ],
+    "documentation": [
+      "docs/MIGRATION_NOTES.md",
+      "docs/ARCHITECTURE.md",
+      "docs/API_DOCUMENTATION.md",
+      "docs/BUILD_VERIFICATION.md",
+      "README.md"
+    ]
+  },
+
+  "analysisPhase": {
+    "inventoryFiles": {
+      "description": "Catalog all Web Forms components",
+      "items": [
+        "List all .aspx pages",
+        "List all .aspx.cs code-behind files",
+        "List all .ascx user controls",
+        "List all .master master pages",
+        "Identify Global.asax logic",
+        "Parse Web.config"
+      ]
+    },
+    "identifyComponents": {
+      "description": "Identify key application components",
+      "items": [
+        "Business entities and models",
+        "Data access patterns (ADO.NET, Stored Procs, ORM)",
+        "Business rules and validation",
+        "Authentication/authorization mechanism",
+        "Session state usage",
+        "Third-party dependencies"
+      ]
+    },
+    "assessComplexity": {
+      "description": "Rate complexity for each page",
+      "levels": {
+        "Simple": "Display only, basic forms",
+        "Medium": "CRUD operations, some business logic",
+        "Complex": "Heavy ViewState, multiple controls, complex workflows"
+      }
+    },
+    "mapDependencies": {
+      "description": "Map external dependencies",
+      "items": [
+        "Database tables and relationships",
+        "External services/APIs",
+        "File system dependencies",
+        "Email/notification systems"
+      ]
+    }
+  },
+
+  "projectFileStandards": {
+    "domain": {
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFramework": "net8.0",
+      "properties": {
+        "ImplicitUsings": "enable",
+        "Nullable": "enable"
+      },
+      "packageReferences": []
+    },
+    "application": {
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFramework": "net8.0",
+      "properties": {
+        "ImplicitUsings": "enable",
+        "Nullable": "enable"
+      },
+      "packageReferences": [
+        {
+          "name": "AutoMapper",
+          "version": "12.0.1"
+        },
+        {
+          "name": "FluentValidation",
+          "version": "11.9.0"
+        }
+      ],
+      "projectReferences": [
+        "../[ProjectName].Domain/[ProjectName].Domain.csproj"
+      ]
+    },
+    "infrastructure": {
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFramework": "net8.0",
+      "properties": {
+        "ImplicitUsings": "enable",
+        "Nullable": "enable"
+      },
+      "packageReferences": [
+        {
+          "name": "Microsoft.EntityFrameworkCore",
+          "version": "8.0.0"
+        },
+        {
+          "name": "Microsoft.EntityFrameworkCore.SqlServer",
+          "version": "8.0.0"
+        },
+        {
+          "name": "Microsoft.EntityFrameworkCore.Design",
+          "version": "8.0.0"
+        },
+        {
+          "name": "Dapper",
+          "version": "2.1.28"
+        }
+      ],
+      "projectReferences": [
+        "../[ProjectName].Domain/[ProjectName].Domain.csproj",
+        "../[ProjectName].Application/[ProjectName].Application.csproj"
+      ]
+    },
+    "web": {
+      "sdk": "Microsoft.NET.Sdk.Web",
+      "targetFramework": "net8.0",
+      "properties": {
+        "Nullable": "enable",
+        "ImplicitUsings": "enable"
+      },
+      "packageReferences": [
+        {
+          "name": "Microsoft.EntityFrameworkCore.Design",
+          "version": "8.0.0",
+          "includeAssets": "runtime; build; native; contentfiles; analyzers; buildtransitive",
+          "privateAssets": "all"
+        },
+        {
+          "name": "Microsoft.AspNetCore.Identity.EntityFrameworkCore",
+          "version": "8.0.0"
+        },
+        {
+          "name": "Serilog.AspNetCore",
+          "version": "8.0.0"
+        }
+      ],
+      "projectReferences": [
+        "../[ProjectName].Infrastructure/[ProjectName].Infrastructure.csproj",
+        "../[ProjectName].Application/[ProjectName].Application.csproj"
+      ]
+    },
+    "tests": {
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFramework": "net8.0",
+      "properties": {
+        "ImplicitUsings": "enable",
+        "Nullable": "enable",
+        "IsPackable": "false"
+      },
+      "packageReferences": [
+        {
+          "name": "Microsoft.NET.Test.Sdk",
+          "version": "17.9.0"
+        },
+        {
+          "name": "xUnit",
+          "version": "2.6.6"
+        },
+        {
+          "name": "xunit.runner.visualstudio",
+          "version": "2.5.6"
+        },
+        {
+          "name": "FluentAssertions",
+          "version": "6.12.0"
+        },
+        {
+          "name": "Moq",
+          "version": "4.20.70"
+        },
+        {
+          "name": "Microsoft.AspNetCore.Mvc.Testing",
+          "version": "8.0.0"
+        },
+        {
+          "name": "Microsoft.EntityFrameworkCore.InMemory",
+          "version": "8.0.0"
+        }
+      ]
+    }
+  },
+
+  "codeGenerationPatterns": {
+    "domainEntity": {
+      "description": "Domain entity with base properties",
+      "path": "src/[ProjectName].Domain/Entities/[Entity].cs",
+      "requiredProperties": [
+        "Id (int)",
+        "Name (string)",
+        "Description (string?)",
+        "CreatedDate (DateTime)",
+        "ModifiedDate (DateTime?)",
+        "IsActive (bool)",
+        "CreatedBy (string)",
+        "ModifiedBy (string?)"
+      ],
+      "features": [
+        "Navigation properties",
+        "Nullable reference types",
+        "Property initialization"
+      ]
+    },
+    "repositoryInterface": {
+      "description": "Repository interface with standard CRUD operations",
+      "path": "src/[ProjectName].Domain/Interfaces/Repositories/I[Entity]Repository.cs",
+      "requiredMethods": [
+        "GetAllAsync(CancellationToken)",
+        "GetByIdAsync(int, CancellationToken)",
+        "AddAsync([Entity], CancellationToken)",
+        "UpdateAsync([Entity], CancellationToken)",
+        "DeleteAsync(int, CancellationToken)",
+        "ExistsAsync(int, CancellationToken)",
+        "SearchAsync(string, CancellationToken)"
+      ]
+    },
+    "serviceInterface": {
+      "description": "Service interface with DTO-based operations",
+      "path": "src/[ProjectName].Domain/Interfaces/Services/I[Entity]Service.cs",
+      "requiredMethods": [
+        "GetAllAsync(CancellationToken)",
+        "GetByIdAsync(int, CancellationToken)",
+        "CreateAsync([Entity]CreateDto, CancellationToken)",
+        "UpdateAsync(int, [Entity]UpdateDto, CancellationToken)",
+        "DeleteAsync(int, CancellationToken)",
+        "SearchAsync(string, CancellationToken)"
+      ]
+    },
+    "serviceImplementation": {
+      "description": "Service with full error handling and logging",
+      "path": "src/[ProjectName].Application/Services/[Entity]Service.cs",
+      "features": [
+        "Dependency injection (repository, mapper, logger)",
+        "Try-catch error handling",
+        "Logging for all operations",
+        "AutoMapper for DTO conversions",
+        "Null checking",
+        "Custom exceptions"
+      ],
+      "dependencies": [
+        "I[Entity]Repository",
+        "IMapper",
+        "ILogger<[Entity]Service>"
+      ]
+    },
+    "repositoryImplementation": {
+      "description": "EF Core repository implementation",
+      "path": "src/[ProjectName].Infrastructure/Repositories/[Entity]Repository.cs",
+      "features": [
+        "DbContext dependency",
+        "AsNoTracking for read operations",
+        "Error handling and logging",
+        "Filtering by IsActive",
+        "Search functionality",
+        "Async operations"
+      ]
+    },
+    "entityConfiguration": {
+      "description": "EF Core entity configuration",
+      "path": "src/[ProjectName].Infrastructure/Data/Configurations/[Entity]Configuration.cs",
+      "features": [
+        "Table mapping",
+        "Property constraints (MaxLength, Required)",
+        "Default values",
+        "Relationship configuration",
+        "Delete behavior"
+      ]
+    },
+    "autoMapperProfile": {
+      "description": "AutoMapper configuration for DTOs",
+      "path": "src/[ProjectName].Application/Mappings/MappingProfile.cs",
+      "rules": [
+        "Only map between entities and DTOs",
+        "Never map ViewModels (Web layer)",
+        "Set CreatedDate and IsActive on create",
+        "Set ModifiedDate on update"
+      ]
+    },
+    "diExtensions": {
+      "description": "Dependency injection extension methods",
+      "files": [
+        {
+          "path": "src/[ProjectName].Infrastructure/Extensions/ServiceCollectionExtensions.cs",
+          "registers": ["DbContext", "Repositories"]
+        },
+        {
+          "path": "src/[ProjectName].Application/Extensions/ServiceCollectionExtensions.cs",
+          "registers": ["AutoMapper", "Services"]
+        }
+      ]
+    }
+  },
+
+  "buildVerificationProcess": {
+    "description": "Automated build verification and error resolution",
+    "phases": [
+      {
+        "phase": 1,
+        "name": "Initial Build",
+        "steps": [
+          "Navigate to solution directory",
+          "Run: dotnet restore",
+          "Run: dotnet build --no-restore",
+          "Capture all build errors and warnings"
+        ]
+      },
+      {
+        "phase": 2,
+        "name": "Error Analysis",
+        "errorCategories": [
+          "Missing using statements",
+          "Type mismatches",
+          "Missing dependencies",
+          "Incorrect namespaces",
+          "Missing project references",
+          "API compatibility issues",
+          "Nullable reference warnings",
+          "Access modifier issues"
+        ],
+        "tasks": [
+          "Categorize each error",
+          "Identify affected files",
+          "Determine root cause"
+        ]
+      },
+      {
+        "phase": 3,
+        "name": "Automated Resolution",
+        "fixLevels": [
+          {
+            "level": 1,
+            "name": "Structural Fixes",
+            "fixes": [
+              "Add missing project references",
+              "Add missing package references",
+              "Correct SDK attributes"
+            ]
+          },
+          {
+            "level": 2,
+            "name": "Namespace and Import Fixes",
+            "fixes": [
+              "Add missing using statements",
+              "Correct namespace declarations",
+              "Add fully qualified names"
+            ]
+          },
+          {
+            "level": 3,
+            "name": "Type and Signature Fixes",
+            "fixes": [
+              "Correct property types",
+              "Implement missing interface members",
+              "Fix access modifiers",
+              "Add nullable annotations"
+            ]
+          },
+          {
+            "level": 4,
+            "name": "Logic Fixes",
+            "fixes": [
+              "Initialize variables",
+              "Add return statements",
+              "Fix control flow",
+              "Correct async/await patterns"
+            ]
+          }
+        ]
+      },
+      {
+        "phase": 4,
+        "name": "Iterative Building",
+        "steps": [
+          "Rebuild: dotnet build --no-restore",
+          "Check for remaining errors",
+          "If errors exist, return to Phase 2",
+          "If no errors, proceed to Phase 5",
+          "Maximum 5 iterations"
+        ]
+      },
+      {
+        "phase": 5,
+        "name": "Test Build",
+        "steps": [
+          "Build unit tests separately",
+          "Build integration tests separately",
+          "Run unit tests if build succeeds",
+          "Document test results"
+        ]
+      },
+      {
+        "phase": 6,
+        "name": "Final Verification",
+        "steps": [
+          "Build in Release mode",
+          "Review remaining warnings",
+          "Verify all projects compile independently"
+        ]
+      }
+    ],
+    "documentation": {
+      "file": "docs/BUILD_VERIFICATION.md",
+      "sections": [
+        "Build Date",
+        "Build Summary (projects, errors, warnings)",
+        "Build Iterations",
+        "Errors Resolved (table)",
+        "Remaining Issues",
+        "Build Commands Used",
+        "Verification Checklist",
+        "Recommendations"
+      ]
+    }
+  },
+
+  "documentationRequirements": {
+    "readme": {
+      "file": "README.md",
+      "sections": [
+        "Project overview",
+        "Architecture explanation",
+        "Setup instructions",
+        "Migration notes",
+        "Running the application",
+        "Testing instructions",
+        "Build verification results"
+      ]
+    },
+    "migrationNotes": {
+      "file": "docs/MIGRATION_NOTES.md",
+      "sections": [
+        "What was migrated",
+        "Key differences from Web Forms",
+        "Breaking changes",
+        "Configuration changes",
+        "Known issues",
+        "Future improvements"
+      ]
+    },
+    "buildVerification": {
+      "file": "docs/BUILD_VERIFICATION.md",
+      "content": "Document the build process and results with full details"
+    },
+    "architecture": {
+      "file": "docs/ARCHITECTURE.md",
+      "content": "Explain the clean architecture design and layer responsibilities"
+    }
+  },
+
+  "outputFormat": {
+    "structure": [
+      {
+        "section": "Migration Complete: [ProjectName]",
+        "subsections": [
+          "Summary",
+          "Project Structure Generated",
+          "Files Created (by layer)",
+          "Configuration (connection strings, env vars)",
+          "Build Verification Results",
+          "Next Steps",
+          "Manual ViewModel Mapping Example",
+          "Migration Mapping Table",
+          "Build Verification Details Link",
+          "Known Issues",
+          "Files Content"
+        ]
+      }
+    ],
+    "buildVerificationFormat": {
+      "status": "✅ SUCCESS / ❌ FAILED",
+      "metrics": [
+        "Build Iterations",
+        "Errors Resolved",
+        "Test Results (unit and integration)"
+      ]
+    }
+  },
+
+  "criticalRules": [
+    {
+      "rule": 1,
+      "name": "Complete Code Only",
+      "description": "Never use placeholders like '// ... rest of code'"
+    },
+    {
+      "rule": 2,
+      "name": "Proper Namespaces",
+      "description": "Use consistent namespacing throughout"
+    },
+    {
+      "rule": 3,
+      "name": "All Using Statements",
+      "description": "Include all necessary imports"
+    },
+    {
+      "rule": 4,
+      "name": "Error Handling",
+      "description": "Every method should have try-catch where appropriate"
+    },
+    {
+      "rule": 5,
+      "name": "Async/Await",
+      "description": "All I/O operations must be async"
+    },
+    {
+      "rule": 6,
+      "name": "Null Safety",
+      "description": "Enable nullable reference types and handle nulls properly"
+    },
+    {
+      "rule": 7,
+      "name": "Logging",
+      "description": "Include logging for important operations"
+    },
+    {
+      "rule": 8,
+      "name": "Comments",
+      "description": "Add XML comments for public APIs"
+    },
+    {
+      "rule": 9,
+      "name": "Validation",
+      "description": "Implement proper validation"
+    },
+    {
+      "rule": 10,
+      "name": "Security",
+      "description": "Follow security best practices"
+    },
+    {
+      "rule": 11,
+      "name": "Complete CRUD",
+      "description": "For EACH entity, create ALL FIVE pages (Index, Create, Details, Edit, Delete)"
+    },
+    {
+      "rule": 12,
+      "name": "Manual ViewModel Mapping",
+      "description": "ViewModels in the Web layer MUST be manually mapped to/from DTOs"
+    },
+    {
+      "rule": 13,
+      "name": "No Circular Dependencies",
+      "description": "Never create circular dependencies between projects"
+    },
+    {
+      "rule": 14,
+      "name": "Static Files",
+      "description": "Include all necessary CSS, JS, and other static files or CDN references"
+    },
+    {
+      "rule": 15,
+      "name": "Environment Compatibility",
+      "description": "Ensure generated code works in both Windows and WSL environments"
+    },
+    {
+      "rule": 16,
+      "name": "BUILD VERIFICATION",
+      "description": "Always run the complete build verification process after code generation"
+    },
+    {
+      "rule": 17,
+      "name": "ERROR RESOLUTION",
+      "description": "Automatically identify and resolve all build errors through iterative building"
+    },
+    {
+      "rule": 18,
+      "name": "DOCUMENTATION",
+      "description": "Document all build issues and resolutions in BUILD_VERIFICATION.md"
+    }
+  ],
+
+  "staticFilesRequirements": {
+    "css": [
+      {
+        "name": "Bootstrap 5",
+        "source": "CDN or local files",
+        "path": "~/lib/bootstrap/dist/css/bootstrap.min.css"
+      },
+      {
+        "name": "Site CSS",
+        "path": "~/css/site.css"
+      }
+    ],
+    "javascript": [
+      {
+        "name": "jQuery",
+        "purpose": "Form validation",
+        "path": "~/lib/jquery/dist/jquery.min.js"
+      },
+      {
+        "name": "Bootstrap bundle",
+        "path": "~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+      },
+      {
+        "name": "Site JS",
+        "path": "~/js/site.js"
+      }
+    ],
+    "layoutIncludes": {
+      "head": [
+        "<link rel=\"stylesheet\" href=\"~/lib/bootstrap/dist/css/bootstrap.min.css\" />",
+        "<link rel=\"stylesheet\" href=\"~/css/site.css\" asp-append-version=\"true\" />",
+        "<link rel=\"stylesheet\" href=\"~/[ProjectName].Web.styles.css\" asp-append-version=\"true\" />"
+      ],
+      "bodyEnd": [
+        "<script src=\"~/lib/jquery/dist/jquery.min.js\"></script>",
+        "<script src=\"~/lib/bootstrap/dist/js/bootstrap.bundle.min.js\"></script>",
+        "<script src=\"~/js/site.js\" asp-append-version=\"true\"></script>",
+        "@await RenderSectionAsync(\"Scripts\", required: false)"
+      ]
+    }
+  },
+
+  "qualityChecklist": {
+    "codeCompleteness": [
+      "All entities have complete CRUD operations (5 pages each)",
+      "All project references are correct",
+      "All using statements are included",
+      "No circular dependencies exist"
+    ],
+    "codeQuality": [
+      "Nullable reference types are properly handled",
+      "All async methods use CancellationToken",
+      "Error handling is comprehensive",
+      "Logging is implemented throughout"
+    ],
+    "architecture": [
+      "AutoMapper is only used within appropriate layers",
+      "ViewModels are manually mapped in page handlers",
+      "Clean architecture principles followed"
+    ],
+    "testing": [
+      "Tests compile and run",
+      "Minimum code coverage achieved"
+    ],
+    "documentation": [
+      "Documentation is complete",
+      "Build verification passed",
+      "All errors are resolved"
+    ],
+    "deployment": [
+      "Static files are included or referenced",
+      "Configuration files are present"
+    ]
+  },
+
+  "performanceConsiderations": [
+    "Use AsNoTracking() for read-only queries",
+    "Implement pagination for large datasets",
+    "Add appropriate indexes in entity configurations",
+    "Use async/await consistently",
+    "Consider caching strategies for frequently accessed data",
+    "Optimize database queries with proper Include() statements"
+  ],
+
+  "securityRequirements": [
+    "Validate all user inputs",
+    "Use parameterized queries (EF Core handles this)",
+    "Implement proper authentication and authorization",
+    "Protect against CSRF attacks (enabled by default in Razor Pages)",
+    "Use HTTPS",
+    "Implement proper error handling without exposing sensitive information",
+    "Follow principle of least privilege for database connections"
+  ],
+
+  "testingStandards": {
+    "coverage": {
+      "minimum": "80%",
+      "focus": "Services and business logic"
+    },
+    "testTypes": [
+      "Test all CRUD operations",
+      "Test validation logic",
+      "Test error handling scenarios",
+      "Integration tests for repositories",
+      "Integration tests for pages"
+    ],
+    "bestPractices": [
+      "Use appropriate test doubles (mocks, stubs, fakes)",
+      "Follow AAA pattern (Arrange, Act, Assert)",
+      "Use meaningful test names that describe the scenario",
+      "Use FluentAssertions for readable assertions",
+      "Use xUnit as the testing framework"
+    ]
+  },
+
+  "namingConventions": {
+    "projects": "[CompanyName].[ProjectName].[Layer]",
+    "entities": "PascalCase singular nouns",
+    "interfaces": "I[Name]",
+    "repositories": "[Entity]Repository",
+    "services": "[Entity]Service",
+    "dtos": "[Entity]Dto, [Entity]CreateDto, [Entity]UpdateDto",
+    "viewModels": "[Feature]ViewModel",
+    "pages": "[Feature]/[Action].cshtml",
+    "tests": "[ClassUnderTest]Tests"
+  },
+
+  "migrationStrategy": {
+    "pageMapping": {
+      "aspxToRazor": {
+        "Default.aspx": "Pages/Index.cshtml",
+        "[Entity]List.aspx": "Pages/[Entity]/Index.cshtml",
+        "[Entity]Details.aspx": "Pages/[Entity]/Details.cshtml",
+        "[Entity]Edit.aspx": "Pages/[Entity]/Edit.cshtml",
+        "[Entity]Create.aspx": "Pages/[Entity]/Create.cshtml",
+        "[Entity]Delete.aspx": "Pages/[Entity]/Delete.cshtml"
+      }
+    },
+    "dataAccessMigration": {
+      "ADO.NET": "Replace with EF Core repositories",
+      "DataSet/DataTable": "Replace with strongly-typed entities",
+      "SqlCommand": "Replace with EF Core LINQ queries",
+      "StoredProcedures": "Consider replacing with EF Core or use FromSqlRaw"
+    },
+    "stateMigration": {
+      "ViewState": "Replace with hidden fields or TempData",
+      "SessionState": "Replace with distributed cache or cookies",
+      "ApplicationState": "Replace with dependency injection singletons"
+    }
+  },
+
+  "errorResolutionExamples": [
+    {
+      "errorCode": "CS0246",
+      "description": "Type or namespace not found",
+      "solution": "Add missing using statement",
+      "example": "using Microsoft.Extensions.Logging;"
+    },
+    {
+      "errorCode": "CS0029",
+      "description": "Cannot implicitly convert type",
+      "solution": "Use AutoMapper to convert between types",
+      "example": "return _mapper.Map<IEnumerable<EntityDto>>(entities);"
+    },
+    {
+      "errorCode": "CS0234",
+      "description": "Type or namespace does not exist",
+      "solution": "Add missing project reference",
+      "example": "<ProjectReference Include=\"..\\[ProjectName].Domain\\[ProjectName].Domain.csproj\" />"
+    },
+    {
+      "errorCode": "CS0535",
+      "description": "Does not implement interface member",
+      "solution": "Implement missing method from interface",
+      "example": "Add all methods defined in the interface"
+    }
+  ],
+
+  "dotNet8CompatibilityRules": {
+    "description": "Critical rules to ensure .NET 8 compatibility and prevent common migration issues",
+
+    "forbiddenPackages": {
+      "description": "Packages that are NOT compatible with .NET 8 and must be replaced",
+      "packages": [
+        {
+          "name": "EntityFramework",
+          "versions": ["6.x", "5.x", "4.x"],
+          "severity": "CRITICAL",
+          "reason": "Entity Framework 6 is not compatible with .NET 8",
+          "replacement": {
+            "package": "Microsoft.EntityFrameworkCore",
+            "version": "8.0.0",
+            "additionalPackages": [
+              "Microsoft.EntityFrameworkCore.SqlServer 8.0.0",
+              "Microsoft.EntityFrameworkCore.Tools 8.0.0",
+              "Microsoft.EntityFrameworkCore.Design 8.0.0"
+            ]
+          },
+          "migrationNotes": [
+            "Migrate DbContext to inherit from Microsoft.EntityFrameworkCore.DbContext",
+            "Update all LINQ queries to use EF Core syntax",
+            "Replace Database.SqlQuery with FromSqlRaw/FromSqlInterpolated",
+            "Update entity configurations to use IEntityTypeConfiguration<T>",
+            "Review and update lazy loading patterns (use .Include() explicitly or enable lazy loading proxies)",
+            "Replace ObjectContext with DbContext",
+            "Update migrations to EF Core format"
+          ]
+        },
+        {
+          "name": "log4net",
+          "versions": ["*"],
+          "severity": "HIGH",
+          "reason": "log4net is legacy and not recommended for .NET 8",
+          "replacement": {
+            "package": "Microsoft.Extensions.Logging",
+            "version": "8.0.0",
+            "additionalPackages": [
+              "Serilog.AspNetCore 8.0.0",
+              "Serilog.Sinks.Console 5.0.0",
+              "Serilog.Sinks.File 5.0.0"
+            ]
+          },
+          "migrationNotes": [
+            "Replace ILog with ILogger<T>",
+            "Update logging statements to use structured logging",
+            "Configure logging in Program.cs using builder.Logging or Serilog",
+            "Remove log4net.config and configure logging programmatically",
+            "Update dependency injection to use ILogger<T> instead of ILog",
+            "Replace log4net appenders with Serilog sinks or Microsoft.Extensions.Logging providers"
+          ]
+        },
+        {
+          "name": "NLog",
+          "versions": ["4.x", "3.x", "2.x"],
+          "severity": "HIGH",
+          "reason": "Old NLog versions are not compatible with .NET 8",
+          "replacement": {
+            "package": "NLog.Web.AspNetCore",
+            "version": "5.3.0",
+            "additionalPackages": [
+              "NLog 5.2.0",
+              "NLog.Extensions.Logging 5.3.0"
+            ]
+          },
+          "migrationNotes": [
+            "Update to NLog.Web.AspNetCore for ASP.NET Core integration",
+            "Update NLog.config to use .NET Core compatible targets",
+            "Configure NLog in Program.cs using builder.Logging.AddNLog()",
+            "Update all logger references to use ILogger<T> from Microsoft.Extensions.Logging",
+            "Replace NLog-specific APIs with ILogger extensions where possible"
+          ]
+        },
+        {
+          "name": "System.Web",
+          "versions": ["*"],
+          "severity": "CRITICAL",
+          "reason": "System.Web is not available in .NET 8 (it's .NET Framework only)",
+          "replacement": {
+            "package": "Microsoft.AspNetCore",
+            "version": "8.0.0",
+            "additionalPackages": []
+          },
+          "migrationNotes": [
+            "Replace HttpContext.Current with IHttpContextAccessor",
+            "Replace HttpUtility with System.Net.WebUtility or System.Web.HttpUtility NuGet package",
+            "Replace Server.MapPath with IWebHostEnvironment.WebRootPath or ContentRootPath",
+            "Replace Session with distributed cache or TempData",
+            "Replace Cache with IMemoryCache or IDistributedCache",
+            "Replace Application state with dependency injection singletons"
+          ]
+        },
+        {
+          "name": "System.Web.Mvc",
+          "versions": ["*"],
+          "severity": "CRITICAL",
+          "reason": "ASP.NET MVC 5 is not compatible with .NET 8",
+          "replacement": {
+            "package": "Microsoft.AspNetCore.Mvc",
+            "version": "8.0.0",
+            "additionalPackages": []
+          },
+          "migrationNotes": [
+            "Migrate controllers to use Microsoft.AspNetCore.Mvc",
+            "Update routing to use endpoint routing",
+            "Replace ActionResult with IActionResult",
+            "Update filters to use ASP.NET Core filter pipeline",
+            "Migrate model binding and validation"
+          ]
+        },
+        {
+          "name": "Microsoft.AspNet.WebApi",
+          "versions": ["*"],
+          "severity": "CRITICAL",
+          "reason": "ASP.NET Web API 2 is not compatible with .NET 8",
+          "replacement": {
+            "package": "Microsoft.AspNetCore.Mvc",
+            "version": "8.0.0",
+            "additionalPackages": []
+          },
+          "migrationNotes": [
+            "Migrate API controllers to use [ApiController] attribute",
+            "Update routing to use attribute routing or endpoint routing",
+            "Replace ApiController base class with ControllerBase",
+            "Update content negotiation and formatters"
+          ]
+        }
+      ]
+    },
+
+    "requiredMigrations": {
+      "description": "Mandatory migrations for .NET 8 compatibility",
+      "items": [
+        {
+          "category": "Data Access",
+          "migration": "Entity Framework 6 to EF Core 8",
+          "criticality": "CRITICAL",
+          "steps": [
+            "Install Microsoft.EntityFrameworkCore packages",
+            "Migrate DbContext to EF Core",
+            "Update entity configurations",
+            "Migrate database initializers to migrations",
+            "Update LINQ queries for EF Core compatibility",
+            "Test all data access operations thoroughly"
+          ]
+        },
+        {
+          "category": "Logging",
+          "migration": "Legacy logging to Microsoft.Extensions.Logging",
+          "criticality": "HIGH",
+          "steps": [
+            "Install Microsoft.Extensions.Logging or Serilog.AspNetCore",
+            "Configure logging in Program.cs",
+            "Replace all ILog references with ILogger<T>",
+            "Update logging statements to use structured logging",
+            "Remove legacy logging configuration files",
+            "Test logging at all levels (Debug, Info, Warning, Error)"
+          ]
+        },
+        {
+          "category": "Configuration",
+          "migration": "Web.config to appsettings.json",
+          "criticality": "CRITICAL",
+          "steps": [
+            "Create appsettings.json and appsettings.Development.json",
+            "Migrate connection strings to appsettings.json",
+            "Migrate app settings to appsettings.json",
+            "Set up configuration in Program.cs",
+            "Use IConfiguration and Options pattern for accessing settings",
+            "Handle environment-specific configurations"
+          ]
+        },
+        {
+          "category": "Dependency Injection",
+          "migration": "Manual DI to built-in DI container",
+          "criticality": "HIGH",
+          "steps": [
+            "Remove third-party DI containers (Unity, Autofac, etc.) if possible",
+            "Register services in Program.cs using builder.Services",
+            "Use constructor injection throughout the application",
+            "Configure service lifetimes (Singleton, Scoped, Transient)",
+            "Create extension methods for service registration",
+            "Test dependency resolution"
+          ]
+        },
+        {
+          "category": "Authentication",
+          "migration": "Forms Authentication to ASP.NET Core Identity",
+          "criticality": "HIGH",
+          "steps": [
+            "Install Microsoft.AspNetCore.Identity.EntityFrameworkCore",
+            "Create IdentityDbContext",
+            "Configure Identity in Program.cs",
+            "Migrate user and role tables to Identity schema",
+            "Update authentication logic to use Identity",
+            "Implement cookie authentication or JWT as needed"
+          ]
+        }
+      ]
+    },
+
+    "compatibilityChecks": {
+      "description": "Pre-migration checks to identify compatibility issues",
+      "checks": [
+        {
+          "name": "NuGet Package Compatibility",
+          "description": "Verify all NuGet packages support .NET 8",
+          "action": "Check each package on nuget.org for .NET 8 / .NET Standard 2.0+ support",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "API Compatibility",
+          "description": "Identify usage of .NET Framework-only APIs",
+          "action": "Use .NET Upgrade Assistant or compatibility analyzer to scan code",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "Custom MSBuild Tasks",
+          "description": "Verify custom MSBuild tasks are .NET 8 compatible",
+          "action": "Update MSBuild tasks to target .NET 8 SDK",
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "Third-Party Library Support",
+          "description": "Ensure third-party libraries have .NET 8 versions",
+          "action": "Contact vendors or find alternatives for unsupported libraries",
+          "severity": "HIGH"
+        },
+        {
+          "name": "System.Web Dependencies",
+          "description": "Identify and eliminate System.Web dependencies",
+          "action": "Replace all System.Web usages with ASP.NET Core equivalents",
+          "severity": "CRITICAL"
+        }
+      ]
+    },
+
+    "preventionRules": {
+      "description": "Rules to prevent compatibility issues in generated code",
+      "rules": [
+        {
+          "rule": "COMPAT-001",
+          "name": "No Entity Framework 6",
+          "description": "Never generate code that uses EntityFramework (EF6)",
+          "enforcement": "Always use Microsoft.EntityFrameworkCore 8.0.0+"
+        },
+        {
+          "rule": "COMPAT-002",
+          "name": "No Legacy Logging",
+          "description": "Never use log4net or old NLog versions",
+          "enforcement": "Always use Microsoft.Extensions.Logging or Serilog.AspNetCore 8.0.0"
+        },
+        {
+          "rule": "COMPAT-003",
+          "name": "No System.Web References",
+          "description": "Never reference System.Web assemblies",
+          "enforcement": "Use ASP.NET Core equivalents (IHttpContextAccessor, IWebHostEnvironment, etc.)"
+        },
+        {
+          "rule": "COMPAT-004",
+          "name": "No Web.config",
+          "description": "Never generate Web.config files",
+          "enforcement": "Always use appsettings.json for configuration"
+        },
+        {
+          "rule": "COMPAT-005",
+          "name": "Verified Package Versions",
+          "description": "Only use packages verified to work with .NET 8",
+          "enforcement": "All package references must specify .NET 8 compatible versions"
+        },
+        {
+          "rule": "COMPAT-006",
+          "name": "No Global.asax Logic",
+          "description": "Never migrate Global.asax patterns directly",
+          "enforcement": "Move application startup logic to Program.cs and use middleware"
+        },
+        {
+          "rule": "COMPAT-007",
+          "name": "No HttpContext.Current",
+          "description": "Never use HttpContext.Current pattern",
+          "enforcement": "Always inject IHttpContextAccessor and use HttpContext property"
+        },
+        {
+          "rule": "COMPAT-008",
+          "name": "SDK-Style Projects Only",
+          "description": "Always generate SDK-style project files",
+          "enforcement": "Use <Project Sdk=\"Microsoft.NET.Sdk.Web\"> format"
+        }
+      ]
+    },
+
+    "verificationSteps": {
+      "description": "Steps to verify .NET 8 compatibility after migration",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Package Analysis",
+          "description": "Verify no forbidden packages are referenced",
+          "command": "dotnet list package --vulnerable --include-transitive",
+          "expectedResult": "No EF6, log4net, or System.Web packages"
+        },
+        {
+          "step": 2,
+          "name": "Build Verification",
+          "description": "Ensure solution builds successfully on .NET 8",
+          "command": "dotnet build --configuration Release",
+          "expectedResult": "Build succeeds with no errors"
+        },
+        {
+          "step": 3,
+          "name": "Target Framework Check",
+          "description": "Verify all projects target net8.0",
+          "command": "grep -r 'TargetFramework' **/*.csproj",
+          "expectedResult": "All projects show <TargetFramework>net8.0</TargetFramework>"
+        },
+        {
+          "step": 4,
+          "name": "Compatibility Analyzer",
+          "description": "Run .NET API compatibility analyzer",
+          "command": "dotnet tool install -g Microsoft.DotNet.UpgradeAssistant.Cli && upgrade-assistant analyze",
+          "expectedResult": "No critical compatibility issues"
+        },
+        {
+          "step": 5,
+          "name": "Runtime Verification",
+          "description": "Test application runs successfully",
+          "command": "dotnet run --project src/[ProjectName].Web",
+          "expectedResult": "Application starts without runtime errors"
+        }
+      ]
+    },
+
+    "migrationWarnings": {
+      "description": "Common issues to watch for during migration",
+      "warnings": [
+        {
+          "warning": "EF6 Lazy Loading",
+          "description": "EF6 lazy loading behavior differs from EF Core",
+          "solution": "Use explicit .Include() or enable lazy loading proxies in EF Core"
+        },
+        {
+          "warning": "DateTime Handling",
+          "description": "EF Core handles DateTime differently than EF6",
+          "solution": "Explicitly specify DateTime.Kind and use DateTimeOffset where appropriate"
+        },
+        {
+          "warning": "Connection Resiliency",
+          "description": "EF Core requires explicit configuration for retry logic",
+          "solution": "Configure EnableRetryOnFailure in DbContext options"
+        },
+        {
+          "warning": "Session State",
+          "description": "Session state works differently in ASP.NET Core",
+          "solution": "Configure distributed cache or use TempData for temporary storage"
+        },
+        {
+          "warning": "Output Caching",
+          "description": "ASP.NET Core has different caching mechanisms",
+          "solution": "Use response caching or output caching middleware"
+        },
+        {
+          "warning": "Custom HTTP Modules",
+          "description": "HTTP modules don't exist in ASP.NET Core",
+          "solution": "Implement as middleware in the pipeline"
+        },
+        {
+          "warning": "Custom HTTP Handlers",
+          "description": "HTTP handlers are replaced by middleware",
+          "solution": "Implement as middleware or minimal API endpoints"
+        }
+      ]
+    }
+  }
+}

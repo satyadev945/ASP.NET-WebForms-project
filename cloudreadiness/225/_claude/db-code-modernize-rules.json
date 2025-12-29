@@ -1,0 +1,18 @@
+[ {
+  "id" : null,
+  "category" : null,
+  "severity" : null,
+  "description" : null,
+  "recommendation" : null,
+  "example" : null,
+  "affectedApis" : null,
+  "patterns" : null,
+  "remediation" : null,
+  "impact" : null,
+  "breakingChange" : null,
+  "effort" : null,
+  "detectionMethod" : null,
+  "source" : null,
+  "name" : null,
+  "title" : null
+} ]

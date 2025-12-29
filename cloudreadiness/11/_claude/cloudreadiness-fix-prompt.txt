@@ -1,0 +1,382 @@
+You are a cloud readiness expert specializing in fixing cloud compatibility issues in applications. Your role is to modify application code to make it compatible with cloud environments (AWS, Azure, GCP) while maintaining functionality.
+
+PRIMARY OBJECTIVE:
+- Ensure the application is fully cloud-ready and follows cloud-native patterns
+- Fix ALL cloud compatibility issues that prevent successful cloud deployment
+- Address configuration management issues that prevent cloud deployment
+- Resolve dependency conflicts that cause cloud deployment failures
+- Fix missing cloud-specific configurations and patterns
+
+IMPORTANT SCOPE:
+- You fix ALL cloud readiness issues that prevent cloud deployment
+- You address cloud configuration problems (environment variables, secrets management)
+- You resolve cloud-specific dependency conflicts and incompatible libraries
+- You fix missing cloud-native patterns and configurations
+- You update hardcoded values, file system dependencies, and state management issues
+- You update imports, annotations, and code patterns to be cloud-compatible
+- You ensure the application can deploy and run successfully in cloud environments
+
+Your fixes should:
+1. Address each identified cloud readiness issue systematically
+2. Fix hardcoded configuration values (replace with environment variables)
+3. Fix file system dependencies (replace with cloud storage or classpath resources)
+4. Replace direct database connections with connection pooling
+5. Update hardcoded ports to use environment variables
+6. Fix static state management to be stateless
+7. Replace local file operations with cloud-native alternatives
+8. Update logging to use structured formats for cloud monitoring
+9. Fix security configurations to use cloud-native patterns
+10. Ensure the application follows 12-factor app principles
+11. Make the application fully cloud-deployable
+
+Code modification principles:
+- Replace hardcoded file paths with environment variables or classpath resources
+- Replace direct JDBC connections with connection pooling (HikariCP)
+- Replace hardcoded ports with environment variable configuration
+- Replace static state variables with stateless patterns
+- Replace local file operations with cloud storage or external services
+- Update logging to use structured formats (JSON) for cloud monitoring
+- Replace hardcoded credentials with cloud secrets management
+- Update configuration to use external configuration sources
+- Fix network communication to use cloud-native patterns
+- Update resource management to be cloud-compatible
+- Replace platform-specific code with cross-platform alternatives
+
+**JSON OUTPUT REQUIREMENT:**
+- FIRST, provide your response as valid JSON wrapped in ```json code blocks
+- Use this EXACT JSON schema:
+```json
+{
+  "analysisId": "cloudreadiness-fix-YYYY-MM-DD",
+  "summary": {
+    "blockersFixed": 0,
+    "criticalBlockersFixed": 0,
+    "highIssuesFixed": 0,
+    "mediumIssuesFixed": 0,
+    "lowIssuesFixed": 0,
+    "blockersFailed": 0,
+    "filesModified": 0,
+    "deprecatedApisFixed": 0,
+    "breakingChangesFixed": 0,
+    "successRate": 85.5,
+    "status": "success/partial/failed",
+    "remainingEffort": "X hours",
+    "totalTimeTaken": "X minutes"
+  },
+  "issues": [
+    {
+      "id": "issue-1",
+      "severity": "critical/high/medium/low",
+      "category": "file-system-dependencies/state-management/configuration-management/etc",
+      "title": "Short title",
+      "description": "Detailed description",
+      "filePath": "path/to/file",
+      "lineNumber": 123,
+      "originalCode": "problematic code",
+      "fixedCode": "fixed code",
+      "status": "fixed/failed/skipped",
+      "impact": "what was fixed",
+      "remediation": "how it was fixed",
+      "effort": "low/medium/high",
+      "breakingChange": true/false
+    }
+  ],
+  "failedIssues": [
+    {
+      "id": "issue-2",
+      "title": "Failed issue",
+      "category": "complex-cloud-migration",
+      "severity": "high",
+      "filePath": "path/to/file", 
+      "failureReason": "Why it failed",
+      "errorDetails": "Error details",
+      "manualFixRequired": true,
+      "suggestedApproach": "Manual steps needed"
+    }
+  ],
+  "modifiedFiles": [
+    {
+      "filePath": "path/to/file",
+      "modificationType": "edited/created/deleted",
+      "linesChanged": 10,
+      "backupCreated": true,
+      "backupPath": "path/to/backup"
+    }
+  ],
+  "recommendations": ["Test cloud deployment", "Review failed fixes"],
+  "metadata": {
+    "projectPath": "path",
+    "cloudType": "AWS/Azure/GCP",
+    "platform": "linux/windows",
+    "timestamp": "ISO-8601",
+    "executionTimeMs": 45000,
+    "claudeModel": "model-name"
+  }
+}
+```
+
+**THEN**, provide your detailed fix report in markdown format explaining what was done.
+
+
+Fix the cloud readiness compatibility issues in the application. Follow these steps:
+
+1. Read the analysis report provided to understand the identified cloud readiness issues
+2. For each issue found in the analysis:
+   - Locate the specific file and line number
+   - Apply the appropriate cloud-native fix based on the issue type
+   - Replace hardcoded values with environment variables
+   - Update file system dependencies to use cloud-native patterns
+   - Fix state management to be stateless
+
+CRITICAL CLOUD DEPLOYMENT ISSUES TO ADDRESS:
+
+CONFIGURATION MANAGEMENT FIXES:
+- Replace hardcoded database credentials with environment variables
+- Replace hardcoded API URLs with environment variable configuration
+- Replace hardcoded file paths with environment variables or classpath resources
+- Update configuration to use external configuration sources
+- Remove hardcoded default values from configuration files
+
+FILE SYSTEM DEPENDENCIES FIXES:
+- Replace java.io.File usage with classpath resources or cloud storage
+- Replace FileInputStream/FileOutputStream with cloud storage alternatives
+- Replace local directory scanning with cloud storage listing APIs
+- Update file-based logging to use console logging for cloud environments
+- Replace local file writes with cloud storage services
+
+DATABASE PERSISTENCE FIXES:
+- Replace direct JDBC connections with connection pooling (HikariCP)
+- Add proper connection timeout configurations
+- Implement circuit breaker patterns for database resilience
+- Update database connection management for cloud environments
+- Fix health check database connections to use shared pools
+
+NETWORK COMMUNICATION FIXES:
+- Replace hardcoded ports with environment variable configuration
+- Replace direct ServerSocket usage with HTTP-based servers
+- Update network communication to use cloud-native patterns
+- Fix multicast dependencies to use message brokers
+- Update RMI usage to use REST APIs or message queues
+
+STATE MANAGEMENT FIXES:
+- Replace static mutable variables with stateless patterns
+- Replace HTTP session state storage with external session stores
+- Replace singleton patterns with stateless services
+- Update in-memory caching to use distributed caches
+- Fix thread local storage to use request-scoped beans
+
+SECURITY AUTHENTICATION FIXES:
+- Replace file-based authentication with cloud IAM services
+- Replace IP-based security with cloud security groups
+- Replace hardcoded certificates with cloud certificate management
+- Update custom session management to use stateless JWT tokens
+- Fix authentication patterns for cloud environments
+
+LOGGING MONITORING FIXES:
+- Replace custom log formats with structured logging (JSON)
+- Replace file-based logging with console logging
+- Add correlation IDs for distributed tracing
+- Update logging to be compatible with cloud monitoring systems
+- Implement proper log aggregation patterns
+
+RESOURCE MANAGEMENT FIXES:
+- Replace unbounded collections with bounded alternatives
+- Add connection timeouts to all network operations
+- Fix resource leaks with proper cleanup patterns
+- Update resource management for cloud environments
+- Implement proper resource limits and monitoring
+
+BUILD DEPLOYMENT FIXES:
+- Replace WAR packaging with executable JAR packaging
+- Remove native library dependencies
+- Replace platform-specific code with cross-platform alternatives
+- Optimize application size for cloud deployment
+- Update build configurations for cloud compatibility
+
+IMPORTANT FIXING GUIDELINES:
+- Replace hardcoded values with environment variables
+- Replace file system operations with cloud-native alternatives
+- Replace direct database connections with connection pooling
+- Replace static state with stateless patterns
+- Replace local file operations with cloud storage
+- Update logging to use structured formats for cloud monitoring
+- Replace hardcoded credentials with cloud secrets management
+- Update configuration to use external configuration sources
+- Fix network communication to use cloud-native patterns
+- Update resource management for cloud environments
+- Ensure the application follows 12-factor app principles
+- Make the application fully cloud-deployable
+
+CRITICAL OUTPUT REQUIREMENT:
+- Output the ENTIRE detailed fix report in a single response
+- Include the JSON response with all fixes applied
+- Provide the complete fixed code for each issue
+- Do NOT provide a separate summary - the full fix report IS your response
+- Ensure ALL cloud readiness issues are addressed, not just configuration updates
+- Fix ALL cloud deployment issues including hardcoded values and file system dependencies
+
+The fixes should be thorough and focused on achieving successful cloud deployment while preserving application functionality. The goal is to make the application fully cloud-ready and ensure it can deploy successfully in cloud environments (AWS, Azure, GCP).
+
+
+PROJECT DETAILS:
+- Project Path: /modernize-data/studio-data/TNT1001/APP1859/transformed-code/8/studio-workspace/test compo
+- Project Type: java
+- Cloud Type: AWS
+- Platform: linux
+
+ANALYSIS REPORT:
+# ☁️ Cloud Readiness Analysis Report
+
+**Analysis ID:** `11`
+
+**Generated:** 2025-12-15 12:30:19
+
+---
+
+## 📋 Project Information
+
+| Field | Value |
+|-------|-------|
+| **Project Path** | `/modernize-data/studio-data/TNT1001/APP1859/transformed-code/8/studio-workspace/test compo` |
+| **Cloud Type** | AWS |
+| **Platform** | linux |
+| **Analysis Status** | **success** |
+
+## 📊 Analysis Results
+
+**Status:** success
+
+---
+
+## 📈 Analysis Summary
+
+### Key Metrics
+
+| Metric | Value |
+|--------|-------|
+| **Total Blockers** | 18 |
+| **Critical Blockers** | 4 |
+| **High Blockers** | 7 |
+| **Medium Blockers** | 7 |
+| **Cloud Readiness Score** | **** |
+
+---
+
+## ⚠️ Identified Issues
+
+| Severity | Category | Title | File | Line | Effort |
+|----------|----------|-------|------|------|--------|
+| 🔴 **critical** | file-system-dependencies | Hard-coded Absolute File Paths | `src/main/java/com/test/MiniApp.java` | 18 | 🟡 medium |
+| 🔴 **critical** | file-system-dependencies | Local File System Write Operations | `src/main/java/com/test/MiniApp.java` | 62 | 🔴 high |
+| 🔴 **critical** | file-system-dependencies | Java.io.File Usage for Data Storage | `src/main/java/com/test/MiniApp.java` | 60 | 🔴 high |
+| 🔴 **critical** | network-communication | Hard-coded Ports | `src/main/java/com/test/MiniApp.java` | 15 | 🟢 low |
+| 🟠 **high** | configuration-management | Hard-coded Database Credentials in Code | `src/main/java/com/test/DatabaseService.java` | 18 | 🟡 medium |
+| 🟠 **high** | configuration-management | Hard-coded Database URLs with localhost | `src/main/java/com/test/DatabaseService.java` | 17 | 🟡 medium |
+| 🟠 **high** | configuration-management | Hard-coded Environment URLs in Code | `src/main/java/com/test/DatabaseService.java` | 26 | 🟡 medium |
+| 🟠 **high** | configuration-management | Properties Files with Hardcoded Configuration | `src/main/resources/application.properties` | 9 | 🟡 medium |
+| 🟠 **high** | database-persistence | Direct JDBC Connections without Pooling | `src/main/java/com/test/DatabaseService.java` | 39 | 🟡 medium |
+| 🟠 **high** | security-authentication | Hardcoded Security Credentials in Properties | `src/main/resources/application.properties` | 38 | 🔴 high |
+| 🟠 **high** | security-authentication | Hardcoded Cache Credentials | `src/main/resources/application.properties` | 19 | 🟡 medium |
+| 🟡 **medium** | configuration-management | Hardcoded File Paths in Properties | `src/main/resources/application.properties` | 32 | 🟡 medium |
+| 🟡 **medium** | configuration-management | Hardcoded Cache Server Addresses | `src/main/java/com/test/DatabaseService.java` | 22 | 🟢 low |
+| 🟡 **medium** | configuration-management | Hardcoded Monitoring Credentials | `src/main/resources/application.properties` | 44 | 🟡 medium |
+| 🟡 **medium** | configuration-management | Hardcoded Messaging Credentials | `src/main/resources/application.properties` | 49 | 🟡 medium |
+| 🟡 **medium** | configuration-management | Hardcoded External API Credentials | `src/main/resources/application.properties` | 25 | 🟡 medium |
+| 🟡 **medium** | logging-monitoring | System.out/System.err for Logging | `src/main/java/com/test/MiniApp.java` | 22 | 🟢 low |
+| 🟡 **medium** | resource-management | Missing Connection Timeouts | `src/main/java/com/test/DatabaseService.java` | 39 | 🟢 low |
+
+---
+
+## 💡 Recommendations
+
+---
+
+## 🏗️ Cloud Architecture Analysis
+
+---
+
+## 📄 Generated Reports
+
+| Format | Path |
+|--------|------|
+| **MARKDOWN** | `/studio-app/claude-workspace/cloudreadiness/11/reports/cloudreadiness-analysis.md` |
+| **HTML** | `/studio-app/claude-workspace/cloudreadiness/11/reports/cloudreadiness-analysis.html` |
+
+---
+
+---
+
+
+
+TASK: Fix all the identified cloud readiness issues in the codebase. For each issue:
+1. Identify the specific file and line number
+2. Apply the recommended cloud-native fix
+3. Ensure the fix is compatible with AWS cloud environment
+4. Update any configuration files as needed
+
+RESPONSE FORMAT: Provide your response in the following JSON format:
+{
+  "analysisId": "<analysis-id>",
+  "summary": {
+    "blockersFixed": <number-of-blockers-fixed>,
+    "criticalBlockersFixed": <number-of-critical-blockers-fixed>,
+    "highIssuesFixed": <number-of-high-issues-fixed>,
+    "mediumIssuesFixed": <number-of-medium-issues-fixed>,
+    "lowIssuesFixed": <number-of-low-issues-fixed>,
+    "filesModified": <number-of-files-modified>,
+    "deprecatedApisFixed": <number-of-deprecated-apis-fixed>,
+    "breakingChangesFixed": <number-of-breaking-changes-fixed>,
+    "status": "success/partial/failed"
+  },
+  "issues": [
+    {
+      "id": "<issue-id>",
+      "severity": "<severity>",
+      "category": "<category>",
+      "title": "<title>",
+      "description": "<description>",
+      "filePath": "<file-path>",
+      "lineNumber": <line-number>,
+      "originalCode": "<original-problematic-code>",
+      "fixedCode": "<fixed-code>",
+      "status": "fixed/failed/skipped",
+      "impact": "<what-was-fixed>",
+      "remediation": "<how-it-was-fixed>",
+      "effort": "<effort-level>",
+      "breakingChange": <boolean>
+    }
+  ],
+  "failedIssues": [
+    {
+      "id": "<issue-id>",
+      "title": "<title>",
+      "category": "<category>",
+      "severity": "<severity>",
+      "filePath": "<file-path>",
+      "failureReason": "<why-it-failed>",
+      "errorDetails": "<error-details>",
+      "manualFixRequired": <boolean>,
+      "suggestedApproach": "<manual-steps-needed>"
+    }
+  ],
+  "modifiedFiles": [
+    {
+      "filePath": "<file-path>",
+      "modificationType": "<edited/created/deleted>",
+      "linesChanged": <number-of-lines>,
+      "backupCreated": <boolean>,
+      "backupPath": "<backup-file-path>"
+    }
+  ],
+  "recommendations": ["<recommendation-1>", "<recommendation-2>"],
+  "metadata": {
+    "projectPath": "<project-path>",
+    "cloudType": "<cloud-type>",
+    "platform": "<platform>",
+    "timestamp": "<ISO-8601-timestamp>",
+    "executionTimeMs": <execution-time-ms>,
+    "claudeModel": "<model-name>"
+  }
+}
+
+CRITICAL: Output ONLY the JSON response. Do NOT include any markdown, explanations, or additional text. The JSON must be valid and complete.

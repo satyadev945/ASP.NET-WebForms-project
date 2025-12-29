@@ -1,0 +1,156 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 2,
+    "deprecatedApisFound" : 4,
+    "totalIssues" : 8,
+    "compatibilityScore" : 60,
+    "criticalIssues" : 2,
+    "highIssues" : 4,
+    "lowIssues" : 0,
+    "estimatedEffort" : "16-24 hours",
+    "breakingChanges" : 2,
+    "upgradeComplexity" : "Complex"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "1.8",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1814/transformed-code/18/studio-workspace/comp1",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "17",
+    "timestamp" : "2025-12-17T04:39:46.399482972Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 17", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 17", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-17",
+  "issues" : [ {
+    "severity" : "critical",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update the java.version property to 17 and add explicit maven-compiler-plugin configuration with source and target set to 17",
+    "breakingChange" : true,
+    "filePath" : "spring-boot-monolith-master/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The pom.xml file specifies Java 1.8 as the target version. This needs to be updated to Java 17 to enable the upgrade.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "Java Version Configuration Outdated in pom.xml",
+    "lineNumber" : 24
+  }, {
+    "severity" : "critical",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update Lombok dependency to version 1.18.30 or later, which fully supports Java 17. Also ensure maven-compiler-plugin is version 3.11.0+ with proper annotation processor configuration.",
+    "breakingChange" : true,
+    "filePath" : "spring-boot-monolith-master/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Lombok version 1.16.16 is not compatible with Java 17. This will cause compilation failures as Lombok annotation processing will fail.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Lombok Version Too Old for Java 17",
+    "lineNumber" : 56
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update Spring Boot to version 2.7.18 (for javax namespace) or 3.2.0+ (for jakarta namespace migration). Version 3.x requires significant changes to javax.* imports.",
+    "breakingChange" : true,
+    "filePath" : "spring-boot-monolith-master/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Spring Boot version 2.0.0.RELEASE does not support Java 17. Spring Boot 2.7.x is the minimum version for Java 17 support, with 3.x recommended.",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot 2.0.0 Incompatible with Java 17",
+    "lineNumber" : 17
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Replace all javax.persistence imports with jakarta.persistence throughout the codebase. This affects ItemEntity.java, CustomerEntity.java, and OrderEntity.java.",
+    "breakingChange" : true,
+    "filePath" : "spring-boot-monolith-master/src/main/java/cz/zubal/spring/boot/monolith/inventory/ItemEntity.java",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Multiple entity classes use javax.persistence imports. If upgrading to Spring Boot 3.x, these must be migrated to jakarta.persistence.",
+    "effort" : "medium",
+    "id" : "issue-4",
+    "category" : "upgrade-analysis",
+    "title" : "javax.persistence Package Usage",
+    "lineNumber" : 5
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Replace @RunWith(SpringRunner.class) with @ExtendWith(SpringExtension.class), update @Test import to org.junit.jupiter.api.Test, and ensure spring-boot-starter-test includes JUnit 5 dependencies.",
+    "breakingChange" : true,
+    "filePath" : "spring-boot-monolith-master/src/test/java/cz/zubal/spring/boot/monolith/SpringBootMonolithApplicationTests.java",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Test class uses JUnit 4 annotations (@Test, @RunWith) which are deprecated. Spring Boot 2.2+ defaults to JUnit 5.",
+    "effort" : "medium",
+    "id" : "issue-5",
+    "category" : "upgrade-analysis",
+    "title" : "JUnit 4 Usage - Requires Migration to JUnit 5",
+    "lineNumber" : 10
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update ModelMapper to version 3.1.1 or later which has better Java 17 support and module system compatibility.",
+    "breakingChange" : true,
+    "filePath" : "spring-boot-monolith-master/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "ModelMapper version 1.1.2 is very old (released 2015) and may have compatibility issues with Java 17.",
+    "effort" : "medium",
+    "id" : "issue-6",
+    "category" : "upgrade-analysis",
+    "title" : "Outdated ModelMapper Version",
+    "lineNumber" : 40
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update Guava to version 32.1.3-jre or later for full Java 17 compatibility and performance improvements.",
+    "breakingChange" : true,
+    "filePath" : "spring-boot-monolith-master/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Guava version 24.0-jre (released 2017) predates Java 17 and may have minor compatibility issues.",
+    "effort" : "medium",
+    "id" : "issue-7",
+    "category" : "upgrade-analysis",
+    "title" : "Guava Version May Have Compatibility Issues",
+    "lineNumber" : 62
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Add explicit maven-compiler-plugin configuration with version 3.11.0+ and configure source/target to 17, including annotation processor paths for Lombok.",
+    "breakingChange" : true,
+    "filePath" : "spring-boot-monolith-master/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The pom.xml does not explicitly configure maven-compiler-plugin. Default version may not support Java 17.",
+    "effort" : "medium",
+    "id" : "issue-8",
+    "category" : "upgrade-analysis",
+    "title" : "Missing Maven Compiler Plugin Configuration",
+    "lineNumber" : 72
+  } ],
+  "recommendations" : [ "\"description\": \"Spring Boot version 2.0.0.RELEASE does not support Java 17. Spring Boot 2.7.x is the minimum version for Java 17 support, with 3.x recommended.\",", "\"impact\": \"Potential runtime warnings or deprecated API usage. The ImmutableList.of() method used in tests should still work but newer versions have better Java 17 support.\",", "\"recommendedVersion\": \"3.8.1+\",", "\"recommendedVersion\": \"2.7.18 or 3.2.0+\"", "\"recommendedVersion\": \"1.18.30+\"", "\"recommendedVersion\": \"32.1.3-jre\",", "\"recommendedVersion\": \"2.2.224\"," ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "17",
+      "issue" : "Targets Java 1.8 instead of 17",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "1.8"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 17 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

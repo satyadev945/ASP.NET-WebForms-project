@@ -1,0 +1,49 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 0,
+    "deprecatedApisFound" : 0,
+    "totalIssues" : 0,
+    "compatibilityScore" : 100,
+    "criticalIssues" : 0,
+    "highIssues" : 0,
+    "lowIssues" : 0,
+    "breakingChanges" : 0,
+    "estimatedEffort" : "0 hours",
+    "upgradeComplexity" : "Simple"
+  },
+  "metadata" : {
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "N/A",
+    "source" : "Claude AI Analysis",
+    "currentVersion" : ".NET 6",
+    "targetVersion" : ".NET 8",
+    "timestamp" : "2025-12-26T08:26:18.125544011Z"
+  },
+  "buildToolAnalysis" : { },
+  "analysisId" : "dotnet-upgrade-analysis-2025-12-26",
+  "issues" : [ ],
+  "recommendations" : [ {
+    "category" : "project-status",
+    "priority" : "high",
+    "recommendation" : "The project is already targeting .NET 8.0. No framework upgrade is required. The application is using modern .NET 8 patterns including top-level statements, implicit usings, nullable reference types, and the minimal API hosting model.",
+    "estimatedEffort" : "0 hours"
+  }, {
+    "category" : "package-versions",
+    "priority" : "low",
+    "recommendation" : "All NuGet packages are compatible with .NET 8. Consider reviewing if newer patch versions are available for Microsoft.AspNetCore.OpenApi (currently 8.0.3) and Swashbuckle.AspNetCore (currently 6.4.0) for latest security updates.",
+    "estimatedEffort" : "0.5 hours"
+  }, {
+    "category" : "code-quality",
+    "priority" : "low",
+    "recommendation" : "The codebase follows .NET 8 best practices including: enabled nullable reference types, implicit usings, minimal API patterns, dependency injection, and async/await patterns. The code is well-structured and ready for production use on .NET 8.",
+    "estimatedEffort" : "0 hours"
+  } ],
+  "dependencies" : {
+    "incompatible" : [ ],
+    "upgradeable" : [ ]
+  }
+}

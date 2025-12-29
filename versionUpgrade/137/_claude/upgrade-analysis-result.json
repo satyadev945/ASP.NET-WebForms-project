@@ -1,0 +1,104 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 1,
+    "deprecatedApisFound" : 3,
+    "totalIssues" : 4,
+    "compatibilityScore" : 80,
+    "criticalIssues" : 0,
+    "highIssues" : 3,
+    "lowIssues" : 0,
+    "estimatedEffort" : "6-10 hours",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Moderate"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1996/transformed-code/94/studio-workspace/Test-ruh",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "21",
+    "timestamp" : "2025-12-22T09:36:53.91329996Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 21", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 21", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-22",
+  "issues" : [ {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven-compiler-plugin to version 3.11.0 or higher. Change line 37 from <version>3.8.1</version> to <version>3.11.0</version> and update source/target versions on lines 13-14 and 39-40 from 11 to 21.",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP1996/transformed-code/94/studio-workspace/Test-ruh/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The Maven compiler plugin version 3.8.1 is outdated and may not fully support Java 21 features and optimizations. Java 21 requires at least version 3.11.0 for proper compilation support.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Plugin Version Outdated",
+    "lineNumber" : 37
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Upgrade Spring Boot to version 3.2.0 or higher for full Java 21 support. This is a major version upgrade requiring migration from javax.* to jakarta.* packages. Update line 28 to <version>3.2.0</version> and review all Spring Boot dependencies.",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP1996/transformed-code/94/studio-workspace/Test-ruh/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Spring Boot version 2.7.0 does not officially support Java 21. Spring Boot 3.0+ is required for Java 17+ support, and Spring Boot 3.1+ is recommended for Java 21.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot Version Not Compatible with Java 21",
+    "lineNumber" : 28
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update MySQL Connector to version 8.2.0 or higher, or switch to the new artifact: groupId=com.mysql, artifactId=mysql-connector-j, version=8.2.0. Update line 22 to <version>8.2.0</version>.",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP1996/transformed-code/94/studio-workspace/Test-ruh/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "MySQL Connector/J 8.0.33 uses deprecated package naming. For Java 21, it's recommended to migrate to newer versions (8.2.0+) or consider using the com.mysql:mysql-connector-j artifact which uses updated packaging.",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "MySQL Connector Deprecated Package",
+    "lineNumber" : 22
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Remove line 36 completely. The MySQL JDBC driver will be automatically loaded when DriverManager.getConnection() is called. This is safe and follows modern JDBC best practices.",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP1996/transformed-code/94/studio-workspace/Test-ruh/src/main/java/com/test/DatabaseService.java",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Explicit JDBC driver loading using Class.forName() is no longer necessary since JDBC 4.0 (Java 6+). Modern JDBC drivers are automatically registered via the ServiceLoader mechanism.",
+    "effort" : "medium",
+    "id" : "issue-4",
+    "category" : "upgrade-analysis",
+    "title" : "Class.forName() JDBC Driver Loading",
+    "lineNumber" : 36
+  } ],
+  "recommendations" : [ "\"description\": \"Spring Boot version 2.7.0 does not officially support Java 21. Spring Boot 3.0+ is required for Java 17+ support, and Spring Boot 3.1+ is recommended for Java 21.\",", "\"description\": \"MySQL Connector/J 8.0.33 uses deprecated package naming. For Java 21, it's recommended to migrate to newer versions (8.2.0+) or consider using the com.mysql:mysql-connector-j artifact which uses updated packaging.\",", "\"impact\": \"This code is redundant and represents outdated practice. While it doesn't cause runtime errors, it's unnecessary and should be removed for cleaner, modern code.\",", "\"recommendedVersion\": \"Maven Compiler Plugin 3.11.0+\",", "\"recommendedVersion\": \"3.2.0 or higher\"", "\"recommendedVersion\": \"3.11.0\"," ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "21",
+      "issue" : "Targets Java 11 instead of 21",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 21 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

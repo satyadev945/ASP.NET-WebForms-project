@@ -1,0 +1,425 @@
+{
+  "analysisId": "testcase-generation-2025-12-24",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 73,
+    "totalFilesModified": 7,
+    "PassTestcase": 73,
+    "totalTimeTaken": "3 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/SampleDotNet6App.Data/ApplicationDbContextTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidOptions_CreatesContext",
+          "description": "Tests ApplicationDbContext constructor with valid options",
+          "coverage": "ApplicationDbContext constructor"
+        },
+        {
+          "methodName": "Products_ReturnsDbSet",
+          "description": "Tests Products DbSet property returns valid set",
+          "coverage": "ApplicationDbContext.Products property"
+        },
+        {
+          "methodName": "Users_ReturnsDbSet",
+          "description": "Tests Users DbSet property returns valid set",
+          "coverage": "ApplicationDbContext.Users property"
+        },
+        {
+          "methodName": "OnModelCreating_ConfiguresProductEntity",
+          "description": "Tests Product entity configuration in OnModelCreating",
+          "coverage": "ApplicationDbContext.OnModelCreating - Product configuration"
+        },
+        {
+          "methodName": "OnModelCreating_ConfiguresUserEntity",
+          "description": "Tests User entity configuration in OnModelCreating",
+          "coverage": "ApplicationDbContext.OnModelCreating - User configuration"
+        },
+        {
+          "methodName": "Products_CanAddAndRetrieve",
+          "description": "Tests adding and retrieving products from database",
+          "coverage": "ApplicationDbContext CRUD - Products"
+        },
+        {
+          "methodName": "Users_CanAddAndRetrieve",
+          "description": "Tests adding and retrieving users from database",
+          "coverage": "ApplicationDbContext CRUD - Users"
+        },
+        {
+          "methodName": "Products_CanUpdateEntity",
+          "description": "Tests updating product entities",
+          "coverage": "ApplicationDbContext Update - Products"
+        },
+        {
+          "methodName": "Products_CanDeleteEntity",
+          "description": "Tests deleting product entities",
+          "coverage": "ApplicationDbContext Delete - Products"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/SampleDotNet6App.Data/DataSeederTests.cs",
+      "testMethods": [
+        {
+          "methodName": "SeedAsync_WhenDatabaseEmpty_SeedsProducts",
+          "description": "Tests seeding products in empty database",
+          "coverage": "DataSeeder.SeedAsync - Products seeding"
+        },
+        {
+          "methodName": "SeedAsync_WhenDatabaseEmpty_SeedsUsers",
+          "description": "Tests seeding users in empty database",
+          "coverage": "DataSeeder.SeedAsync - Users seeding"
+        },
+        {
+          "methodName": "SeedAsync_WhenProductsExist_DoesNotDuplicateProducts",
+          "description": "Tests no duplicate products when already exist",
+          "coverage": "DataSeeder.SeedAsync - Duplicate check Products"
+        },
+        {
+          "methodName": "SeedAsync_WhenUsersExist_DoesNotDuplicateUsers",
+          "description": "Tests no duplicate users when already exist",
+          "coverage": "DataSeeder.SeedAsync - Duplicate check Users"
+        },
+        {
+          "methodName": "SeedAsync_SeedsCorrectProductData",
+          "description": "Tests correct product data values are seeded",
+          "coverage": "DataSeeder.SeedAsync - Product data validation"
+        },
+        {
+          "methodName": "SeedAsync_SeedsCorrectUserData",
+          "description": "Tests correct user data values are seeded",
+          "coverage": "DataSeeder.SeedAsync - User data validation"
+        },
+        {
+          "methodName": "SeedAsync_SavesChangesToDatabase",
+          "description": "Tests changes are persisted to database",
+          "coverage": "DataSeeder.SeedAsync - SaveChanges"
+        },
+        {
+          "methodName": "SeedAsync_CallMultipleTimes_OnlySeedsOnce",
+          "description": "Tests idempotency of seed operation",
+          "coverage": "DataSeeder.SeedAsync - Idempotency"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/SampleDotNet6App.Models/ProductTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_CreatesInstance",
+          "description": "Tests Product constructor creates valid instance",
+          "coverage": "Product constructor"
+        },
+        {
+          "methodName": "Id_CanSetAndGet",
+          "description": "Tests Id property getter and setter",
+          "coverage": "Product.Id property"
+        },
+        {
+          "methodName": "Name_DefaultValue_IsEmptyString",
+          "description": "Tests Name property default value",
+          "coverage": "Product.Name default value"
+        },
+        {
+          "methodName": "Name_CanSetAndGet",
+          "description": "Tests Name property getter and setter",
+          "coverage": "Product.Name property"
+        },
+        {
+          "methodName": "Description_DefaultValue_IsNull",
+          "description": "Tests Description property default value",
+          "coverage": "Product.Description default value"
+        },
+        {
+          "methodName": "Description_CanSetAndGet",
+          "description": "Tests Description property getter and setter",
+          "coverage": "Product.Description property"
+        },
+        {
+          "methodName": "Description_CanSetToNull",
+          "description": "Tests Description can be set to null",
+          "coverage": "Product.Description nullable"
+        },
+        {
+          "methodName": "Price_DefaultValue_IsZero",
+          "description": "Tests Price property default value",
+          "coverage": "Product.Price default value"
+        },
+        {
+          "methodName": "Price_CanSetAndGet",
+          "description": "Tests Price property getter and setter",
+          "coverage": "Product.Price property"
+        },
+        {
+          "methodName": "Price_CanSetNegativeValue",
+          "description": "Tests Price can accept negative values",
+          "coverage": "Product.Price edge case"
+        },
+        {
+          "methodName": "Product_CanSetAllProperties",
+          "description": "Tests setting all properties together",
+          "coverage": "Product all properties"
+        },
+        {
+          "methodName": "Product_ObjectInitializer_SetsProperties",
+          "description": "Tests object initializer syntax",
+          "coverage": "Product object initialization"
+        },
+        {
+          "methodName": "Name_CanSetToEmptyString",
+          "description": "Tests Name can be set to empty string",
+          "coverage": "Product.Name edge case"
+        },
+        {
+          "methodName": "Price_AccuracyTest_WithLargeDecimal",
+          "description": "Tests Price with large decimal values",
+          "coverage": "Product.Price precision"
+        }
+      ],
+      "coveragePercentage": 95.0
+    },
+    {
+      "filePath": "Tests/SampleDotNet6App.Models/UserTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_CreatesInstance",
+          "description": "Tests User constructor creates valid instance",
+          "coverage": "User constructor"
+        },
+        {
+          "methodName": "Id_CanSetAndGet",
+          "description": "Tests Id property getter and setter",
+          "coverage": "User.Id property"
+        },
+        {
+          "methodName": "Username_DefaultValue_IsEmptyString",
+          "description": "Tests Username property default value",
+          "coverage": "User.Username default value"
+        },
+        {
+          "methodName": "Username_CanSetAndGet",
+          "description": "Tests Username property getter and setter",
+          "coverage": "User.Username property"
+        },
+        {
+          "methodName": "Email_DefaultValue_IsEmptyString",
+          "description": "Tests Email property default value",
+          "coverage": "User.Email default value"
+        },
+        {
+          "methodName": "Email_CanSetAndGet",
+          "description": "Tests Email property getter and setter",
+          "coverage": "User.Email property"
+        },
+        {
+          "methodName": "PasswordHash_DefaultValue_IsEmptyString",
+          "description": "Tests PasswordHash property default value",
+          "coverage": "User.PasswordHash default value"
+        },
+        {
+          "methodName": "PasswordHash_CanSetAndGet",
+          "description": "Tests PasswordHash property getter and setter",
+          "coverage": "User.PasswordHash property"
+        },
+        {
+          "methodName": "User_CanSetAllProperties",
+          "description": "Tests setting all properties together",
+          "coverage": "User all properties"
+        },
+        {
+          "methodName": "User_ObjectInitializer_SetsProperties",
+          "description": "Tests object initializer syntax",
+          "coverage": "User object initialization"
+        },
+        {
+          "methodName": "Username_CanSetToEmptyString",
+          "description": "Tests Username can be set to empty string",
+          "coverage": "User.Username edge case"
+        },
+        {
+          "methodName": "Email_CanSetToEmptyString",
+          "description": "Tests Email can be set to empty string",
+          "coverage": "User.Email edge case"
+        },
+        {
+          "methodName": "PasswordHash_CanSetToEmptyString",
+          "description": "Tests PasswordHash can be set to empty string",
+          "coverage": "User.PasswordHash edge case"
+        },
+        {
+          "methodName": "Email_CanContainSpecialCharacters",
+          "description": "Tests Email with special characters",
+          "coverage": "User.Email validation"
+        },
+        {
+          "methodName": "Username_CanContainNumbers",
+          "description": "Tests Username with numeric characters",
+          "coverage": "User.Username validation"
+        },
+        {
+          "methodName": "Id_CanBeNegative",
+          "description": "Tests Id with negative values",
+          "coverage": "User.Id edge case"
+        }
+      ],
+      "coveragePercentage": 95.0
+    },
+    {
+      "filePath": "Tests/SampleDotNet6App.Services/ProductServiceTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidContext_CreatesService",
+          "description": "Tests ProductService constructor with valid context",
+          "coverage": "ProductService constructor"
+        },
+        {
+          "methodName": "GetAllProductsAsync_WhenNoProducts_ReturnsEmptyList",
+          "description": "Tests GetAllProductsAsync returns empty list when no data",
+          "coverage": "ProductService.GetAllProductsAsync - empty case"
+        },
+        {
+          "methodName": "GetAllProductsAsync_WhenProductsExist_ReturnsAllProducts",
+          "description": "Tests GetAllProductsAsync returns all products",
+          "coverage": "ProductService.GetAllProductsAsync"
+        },
+        {
+          "methodName": "GetProductByIdAsync_WhenProductExists_ReturnsProduct",
+          "description": "Tests GetProductByIdAsync returns product when found",
+          "coverage": "ProductService.GetProductByIdAsync - found"
+        },
+        {
+          "methodName": "GetProductByIdAsync_WhenProductDoesNotExist_ReturnsNull",
+          "description": "Tests GetProductByIdAsync returns null when not found",
+          "coverage": "ProductService.GetProductByIdAsync - not found"
+        },
+        {
+          "methodName": "CreateProductAsync_WithValidProduct_AddsProductToDatabase",
+          "description": "Tests CreateProductAsync adds product to database",
+          "coverage": "ProductService.CreateProductAsync"
+        },
+        {
+          "methodName": "CreateProductAsync_ReturnsCreatedProduct",
+          "description": "Tests CreateProductAsync returns created product",
+          "coverage": "ProductService.CreateProductAsync - return value"
+        },
+        {
+          "methodName": "UpdateProductAsync_WithExistingProduct_UpdatesProduct",
+          "description": "Tests UpdateProductAsync updates product data",
+          "coverage": "ProductService.UpdateProductAsync"
+        },
+        {
+          "methodName": "DeleteProductAsync_WhenProductExists_RemovesProduct",
+          "description": "Tests DeleteProductAsync removes product when exists",
+          "coverage": "ProductService.DeleteProductAsync - exists"
+        },
+        {
+          "methodName": "DeleteProductAsync_WhenProductDoesNotExist_DoesNothing",
+          "description": "Tests DeleteProductAsync handles non-existent product",
+          "coverage": "ProductService.DeleteProductAsync - not exists"
+        },
+        {
+          "methodName": "CreateProductAsync_WithDescription_SavesDescription",
+          "description": "Tests CreateProductAsync saves optional description",
+          "coverage": "ProductService.CreateProductAsync - description"
+        },
+        {
+          "methodName": "GetAllProductsAsync_ReturnsProductsInOrder",
+          "description": "Tests GetAllProductsAsync returns products",
+          "coverage": "ProductService.GetAllProductsAsync - ordering"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/SampleDotNet6App.Services/UserServiceTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidContext_CreatesService",
+          "description": "Tests UserService constructor with valid context",
+          "coverage": "UserService constructor"
+        },
+        {
+          "methodName": "GetAllUsersAsync_WhenNoUsers_ReturnsEmptyList",
+          "description": "Tests GetAllUsersAsync returns empty list when no data",
+          "coverage": "UserService.GetAllUsersAsync - empty case"
+        },
+        {
+          "methodName": "GetAllUsersAsync_WhenUsersExist_ReturnsAllUsers",
+          "description": "Tests GetAllUsersAsync returns all users",
+          "coverage": "UserService.GetAllUsersAsync"
+        },
+        {
+          "methodName": "GetUserByIdAsync_WhenUserExists_ReturnsUser",
+          "description": "Tests GetUserByIdAsync returns user when found",
+          "coverage": "UserService.GetUserByIdAsync - found"
+        },
+        {
+          "methodName": "GetUserByIdAsync_WhenUserDoesNotExist_ReturnsNull",
+          "description": "Tests GetUserByIdAsync returns null when not found",
+          "coverage": "UserService.GetUserByIdAsync - not found"
+        },
+        {
+          "methodName": "GetUserByUsernameAsync_WhenUserExists_ReturnsUser",
+          "description": "Tests GetUserByUsernameAsync returns user when found",
+          "coverage": "UserService.GetUserByUsernameAsync - found"
+        },
+        {
+          "methodName": "GetUserByUsernameAsync_WhenUserDoesNotExist_ReturnsNull",
+          "description": "Tests GetUserByUsernameAsync returns null when not found",
+          "coverage": "UserService.GetUserByUsernameAsync - not found"
+        },
+        {
+          "methodName": "GetUserByUsernameAsync_CaseSensitive_ReturnsCorrectUser",
+          "description": "Tests GetUserByUsernameAsync case sensitivity",
+          "coverage": "UserService.GetUserByUsernameAsync - case sensitivity"
+        },
+        {
+          "methodName": "CreateUserAsync_WithValidUser_AddsUserToDatabase",
+          "description": "Tests CreateUserAsync adds user to database",
+          "coverage": "UserService.CreateUserAsync"
+        },
+        {
+          "methodName": "CreateUserAsync_ReturnsCreatedUser",
+          "description": "Tests CreateUserAsync returns created user",
+          "coverage": "UserService.CreateUserAsync - return value"
+        },
+        {
+          "methodName": "CreateUserAsync_SavesAllUserProperties",
+          "description": "Tests CreateUserAsync saves all properties",
+          "coverage": "UserService.CreateUserAsync - all properties"
+        },
+        {
+          "methodName": "GetAllUsersAsync_ReturnsUsersInOrder",
+          "description": "Tests GetAllUsersAsync returns users",
+          "coverage": "UserService.GetAllUsersAsync - ordering"
+        },
+        {
+          "methodName": "GetUserByUsernameAsync_WithMultipleUsers_ReturnsCorrectUser",
+          "description": "Tests GetUserByUsernameAsync with multiple users",
+          "coverage": "UserService.GetUserByUsernameAsync - multiple users"
+        },
+        {
+          "methodName": "GetUserByUsernameAsync_WithEmptyString_ReturnsNull",
+          "description": "Tests GetUserByUsernameAsync with empty string",
+          "coverage": "UserService.GetUserByUsernameAsync - edge case"
+        }
+      ],
+      "coveragePercentage": 85.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-24T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 88.3
+  }
+}

@@ -1,0 +1,91 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 1,
+    "deprecatedApisFound" : 2,
+    "totalIssues" : 3,
+    "compatibilityScore" : 85,
+    "criticalIssues" : 0,
+    "highIssues" : 2,
+    "lowIssues" : 0,
+    "estimatedEffort" : "3-5 hours",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Simple"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP2003/transformed-code/95/studio-workspace/Component ",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "17",
+    "timestamp" : "2025-12-22T11:14:54.985374862Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 17", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 17", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-22",
+  "issues" : [ {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Consider updating to the latest mysql-connector-j artifact: <groupId>com.mysql</groupId><artifactId>mysql-connector-j</artifactId><version>8.3.0</version>. If keeping mysql-connector-java, no immediate action required but plan for future migration.",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP2003/transformed-code/95/studio-workspace/Component /pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The MySQL Connector Java dependency (version 8.0.33) is compatible with Java 17, but the project should verify compatibility and consider updating to the latest version for optimal support. Additionally, mysql-connector-java has been superseded by mysql-connector-j in newer versions.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "MySQL Connector Dependency Requires Update for Java 17",
+    "lineNumber" : 19
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven-compiler-plugin to version 3.11.0 or later, and update <source> and <target> to 17: <version>3.11.0</version>\\n<configuration>\\n    <source>17</source>\\n    <target>17</target>\\n</configuration>",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP2003/transformed-code/95/studio-workspace/Component /pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The Maven Compiler Plugin version 3.8.1 should be updated to 3.11.0 or later for better Java 17 support and compatibility. While 3.8.1 can compile Java 11 code, newer versions provide better support for Java 17 features and fixes.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Plugin Version Needs Update for Java 17",
+    "lineNumber" : 35
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Two options:\\n1. Stay on Spring Boot 2.7.x: Update to 2.7.18 (latest 2.7.x release) - minimal changes required\\n2. Upgrade to Spring Boot 3.x: Requires migrating from javax.* to jakarta.* imports - more effort but better long-term support\\n\\nFor minimal upgrade effort with Java 17, update to Spring Boot 2.7.18. For future-proofing, plan migration to Spring Boot 3.2.x or later.",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP2003/transformed-code/95/studio-workspace/Component /pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Spring Boot 2.7.0 supports Java 17, but Spring Boot 2.7.x is approaching end-of-life. For long-term Java 17 compatibility and latest features, consider upgrading to Spring Boot 3.x (which requires Java 17 minimum and uses Jakarta EE instead of javax).",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot 2.7.0 Should Be Updated for Optimal Java 17 Support",
+    "lineNumber" : 24
+  } ],
+  "recommendations" : [ "\"description\": \"The MySQL Connector Java dependency (version 8.0.33) is compatible with Java 17, but the project should verify compatibility and consider updating to the latest version for optimal support. Additionally, mysql-connector-java has been superseded by mysql-connector-j in newer versions.\",", "\"impact\": \"While version 8.0.33 supports Java 17, using the legacy artifact name (mysql-connector-java) is deprecated. Oracle recommends migrating to mysql-connector-j for future releases.\",", "\"description\": \"The Maven Compiler Plugin version 3.8.1 should be updated to 3.11.0 or later for better Java 17 support and compatibility. While 3.8.1 can compile Java 11 code, newer versions provide better support for Java 17 features and fixes.\",", "\"recommendedVersion\": \"Maven 3.8.1 or later (required for Java 17 support)\",", "\"Maven Compiler Plugin 3.8.1 should be updated to 3.11.0+\",", "\"No maven-surefire-plugin configured - recommend adding version 3.0.0+ for test execution\"", "\"recommendedVersion\": \"8.0.33 (compatible) or migrate to com.mysql:mysql-connector-j:8.3.0\",", "\"recommendedVersion\": \"2.7.18 (minimal change) or 3.2.x (long-term support)\"," ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "17",
+      "issue" : "Targets Java 11 instead of 17",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 17 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

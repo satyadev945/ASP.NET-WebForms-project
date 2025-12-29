@@ -1,0 +1,40 @@
+@page "{id:int}"
+@model Films.Web.Pages.Films.DeleteModel
+@{
+    ViewData["Title"] = "Изтрий филм";
+}
+
+<h1>Изтрий филм</h1>
+
+<h3>Сигурни ли сте, че искате да изтриете този филм?</h3>
+
+@if (Model.Film != null)
+{
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Име</dt>
+                <dd class="col-sm-9">@Model.Film.Name</dd>
+
+                <dt class="col-sm-3">Описание</dt>
+                <dd class="col-sm-9">@Model.Film.Description</dd>
+
+                <dt class="col-sm-3">Година</dt>
+                <dd class="col-sm-9">@Model.Film.Year</dd>
+
+                <dt class="col-sm-3">Дата на създаване</dt>
+                <dd class="col-sm-9">@Model.Film.CreatedDate.ToString("dd.MM.yyyy HH:mm")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <form method="post" class="mt-3">
+        <button type="submit" class="btn btn-danger">Изтрий</button>
+        <a asp-page="Index" class="btn btn-secondary">Откажи</a>
+    </form>
+}
+else
+{
+    <p class="alert alert-warning">Филмът не е намерен.</p>
+    <a asp-page="Index" class="btn btn-secondary">Назад към списъка</a>
+}

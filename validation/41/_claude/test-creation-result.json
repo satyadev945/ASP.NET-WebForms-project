@@ -1,0 +1,111 @@
+{
+  "analysisId": "testcase-generation-2025-12-17",
+  "status": "success",
+  "projectType": "java",
+  "summary": {
+    "totalTestcase": 15,
+    "totalFilesModified": 4,
+    "PassTestcase": 15,
+    "totalTimeTaken": "8 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "src/test/java/com/example/calculator/CalculatorTest.java",
+      "testMethods": [
+        {
+          "methodName": "testAdd",
+          "description": "Test addition with positive numbers",
+          "coverage": "Calculator.add(int, int)"
+        },
+        {
+          "methodName": "testAddNegativeNumbers",
+          "description": "Test addition with negative numbers",
+          "coverage": "Calculator.add(int, int)"
+        },
+        {
+          "methodName": "testSubtract",
+          "description": "Test subtraction with positive numbers",
+          "coverage": "Calculator.subtract(int, int)"
+        },
+        {
+          "methodName": "testSubtractNegative",
+          "description": "Test subtraction resulting in negative",
+          "coverage": "Calculator.subtract(int, int)"
+        },
+        {
+          "methodName": "testMultiply",
+          "description": "Test multiplication with positive numbers",
+          "coverage": "Calculator.multiply(int, int)"
+        },
+        {
+          "methodName": "testMultiplyByZero",
+          "description": "Test multiplication by zero",
+          "coverage": "Calculator.multiply(int, int)"
+        },
+        {
+          "methodName": "testDivide",
+          "description": "Test division with valid numbers",
+          "coverage": "Calculator.divide(int, int)"
+        },
+        {
+          "methodName": "testDivideByZero",
+          "description": "Test division by zero throws exception",
+          "coverage": "Calculator.divide(int, int)"
+        }
+      ],
+      "coveragePercentage": 100.0
+    },
+    {
+      "filePath": "src/test/java/com/example/utils/StringUtilsTest.java",
+      "testMethods": [
+        {
+          "methodName": "testIsEmpty",
+          "description": "Test isEmpty with null string",
+          "coverage": "StringUtils.isEmpty(String)"
+        },
+        {
+          "methodName": "testIsEmptyWithEmptyString",
+          "description": "Test isEmpty with empty string",
+          "coverage": "StringUtils.isEmpty(String)"
+        },
+        {
+          "methodName": "testIsNotEmpty",
+          "description": "Test isEmpty with non-empty string",
+          "coverage": "StringUtils.isEmpty(String)"
+        },
+        {
+          "methodName": "testReverse",
+          "description": "Test reverse with valid string",
+          "coverage": "StringUtils.reverse(String)"
+        },
+        {
+          "methodName": "testReverseNull",
+          "description": "Test reverse with null string",
+          "coverage": "StringUtils.reverse(String)"
+        },
+        {
+          "methodName": "testReverseEmptyString",
+          "description": "Test reverse with empty string",
+          "coverage": "StringUtils.reverse(String)"
+        },
+        {
+          "methodName": "testReverseSingleChar",
+          "description": "Test reverse with single character",
+          "coverage": "StringUtils.reverse(String)"
+        }
+      ],
+      "coveragePercentage": 100.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1932/transformed-code/35/studio-workspace/mini-java-app-component",
+    "targetVersion": "21",
+    "platform": "linux",
+    "timestamp": "2025-12-17T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 100.0
+  }
+}

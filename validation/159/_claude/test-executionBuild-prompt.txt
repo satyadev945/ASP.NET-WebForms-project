@@ -1,0 +1,203 @@
+EXECUTE IMMEDIATELY - DO NOT ASK QUESTIONS - RUN THE COMMANDS NOW
+
+CRITICAL REQUIREMENT - FIX ALL COMPILATION ERRORS AT ANY COST: 
+ALL BUILD COMPILATION ERRORS MUST BE FIXED - NO EXCEPTIONS. This is the HIGHEST PRIORITY task. You MUST fix EVERY single compilation error, regardless of complexity or effort required. If the build has ANY compilation errors after your fixes, the ENTIRE operation will be considered as "failed". 
+
+YOU MUST:
+- Fix ALL errors, even if it requires extensive code changes
+- Fix errors in ALL projects (main code AND test projects)
+- Continue fixing until build succeeds with ZERO errors
+- Do NOT skip any error, no matter how difficult it seems
+- Do NOT proceed to test execution until ALL errors are fixed
+- Use all available tools (Read, Edit, Write) to fix errors
+
+This is a MANDATORY requirement - the operation CANNOT succeed with ANY compilation errors remaining.
+
+Project Path (Windows): /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp
+Project Path (Linux): /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp
+Platform: linux
+
+The project directory has been added with --add-dir flag. Use it directly.
+
+Run dotnet tests with coverlet coverage and place outputs at:
+/modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp/TestResults/coverage/coverage.* (cobertura/opencover/lcov)
+
+STEP 1 - VERIFY DOTNET ENVIRONMENT AND SET PATH (DO NOT SKIP):
+Check if dotnet is in PATH. If not found, locate it in ~/.dotnet and add to PATH:
+Bash("if ! command -v dotnet > /dev/null 2>&1; then DOTNET_DIR=\"$HOME/.dotnet\"; if [ -f \"$DOTNET_DIR/dotnet\" ]; then export PATH=\"$DOTNET_DIR:$PATH\"; echo 'Added $DOTNET_DIR to PATH'; else echo 'ERROR: dotnet not found in PATH or $HOME/.dotnet'; exit 1; fi; fi; dotnet --info")
+
+
+
+
+
+STEP 2 - DETECT SOLUTION FILE AND RESTORE/BUILD (CRITICAL: MUST SUCCEED OR ENTIRE OPERATION FAILS):
+First, find the solution file (.sln). If multiple exist, prefer the main solution:
+Bash("cd /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp && if ! command -v dotnet > /dev/null 2>&1; then export PATH=\"$HOME/.dotnet:$PATH\"; fi; SOL_FILE=$(find . -maxdepth 1 -name '*.sln' -type f | head -1); if [ -z \"$SOL_FILE\" ]; then echo 'ERROR: No .sln file found'; exit 1; fi; echo \"Using solution file: $SOL_FILE\"; dotnet restore \"$SOL_FILE\" && dotnet build \"$SOL_FILE\"")
+
+STEP 2.1 - FIX ALL COMPILATION ERRORS AT ANY COST (MANDATORY - OPERATION FAILS IF ERRORS REMAIN):
+CRITICAL: If STEP 2 build failed with ANY compilation errors, you MUST fix ALL errors AT ANY COST before proceeding. This is the HIGHEST PRIORITY. The ENTIRE operation will be considered FAILED if ANY compilation errors remain. You MUST continue fixing errors until build succeeds with ZERO errors. Do NOT give up, do NOT skip errors, do NOT proceed to test execution until ALL errors are fixed.
+
+ITERATIVE FIXING PROCESS (REPEAT UNTIL ALL ERRORS FIXED):
+
+1. EXTRACT ALL ERRORS: Get complete list of all compilation errors
+   Bash("cd /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp && if ! command -v dotnet > /dev/null 2>&1; then export PATH=\"$HOME/.dotnet:$PATH\"; fi; SOL_FILE=$(find . -maxdepth 1 -name '*.sln' -type f | head -1); dotnet build \"$SOL_FILE\" 2>&1 | grep -E 'error CS|Error CS'")
+
+2. FOR EACH ERROR, FIX IT:
+   - Analyze the error message to understand the issue
+   - Identify the root cause (missing references, type mismatches, syntax errors, etc.)
+   - Determine the appropriate fix based on the error type
+   - Apply the fix using appropriate code changes
+
+3. FIX PROCESS FOR EACH ERROR:
+   - Read the file: Read('path/to/file.cs')
+   - Locate the exact line number mentioned in error
+   - Understand the error context
+   - Apply appropriate fix based on error type
+   - Edit the file: Edit('path/to/file.cs', old_code, new_code)
+   - Save changes
+
+4. REBUILD AND CHECK:
+   Bash("cd /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp && if ! command -v dotnet > /dev/null 2>&1; then export PATH=\"$HOME/.dotnet:$PATH\"; fi; SOL_FILE=$(find . -maxdepth 1 -name '*.sln' -type f | head -1); dotnet build \"$SOL_FILE\" 2>&1")
+
+5. COUNT REMAINING ERRORS:
+   Bash("cd /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp && SOL_FILE=$(find . -maxdepth 1 -name '*.sln' -type f | head -1); ERROR_COUNT=$(dotnet build \"$SOL_FILE\" 2>&1 | grep -cE 'error CS|Error CS'); echo \"Remaining errors: $ERROR_COUNT\"; if [ $ERROR_COUNT -gt 0 ]; then echo 'ERRORS STILL EXIST - CONTINUE FIXING'; exit 1; else echo 'ALL ERRORS FIXED'; fi")
+
+6. REPEAT STEPS 1-5 until ERROR_COUNT = 0
+
+MANDATORY FINAL VALIDATION: After ALL fixes, verify build succeeds with ZERO errors:
+Bash("cd /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp && if ! command -v dotnet > /dev/null 2>&1; then export PATH=\"$HOME/.dotnet:$PATH\"; fi; SOL_FILE=$(find . -maxdepth 1 -name '*.sln' -type f | head -1); dotnet build \"$SOL_FILE\" 2>&1; BUILD_EXIT_CODE=$?; if [ $BUILD_EXIT_CODE -eq 0 ]; then ERROR_COUNT=$(grep -cE 'error CS|Error CS' <<< \"$(dotnet build \"$SOL_FILE\" 2>&1)\"); if [ $ERROR_COUNT -eq 0 ]; then echo 'BUILD SUCCESS - ALL COMPILATION ERRORS FIXED - ZERO ERRORS REMAINING'; else echo \"BUILD FAILED - $ERROR_COUNT ERRORS STILL EXIST - OPERATION WILL FAIL\"; exit 1; fi; else echo 'BUILD FAILED - Compilation errors remain. OPERATION WILL FAIL.'; exit 1; fi")
+
+CRITICAL: IF BUILD STILL FAILS AFTER ALL FIXES: 
+- Count remaining errors
+- List each remaining error
+- Attempt additional fixes
+- If errors cannot be fixed after multiple attempts, set status to "failed" in final JSON
+- Include detailed error list in projectComplileErrorMessage
+- Do NOT proceed to test execution
+- Do NOT mark operation as success
+
+STEP 2.5 - INSTALL COVERLET (IF NOT PRESENT):
+ONLY proceed if STEP 2.1 build succeeded. Find all test project files (*.csproj) in Tests directory or with *Tests.csproj pattern. For each test project, check if coverlet.msbuild package is already installed. If not found, install it. dotnet add will skip if already installed:
+Bash("cd /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp && if ! command -v dotnet > /dev/null 2>&1; then export PATH=\"$HOME/.dotnet:$PATH\"; fi; find . -type f \\( -name '*Tests.csproj' -o -path '*/Tests/*.csproj' \\) 2>/dev/null | while read testproj; do if [ -f \"$testproj\" ]; then if ! grep -q 'coverlet.msbuild' \"$testproj\" 2>/dev/null; then echo \"Installing coverlet.msbuild to $testproj\"; dotnet add \"$testproj\" package coverlet.msbuild --no-restore 2>&1 || dotnet add \"$testproj\" package coverlet.msbuild 2>&1; else echo \"coverlet.msbuild already present in $testproj\"; fi; fi; done")
+
+STEP 3 - EXECUTE TESTS WITH COVERAGE (COVERLET):
+CRITICAL: ONLY proceed if STEP 2.1 build succeeded with ZERO errors. Use the same solution file detected in STEP 2:
+Bash("cd /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp && if ! command -v dotnet > /dev/null 2>&1; then export PATH=\"$HOME/.dotnet:$PATH\"; fi; SOL_FILE=$(find . -maxdepth 1 -name '*.sln' -type f | head -1); if [ -z \"$SOL_FILE\" ]; then echo 'ERROR: No .sln file found'; exit 1; fi; dotnet test \"$SOL_FILE\" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura%2copencover%2clcov /p:CoverletOutput=/modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp/TestResults/coverage/coverage /p:Exclude=\"[xunit.*]*\"")
+
+STEP 4 - VALIDATE COVERAGE FILES EXIST:
+- Check for /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp/TestResults/coverage/coverage.cobertura.xml or .opencover.xml or .lcov
+Bash("(test -f /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp/TestResults/coverage/coverage.cobertura.xml || test -f /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp/TestResults/coverage/coverage.opencover.xml || test -f /modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp/TestResults/coverage/coverage.lcov) && echo 'Coverage file exists' || echo 'Coverage file not found'")
+
+STEP 5 - RETURN RESULTS AS JSON (wrap in ```json ... ```). USE THIS EXACT STRUCTURE FOR DOTNET:
+{
+  "analysisId": "159",
+  "status": "<CRITICAL: 'success' ONLY if: (1) Build succeeded with ZERO compilation errors>",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "<brief summary of test execution results>",
+    "testStatistics": {
+      "total": <extract total tests from dotnet test output>,
+      "passed": <extract passed tests>,
+      "failed": <extract failed tests>,
+      "skipped": <extract skipped tests if available, else 0>
+    },
+    "testCoverage": "<overall coverage % if derivable from coverage report; else 'N/A'>",
+    "passRate": "<calculate: (passed/total)*100%>",
+    "failRate": "<calculate: (failed/total)*100%>",
+    "timeTaken": "<elapsed time for the dotnet test command>"
+  },
+  "codeCoverage": {
+    "overallPercentage": "<calculate: average of lineCoverage.percentage, branchCoverage.percentage, and methodCoverage.percentage (if available). If methodCoverage is N/A, use average of line and branch only. Format as percentage>",
+    "lineCoverage": {
+      "percentage": "<from coverage report if available>",
+      "covered": <covered lines>,
+      "total": <total lines>,
+      "status": "<>=90% Excellent, >=80% Good, >=70% Fair, <70% Poor>"
+    },
+    "branchCoverage": {
+      "percentage": "<from coverage report if available>",
+      "covered": <covered branches>,
+      "total": <total branches>,
+      "status": "<>=90% Excellent, >=80% Good, >=70% Fair, <70% Poor>"
+    },
+    "methodCoverage": {
+      "percentage": "<from coverage report if available>",
+      "covered": <covered methods>,
+      "total": <total methods>,
+      "status": "<>=90% Excellent, >=80% Good, >=70% Fair, <70% Poor>"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": <count of failed tests>,
+    "failurePercentage": "<calculate: (failed/total)*100%>",
+    "categories": [
+      {
+        "category": "<category name: Performance/Timeout, Integration Issues, Assertion Failures, etc>",
+        "count": <count>,
+        "percentage": "<calculate: (count/totalFailed)*100%>",
+        "impact": "<Non-Blocking or Blocking>"
+      }
+    ]
+  },
+  "blockingFailures": [
+    {
+      "testName": "<test method name>",
+      "priority": "<High|Medium|Low>",
+      "reason": "<failure reason>",
+      "module": "<module/namespace>",
+      "className": "<fully qualified class name>",
+      "errorMessage": "<detailed error/stack trace>"
+    }
+  ],
+  "nonBlockingFailures": {
+    "count": <count of non-blocking failures>,
+    "summary": [
+      "<2-3 summary points>"
+    ],
+    "details": [
+      {
+        "category": "<category name>",
+        "count": <count>,
+        "examples": [
+          {
+            "testName": "<test method>",
+            "className": "<fully qualified class>",
+            "reason": "<brief failure reason>"
+          }
+        ]
+      }
+    ]
+  },
+  "skippedTests": {
+    "count": <skipped count>,
+    "percentage": "<calculate: (skipped/total)*100%>",
+    "tests": [
+      {
+        "testName": "<test method>",
+        "reason": "<skip reason if available>",
+        "module": "<module/namespace>",
+        "className": "<fully qualified class>"
+      }
+    ]
+  },
+  "summary": {
+    "totalTestcase": <total tests>,
+    "totalFilesModified": <number of files modified to execute the test case>,
+    "PassTestcase": <passed tests>,
+    "totalTimeTaken": "<total time taken in Xm Ys>",
+    "FailledTestcase": <failed tests>,
+    "projectComplileStatus": "<success|partial|failed>",
+    "projectComplileErrorMessage": "<error message if failed, empty if success>"
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "<current timestamp ISO-8601>",
+    "claudeModel": "<your model name>",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp/TestResults/coverage/coverage.cobertura.xml"
+  }
+}
+
+Return ONLY the JSON block and keep it valid.
+

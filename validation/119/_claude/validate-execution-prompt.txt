@@ -1,0 +1,257 @@
+EXECUTE IMMEDIATELY - DO NOT ASK QUESTIONS - DO NOT DESCRIBE - EXECUTE TOOLS NOW
+
+Project Path (WSL): /modernize-data/studio-data/TNT1001/APP1977/transformed-code/88/studio-workspace/santhosh00
+Project Path (Windows): /modernize-data/studio-data/TNT1001/APP1977/transformed-code/88/studio-workspace/santhosh00
+Platform: linux
+
+The project directory has been added with --add-dir flag. Use relative paths from project root.
+
+STEP 1 - EXECUTE THIS TOOL CALL NOW (DO NOT ASK, DO NOT DESCRIBE, JUST EXECUTE):
+Read('/modernize-data/studio-data/TNT1001/APP1977/transformed-code/88/studio-workspace/santhosh00/pom.xml')
+
+STEP 2 - CHECK AND ADD JACOCO PLUGIN:
+After reading pom.xml, check if it contains 'jacoco-maven-plugin'.
+If it does NOT contain 'jacoco-maven-plugin', use Edit tool to add the plugin.
+Find the <plugins> section (or <build><plugins> section) and add this plugin:
+
+EXACT PLUGIN XML TO ADD:
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.11</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+
+Use Edit tool to insert this plugin XML into the <plugins> section of pom.xml.
+If pom.xml already contains 'jacoco-maven-plugin', skip this step.
+
+STEP 3 - COMPILE TESTS AND RESOLVE ALL COMPILATION ERRORS:
+
+MANDATORY REQUIREMENT: You MUST resolve ALL compilation errors before proceeding. Do not generate JaCoCo reports until every single compilation error is fixed.
+
+3.1 - VERIFY JAVA ENVIRONMENT:
+Execute: Bash('java -version && echo "Java OK"')
+
+3.2 - COMPILE TESTS:
+Try Maven wrapper first, if it fails, use system Maven:
+Execute: Bash('if [ -f .mvn/wrapper/maven-wrapper.jar ]; then java -Dmaven.multiModuleProjectDirectory=. -cp .mvn/wrapper/maven-wrapper.jar org.apache.maven.wrapper.MavenWrapperMain clean test-compile; else mvn clean test-compile; fi')
+This will compile test files and reveal any compilation errors.
+
+3.3 - ANALYZE COMPILATION ERRORS:
+If compilation fails, carefully examine ALL error messages. Common compilation errors include:
+- 'cannot find symbol' (missing methods, classes, or imports)
+- 'incompatible types' (type mismatches)
+- 'method not found' (signature mismatches)
+- 'package does not exist' (missing dependencies)
+- 'class not found' (missing classes)
+
+3.4 - FIX ALL COMPILATION ERRORS:
+For EACH compilation error identified, apply the appropriate fix:
+
+**General Approach:**
+- Read the error message carefully to understand what's missing or incorrect
+- Locate the file mentioned in the error
+- Apply the necessary code changes to resolve the specific error
+- Common fixes include adding missing code, fixing syntax, correcting types, or updating imports
+
+**Specific Error Resolution:**
+- 'cannot find symbol': Add missing imports, methods, fields, or classes
+- 'incompatible types': Change variable/method types to match expectations
+- 'method not found': Add missing methods or fix method signatures
+- 'package does not exist': Add missing dependencies to pom.xml
+- 'class not found': Add missing classes or fix import statements
+- Syntax errors: Fix braces, semicolons, parentheses, or other syntax issues
+- Any other compilation error: Analyze and apply the logical fix based on the error message
+
+3.5 - VERIFY FIXES:
+After making changes, immediately verify by recompiling:
+Execute: Bash('if [ -f .mvn/wrapper/maven-wrapper.jar ]; then java -Dmaven.multiModuleProjectDirectory=. -cp .mvn/wrapper/maven-wrapper.jar org.apache.maven.wrapper.MavenWrapperMain test-compile; else mvn test-compile; fi')
+
+3.6 - ITERATIVE FIXING PROCESS:
+REPEAT steps 3.3-3.5 until test compilation succeeds with ZERO errors.
+- Do NOT proceed if any compilation errors remain
+- Fix ALL errors before moving forward
+- Recompile after each fix to verify resolution
+
+3.7 - RUN TESTS WITH JACOCO:
+ONLY after test compilation succeeds with ZERO errors, run the full test suite:
+Execute: Bash('if [ -f .mvn/wrapper/maven-wrapper.jar ]; then java -Dmaven.multiModuleProjectDirectory=. -cp .mvn/wrapper/maven-wrapper.jar org.apache.maven.wrapper.MavenWrapperMain clean test jacoco:report -DtestFailureIgnore=true; else mvn clean test jacoco:report -DtestFailureIgnore=true; fi')
+
+STRICT REQUIREMENTS - VIOLATION PROHIBITED:
+🚫 ABSOLUTELY FORBIDDEN to proceed with JaCoCo report generation while compilation errors exist
+🚫 MUST achieve 100% successful test compilation before running tests
+🚫 NO EXCEPTIONS - all compilation errors MUST be resolved
+🚫 DO NOT skip or ignore any compilation error
+✅ ONLY proceed when: 'BUILD SUCCESS' appears for test compilation
+
+FINAL OUTPUT LOCATION: target/site/jacoco/index.html
+
+**JSON OUTPUT REQUIREMENT:**
+- FIRST, provide your response as valid JSON wrapped in ```json code blocks
+- Use this EXACT JSON schema with ALL fields populated:
+- Parse the JaCoCo HTML report (target/site/jacoco/index.html) to extract coverage metrics
+- Analyze Maven test output to categorize failures and extract test details
+```json
+{
+  "analysisId": "<extract from request>",
+  "status": "<CRITICAL: 'success' if target/site/jacoco/index.html file exists, 'failed' if file does not exist - use 'test -f target/site/jacoco/index.html' to check>",
+  "projectType": "java",
+  "executiveSummary": {
+    "description": "<generate brief summary of test execution results>",
+    "testStatistics": {
+      "total": <extract total tests from Maven output>,
+      "passed": <extract passed tests from Maven output>,
+      "failed": <extract failed tests from Maven output>,
+      "skipped": <extract skipped tests from Maven output>
+    },
+    "testCoverage": "<extract overall coverage % from JaCoCo report>",
+    "passRate": "<calculate: (passed/total)*100%>",
+    "failRate": "<calculate: (failed/total)*100%>",
+    "timeTaken": "<calculate total elapsed time from when you started executing step 3.1 until step 3.7 completes - format as 'X min Y s' or 'X s'>"
+  },
+  "codeCoverage": {
+    "overallPercentage": "<extract average of line/branch/method coverage>",
+    "lineCoverage": {
+      "percentage": "<extract from JaCoCo index.html>",
+      "covered": <extract covered lines count>,
+      "total": <extract total lines count>,
+      "status": "<calculate: >=90%=Excellent, >=80%=Good, >=70%=Fair, <70%=Poor>"
+    },
+    "branchCoverage": {
+      "percentage": "<extract from JaCoCo index.html>",
+      "covered": <extract covered branches count>,
+      "total": <extract total branches count>,
+      "status": "<calculate: >=90%=Excellent, >=80%=Good, >=70%=Fair, <70%=Poor>"
+    },
+    "methodCoverage": {
+      "percentage": "<extract from JaCoCo index.html>",
+      "covered": <extract covered methods count>,
+      "total": <extract total methods count>,
+      "status": "<calculate: >=90%=Excellent, >=80%=Good, >=70%=Fair, <70%=Poor>"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": <count of failed tests>,
+    "failurePercentage": "<calculate: (failed/total)*100%>",
+    "categories": [
+      <for each category of failures found, create entry>:
+      {
+        "category": "<category name: Performance/Timeout, Integration Issues, Assertion Failures, etc>",
+        "count": <count of tests in this category>,
+        "percentage": "<calculate: (count/totalFailed)*100%>",
+        "impact": "<determine: Non-Blocking or Blocking>"
+      }
+    ]
+  },
+  "blockingFailures": [
+    <for each blocking failure identified, create entry>:
+    {
+      "testName": "<extract test method name>",
+      "priority": "<assign: High|Medium|Low based on severity>",
+      "reason": "<extract failure reason from test output>",
+      "module": "<extract module/package name>",
+      "className": "<extract fully qualified class name>",
+      "errorMessage": "<extract detailed error/stack trace>"
+    }
+  ],
+  "nonBlockingFailures": {
+    "count": <count of non-blocking failures>,
+    "summary": [
+      <generate 2-3 summary points about non-blocking failures>
+    ],
+    "details": [
+      <for each category of non-blocking failures>:
+      {
+        "category": "<category name>",
+        "count": <count in this category>,
+        "examples": [
+          <provide 1-2 examples>:
+          {
+            "testName": "<test method name>",
+            "className": "<fully qualified class name>",
+            "reason": "<brief failure reason>"
+          }
+        ]
+      }
+    ]
+  },
+  "skippedTests": {
+    "count": <count of skipped tests>,
+    "percentage": "<calculate: (skipped/total)*100%>",
+    "tests": [
+      <for each skipped test found>:
+      {
+        "testName": "<test method name>",
+        "reason": "<extract from @Ignore/@Disabled annotation or comments>",
+        "module": "<module/package name>",
+        "className": "<fully qualified class name>"
+      }
+    ]
+  },
+  "summary": {
+    "totalTestcase": <total tests>,
+    "totalFilesModified": <number of files modified to execute the test case>,
+    "PassTestcase": <passed tests>,
+    "totalTimeTaken": "<total time taken by you to complete the operation in format Xm Ys>",
+    "FailledTestcase": <failed tests>,
+    "projectComplileStatus": "<success|partial|failed>",
+    "projectComplileErrorMessage": "<error message if failed, empty if success>"
+  },
+  "metadata": {
+    "projectPath": "<from request>",
+    "targetVersion": "<from request>",
+    "platform": "<from request>",
+    "timestamp": "<current timestamp in ISO-8601 format>",
+    "claudeModel": "<your model name>",
+    "jacocoReportPath": "target/site/jacoco/index.html"
+  }
+}
+```
+
+**IMPORTANT INSTRUCTIONS FOR EXTRACTING DATA:**
+1. **Coverage Metrics**: After generating JaCoCo report, READ the target/site/jacoco/index.html file to extract:
+   - Line coverage percentage and counts (covered/total lines)
+   - Branch coverage percentage and counts
+   - Method coverage percentage and counts
+   - Calculate status: >=90% = Excellent, >=80% = Good, >=70% = Fair, <70% = Poor
+
+2. **Test Results Analysis**: Parse Maven test output to extract:
+   - Total tests run, passed, failed, skipped
+   - Calculate pass rate = (passed / total) * 100
+   - Calculate fail rate = (failed / total) * 100
+   - Find time taken by c
+
+3. **Failed Test Categorization**: Analyze each failed test and categorize by:
+   - Performance/Timeout: Tests failing due to timeout or performance issues
+   - Integration Issues: Tests failing due to external dependencies or integration problems
+   - Assertion Failures: Tests failing due to incorrect assertions
+   - Configuration Issues: Tests failing due to configuration problems
+   - Other categories as identified
+
+4. **Blocking vs Non-Blocking**: Classify failures as:
+   - Blocking: Critical failures that prevent deployment (security issues, data corruption, major functionality broken)
+   - Non-Blocking: Minor issues, timeouts in test environments, performance issues that don't affect functionality
+
+5. **Priority Assignment**: For blocking failures, assign priority:
+   - High: Security issues, data loss, critical functionality broken
+   - Medium: Important features affected, significant issues
+   - Low: Minor issues, edge cases
+
+6. **Skipped Tests**: Identify tests marked with @Ignore or @Disabled and extract:
+   - Test name, class name, module
+   - Reason for skipping (from annotation or comments)
+
+**THEN**, provide your detailed test execution report in markdown format explaining the test results.

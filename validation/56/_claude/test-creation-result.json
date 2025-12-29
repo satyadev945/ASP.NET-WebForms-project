@@ -1,0 +1,377 @@
+{
+  "analysisId": "testcase-generation-2025-12-18",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 62,
+    "totalFilesModified": 8,
+    "PassTestcase": 62,
+    "totalTimeTaken": "12 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/MyWebApi/Controllers/ProductsControllerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldCreateInstance",
+          "description": "Tests ProductsController constructor creates valid instance",
+          "coverage": "ProductsController constructor"
+        },
+        {
+          "methodName": "GetProducts_ShouldReturnAllProducts",
+          "description": "Tests GetProducts returns all products successfully",
+          "coverage": "ProductsController.GetProducts"
+        },
+        {
+          "methodName": "GetProduct_WithValidId_ShouldReturnProduct",
+          "description": "Tests GetProduct with valid ID returns correct product",
+          "coverage": "ProductsController.GetProduct positive path"
+        },
+        {
+          "methodName": "GetProduct_WithInvalidId_ShouldReturnNotFound",
+          "description": "Tests GetProduct with invalid ID returns NotFound",
+          "coverage": "ProductsController.GetProduct negative path"
+        },
+        {
+          "methodName": "CreateProduct_WithValidProduct_ShouldReturnCreated",
+          "description": "Tests CreateProduct with valid product returns CreatedAtAction",
+          "coverage": "ProductsController.CreateProduct positive path"
+        },
+        {
+          "methodName": "UpdateProduct_WithValidData_ShouldReturnNoContent",
+          "description": "Tests UpdateProduct with valid data returns NoContent",
+          "coverage": "ProductsController.UpdateProduct positive path"
+        },
+        {
+          "methodName": "UpdateProduct_WithMismatchedId_ShouldReturnBadRequest",
+          "description": "Tests UpdateProduct with mismatched ID returns BadRequest",
+          "coverage": "ProductsController.UpdateProduct validation"
+        },
+        {
+          "methodName": "DeleteProduct_WithValidId_ShouldReturnNoContent",
+          "description": "Tests DeleteProduct with valid ID returns NoContent",
+          "coverage": "ProductsController.DeleteProduct positive path"
+        },
+        {
+          "methodName": "DeleteProduct_WithInvalidId_ShouldReturnNotFound",
+          "description": "Tests DeleteProduct with invalid ID returns NotFound",
+          "coverage": "ProductsController.DeleteProduct negative path"
+        }
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/MyWebApi/Models/ProductTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldCreateInstance",
+          "description": "Tests Product constructor creates valid instance",
+          "coverage": "Product constructor"
+        },
+        {
+          "methodName": "Id_ShouldGetAndSet",
+          "description": "Tests Product.Id property getter and setter",
+          "coverage": "Product.Id property"
+        },
+        {
+          "methodName": "Name_ShouldGetAndSet",
+          "description": "Tests Product.Name property getter and setter",
+          "coverage": "Product.Name property"
+        },
+        {
+          "methodName": "Price_ShouldGetAndSet",
+          "description": "Tests Product.Price property getter and setter",
+          "coverage": "Product.Price property"
+        },
+        {
+          "methodName": "Category_ShouldGetAndSet",
+          "description": "Tests Product.Category property getter and setter",
+          "coverage": "Product.Category property"
+        },
+        {
+          "methodName": "InStock_ShouldGetAndSet",
+          "description": "Tests Product.InStock property getter and setter",
+          "coverage": "Product.InStock property"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/MyWebApi/Services/ProductServiceTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldCreateInstance",
+          "description": "Tests ProductService constructor creates valid instance",
+          "coverage": "ProductService constructor"
+        },
+        {
+          "methodName": "GetAllProducts_ShouldReturnAllProducts",
+          "description": "Tests GetAllProducts returns complete list",
+          "coverage": "ProductService.GetAllProducts"
+        },
+        {
+          "methodName": "GetProductById_WithValidId_ShouldReturnProduct",
+          "description": "Tests GetProductById with valid ID returns correct product",
+          "coverage": "ProductService.GetProductById positive path"
+        },
+        {
+          "methodName": "GetProductById_WithInvalidId_ShouldReturnNull",
+          "description": "Tests GetProductById with invalid ID returns null",
+          "coverage": "ProductService.GetProductById negative path"
+        },
+        {
+          "methodName": "AddProduct_WithValidProduct_ShouldAddToList",
+          "description": "Tests AddProduct adds product to internal list",
+          "coverage": "ProductService.AddProduct"
+        },
+        {
+          "methodName": "UpdateProduct_WithValidData_ShouldUpdateProduct",
+          "description": "Tests UpdateProduct updates existing product",
+          "coverage": "ProductService.UpdateProduct positive path"
+        },
+        {
+          "methodName": "UpdateProduct_WithInvalidId_ShouldReturnFalse",
+          "description": "Tests UpdateProduct with invalid ID returns false",
+          "coverage": "ProductService.UpdateProduct negative path"
+        },
+        {
+          "methodName": "DeleteProduct_WithValidId_ShouldRemoveProduct",
+          "description": "Tests DeleteProduct removes product from list",
+          "coverage": "ProductService.DeleteProduct positive path"
+        },
+        {
+          "methodName": "DeleteProduct_WithInvalidId_ShouldReturnFalse",
+          "description": "Tests DeleteProduct with invalid ID returns false",
+          "coverage": "ProductService.DeleteProduct negative path"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/MyWebApi/Utilities/StringHelperTests.cs",
+      "testMethods": [
+        {
+          "methodName": "ToTitleCase_WithLowerCaseString_ShouldCapitalizeFirstLetter",
+          "description": "Tests ToTitleCase with lowercase string returns capitalized",
+          "coverage": "StringHelper.ToTitleCase positive path"
+        },
+        {
+          "methodName": "ToTitleCase_WithNullString_ShouldReturnNull",
+          "description": "Tests ToTitleCase with null returns null",
+          "coverage": "StringHelper.ToTitleCase null handling"
+        },
+        {
+          "methodName": "ToTitleCase_WithEmptyString_ShouldReturnEmpty",
+          "description": "Tests ToTitleCase with empty string returns empty",
+          "coverage": "StringHelper.ToTitleCase edge case"
+        },
+        {
+          "methodName": "IsValidEmail_WithValidEmail_ShouldReturnTrue",
+          "description": "Tests IsValidEmail with valid email returns true",
+          "coverage": "StringHelper.IsValidEmail positive path"
+        },
+        {
+          "methodName": "IsValidEmail_WithInvalidEmail_ShouldReturnFalse",
+          "description": "Tests IsValidEmail with invalid email returns false",
+          "coverage": "StringHelper.IsValidEmail negative path"
+        },
+        {
+          "methodName": "IsValidEmail_WithNullEmail_ShouldReturnFalse",
+          "description": "Tests IsValidEmail with null returns false",
+          "coverage": "StringHelper.IsValidEmail null handling"
+        },
+        {
+          "methodName": "Truncate_WithLongString_ShouldTruncateToMaxLength",
+          "description": "Tests Truncate with string longer than maxLength",
+          "coverage": "StringHelper.Truncate positive path"
+        },
+        {
+          "methodName": "Truncate_WithShortString_ShouldReturnOriginal",
+          "description": "Tests Truncate with string shorter than maxLength",
+          "coverage": "StringHelper.Truncate edge case"
+        },
+        {
+          "methodName": "Truncate_WithNullString_ShouldReturnNull",
+          "description": "Tests Truncate with null returns null",
+          "coverage": "StringHelper.Truncate null handling"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/MyWebApi/Utilities/MathHelperTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Add_WithTwoNumbers_ShouldReturnSum",
+          "description": "Tests Add returns correct sum of two numbers",
+          "coverage": "MathHelper.Add"
+        },
+        {
+          "methodName": "Subtract_WithTwoNumbers_ShouldReturnDifference",
+          "description": "Tests Subtract returns correct difference",
+          "coverage": "MathHelper.Subtract"
+        },
+        {
+          "methodName": "Multiply_WithTwoNumbers_ShouldReturnProduct",
+          "description": "Tests Multiply returns correct product",
+          "coverage": "MathHelper.Multiply"
+        },
+        {
+          "methodName": "Divide_WithNonZeroDivisor_ShouldReturnQuotient",
+          "description": "Tests Divide with non-zero divisor returns quotient",
+          "coverage": "MathHelper.Divide positive path"
+        },
+        {
+          "methodName": "Divide_WithZeroDivisor_ShouldThrowDivideByZeroException",
+          "description": "Tests Divide with zero divisor throws exception",
+          "coverage": "MathHelper.Divide exception handling"
+        },
+        {
+          "methodName": "IsEven_WithEvenNumber_ShouldReturnTrue",
+          "description": "Tests IsEven with even number returns true",
+          "coverage": "MathHelper.IsEven positive path"
+        },
+        {
+          "methodName": "IsEven_WithOddNumber_ShouldReturnFalse",
+          "description": "Tests IsEven with odd number returns false",
+          "coverage": "MathHelper.IsEven negative path"
+        },
+        {
+          "methodName": "IsPrime_WithPrimeNumber_ShouldReturnTrue",
+          "description": "Tests IsPrime with prime number returns true",
+          "coverage": "MathHelper.IsPrime positive path"
+        },
+        {
+          "methodName": "IsPrime_WithNonPrimeNumber_ShouldReturnFalse",
+          "description": "Tests IsPrime with non-prime number returns false",
+          "coverage": "MathHelper.IsPrime negative path"
+        },
+        {
+          "methodName": "IsPrime_WithOne_ShouldReturnFalse",
+          "description": "Tests IsPrime with 1 returns false",
+          "coverage": "MathHelper.IsPrime edge case"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/MyWebApi/Data/ProductRepositoryTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldCreateInstance",
+          "description": "Tests ProductRepository constructor creates valid instance",
+          "coverage": "ProductRepository constructor"
+        },
+        {
+          "methodName": "GetAll_ShouldReturnAllProducts",
+          "description": "Tests GetAll returns complete list of products",
+          "coverage": "ProductRepository.GetAll"
+        },
+        {
+          "methodName": "GetById_WithValidId_ShouldReturnProduct",
+          "description": "Tests GetById with valid ID returns correct product",
+          "coverage": "ProductRepository.GetById positive path"
+        },
+        {
+          "methodName": "GetById_WithInvalidId_ShouldReturnNull",
+          "description": "Tests GetById with invalid ID returns null",
+          "coverage": "ProductRepository.GetById negative path"
+        },
+        {
+          "methodName": "Add_WithValidProduct_ShouldAddToRepository",
+          "description": "Tests Add adds product to repository",
+          "coverage": "ProductRepository.Add"
+        },
+        {
+          "methodName": "Update_WithValidProduct_ShouldUpdateExisting",
+          "description": "Tests Update modifies existing product",
+          "coverage": "ProductRepository.Update positive path"
+        },
+        {
+          "methodName": "Update_WithInvalidId_ShouldReturnFalse",
+          "description": "Tests Update with invalid ID returns false",
+          "coverage": "ProductRepository.Update negative path"
+        },
+        {
+          "methodName": "Delete_WithValidId_ShouldRemoveProduct",
+          "description": "Tests Delete removes product from repository",
+          "coverage": "ProductRepository.Delete positive path"
+        },
+        {
+          "methodName": "Delete_WithInvalidId_ShouldReturnFalse",
+          "description": "Tests Delete with invalid ID returns false",
+          "coverage": "ProductRepository.Delete negative path"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/MyWebApi/Validators/ProductValidatorTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Validate_WithValidProduct_ShouldReturnTrue",
+          "description": "Tests Validate with valid product returns true",
+          "coverage": "ProductValidator.Validate positive path"
+        },
+        {
+          "methodName": "Validate_WithNullProduct_ShouldReturnFalse",
+          "description": "Tests Validate with null product returns false",
+          "coverage": "ProductValidator.Validate null handling"
+        },
+        {
+          "methodName": "Validate_WithEmptyName_ShouldReturnFalse",
+          "description": "Tests Validate with empty name returns false",
+          "coverage": "ProductValidator.Validate name validation"
+        },
+        {
+          "methodName": "Validate_WithNegativePrice_ShouldReturnFalse",
+          "description": "Tests Validate with negative price returns false",
+          "coverage": "ProductValidator.Validate price validation"
+        },
+        {
+          "methodName": "ValidateName_WithValidName_ShouldReturnTrue",
+          "description": "Tests ValidateName with valid name returns true",
+          "coverage": "ProductValidator.ValidateName positive path"
+        },
+        {
+          "methodName": "ValidateName_WithNullName_ShouldReturnFalse",
+          "description": "Tests ValidateName with null returns false",
+          "coverage": "ProductValidator.ValidateName null handling"
+        },
+        {
+          "methodName": "ValidatePrice_WithPositivePrice_ShouldReturnTrue",
+          "description": "Tests ValidatePrice with positive price returns true",
+          "coverage": "ProductValidator.ValidatePrice positive path"
+        },
+        {
+          "methodName": "ValidatePrice_WithZeroPrice_ShouldReturnFalse",
+          "description": "Tests ValidatePrice with zero returns false",
+          "coverage": "ProductValidator.ValidatePrice edge case"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/MyWebApi/ProgramTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Program_ShouldHaveMainMethod",
+          "description": "Tests Program class exists and can be instantiated",
+          "coverage": "Program class structure"
+        }
+      ],
+      "coveragePercentage": 20.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1947/transformed-code/43/studio-workspace/dotnetCOmp",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-18T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 72.5
+  }
+}

@@ -1,0 +1,49 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 0,
+    "deprecatedApisFound" : 0,
+    "totalIssues" : 0,
+    "compatibilityScore" : 100,
+    "criticalIssues" : 0,
+    "highIssues" : 0,
+    "lowIssues" : 0,
+    "breakingChanges" : 0,
+    "estimatedEffort" : "0 hours",
+    "upgradeComplexity" : "None - Already on Target Version"
+  },
+  "metadata" : {
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "N/A",
+    "source" : "Claude AI Analysis",
+    "currentVersion" : ".NET 6",
+    "targetVersion" : ".NET 8",
+    "timestamp" : "2025-12-26T14:16:01.26099403Z"
+  },
+  "buildToolAnalysis" : { },
+  "analysisId" : "dotnet-upgrade-analysis-2025-12-26",
+  "issues" : [ ],
+  "recommendations" : [ {
+    "category" : "no-action-required",
+    "priority" : "informational",
+    "recommendation" : "The project is already targeting .NET 8.0, which is the same as the target version specified. No upgrade is necessary.",
+    "estimatedEffort" : "0 hours"
+  }, {
+    "category" : "code-quality",
+    "priority" : "low",
+    "recommendation" : "Consider keeping NuGet packages up to date. The Swashbuckle.AspNetCore package is at version 6.4.0, while newer versions may be available.",
+    "estimatedEffort" : "0.5 hours"
+  }, {
+    "category" : "best-practices",
+    "priority" : "low",
+    "recommendation" : "The project already follows .NET 8 best practices with ImplicitUsings and Nullable reference types enabled.",
+    "estimatedEffort" : "0 hours"
+  } ],
+  "dependencies" : {
+    "incompatible" : [ ],
+    "upgradeable" : [ ]
+  }
+}

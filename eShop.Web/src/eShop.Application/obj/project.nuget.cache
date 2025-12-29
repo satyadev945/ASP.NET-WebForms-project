@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "7a1TojuBeRw=",
+  "success": true,
+  "projectFilePath": "/studio-app/claude-workspace/eShop.Web/src/eShop.Application/eShop.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/studioai/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/studioai/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

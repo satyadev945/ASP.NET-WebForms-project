@@ -1,0 +1,91 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 1,
+    "deprecatedApisFound" : 2,
+    "totalIssues" : 3,
+    "compatibilityScore" : 85,
+    "criticalIssues" : 0,
+    "highIssues" : 2,
+    "lowIssues" : 0,
+    "estimatedEffort" : "2-4 hours",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Simple"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP2130/transformed-code/114/studio-workspace/test-011",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "17",
+    "timestamp" : "2025-12-26T05:06:22.88630772Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 17", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 17", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-26",
+  "issues" : [ {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven-compiler-plugin version to 3.11.0 or newer",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP2130/transformed-code/114/studio-workspace/test-011/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The maven-compiler-plugin version 3.8.1 should be updated to at least 3.11.0+ for better Java 17 compatibility.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Plugin Version Update Required",
+    "lineNumber" : 37
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven.compiler.source and maven.compiler.target to 17",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP2130/transformed-code/114/studio-workspace/test-011/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The Maven compiler source and target are set to Java 11 and need to be updated to Java 17.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Java Source and Target Version Update Required",
+    "lineNumber" : 13
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update Spring Boot to version 3.x.x for better Java 17 compatibility",
+    "breakingChange" : true,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP2130/transformed-code/114/studio-workspace/test-011/pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The current Spring Boot version 2.7.0 can work with Java 17, but it's recommended to upgrade to a newer version for better compatibility.",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot Version Upgrade Recommended",
+    "lineNumber" : 28
+  } ],
+  "recommendations" : [ "\"description\": \"The maven-compiler-plugin version 3.8.1 should be updated to at least 3.11.0+ for better Java 17 compatibility.\",", "\"description\": \"The current Spring Boot version 2.7.0 can work with Java 17, but it's recommended to upgrade to a newer version for better compatibility.\",", "\"recommendedVersion\": \"3.9.0 or newer\"," ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "17",
+      "issue" : "Targets Java 11 instead of 17",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 17 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

@@ -1,0 +1,14 @@
+```json
+{
+  "analysisId": "DB-MOD-APP2152-20251227",
+  "summary": {
+    "issuesFixed": 6,
+    "criticalIssuesFixed": 2,
+    "highIssuesFixed": 2,
+    "mediumIssuesFixed": 2,
+    "lowIssuesFixed": 0,
+    "filesModified": 3,
+    "status": "success"
+  }
+}
+```

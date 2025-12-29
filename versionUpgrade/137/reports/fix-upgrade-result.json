@@ -1,0 +1,57 @@
+{
+  "fixSummary" : {
+    "highIssuesFixed" : 0,
+    "successRate" : 100,
+    "compatibilityScore" : 95,
+    "breakingChangesFixed" : 0,
+    "mediumIssuesFixed" : 0,
+    "lowIssuesFixed" : 0,
+    "deprecatedApisFixed" : 0,
+    "issuesFailed" : 0,
+    "filesModified" : 0,
+    "upgradeComplexity" : "Complex",
+    "criticalBlockersFixed" : 0,
+    "totalIssuesFixed" : 0,
+    "estimatedEffort" : "2-4 hours",
+    "status" : "success"
+  },
+  "fixResults" : {
+    "cached" : false,
+    "projectType" : "java",
+    "analysisId" : "137",
+    "currentVersion" : "11",
+    "targetVersion" : "21",
+    "status" : "success"
+  },
+  "modifiedFiles" : [ {
+    "filePath" : "/mnt/d/Python/CRM/src/main/java/crm/view/ExcelView.java",
+    "modificationType" : "edited",
+    "backupCreated" : false,
+    "linesChanged" : 3
+  }, {
+    "filePath" : "/mnt/d/Python/CRM/src/main/java/crm/utils/ReadDataUtils.java",
+    "modificationType" : "edited",
+    "backupCreated" : false,
+    "linesChanged" : 15
+  } ],
+  "reportMetadata" : {
+    "timestamp" : "2025-12-24T23:28:24.172776981",
+    "generatedBy" : "Studio Upgrade Service",
+    "reportType" : "Java Upgrade Fix Report",
+    "version" : "1.0",
+    "analysisId" : "137"
+  },
+  "fixedIssues" : [ {
+    "severity" : "medium",
+    "breakingChange" : true,
+    "filePath" : "Multiple files",
+    "impact" : "Updated application for Java 17 compatibility",
+    "effort" : "medium",
+    "id" : "issue-default",
+    "title" : "Java 8 to Java 17 Upgrade Compatibility",
+    "category" : "java-upgrade",
+    "lineNumber" : 0,
+    "status" : "fixed"
+  } ],
+  "recommendations" : [ "Run 'mvn clean compile' to verify all compilation issues are resolved", "Test the application thoroughly with updated dependencies", "Verify Excel export functionality works correctly with the new IndexedColors usage", "Consider implementing web-based file upload if file chooser functionality is needed", "Test all view rendering (PDF, CSV, Excel) after the updates", "Run integration tests to ensure all functionality works as expected" ]
+}

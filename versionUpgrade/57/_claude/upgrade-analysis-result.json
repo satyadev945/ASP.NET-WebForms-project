@@ -1,0 +1,104 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 2,
+    "deprecatedApisFound" : 2,
+    "totalIssues" : 4,
+    "compatibilityScore" : 80,
+    "criticalIssues" : 0,
+    "highIssues" : 2,
+    "lowIssues" : 0,
+    "estimatedEffort" : "4-8 hours",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Moderate"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1949/transformed-code/44/studio-workspace/mini-java-app-component-18-06",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "21",
+    "timestamp" : "2025-12-18T08:37:33.860852403Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 21", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 21", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-18",
+  "issues" : [ {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven-compiler-plugin version from 3.8.1 to 3.11.0 or higher. Update compiler source and target from 11 to 21 in both properties section and plugin configuration.",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The Maven compiler plugin version 3.8.1 is outdated and should be updated for optimal Java 21 compatibility. Java 11 to 21 upgrade requires Maven compiler plugin 3.11.0 or higher for full Java 21 feature support.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Plugin Version Outdated",
+    "lineNumber" : 37
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Upgrade Spring Boot from 2.7.0 to 3.2.0 or higher for full Java 21 support. Note: This is a major version upgrade requiring migration from javax.* to jakarta.* packages if using Jakarta EE APIs (Servlet, JPA, etc.).",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Spring Boot 2.7.0 has limited support for Java 21. Spring Boot 3.0+ is required for full Java 21 support and Jakarta EE 9+ compatibility.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot Version Requires Update for Java 21",
+    "lineNumber" : 28
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Remove the Class.forName(\\",
+    "breakingChange" : true,
+    "filePath" : "src/main/java/com/test/DatabaseService.java",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Explicit Class.forName() loading of JDBC drivers is no longer necessary in modern Java versions. JDBC 4.0+ (Java 6+) uses automatic driver discovery via ServiceLoader.",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "MySQL Connector Driver Class Loading Pattern",
+    "lineNumber" : 36
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven.compiler.source and maven.compiler.target from 11 to 21 in the properties section. Also update <source> and <target> in the maven-compiler-plugin configuration section from 11 to 21.",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Maven compiler source and target are configured for Java 11 and need to be updated to Java 21 for the upgrade.",
+    "effort" : "medium",
+    "id" : "issue-4",
+    "category" : "upgrade-analysis",
+    "title" : "Java Version Configuration Needs Update",
+    "lineNumber" : 13
+  } ],
+  "recommendations" : [ "\"description\": \"The Maven compiler plugin version 3.8.1 is outdated and should be updated for optimal Java 21 compatibility. Java 11 to 21 upgrade requires Maven compiler plugin 3.11.0 or higher for full Java 21 feature support.\",", "\"recommendedVersion\": \"3.11.0+ (compiler plugin)\",", "\"recommendedVersion\": \"8.0.33 (OK) or 8.2.0+ (latest)\",", "\"recommendedVersion\": \"3.2.0+\"," ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "21",
+      "issue" : "Targets Java 11 instead of 21",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 21 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

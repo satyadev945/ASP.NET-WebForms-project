@@ -1,0 +1,544 @@
+{
+  "analysisId": "testcase-generation-2025-12-19",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 127,
+    "totalFilesModified": 15,
+    "PassTestcase": 127,
+    "totalTimeTaken": "18 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/MGMT/CommandLineArgsTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithEmptyArray_ShouldInitialize",
+          "description": "Tests constructor with empty args array",
+          "coverage": "CommandLineArgs/Constructor"
+        },
+        {
+          "methodName": "Constructor_WithNullArray_ShouldHandleGracefully",
+          "description": "Tests constructor with null args",
+          "coverage": "CommandLineArgs/Constructor"
+        },
+        {
+          "methodName": "Constructor_WithValidArgs_ShouldParseCorrectly",
+          "description": "Tests constructor parsing valid arguments",
+          "coverage": "CommandLineArgs/Constructor"
+        },
+        {
+          "methodName": "GetArgument_WithValidKey_ShouldReturnValue",
+          "description": "Tests GetArgument with existing key",
+          "coverage": "CommandLineArgs/GetArgument"
+        },
+        {
+          "methodName": "GetArgument_WithInvalidKey_ShouldReturnNull",
+          "description": "Tests GetArgument with non-existing key",
+          "coverage": "CommandLineArgs/GetArgument"
+        },
+        {
+          "methodName": "HasArgument_WithValidKey_ShouldReturnTrue",
+          "description": "Tests HasArgument with existing key",
+          "coverage": "CommandLineArgs/HasArgument"
+        },
+        {
+          "methodName": "HasArgument_WithInvalidKey_ShouldReturnFalse",
+          "description": "Tests HasArgument with non-existing key",
+          "coverage": "CommandLineArgs/HasArgument"
+        }
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/MGMT/ConfigurationManagerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "GetValue_WithValidKey_ShouldReturnValue",
+          "description": "Tests GetValue with existing configuration key",
+          "coverage": "ConfigurationManager/GetValue"
+        },
+        {
+          "methodName": "GetValue_WithInvalidKey_ShouldReturnNull",
+          "description": "Tests GetValue with non-existing key",
+          "coverage": "ConfigurationManager/GetValue"
+        },
+        {
+          "methodName": "SetValue_WithValidKey_ShouldSetValue",
+          "description": "Tests SetValue operation",
+          "coverage": "ConfigurationManager/SetValue"
+        },
+        {
+          "methodName": "SetValue_WithNullKey_ShouldThrowException",
+          "description": "Tests SetValue with null key",
+          "coverage": "ConfigurationManager/SetValue"
+        },
+        {
+          "methodName": "GetConnectionString_WithValidName_ShouldReturnConnectionString",
+          "description": "Tests GetConnectionString retrieval",
+          "coverage": "ConfigurationManager/GetConnectionString"
+        }
+      ],
+      "coveragePercentage": 68.0
+    },
+    {
+      "filePath": "Tests/MGMT/DatabaseContextTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithConnectionString_ShouldInitialize",
+          "description": "Tests constructor with valid connection string",
+          "coverage": "DatabaseContext/Constructor"
+        },
+        {
+          "methodName": "ExecuteQuery_WithValidSql_ShouldReturnResults",
+          "description": "Tests ExecuteQuery with valid SQL",
+          "coverage": "DatabaseContext/ExecuteQuery"
+        },
+        {
+          "methodName": "ExecuteQuery_WithInvalidSql_ShouldThrowException",
+          "description": "Tests ExecuteQuery with invalid SQL",
+          "coverage": "DatabaseContext/ExecuteQuery"
+        },
+        {
+          "methodName": "ExecuteNonQuery_WithValidSql_ShouldExecute",
+          "description": "Tests ExecuteNonQuery operation",
+          "coverage": "DatabaseContext/ExecuteNonQuery"
+        },
+        {
+          "methodName": "BeginTransaction_ShouldStartTransaction",
+          "description": "Tests transaction begin",
+          "coverage": "DatabaseContext/BeginTransaction"
+        },
+        {
+          "methodName": "CommitTransaction_ShouldCommitTransaction",
+          "description": "Tests transaction commit",
+          "coverage": "DatabaseContext/CommitTransaction"
+        },
+        {
+          "methodName": "RollbackTransaction_ShouldRollbackTransaction",
+          "description": "Tests transaction rollback",
+          "coverage": "DatabaseContext/RollbackTransaction"
+        },
+        {
+          "methodName": "Dispose_ShouldCloseConnection",
+          "description": "Tests dispose pattern",
+          "coverage": "DatabaseContext/Dispose"
+        }
+      ],
+      "coveragePercentage": 72.0
+    },
+    {
+      "filePath": "Tests/MGMT/EnvironmentVariableHandlerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "GetVariable_WithValidName_ShouldReturnValue",
+          "description": "Tests GetVariable with existing variable",
+          "coverage": "EnvironmentVariableHandler/GetVariable"
+        },
+        {
+          "methodName": "GetVariable_WithInvalidName_ShouldReturnNull",
+          "description": "Tests GetVariable with non-existing variable",
+          "coverage": "EnvironmentVariableHandler/GetVariable"
+        },
+        {
+          "methodName": "SetVariable_WithValidName_ShouldSetValue",
+          "description": "Tests SetVariable operation",
+          "coverage": "EnvironmentVariableHandler/SetVariable"
+        },
+        {
+          "methodName": "SetVariable_WithNullName_ShouldThrowException",
+          "description": "Tests SetVariable with null name",
+          "coverage": "EnvironmentVariableHandler/SetVariable"
+        },
+        {
+          "methodName": "DeleteVariable_WithValidName_ShouldDelete",
+          "description": "Tests DeleteVariable operation",
+          "coverage": "EnvironmentVariableHandler/DeleteVariable"
+        }
+      ],
+      "coveragePercentage": 65.0
+    },
+    {
+      "filePath": "Tests/MGMT/FileSystemHandlerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "ReadFile_WithValidPath_ShouldReturnContent",
+          "description": "Tests ReadFile with existing file",
+          "coverage": "FileSystemHandler/ReadFile"
+        },
+        {
+          "methodName": "ReadFile_WithInvalidPath_ShouldThrowException",
+          "description": "Tests ReadFile with non-existing file",
+          "coverage": "FileSystemHandler/ReadFile"
+        },
+        {
+          "methodName": "WriteFile_WithValidPath_ShouldWriteContent",
+          "description": "Tests WriteFile operation",
+          "coverage": "FileSystemHandler/WriteFile"
+        },
+        {
+          "methodName": "DeleteFile_WithValidPath_ShouldDeleteFile",
+          "description": "Tests DeleteFile operation",
+          "coverage": "FileSystemHandler/DeleteFile"
+        },
+        {
+          "methodName": "FileExists_WithValidPath_ShouldReturnTrue",
+          "description": "Tests FileExists with existing file",
+          "coverage": "FileSystemHandler/FileExists"
+        },
+        {
+          "methodName": "FileExists_WithInvalidPath_ShouldReturnFalse",
+          "description": "Tests FileExists with non-existing file",
+          "coverage": "FileSystemHandler/FileExists"
+        },
+        {
+          "methodName": "CreateDirectory_WithValidPath_ShouldCreateDirectory",
+          "description": "Tests CreateDirectory operation",
+          "coverage": "FileSystemHandler/CreateDirectory"
+        }
+      ],
+      "coveragePercentage": 70.0
+    },
+    {
+      "filePath": "Tests/MGMT/LoggerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "LogInfo_WithMessage_ShouldLogMessage",
+          "description": "Tests LogInfo operation",
+          "coverage": "Logger/LogInfo"
+        },
+        {
+          "methodName": "LogWarning_WithMessage_ShouldLogWarning",
+          "description": "Tests LogWarning operation",
+          "coverage": "Logger/LogWarning"
+        },
+        {
+          "methodName": "LogError_WithMessage_ShouldLogError",
+          "description": "Tests LogError operation",
+          "coverage": "Logger/LogError"
+        },
+        {
+          "methodName": "LogError_WithException_ShouldLogExceptionDetails",
+          "description": "Tests LogError with exception",
+          "coverage": "Logger/LogError"
+        },
+        {
+          "methodName": "LogDebug_WithMessage_ShouldLogDebug",
+          "description": "Tests LogDebug operation",
+          "coverage": "Logger/LogDebug"
+        }
+      ],
+      "coveragePercentage": 62.0
+    },
+    {
+      "filePath": "Tests/MGMT/ProgramTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Main_WithValidArgs_ShouldExecuteSuccessfully",
+          "description": "Tests Main method with valid arguments",
+          "coverage": "Program/Main"
+        },
+        {
+          "methodName": "Main_WithEmptyArgs_ShouldHandleGracefully",
+          "description": "Tests Main method with empty arguments",
+          "coverage": "Program/Main"
+        },
+        {
+          "methodName": "Main_WithInvalidArgs_ShouldHandleErrors",
+          "description": "Tests Main method error handling",
+          "coverage": "Program/Main"
+        }
+      ],
+      "coveragePercentage": 60.0
+    },
+    {
+      "filePath": "Tests/MGMT/SecurityManagerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "EncryptData_WithValidData_ShouldEncrypt",
+          "description": "Tests EncryptData operation",
+          "coverage": "SecurityManager/EncryptData"
+        },
+        {
+          "methodName": "EncryptData_WithNullData_ShouldThrowException",
+          "description": "Tests EncryptData with null input",
+          "coverage": "SecurityManager/EncryptData"
+        },
+        {
+          "methodName": "DecryptData_WithValidData_ShouldDecrypt",
+          "description": "Tests DecryptData operation",
+          "coverage": "SecurityManager/DecryptData"
+        },
+        {
+          "methodName": "DecryptData_WithInvalidData_ShouldThrowException",
+          "description": "Tests DecryptData with invalid input",
+          "coverage": "SecurityManager/DecryptData"
+        },
+        {
+          "methodName": "HashPassword_WithValidPassword_ShouldGenerateHash",
+          "description": "Tests HashPassword operation",
+          "coverage": "SecurityManager/HashPassword"
+        },
+        {
+          "methodName": "VerifyPassword_WithCorrectPassword_ShouldReturnTrue",
+          "description": "Tests VerifyPassword with correct password",
+          "coverage": "SecurityManager/VerifyPassword"
+        },
+        {
+          "methodName": "VerifyPassword_WithIncorrectPassword_ShouldReturnFalse",
+          "description": "Tests VerifyPassword with incorrect password",
+          "coverage": "SecurityManager/VerifyPassword"
+        }
+      ],
+      "coveragePercentage": 73.0
+    },
+    {
+      "filePath": "Tests/MGMT/ValidationHelperTests.cs",
+      "testMethods": [
+        {
+          "methodName": "IsNullOrEmpty_WithNull_ShouldReturnTrue",
+          "description": "Tests IsNullOrEmpty with null input",
+          "coverage": "ValidationHelper/IsNullOrEmpty"
+        },
+        {
+          "methodName": "IsNullOrEmpty_WithEmpty_ShouldReturnTrue",
+          "description": "Tests IsNullOrEmpty with empty string",
+          "coverage": "ValidationHelper/IsNullOrEmpty"
+        },
+        {
+          "methodName": "IsNullOrEmpty_WithValue_ShouldReturnFalse",
+          "description": "Tests IsNullOrEmpty with valid string",
+          "coverage": "ValidationHelper/IsNullOrEmpty"
+        },
+        {
+          "methodName": "IsValidEmail_WithValidEmail_ShouldReturnTrue",
+          "description": "Tests IsValidEmail with valid format",
+          "coverage": "ValidationHelper/IsValidEmail"
+        },
+        {
+          "methodName": "IsValidEmail_WithInvalidEmail_ShouldReturnFalse",
+          "description": "Tests IsValidEmail with invalid format",
+          "coverage": "ValidationHelper/IsValidEmail"
+        },
+        {
+          "methodName": "IsNumeric_WithNumericString_ShouldReturnTrue",
+          "description": "Tests IsNumeric with numeric input",
+          "coverage": "ValidationHelper/IsNumeric"
+        },
+        {
+          "methodName": "IsNumeric_WithNonNumericString_ShouldReturnFalse",
+          "description": "Tests IsNumeric with non-numeric input",
+          "coverage": "ValidationHelper/IsNumeric"
+        }
+      ],
+      "coveragePercentage": 68.0
+    },
+    {
+      "filePath": "Tests/MGMT/DataAccessLayerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "GetById_WithValidId_ShouldReturnEntity",
+          "description": "Tests GetById with existing ID",
+          "coverage": "DataAccessLayer/GetById"
+        },
+        {
+          "methodName": "GetById_WithInvalidId_ShouldReturnNull",
+          "description": "Tests GetById with non-existing ID",
+          "coverage": "DataAccessLayer/GetById"
+        },
+        {
+          "methodName": "GetAll_ShouldReturnAllEntities",
+          "description": "Tests GetAll operation",
+          "coverage": "DataAccessLayer/GetAll"
+        },
+        {
+          "methodName": "Insert_WithValidEntity_ShouldInsert",
+          "description": "Tests Insert operation",
+          "coverage": "DataAccessLayer/Insert"
+        },
+        {
+          "methodName": "Update_WithValidEntity_ShouldUpdate",
+          "description": "Tests Update operation",
+          "coverage": "DataAccessLayer/Update"
+        },
+        {
+          "methodName": "Delete_WithValidId_ShouldDelete",
+          "description": "Tests Delete operation",
+          "coverage": "DataAccessLayer/Delete"
+        }
+      ],
+      "coveragePercentage": 66.0
+    },
+    {
+      "filePath": "Tests/MGMT/BusinessLogicLayerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "ProcessData_WithValidInput_ShouldProcess",
+          "description": "Tests ProcessData with valid input",
+          "coverage": "BusinessLogicLayer/ProcessData"
+        },
+        {
+          "methodName": "ProcessData_WithInvalidInput_ShouldThrowException",
+          "description": "Tests ProcessData with invalid input",
+          "coverage": "BusinessLogicLayer/ProcessData"
+        },
+        {
+          "methodName": "ValidateBusinessRules_WithValidData_ShouldReturnTrue",
+          "description": "Tests ValidateBusinessRules with valid data",
+          "coverage": "BusinessLogicLayer/ValidateBusinessRules"
+        },
+        {
+          "methodName": "ValidateBusinessRules_WithInvalidData_ShouldReturnFalse",
+          "description": "Tests ValidateBusinessRules with invalid data",
+          "coverage": "BusinessLogicLayer/ValidateBusinessRules"
+        },
+        {
+          "methodName": "CalculateTotal_WithValidItems_ShouldReturnTotal",
+          "description": "Tests CalculateTotal operation",
+          "coverage": "BusinessLogicLayer/CalculateTotal"
+        }
+      ],
+      "coveragePercentage": 64.0
+    },
+    {
+      "filePath": "Tests/MGMT/CacheManagerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Get_WithValidKey_ShouldReturnValue",
+          "description": "Tests Get with existing cache key",
+          "coverage": "CacheManager/Get"
+        },
+        {
+          "methodName": "Get_WithInvalidKey_ShouldReturnNull",
+          "description": "Tests Get with non-existing key",
+          "coverage": "CacheManager/Get"
+        },
+        {
+          "methodName": "Set_WithValidKey_ShouldCacheValue",
+          "description": "Tests Set operation",
+          "coverage": "CacheManager/Set"
+        },
+        {
+          "methodName": "Remove_WithValidKey_ShouldRemoveFromCache",
+          "description": "Tests Remove operation",
+          "coverage": "CacheManager/Remove"
+        },
+        {
+          "methodName": "Clear_ShouldClearAllCache",
+          "description": "Tests Clear operation",
+          "coverage": "CacheManager/Clear"
+        },
+        {
+          "methodName": "Exists_WithValidKey_ShouldReturnTrue",
+          "description": "Tests Exists with cached key",
+          "coverage": "CacheManager/Exists"
+        }
+      ],
+      "coveragePercentage": 67.0
+    },
+    {
+      "filePath": "Tests/MGMT/HttpClientWrapperTests.cs",
+      "testMethods": [
+        {
+          "methodName": "GetAsync_WithValidUrl_ShouldReturnResponse",
+          "description": "Tests GetAsync operation",
+          "coverage": "HttpClientWrapper/GetAsync"
+        },
+        {
+          "methodName": "GetAsync_WithInvalidUrl_ShouldThrowException",
+          "description": "Tests GetAsync with invalid URL",
+          "coverage": "HttpClientWrapper/GetAsync"
+        },
+        {
+          "methodName": "PostAsync_WithValidData_ShouldReturnResponse",
+          "description": "Tests PostAsync operation",
+          "coverage": "HttpClientWrapper/PostAsync"
+        },
+        {
+          "methodName": "PutAsync_WithValidData_ShouldReturnResponse",
+          "description": "Tests PutAsync operation",
+          "coverage": "HttpClientWrapper/PutAsync"
+        },
+        {
+          "methodName": "DeleteAsync_WithValidUrl_ShouldReturnResponse",
+          "description": "Tests DeleteAsync operation",
+          "coverage": "HttpClientWrapper/DeleteAsync"
+        }
+      ],
+      "coveragePercentage": 63.0
+    },
+    {
+      "filePath": "Tests/MGMT/StringExtensionsTests.cs",
+      "testMethods": [
+        {
+          "methodName": "ToTitleCase_WithLowerCase_ShouldConvert",
+          "description": "Tests ToTitleCase conversion",
+          "coverage": "StringExtensions/ToTitleCase"
+        },
+        {
+          "methodName": "ToCamelCase_WithPascalCase_ShouldConvert",
+          "description": "Tests ToCamelCase conversion",
+          "coverage": "StringExtensions/ToCamelCase"
+        },
+        {
+          "methodName": "Truncate_WithLongString_ShouldTruncate",
+          "description": "Tests Truncate operation",
+          "coverage": "StringExtensions/Truncate"
+        },
+        {
+          "methodName": "IsNullOrWhiteSpace_WithNull_ShouldReturnTrue",
+          "description": "Tests IsNullOrWhiteSpace with null",
+          "coverage": "StringExtensions/IsNullOrWhiteSpace"
+        },
+        {
+          "methodName": "RemoveSpecialCharacters_WithSpecialChars_ShouldRemove",
+          "description": "Tests RemoveSpecialCharacters operation",
+          "coverage": "StringExtensions/RemoveSpecialCharacters"
+        }
+      ],
+      "coveragePercentage": 61.0
+    },
+    {
+      "filePath": "Tests/MGMT/DateTimeExtensionsTests.cs",
+      "testMethods": [
+        {
+          "methodName": "ToUnixTimestamp_WithValidDateTime_ShouldConvert",
+          "description": "Tests ToUnixTimestamp conversion",
+          "coverage": "DateTimeExtensions/ToUnixTimestamp"
+        },
+        {
+          "methodName": "FromUnixTimestamp_WithValidTimestamp_ShouldConvert",
+          "description": "Tests FromUnixTimestamp conversion",
+          "coverage": "DateTimeExtensions/FromUnixTimestamp"
+        },
+        {
+          "methodName": "IsWeekend_WithSaturday_ShouldReturnTrue",
+          "description": "Tests IsWeekend with weekend date",
+          "coverage": "DateTimeExtensions/IsWeekend"
+        },
+        {
+          "methodName": "IsWeekend_WithWeekday_ShouldReturnFalse",
+          "description": "Tests IsWeekend with weekday",
+          "coverage": "DateTimeExtensions/IsWeekend"
+        },
+        {
+          "methodName": "AddBusinessDays_WithValidDays_ShouldAdd",
+          "description": "Tests AddBusinessDays operation",
+          "coverage": "DateTimeExtensions/AddBusinessDays"
+        }
+      ],
+      "coveragePercentage": 60.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1970/transformed-code/87/studio-workspace/dotnetcomp",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-19T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 66.5
+  }
+}

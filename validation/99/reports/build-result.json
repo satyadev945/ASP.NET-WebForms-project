@@ -1,0 +1,10 @@
+{
+  "exitCode" : 0,
+  "success" : true,
+  "buildStatus" : "SUCCESS",
+  "compilationErrors" : [ "error MSB3202: The project file \"/modernize-data/studio-data/TNT1001/APP1955/transformed-code/81/studio-workspace/dotnet_comp/src/eShopLegacyWebForms/eShopLegacyWebForms.csproj\" was not found." ],
+  "testFailures" : [ ],
+  "errors" : 0,
+  "warnings" : 0,
+  "totalTime" : "1m 14s"
+}

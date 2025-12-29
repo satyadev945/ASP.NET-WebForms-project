@@ -1,0 +1,69 @@
+{
+  "analysisResults" : {
+    "cached" : false,
+    "message" : "Claude Engine service (studio-ai-engine) encountered an error. Service2 internal error - likely a path parsing issue in the Claude CLI service. The request was sent correctly, but service2 failed to process it. | TROUBLESHOOTING: Service1 now passes file paths separately to avoid path parsing issues. Check Service2 logs for any remaining path-related errors.",
+    "status" : "error"
+  },
+  "dependencyAnalysis" : {
+    "incompatibleDependencies" : [ {
+      "issue" : "Incompatible with Java 21",
+      "artifactId" : "spring-boot-starter-parent",
+      "groupId" : "org.springframework.boot",
+      "currentVersion" : "2.7.15",
+      "recommendedVersion" : "3.2.0"
+    }, {
+      "issue" : "Needs update for better Java 21 support",
+      "artifactId" : "mysql-connector-java",
+      "groupId" : "mysql",
+      "currentVersion" : "8.0.33",
+      "recommendedVersion" : "8.2.0"
+    } ],
+    "dependenciesNeedingUpdates" : [ {
+      "artifactId" : "spring-boot-starter-parent",
+      "reason" : "Full Java 21 compatibility and Jakarta EE support",
+      "groupId" : "org.springframework.boot",
+      "currentVersion" : "2.7.15",
+      "recommendedVersion" : "3.2.0"
+    }, {
+      "artifactId" : "thymeleaf-extras-java8time",
+      "reason" : "Better compatibility with newer Spring Boot versions",
+      "groupId" : "org.thymeleaf.extras",
+      "currentVersion" : "3.0.4.RELEASE",
+      "recommendedVersion" : "3.1.0.RELEASE"
+    } ]
+  },
+  "reportMetadata" : {
+    "version" : "1.0",
+    "reportType" : "Java Upgrade Analysis Report",
+    "analysisId" : "24",
+    "timestamp" : "2025-12-17T12:31:53.736301832"
+  },
+  "buildToolAnalysis" : {
+    "upgradeSteps" : [ "Update Spring Boot parent version to 3.0.0 or later", "Update maven-compiler-plugin configuration", "Add jakarta.* dependencies if needed", "Update affected dependency versions" ],
+    "compatibilityIssues" : [ "Spring Boot version needs update to 3.0+ for full Java 21 support", "Some dependencies may need version updates for Jakarta EE compatibility" ],
+    "currentVersion" : "3.11.0",
+    "tool" : "maven",
+    "recommendedVersion" : "3.11.0"
+  },
+  "generatedReports" : {
+    "markdown" : "/studio-app/claude-workspace/versionUpgrade/24/reports/upgrade-analysis.md",
+    "json" : "/studio-app/claude-workspace/versionUpgrade/24/reports/upgrade-analysis.json",
+    "html" : "/studio-app/claude-workspace/versionUpgrade/24/reports/upgrade-analysis.html"
+  },
+  "upgradeSummary" : {
+    "deprecatedApisFound" : 0,
+    "blockersFound" : 0,
+    "criticalBlockers" : 0,
+    "breakingChanges" : 0,
+    "estimatedEffort" : "Error - Service2 unavailable",
+    "upgradeComplexity" : "Error - Service2 unavailable"
+  },
+  "recommendations" : [ "Upgrade Spring Boot to version 3.0+ for full Java 21 compatibility", "Perform javax-to-jakarta namespace migration across all affected files", "Update validation annotations to use Jakarta EE standards", "Consider incremental migration: Spring Boot 2.7.x first, then 3.0+", "Thoroughly test all functionality after migration" ],
+  "projectInformation" : {
+    "targetVersion" : "21",
+    "platform" : "linux",
+    "projectType" : "java",
+    "currentVersion" : "11",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1926/transformed-code/30/studio-workspace/mini-java-app-component"
+  }
+}

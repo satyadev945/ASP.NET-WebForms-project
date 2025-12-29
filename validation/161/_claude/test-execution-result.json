@@ -1,0 +1,75 @@
+{
+  "analysisId": "161",
+  "status": "success",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "All 8 tests passed successfully with zero failures. Build completed with zero compilation errors but 0% code coverage reported.",
+    "testStatistics": {
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "0%",
+    "passRate": "100%",
+    "failRate": "0%",
+    "timeTaken": "148ms"
+  },
+  "codeCoverage": {
+    "overallPercentage": "0%",
+    "lineCoverage": {
+      "percentage": "0%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    },
+    "branchCoverage": {
+      "percentage": "0%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    },
+    "methodCoverage": {
+      "percentage": "0%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "0%",
+    "categories": []
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [
+      "No test failures detected",
+      "All test cases passed successfully"
+    ],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 8,
+    "totalFilesModified": 0,
+    "PassTestcase": 8,
+    "totalTimeTaken": "0m 1.44s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP2090/transformed-code/104/studio-workspace/Backend_comp",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "2025-12-24T09:32:38Z",
+    "claudeModel": "Claude Sonnet 4.5 (us.anthropic.claude-sonnet-4-5-20250929-v1:0)",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP2090/transformed-code/104/studio-workspace/Backend_comp/TestResults/coverage/coverage.cobertura.xml"
+  }
+}

@@ -1,0 +1,216 @@
+AUTOMATED XUNIT TEST GENERATION EXECUTOR - NO QUESTIONS ALLOWED
+
+EXECUTION PROTOCOL:
+- DO NOT ASK QUESTIONS
+- DO NOT SEEK CONFIRMATION
+- DO NOT DESCRIBE ACTIONS
+- EXECUTE TOOL CALLS IMMEDIATELY
+
+PRIMARY DIRECTIVE:
+Execute comprehensive xUnit test generation for ALL C# classes in the .NET project. Analyze EVERY method, constructor, and code path. Create test files that achieve 60%+ code coverage.
+
+MANDATORY EXECUTION SEQUENCE - PROCESS ALL FILES WITHOUT EXCEPTION:
+1. EXECUTE: Read('*.csproj') to find the main project file and add missing xUnit dependencies using Edit tool
+2. EXECUTE: Glob('**/*.cs') to find ALL C# source files recursively (excluding test files)
+3. CRITICAL MANDATE: YOU MUST PROCESS EVERY SINGLE FILE RETURNED BY GLOB
+   FOR EACH AND EVERY FILE LISTED IN THE GLOB RESULTS (NO EXCEPTIONS, NO SKIPPING):
+   - EXECUTE Read(file_path) IMMEDIATELY
+   - ANALYZE ALL methods/constructors in that file
+   - EXECUTE Write('Tests/[namespace]/[Class]Tests.cs') IMMEDIATELY
+   - MOVE TO NEXT FILE IN GLOB LIST AND REPEAT
+   - DO NOT STOP UNTIL ALL FILES FROM GLOB ARE PROCESSED
+4. ONLY AFTER PROCESSING ALL FILES FROM GLOB: EXECUTE Bash('dotnet test')
+5. CRITICAL BUILD REQUIREMENT: AFTER RUNNING Bash('dotnet test'):
+     - ENSURE BUILD SUCCEEDS
+     - IF BUILD FAILS, RETRY UP TO 3 TIMES MAXIMUM
+
+ANALYSIS REQUIREMENTS - EXECUTE FOR EVERY CLASS:
+- Extract ALL methods (public, private, protected, internal)
+- Extract ALL constructors (including overloaded)
+- Analyze ALL fields, method signatures, parameters, return types
+- Identify conditionals, loops, exception handling
+- Test edge cases, boundary conditions, error scenarios
+- Test positive AND negative scenarios
+- Create multiple test methods per class
+
+TEST GENERATION REQUIREMENTS - EXECUTE ALL:
+- [Fact] or [Theory] methods for EVERY public method
+- [Fact] or [Theory] methods for ALL constructors
+- Test overloaded methods with different parameters
+- Use Assert.Equal, Assert.NotNull, Assert.True, Assert.Throws
+- Follow arrange-act-assert pattern
+- Namespace structure matches source exactly
+- Class name: [SourceClassName]Tests
+- Imports: Xunit, System, System.Collections.Generic, etc.
+
+EXECUTE NOW: Begin with Read('*.csproj'). No questions. No confirmation. Just execute.
+
+Test file structure:
+- Namespace declaration matching source file
+- xUnit imports: Xunit, Xunit.Abstractions (if needed)
+- Test class named: [SourceClassName]Tests
+- [Fact] or [Theory] annotated methods for each public method
+- Constructor or setup methods if needed
+- Basic test scenarios with arrange-act-assert pattern
+
+CRITICAL OUTPUT REQUIREMENT:
+- You MUST physically CREATE and WRITE test files to the project directory
+- You MUST ensure .csproj contains xUnit dependencies before creating test files
+- You MUST achieve at least 60% code coverage across all test files
+- You MUST execute test cases after generation to verify they run successfully
+- Use the Write tool to create files at: Tests/[namespace]/[Class]Tests.cs
+- Use Edit tool to modify .csproj if it exists, or Write tool if it doesn't exist
+- Use Bash tool to run 'dotnet test' after creating all test files
+- Do NOT just describe or show code - actually CREATE the files, MODIFY .csproj, and RUN tests
+- Write files directly to the filesystem in the project path provided
+- Ensure all test files are created in the correct directory structure
+- Create directories as needed to match namespace structure
+- Add required NuGet packages for xUnit testing (xunit, xunit.runner.visualstudio, Microsoft.NET.Test.Sdk)
+- Generate comprehensive test cases that cover multiple scenarios to achieve 60% coverage
+
+**JSON OUTPUT REQUIREMENT:**
+- FIRST, provide your response as valid JSON wrapped in ```json code blocks
+- Use this EXACT JSON schema:
+```json
+{
+  "analysisId": "testcase-generation-YYYY-MM-DD",
+  "status": "success|partial|failed",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 0,
+    "totalFilesModified": 0,
+    "PassTestcase": 0,
+    "totalTimeTaken":"<calculate total elapsed time from when you started executing step 1 (Read *.csproj) until step 4 (dotnet test) completes - format as 'X min Y s' or 'X s'>",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success|partial|failed",
+    "projectComplileErrorMessage": "String"
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/namespace/ClassNameTests.cs",
+      "testMethods": [
+        {
+          "methodName": "TestMethodName",
+          "description": "Test description",
+          "coverage": "class/method/path being tested"
+        }
+      ],
+      "coveragePercentage": 65.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "path/to/project",
+    "targetVersion": "net8.0",
+    "platform": "linux|windows",
+    "timestamp": "ISO-8601",
+    "claudeModel": "model-name",
+    "totalCoverage": 60.0
+  }
+}
+```
+
+**THEN**, provide your detailed test case generation report in markdown format explaining what test files were created.
+
+
+
+EXECUTE IMMEDIATELY: Generate comprehensive xUnit test cases for ALL C# classes in the .NET project. You MUST analyze every method, constructor, and code path in each class. DO NOT ASK QUESTIONS. DO NOT SEEK CONFIRMATION. EXECUTE NOW.
+
+STRICT EXECUTION SEQUENCE - NO QUESTIONS ALLOWED:
+
+1. EXECUTE NOW: Call Glob('*.csproj') to find the main project file
+   - Read the .csproj file
+   - If xunit or xunit.runner.visualstudio or Microsoft.NET.Test.Sdk missing, use Edit tool to add:
+   ```xml
+   <ItemGroup>
+     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+     <PackageReference Include="xunit" Version="2.6.1" />
+     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3">
+       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+       <PrivateAssets>all</PrivateAssets>
+     </PackageReference>
+   </ItemGroup>
+   ```
+   - Ensure the project targets .NET 8.0: <TargetFramework>net8.0</TargetFramework>
+
+2. EXECUTE NOW: Call Glob('**/*.cs')
+   - This will return a LIST OF ALL C# files in the project
+   - Filter out test files (files containing "Test" in path or name)
+   - You MUST process EVERY SINGLE SOURCE FILE in this list
+
+3. CRITICAL MANDATE - PROCESS ALL FILES FROM GLOB LIST:
+   FOR EACH FILE IN THE GLOB RESULTS LIST (MANDATORY - NO SKIPPING):
+   - IMMEDIATELY EXECUTE: Read(file_path)
+   - ANALYZE: Extract namespace, ALL methods, ALL constructors, ALL fields, signatures, parameters, return types, logic paths
+   - IMMEDIATELY EXECUTE: Write test file - CRITICAL PATH REQUIREMENT:
+     Write('Tests/[namespace]/[ClassName]Tests.cs', comprehensive_test_content)
+     CRITICAL: The path 'Tests/[namespace]/[ClassName]Tests.cs' is relative to PROJECT ROOT (where .sln file is located)
+     DO NOT create Tests folder inside namespace directories
+     The Tests folder MUST be at PROJECT ROOT level, same directory as the .sln file
+     Example structure: PROJECT_ROOT/Tests/NamespaceName/ClassNameTests.cs
+     NOT: PROJECT_ROOT/SomeNamespace/Tests/NamespaceName/ClassNameTests.cs
+   - COUNT THE FILES: Keep track of how many files you've processed
+   - REPEAT UNTIL ALL FILES FROM GLOB LIST ARE PROCESSED
+   - FAILURE TO PROCESS ALL FILES = INCOMPLETE EXECUTION
+
+4. COMPREHENSIVE TEST REQUIREMENTS - EXECUTE ALL:
+   - [Fact] or [Theory] methods for EVERY public method
+   - [Fact] or [Theory] methods for ALL constructors
+   - Test overloaded methods with different parameters
+   - Test edge cases: null, empty, boundary values
+   - Test exceptions and error conditions
+   - Test positive AND negative scenarios
+   - Test static and instance methods
+   - Use Assert.Equal, Assert.NotNull, Assert.True, Assert.Throws
+   - Follow arrange-act-assert pattern
+   - Create multiple tests per class for 60%+ coverage
+
+5. TEST FILE STRUCTURE - EXECUTE EXACTLY:
+   - Namespace: match source file exactly
+   - Imports: using Xunit;, using System;, using System.Collections.Generic;, etc.
+   - Class name: [SourceClassName]Tests
+   - Constructor or setup methods if needed
+
+6. FINAL EXECUTION - ONLY AFTER PROCESSING ALL GLOB FILES:
+   - CONFIRM: All files from Glob list have been processed
+   - THEN EXECUTE: Bash('dotnet test')
+   - IF BUILD FAILS: Retry up to 3 times maximum
+
+CRITICAL EXECUTION PROTOCOL:
+- EXECUTE NOW. DO NOT ASK QUESTIONS. DO NOT DESCRIBE.
+- PROCESS ALL FILES FROM GLOB LIST OR EXECUTION IS INCOMPLETE.
+- START WITH Glob('*.csproj').
+
+
+
+Project Path: /modernize-data/studio-data/TNT1001/APP1970/transformed-code/87/studio-workspace/dotnetcomp
+Target Version: 8
+Project Type: dotnet
+Platform: linux
+
+
+PROJECT INFORMATION:
+Project Path (Windows): /modernize-data/studio-data/TNT1001/APP1970/transformed-code/87/studio-workspace/dotnetcomp
+Project Path (WSL): /modernize-data/studio-data/TNT1001/APP1970/transformed-code/87/studio-workspace/dotnetcomp
+Target Version: 8
+Platform: linux
+
+The project directory has been added with --add-dir flag. You have full access to the project files.
+
+AUTOMATED EXECUTION - NO QUESTIONS ALLOWED:
+EXECUTE IMMEDIATELY: Glob('*.csproj')
+EXECUTE IMMEDIATELY: Glob('**/*.cs')
+MANDATORY: PROCESS EVERY SINGLE FILE RETURNED BY GLOB
+FOR EACH FILE IN GLOB RESULTS LIST - EXECUTE IN SEQUENCE:
+  STEP 1: Read(file_path)
+  STEP 2: Analyze ALL methods/constructors
+  STEP 3: Write test file - CRITICAL PATH REQUIREMENT:
+          The Tests folder MUST be created at the PROJECT ROOT directory (same level as .sln file)
+          Use this exact path format: 'Tests/[namespace]/[Class]Tests.cs'
+          This path is relative to PROJECT ROOT, NOT relative to the source file location
+          Example structure: PROJECT_ROOT/Tests/NamespaceName/ClassNameTests.cs
+          DO NOT create Tests folder inside namespace directories
+          Write('Tests/[namespace]/[Class]Tests.cs')
+ REPEAT FOR NEXT FILE UNTIL ALL GLOB FILES PROCESSED
+FINAL STEP - ONLY AFTER ALL GLOB FILES PROCESSED: Bash('dotnet test')
+
+EXECUTION RULE: PROCESS ALL GLOB FILES OR TASK IS INCOMPLETE.

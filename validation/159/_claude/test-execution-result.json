@@ -1,0 +1,72 @@
+{
+  "analysisId": "159",
+  "status": "success",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "All 146 tests passed successfully across 3 test projects covering Models, Data, and Services components",
+    "testStatistics": {
+      "total": 146,
+      "passed": 146,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "16.9%",
+    "passRate": "100%",
+    "failRate": "0%",
+    "timeTaken": "1.3 seconds"
+  },
+  "codeCoverage": {
+    "overallPercentage": "16.89%",
+    "lineCoverage": {
+      "percentage": "5.67%",
+      "covered": 50,
+      "total": 881,
+      "status": "Poor"
+    },
+    "branchCoverage": {
+      "percentage": "40%",
+      "covered": 4,
+      "total": 10,
+      "status": "Poor"
+    },
+    "methodCoverage": {
+      "percentage": "N/A",
+      "covered": 0,
+      "total": 0,
+      "status": "N/A"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "0%",
+    "categories": []
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 146,
+    "totalFilesModified": 5,
+    "PassTestcase": 146,
+    "totalTimeTaken": "1.3s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "2025-12-24T08:43:02Z",
+    "claudeModel": "Sonnet 4.5",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP2089/transformed-code/103/studio-workspace/backend_Comp/TestResults/coverage/coverage.cobertura.xml"
+  }
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Containerization Analysis Report</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 20px; color: #2d3748;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 40px; margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 5px; background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+        .header h1 {
+            font-size: 2.5rem; font-weight: 700; margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header .subtitle { color: #718096; font-size: 1.1rem; margin-bottom: 20px; }
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 25px; font-weight: 500;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .status-success { background: #c6f6d5; color: #22543d; }
+        .status-partial { background: #fed7aa; color: #c05621; }
+        .status-error { background: #fed7d7; color: #c53030; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .card {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .card-icon {
+            width: 60px; height: 60px; border-radius: 15px; display: flex;
+            align-items: center; justify-content: center; font-size: 24px;
+            margin-bottom: 20px; color: white;
+        }
+        .card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 15px; color: #2d3748; }
+        .metric { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .metric-label { color: #718096; }
+        .metric-value { font-weight: 600; font-size: 1.1rem; }
+        .progress-bar {
+            width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px;
+            overflow: hidden; margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%; border-radius: 4px; transition: width 1s ease;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .details-section {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .details-title {
+            font-size: 1.5rem; font-weight: 600; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .code-block {
+            background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.9rem;
+            overflow-x: auto; white-space: pre-wrap;
+        }
+        .recommendations {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border-left: 4px solid #38b2ac; border-radius: 12px; padding: 20px;
+        }
+        .recommendations h4 { color: #234e52; margin-bottom: 15px; }
+        .recommendations ul { padding-left: 20px; }
+        .recommendations li { margin-bottom: 8px; color: #2d3748; }
+        .footer {
+            text-align: center; color: rgba(255,255,255,0.8); margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .card, .header, .details-section { padding: 20px; }
+        }
+        .animate-in { animation: slideIn 0.6s ease forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="container"><div class="header animate-in">
+    <h1><i class="fas fa-search-plus"></i> Containerization Analysis</h1>
+    <p class="subtitle">Comprehensive analysis of containerization readiness</p>
+    <div class="status-badge status-success">
+        <i class="fas fa-check-circle"></i> Analysis Complete
+    </div>
+</div>
+<div class="grid"><div class="card animate-in" style="animation-delay: 0.1s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2)">
+        <i class="fas fa-project-diagram"></i>
+    </div>
+    <div class="card-title">Project Information</div>
+    <div class="metric">
+        <span class="metric-label">Project Path</span>
+        <span class="metric-value">/modernize-data/studio-data/TNT1001/APP2144/transformed-code/125/studio-workspace/backend_comp</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Technology</span>
+        <span class="metric-value">JAVA</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Execution Time</span>
+        <span class="metric-value">82673 ms</span>
+    </div>
+</div>
+<div class="card animate-in" style="animation-delay: 0.2s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c)">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="card-title">Issues Found</div>
+    <div class="metric">
+        <span class="metric-label">Total Issues</span>
+        <span class="metric-value" style="color: #d69e2e;">5</span>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: 50%; background: #d69e2e;"></div>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Critical</span>
+        <span class="metric-value" style="color: #c53030;">2</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">High</span>
+        <span class="metric-value" style="color: #d69e2e;">1</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Medium</span>
+        <span class="metric-value" style="color: #3182ce;">1</span>
+    </div>
+</div>
+<div class="card animate-in" style="animation-delay: 0.3s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe)">
+        <i class="fas fa-chart-pie"></i>
+    </div>
+    <div class="card-title">Readiness Assessment</div>
+    <div class="metric">
+        <span class="metric-label">Overall Status</span>
+        <span class="metric-value">Moderate</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Readiness Score</span>
+        <span class="metric-value">65/100</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Estimated Effort</span>
+        <span class="metric-value">8-12 hours</span>
+    </div>
+</div>
+</div><div class="details-section animate-in" style="animation-delay: 0.4s">
+    <div class="details-title">
+        <i class="fas fa-bug"></i>
+        Detailed Containerization Blockers
+    </div>
+<div class="blocker-group">
+    <h3 class="severity-critical"><i class="fas fa-exclamation-circle"></i> Critical Priority Blockers (2)</h3>
+<div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded database hostname localhost</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 2)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> The application has a hardcoded localhost reference for the MySQL database connection. In container environments, the database will not be accessible via localhost. This will cause immediate connection failures when the application starts in a container.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application will fail to start in container due to inability to connect to database. Database connection errors will prevent all functionality from working.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Replace hardcoded localhost with environment variable. Use ${DB_HOST:localhost} pattern to make it configurable: spring.datasource.url=jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:crm}?useSSL=false</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>spring.datasource.url=jdbc:mysql://localhost:3306/crm?useSSL=false</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded database credentials in properties file</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 3)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Configuration</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_006</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Database username and password are hardcoded directly in application.properties. This is a security risk and prevents using different credentials across environments (dev, staging, production).</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Unable to configure database credentials per environment without rebuilding container image. Security vulnerability as credentials are embedded in source code and container image.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Externalize database credentials using environment variables: spring.datasource.username=${DB_USER:root} and spring.datasource.password=${DB_PASSWORD:password}. In production, pass these via Kubernetes secrets or Docker secrets.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>spring.datasource.username=root
+spring.datasource.password=password</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div></div><div class="blocker-group">
+    <h3 class="severity-high"><i class="fas fa-exclamation-triangle"></i> High Priority Blockers (1)</h3>
+<div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Local filesystem PDF file generation</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/crm/controller/PdfController.java (line 35)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_004</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> The PdfController writes PDF files directly to the local filesystem using FileOutputStream without a configurable path. Files are written to the working directory where the application runs. In containers, this data will be lost when containers restart or scale.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Generated PDF files will be lost when container restarts. File system is ephemeral in containers unless volumes are mounted. This breaks the PDF generation feature for persistent storage.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Configure a volume mount point via environment variable (e.g., PDF_STORAGE_PATH) and write files to that location. Alternatively, consider storing PDFs in cloud storage (S3, Azure Blob) or database as BLOBs for truly stateless operation. Example: String storagePath = System.getenv("PDF_STORAGE_PATH"); FileOutputStream fos = new FileOutputStream(new File(storagePath, fileName));</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>PdfWriter.getInstance(document, new FileOutputStream(fileName));</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 3.0 hours</p>
+</div></div></div><div class="blocker-group">
+    <h3 class="severity-medium"><i class="fas fa-info-circle"></i> Medium Priority Blockers (1)</h3>
+<div class="blocker-item" style="border-left: 4px solid #3182ce; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-info-circle" style="color: #3182ce; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">GUI file chooser (JFileChooser) in utility class</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #3182ce;">MEDIUM</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/crm/utils/ReadDataUtils.java (line 11)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> OSOperations</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_009</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> The ReadDataUtils class uses JFileChooser from Swing for file selection. This requires a graphical environment (X11) which is not available in headless containers. While this code is in CSVTest.java which appears to be a test utility, it will fail if invoked.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Any code path that invokes this utility will fail with headless exception in container. This prevents CSV import functionality if it uses this utility. Code appears to be in CSVTest and commented sections of CSVController, so impact may be limited.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Remove GUI dependencies for containerized deployment. For CSV import, use file upload via REST API endpoint instead of file chooser. Accept MultipartFile in controller and process uploaded files. If this is only used in development/testing, ensure it's not accessible in production builds.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>JFileChooser chooser = new JFileChooser();
+FileNameExtensionFilter filter = new FileNameExtensionFilter(fileExtensionDescription, fileExtension);
+chooser.setFileFilter(filter);
+int returnVal = chooser.showOpenDialog(parent);</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 2.0 hours</p>
+</div></div></div><div class="blocker-group">
+    <h3 class="severity-low"><i class="fas fa-check-circle"></i> Low Priority Blockers (1)</h3>
+<div class="blocker-item" style="border-left: 4px solid #38a169; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-check-circle" style="color: #38a169; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Custom health check endpoint not implemented</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #38a169;">LOW</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 6)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Monitoring</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_010</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> While Spring Boot Actuator is included in dependencies (pom.xml line 89), there is no custom health check endpoint to verify application-specific readiness (e.g., database connectivity, dependent services). The management.context-path is configured but custom health indicators are not visible.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Container orchestrators (Kubernetes) cannot accurately determine application health. Default health checks may not catch application-specific issues like database connection pool exhaustion. This can lead to traffic being routed to unhealthy instances.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Spring Boot Actuator is already included. The default /health endpoint should be available at /appinfo/health. Verify this works and configure Kubernetes liveness and readiness probes to use this endpoint. Consider adding custom health indicators for critical dependencies. Example probe: livenessProbe: httpGet: {path: /appinfo/health, port: 8080}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>management.security.enabled=false
+management.context-path=/appinfo</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div></div></div><div class="details-section recommendations animate-in" style="animation-delay: 0.5s">
+    <h4><i class="fas fa-lightbulb"></i> Recommendations</h4>
+    <ul>
+<li>Fix Critical Blockers First: Address database configuration (blockers 1 & 2) to enable basic containerization. These are quick wins with minimal effort.</li>
+<li>Use Environment Variables: Externalize all configuration including database host, credentials, port, and storage paths using environment variables with sensible defaults.</li>
+<li>Configure Volume Mounts: For the PDF generation feature, plan persistent volume mounts or migrate to cloud storage for production deployments.</li>
+<li>Remove GUI Dependencies: Eliminate Swing/AWT dependencies (JFileChooser) and replace with web-based file upload mechanisms for CSV import.</li>
+<li>Verify Health Endpoints: Test Spring Boot Actuator health endpoint (/appinfo/health) and configure Kubernetes probes appropriately.</li>
+<li>Security: Never commit credentials to source control. Use Kubernetes secrets or Docker secrets for sensitive configuration.</li>
+<li>Testing: After fixes, test the containerized application with external MySQL database to verify connectivity and functionality.</li>
+<li>Logging: Current configuration outputs to stdout/stderr via Spring Boot defaults, which is container-friendly. No changes needed for logging.</li>
+<li>Port Configuration: No hardcoded ports found in code. Spring Boot default port 8080 can be overridden via SERVER_PORT environment variable.</li>
+<li>Database Schema: The ddl-auto=create-drop setting will recreate schema on restart. Change to 'update' or 'validate' for production containers to preserve data.</li>
+</ul></div><div class="footer">
+    <p>Generated by Studio AI Engine • 2025-12-26_08-42-29 • Analysis ID: c8f3a2b5-7e4d-4c1a-9f6b-3d2e8a1c5b7f</p>
+</div>
+</div>
+</body>
+</html>

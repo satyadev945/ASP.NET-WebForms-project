@@ -1,0 +1,10 @@
+{
+  "exitCode" : 0,
+  "success" : true,
+  "buildStatus" : "SUCCESS",
+  "compilationErrors" : [ "warning CS1591: Missing XML comment for publicly visible type or member 'ApplicationDbContext'", "warning CS1591: Missing XML comment for publicly visible type or member 'ApplicationDbContext.ApplicationDbContext(DbContextOptions<ApplicationDbContext>)'", "warning CS1591: Missing XML comment for publicly visible type or member 'ApplicationDbContext.OnModelCreating(ModelBuilder)'", "warning CS1591: Missing XML comment for publicly visible type or member 'DataSeeder'", "warning CS1591: Missing XML comment for publicly visible type or member 'DataSeeder.SeedAsync(ApplicationDbContext)'", "warning CS1591: Missing XML comment for publicly visible type or member 'IProductService'", "warning CS1591: Missing XML comment for publicly visible type or member 'IUserService'", "warning CS1591: Missing XML comment for publicly visible type or member 'ProductService'", "warning CS1591: Missing XML comment for publicly visible type or member 'UserService'" ],
+  "testFailures" : [ ],
+  "errors" : 0,
+  "warnings" : 0,
+  "totalTime" : "1m 20s"
+}

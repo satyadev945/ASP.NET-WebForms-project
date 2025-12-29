@@ -1,0 +1,75 @@
+{
+  "analysisId": "163",
+  "status": "success",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "All 164 tests passed successfully with 78.67% line coverage, 46.07% branch coverage, and 89.51% method coverage. Build completed with zero compilation errors.",
+    "testStatistics": {
+      "total": 164,
+      "passed": 164,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "71.42%",
+    "passRate": "100%",
+    "failRate": "0%",
+    "timeTaken": "584 ms"
+  },
+  "codeCoverage": {
+    "overallPercentage": "71.42%",
+    "lineCoverage": {
+      "percentage": "78.67%",
+      "covered": 0,
+      "total": 0,
+      "status": "Fair"
+    },
+    "branchCoverage": {
+      "percentage": "46.07%",
+      "covered": 0,
+      "total": 0,
+      "status": "Poor"
+    },
+    "methodCoverage": {
+      "percentage": "89.51%",
+      "covered": 0,
+      "total": 0,
+      "status": "Good"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "0%",
+    "categories": []
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [
+      "No test failures detected",
+      "All tests executed successfully"
+    ],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 164,
+    "totalFilesModified": 1,
+    "PassTestcase": 164,
+    "totalTimeTaken": "0m 0.584s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP2097/transformed-code/105/studio-workspace/WebForm-rahul",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "2025-12-24T10:46:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP2097/transformed-code/105/studio-workspace/WebForm-rahul/TestResults/coverage/coverage.cobertura.xml"
+  }
+}

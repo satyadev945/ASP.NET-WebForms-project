@@ -1,0 +1,81 @@
+{
+  "analysisId": "113",
+  "status": "failed",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "Test execution failed due to compilation errors in CatalogServiceTests.cs. Build process failed with 11 compilation errors related to type casting issues where 'object' types cannot access properties like 'Name', 'Id', 'Items', etc. No tests were executed due to build failures.",
+    "testStatistics": {
+      "total": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "N/A",
+    "passRate": "N/A",
+    "failRate": "N/A",
+    "timeTaken": "00:00:06.82"
+  },
+  "codeCoverage": {
+    "overallPercentage": "N/A",
+    "lineCoverage": {
+      "percentage": "N/A",
+      "covered": 0,
+      "total": 0,
+      "status": "N/A"
+    },
+    "branchCoverage": {
+      "percentage": "N/A",
+      "covered": 0,
+      "total": 0,
+      "status": "N/A"
+    },
+    "methodCoverage": {
+      "percentage": "N/A",
+      "covered": 0,
+      "total": 0,
+      "status": "N/A"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "N/A",
+    "categories": []
+  },
+  "blockingFailures": [
+    {
+      "testName": "CatalogServiceTests",
+      "priority": "High",
+      "reason": "Compilation failure due to type casting issues",
+      "module": "eShopModern.UnitTests",
+      "className": "eShopModern.UnitTests.Services.CatalogServiceTests",
+      "errorMessage": "CS1061: 'object' does not contain a definition for 'Name' and no accessible extension method 'Name' accepting a first argument of type 'object' could be found (are you missing a using directive or an assembly reference?)"
+    }
+  ],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "N/A",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 0,
+    "totalFilesModified": 1,
+    "PassTestcase": 0,
+    "totalTimeTaken": "00:00:06.82",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "failed",
+    "projectComplileErrorMessage": "11 compilation errors in CatalogServiceTests.cs related to 'object' type not containing definitions for properties like 'Name', 'Id', 'Items', 'TotalCount', 'PageIndex', 'PageSize'"
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1967/transformed-code/86/studio-workspace/backendDotnet",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "2025-12-19T17:06:42Z",
+    "claudeModel": "Sonnet 4",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP1967/transformed-code/86/studio-workspace/backendDotnet/TestResults/coverage/coverage.cobertura.xml"
+  }
+}

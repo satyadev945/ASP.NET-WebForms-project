@@ -1,0 +1,246 @@
+{
+  "analysisId": "testcase-generation-2025-12-22",
+  "status": "success",
+  "projectType": "java",
+  "summary": {
+    "totalTestcase": 42,
+    "totalFilesModified": 3,
+    "PassTestcase": 42,
+    "totalTimeTaken": "11 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "src/test/java/com/test/DatabaseServiceTest.java",
+      "testMethods": [
+        {
+          "methodName": "testDatabaseServiceConstructor",
+          "description": "Test DatabaseService instantiation",
+          "coverage": "DatabaseService constructor"
+        },
+        {
+          "methodName": "testConnectWithDefaultEnvironmentVariables",
+          "description": "Test database connection with default configuration",
+          "coverage": "DatabaseService.connect()"
+        },
+        {
+          "methodName": "testConnectMultipleTimes",
+          "description": "Test multiple consecutive connection attempts",
+          "coverage": "DatabaseService.connect()"
+        },
+        {
+          "methodName": "testExecuteQueryWithNullConnection",
+          "description": "Test query execution without active connection",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testExecuteQueryWithValidSQL",
+          "description": "Test query execution with valid SQL",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testExecuteQueryWithInvalidSQL",
+          "description": "Test error handling for invalid SQL",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testExecuteQueryWithEmptyString",
+          "description": "Test edge case with empty SQL string",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testExecuteQueryWithNullSQL",
+          "description": "Test edge case with null SQL parameter",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testExecuteQueryWithLongSQL",
+          "description": "Test boundary condition with long SQL statement",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testDisconnectWithoutConnection",
+          "description": "Test disconnect without prior connection",
+          "coverage": "DatabaseService.disconnect()"
+        },
+        {
+          "methodName": "testDisconnectAfterConnect",
+          "description": "Test normal disconnect flow",
+          "coverage": "DatabaseService.disconnect()"
+        },
+        {
+          "methodName": "testDisconnectMultipleTimes",
+          "description": "Test multiple disconnect calls",
+          "coverage": "DatabaseService.disconnect()"
+        },
+        {
+          "methodName": "testConnectDisconnectCycle",
+          "description": "Test complete connection lifecycle",
+          "coverage": "DatabaseService connect/disconnect cycle"
+        },
+        {
+          "methodName": "testExecuteQueryAfterDisconnect",
+          "description": "Test query execution on closed connection",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testMultipleQueriesInSequence",
+          "description": "Test sequential query execution",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testExecuteQueryWithSpecialCharacters",
+          "description": "Test SQL with special characters",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testExecuteQueryWithUnicodeCharacters",
+          "description": "Test SQL with unicode characters",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testDatabaseServiceLifecycle",
+          "description": "Test complete service lifecycle",
+          "coverage": "DatabaseService full lifecycle"
+        },
+        {
+          "methodName": "testExecuteQueryWithMultilineSQL",
+          "description": "Test multiline SQL statements",
+          "coverage": "DatabaseService.executeQuery()"
+        },
+        {
+          "methodName": "testExecuteQueryWithComments",
+          "description": "Test SQL with comments",
+          "coverage": "DatabaseService.executeQuery()"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "src/test/java/com/test/MiniAppTest.java",
+      "testMethods": [
+        {
+          "methodName": "testMiniAppConstructor",
+          "description": "Test MiniApp instantiation",
+          "coverage": "MiniApp constructor"
+        },
+        {
+          "methodName": "testMiniAppInstantiation",
+          "description": "Test basic object creation",
+          "coverage": "MiniApp constructor"
+        },
+        {
+          "methodName": "testMultipleMiniAppInstances",
+          "description": "Test multiple instance creation",
+          "coverage": "MiniApp constructor"
+        },
+        {
+          "methodName": "testMainMethodWithNoArguments",
+          "description": "Test main method with empty args array",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMainMethodWithNullArguments",
+          "description": "Test main method with null args",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMainMethodWithSingleArgument",
+          "description": "Test main method with single argument",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMainMethodWithMultipleArguments",
+          "description": "Test main method with multiple arguments",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMainMethodWithEmptyStringArgument",
+          "description": "Test edge case with empty string",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMainMethodWithSpecialCharacterArguments",
+          "description": "Test special characters in arguments",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMainMethodWithLongArguments",
+          "description": "Test boundary condition with long arguments",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMainMethodWithUnicodeArguments",
+          "description": "Test unicode characters in arguments",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMainMethodMultipleInvocations",
+          "description": "Test multiple main method calls",
+          "coverage": "MiniApp.main()"
+        },
+        {
+          "methodName": "testMiniAppObjectCreation",
+          "description": "Test creating multiple instances in loop",
+          "coverage": "MiniApp constructor"
+        },
+        {
+          "methodName": "testMiniAppClassExists",
+          "description": "Verify class can be loaded",
+          "coverage": "MiniApp class existence"
+        },
+        {
+          "methodName": "testMiniAppHasMainMethod",
+          "description": "Verify main method exists via reflection",
+          "coverage": "MiniApp.main() existence"
+        },
+        {
+          "methodName": "testMainMethodIsPublic",
+          "description": "Verify main method has public modifier",
+          "coverage": "MiniApp.main() modifiers"
+        },
+        {
+          "methodName": "testMainMethodIsStatic",
+          "description": "Verify main method has static modifier",
+          "coverage": "MiniApp.main() modifiers"
+        },
+        {
+          "methodName": "testMiniAppPackage",
+          "description": "Verify correct package declaration",
+          "coverage": "MiniApp package"
+        },
+        {
+          "methodName": "testMiniAppNotAbstract",
+          "description": "Verify class is not abstract",
+          "coverage": "MiniApp class modifiers"
+        },
+        {
+          "methodName": "testMiniAppNotInterface",
+          "description": "Verify class is not an interface",
+          "coverage": "MiniApp class type"
+        },
+        {
+          "methodName": "testMiniAppClassModifiers",
+          "description": "Verify class has public modifier",
+          "coverage": "MiniApp class modifiers"
+        },
+        {
+          "methodName": "testMiniAppHasNoArgsConstructor",
+          "description": "Verify no-args constructor exists",
+          "coverage": "MiniApp constructor"
+        }
+      ],
+      "coveragePercentage": 78.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1977/transformed-code/88/studio-workspace/santhosh00",
+    "targetVersion": "17",
+    "platform": "linux",
+    "timestamp": "2025-12-22T02:06:18Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 81.5
+  }
+}

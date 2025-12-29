@@ -1,0 +1,91 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 1,
+    "deprecatedApisFound" : 2,
+    "totalIssues" : 3,
+    "compatibilityScore" : 85,
+    "criticalIssues" : 0,
+    "highIssues" : 2,
+    "lowIssues" : 0,
+    "estimatedEffort" : "4-6 hours",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Moderate"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1963/transformed-code/82/studio-workspace/santhosh001122",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "17",
+    "timestamp" : "2025-12-18T19:30:46.732177399Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 17", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 17", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-18",
+  "issues" : [ {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven-compiler-plugin to version 3.11.0 or later",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Maven compiler plugin version 3.8.1 may have compatibility issues with Java 17. Recommended to update to 3.11.0+ for better Java 17 support.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Plugin Version Outdated",
+    "lineNumber" : 37
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update Spring Boot to version 2.7.14+ or migrate to Spring Boot 3.x for full Java 17 support",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Spring Boot version 2.7.0 has limited support for Java 17. Should be updated to 2.7.14+ or 3.x for better Java 17 compatibility and security fixes.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot Version Compatibility",
+    "lineNumber" : 28
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Change artifact ID from mysql-connector-java to mysql-connector-j",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "mysql-connector-java artifact is deprecated in favor of mysql-connector-j since version 8.0.31. While version 8.0.33 still works, the artifact name should be updated.",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "MySQL Connector Dependency Name Deprecated",
+    "lineNumber" : 21
+  } ],
+  "recommendations" : [ "\"description\": \"mysql-connector-java artifact is deprecated in favor of mysql-connector-j since version 8.0.31. While version 8.0.33 still works, the artifact name should be updated.\",", "\"impact\": \"Future deprecation warnings and potential dependency resolution issues\",", "\"recommendedVersion\": \"3.8.0+\",", "\"recommendedVersion\": \"2.7.14+\",", "\"recommendedVersion\": \"mysql-connector-j:8.0.33\",", "\"reason\": \"Artifact name deprecation, should use mysql-connector-j\"" ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "17",
+      "issue" : "Targets Java 11 instead of 17",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 17 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

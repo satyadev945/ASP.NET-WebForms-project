@@ -1,0 +1,10 @@
+{
+  "exitCode" : 1,
+  "success" : false,
+  "buildStatus" : "PARTIAL",
+  "compilationErrors" : [ "'object' does not contain a definition for 'Name'", "'object' does not contain a definition for 'Items'", "'object' does not contain a definition for 'Id'" ],
+  "testFailures" : [ ],
+  "errors" : 0,
+  "warnings" : 12,
+  "totalTime" : "4m 3s"
+}

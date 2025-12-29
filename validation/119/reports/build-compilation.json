@@ -1,0 +1,44 @@
+{
+  "assessmentId" : "build-compilation-2025-12-22",
+  "status" : null,
+  "buildType" : null,
+  "javaVersion" : null,
+  "message" : null,
+  "summary" : {
+    "totalIssues" : 0,
+    "issuesFixed" : 0,
+    "issuesFailed" : 0,
+    "issuesSkipped" : 0,
+    "filesModified" : 0,
+    "buildStatus" : "SUCCESS",
+    "successRate" : 100.0,
+    "status" : "success"
+  },
+  "issues" : [ ],
+  "fixes" : [ ],
+  "failedIssues" : [ ],
+  "buildConfiguration" : {
+    "buildType" : "maven",
+    "javaVersion" : "17",
+    "buildToolVersion" : "3.11.0",
+    "issuesFound" : [ ],
+    "fixesApplied" : [ ]
+  },
+  "dependencies" : {
+    "issuesFixed" : [ ],
+    "issuesRemaining" : [ ]
+  },
+  "recommendations" : [ "The project has a clean build configuration with no compilation errors", "All dependencies are properly declared and compatible with Java 17", "Maven compiler plugin is correctly configured for Java 17", "PostgreSQL JDBC driver (42.7.1) is properly included", "Spring Boot Starter Web (3.2.0) is properly included", "All Java source files use only standard library imports or declared dependencies", "The code is syntactically correct and follows proper Java conventions", "No build-related fixes are required - the project should compile successfully" ],
+  "metadata" : {
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1977/transformed-code/88/studio-workspace/santhosh00",
+    "buildType" : "maven",
+    "javaVersion" : "17",
+    "timestamp" : "2025-12-22T02:03:47.327653076Z",
+    "executionTimeMs" : 105023,
+    "claudeModel" : "Claude Sonnet 4.5"
+  },
+  "reportPaths" : {
+    "json" : "/studio-app/claude-workspace/validation/119/reports/build-compilation.json"
+  },
+  "cached" : false
+}

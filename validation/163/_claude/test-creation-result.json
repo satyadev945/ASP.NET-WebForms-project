@@ -1,0 +1,976 @@
+{
+  "analysisId": "testcase-generation-2025-12-24",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 164,
+    "totalFilesModified": 4,
+    "PassTestcase": 164,
+    "totalTimeTaken": "12 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/eShopMigrated.Domain.Entities/CatalogItemTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeWithDefaultValues",
+          "description": "Verify CatalogItem default property values",
+          "coverage": "CatalogItem constructor and properties"
+        },
+        {
+          "methodName": "Id_ShouldSetAndGetValue",
+          "description": "Test Id property getter/setter",
+          "coverage": "CatalogItem.Id property"
+        },
+        {
+          "methodName": "Name_ShouldSetAndGetValue",
+          "description": "Test Name property getter/setter",
+          "coverage": "CatalogItem.Name property"
+        },
+        {
+          "methodName": "Description_ShouldSetAndGetValue",
+          "description": "Test Description property getter/setter",
+          "coverage": "CatalogItem.Description property"
+        },
+        {
+          "methodName": "Price_ShouldSetAndGetValue",
+          "description": "Test Price property getter/setter",
+          "coverage": "CatalogItem.Price property"
+        },
+        {
+          "methodName": "PictureFileName_ShouldSetAndGetValue",
+          "description": "Test PictureFileName property getter/setter",
+          "coverage": "CatalogItem.PictureFileName property"
+        },
+        {
+          "methodName": "CatalogTypeId_ShouldSetAndGetValue",
+          "description": "Test CatalogTypeId property getter/setter",
+          "coverage": "CatalogItem.CatalogTypeId property"
+        },
+        {
+          "methodName": "CatalogBrandId_ShouldSetAndGetValue",
+          "description": "Test CatalogBrandId property getter/setter",
+          "coverage": "CatalogItem.CatalogBrandId property"
+        },
+        {
+          "methodName": "AvailableStock_ShouldSetAndGetValue",
+          "description": "Test AvailableStock property getter/setter",
+          "coverage": "CatalogItem.AvailableStock property"
+        },
+        {
+          "methodName": "RestockThreshold_ShouldSetAndGetValue",
+          "description": "Test RestockThreshold property getter/setter",
+          "coverage": "CatalogItem.RestockThreshold property"
+        },
+        {
+          "methodName": "MaxStockThreshold_ShouldSetAndGetValue",
+          "description": "Test MaxStockThreshold property getter/setter",
+          "coverage": "CatalogItem.MaxStockThreshold property"
+        },
+        {
+          "methodName": "OnReorder_ShouldSetAndGetValue",
+          "description": "Test OnReorder property getter/setter",
+          "coverage": "CatalogItem.OnReorder property"
+        },
+        {
+          "methodName": "CatalogType_ShouldSetAndGetValue",
+          "description": "Test CatalogType navigation property",
+          "coverage": "CatalogItem.CatalogType property"
+        },
+        {
+          "methodName": "CatalogBrand_ShouldSetAndGetValue",
+          "description": "Test CatalogBrand navigation property",
+          "coverage": "CatalogItem.CatalogBrand property"
+        },
+        {
+          "methodName": "DefaultPictureName_ShouldBeCorrectValue",
+          "description": "Test default picture name constant",
+          "coverage": "CatalogItem.DefaultPictureName constant"
+        },
+        {
+          "methodName": "CatalogItem_ShouldAllowNullDescription",
+          "description": "Test nullable Description property",
+          "coverage": "CatalogItem nullable field handling"
+        },
+        {
+          "methodName": "CatalogItem_ShouldAllowNullCatalogType",
+          "description": "Test nullable CatalogType property",
+          "coverage": "CatalogItem nullable navigation"
+        },
+        {
+          "methodName": "CatalogItem_ShouldAllowNullCatalogBrand",
+          "description": "Test nullable CatalogBrand property",
+          "coverage": "CatalogItem nullable navigation"
+        }
+      ],
+      "coveragePercentage": 100.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Domain.Entities/CatalogBrandTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeWithDefaultValues",
+          "description": "Verify CatalogBrand default values",
+          "coverage": "CatalogBrand constructor"
+        },
+        {
+          "methodName": "Id_ShouldSetAndGetValue",
+          "description": "Test Id property",
+          "coverage": "CatalogBrand.Id property"
+        },
+        {
+          "methodName": "Brand_ShouldSetAndGetValue",
+          "description": "Test Brand property",
+          "coverage": "CatalogBrand.Brand property"
+        },
+        {
+          "methodName": "CatalogItems_ShouldSetAndGetValue",
+          "description": "Test CatalogItems collection",
+          "coverage": "CatalogBrand.CatalogItems navigation"
+        },
+        {
+          "methodName": "CatalogItems_ShouldAllowNull",
+          "description": "Test nullable CatalogItems",
+          "coverage": "CatalogBrand nullable navigation"
+        },
+        {
+          "methodName": "CatalogBrand_ShouldAllowEmptyBrandName",
+          "description": "Test empty brand name",
+          "coverage": "CatalogBrand validation edge case"
+        },
+        {
+          "methodName": "CatalogBrand_ShouldAllowEmptyCatalogItemsCollection",
+          "description": "Test empty collection",
+          "coverage": "CatalogBrand collection handling"
+        }
+      ],
+      "coveragePercentage": 100.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Domain.Entities/CatalogTypeTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeWithDefaultValues",
+          "description": "Verify CatalogType default values",
+          "coverage": "CatalogType constructor"
+        },
+        {
+          "methodName": "Id_ShouldSetAndGetValue",
+          "description": "Test Id property",
+          "coverage": "CatalogType.Id property"
+        },
+        {
+          "methodName": "Type_ShouldSetAndGetValue",
+          "description": "Test Type property",
+          "coverage": "CatalogType.Type property"
+        },
+        {
+          "methodName": "CatalogItems_ShouldSetAndGetValue",
+          "description": "Test CatalogItems collection",
+          "coverage": "CatalogType.CatalogItems navigation"
+        },
+        {
+          "methodName": "CatalogItems_ShouldAllowNull",
+          "description": "Test nullable CatalogItems",
+          "coverage": "CatalogType nullable navigation"
+        },
+        {
+          "methodName": "CatalogType_ShouldAllowEmptyTypeName",
+          "description": "Test empty type name",
+          "coverage": "CatalogType validation edge case"
+        },
+        {
+          "methodName": "CatalogType_ShouldAllowEmptyCatalogItemsCollection",
+          "description": "Test empty collection",
+          "coverage": "CatalogType collection handling"
+        }
+      ],
+      "coveragePercentage": 100.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Application.Services/CatalogItemServiceTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldThrowArgumentNullException_WhenRepositoryIsNull",
+          "description": "Test null repository parameter validation",
+          "coverage": "CatalogItemService constructor validation"
+        },
+        {
+          "methodName": "Constructor_ShouldThrowArgumentNullException_WhenLoggerIsNull",
+          "description": "Test null logger parameter validation",
+          "coverage": "CatalogItemService constructor validation"
+        },
+        {
+          "methodName": "GetAllAsync_ShouldReturnAllCatalogItems",
+          "description": "Test retrieving all items",
+          "coverage": "CatalogItemService.GetAllAsync method"
+        },
+        {
+          "methodName": "GetAllAsync_ShouldThrowException_WhenRepositoryFails",
+          "description": "Test exception handling in GetAllAsync",
+          "coverage": "CatalogItemService error handling"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnCatalogItem_WhenItemExists",
+          "description": "Test retrieving item by ID",
+          "coverage": "CatalogItemService.GetByIdAsync method"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnNull_WhenItemDoesNotExist",
+          "description": "Test null return for non-existent item",
+          "coverage": "CatalogItemService.GetByIdAsync edge case"
+        },
+        {
+          "methodName": "GetPaginatedAsync_ShouldReturnPaginatedResults",
+          "description": "Test pagination functionality",
+          "coverage": "CatalogItemService.GetPaginatedAsync method"
+        },
+        {
+          "methodName": "CreateAsync_ShouldCreateCatalogItem_WhenValid",
+          "description": "Test creating valid item",
+          "coverage": "CatalogItemService.CreateAsync method"
+        },
+        {
+          "methodName": "CreateAsync_ShouldThrowArgumentException_WhenNameIsEmpty",
+          "description": "Test validation for empty name",
+          "coverage": "CatalogItemService validation logic"
+        },
+        {
+          "methodName": "CreateAsync_ShouldThrowArgumentException_WhenNameIsNull",
+          "description": "Test validation for null name",
+          "coverage": "CatalogItemService validation logic"
+        },
+        {
+          "methodName": "CreateAsync_ShouldThrowArgumentException_WhenPriceIsNegative",
+          "description": "Test validation for negative price",
+          "coverage": "CatalogItemService validation logic"
+        },
+        {
+          "methodName": "UpdateAsync_ShouldUpdateCatalogItem_WhenValid",
+          "description": "Test updating valid item",
+          "coverage": "CatalogItemService.UpdateAsync method"
+        },
+        {
+          "methodName": "UpdateAsync_ShouldThrowArgumentException_WhenNameIsEmpty",
+          "description": "Test update validation for empty name",
+          "coverage": "CatalogItemService update validation"
+        },
+        {
+          "methodName": "UpdateAsync_ShouldThrowArgumentException_WhenPriceIsNegative",
+          "description": "Test update validation for negative price",
+          "coverage": "CatalogItemService update validation"
+        },
+        {
+          "methodName": "DeleteAsync_ShouldDeleteCatalogItem",
+          "description": "Test delete functionality",
+          "coverage": "CatalogItemService.DeleteAsync method"
+        },
+        {
+          "methodName": "DeleteAsync_ShouldThrowException_WhenRepositoryFails",
+          "description": "Test delete error handling",
+          "coverage": "CatalogItemService delete error path"
+        }
+      ],
+      "coveragePercentage": 95.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Infrastructure.Repositories/CatalogItemRepositoryTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldThrowArgumentNullException_WhenContextIsNull",
+          "description": "Test constructor null context validation",
+          "coverage": "CatalogItemRepository constructor"
+        },
+        {
+          "methodName": "Constructor_ShouldThrowArgumentNullException_WhenLoggerIsNull",
+          "description": "Test constructor null logger validation",
+          "coverage": "CatalogItemRepository constructor"
+        },
+        {
+          "methodName": "GetAllAsync_ShouldReturnAllCatalogItems",
+          "description": "Test retrieve all with EF Core",
+          "coverage": "CatalogItemRepository.GetAllAsync method"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnCatalogItem_WhenExists",
+          "description": "Test retrieve by ID with EF Core",
+          "coverage": "CatalogItemRepository.GetByIdAsync method"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnNull_WhenNotExists",
+          "description": "Test null return for missing item",
+          "coverage": "CatalogItemRepository.GetByIdAsync edge case"
+        },
+        {
+          "methodName": "GetPaginatedAsync_ShouldReturnPaginatedResults",
+          "description": "Test pagination with EF Core",
+          "coverage": "CatalogItemRepository.GetPaginatedAsync method"
+        },
+        {
+          "methodName": "AddAsync_ShouldAddCatalogItem",
+          "description": "Test adding item to database",
+          "coverage": "CatalogItemRepository.AddAsync method"
+        },
+        {
+          "methodName": "UpdateAsync_ShouldUpdateCatalogItem",
+          "description": "Test updating item in database",
+          "coverage": "CatalogItemRepository.UpdateAsync method"
+        },
+        {
+          "methodName": "DeleteAsync_ShouldDeleteCatalogItem_WhenExists",
+          "description": "Test deleting existing item",
+          "coverage": "CatalogItemRepository.DeleteAsync method"
+        },
+        {
+          "methodName": "DeleteAsync_ShouldNotThrow_WhenItemDoesNotExist",
+          "description": "Test delete for non-existent item",
+          "coverage": "CatalogItemRepository.DeleteAsync edge case"
+        },
+        {
+          "methodName": "ExistsAsync_ShouldReturnTrue_WhenItemExists",
+          "description": "Test exists check for present item",
+          "coverage": "CatalogItemRepository.ExistsAsync method"
+        },
+        {
+          "methodName": "ExistsAsync_ShouldReturnFalse_WhenItemDoesNotExist",
+          "description": "Test exists check for absent item",
+          "coverage": "CatalogItemRepository.ExistsAsync method"
+        }
+      ],
+      "coveragePercentage": 92.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Infrastructure.Repositories/CatalogBrandRepositoryTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldThrowArgumentNullException_WhenContextIsNull",
+          "description": "Test constructor null context validation",
+          "coverage": "CatalogBrandRepository constructor"
+        },
+        {
+          "methodName": "Constructor_ShouldThrowArgumentNullException_WhenLoggerIsNull",
+          "description": "Test constructor null logger validation",
+          "coverage": "CatalogBrandRepository constructor"
+        },
+        {
+          "methodName": "GetAllAsync_ShouldReturnAllCatalogBrands",
+          "description": "Test retrieve all brands",
+          "coverage": "CatalogBrandRepository.GetAllAsync method"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnCatalogBrand_WhenExists",
+          "description": "Test retrieve brand by ID",
+          "coverage": "CatalogBrandRepository.GetByIdAsync method"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnNull_WhenNotExists",
+          "description": "Test null return for missing brand",
+          "coverage": "CatalogBrandRepository.GetByIdAsync edge case"
+        },
+        {
+          "methodName": "AddAsync_ShouldAddCatalogBrand",
+          "description": "Test adding brand to database",
+          "coverage": "CatalogBrandRepository.AddAsync method"
+        },
+        {
+          "methodName": "UpdateAsync_ShouldUpdateCatalogBrand",
+          "description": "Test updating brand",
+          "coverage": "CatalogBrandRepository.UpdateAsync method"
+        },
+        {
+          "methodName": "DeleteAsync_ShouldDeleteCatalogBrand_WhenExists",
+          "description": "Test deleting existing brand",
+          "coverage": "CatalogBrandRepository.DeleteAsync method"
+        },
+        {
+          "methodName": "DeleteAsync_ShouldNotThrow_WhenItemDoesNotExist",
+          "description": "Test delete for non-existent brand",
+          "coverage": "CatalogBrandRepository.DeleteAsync edge case"
+        },
+        {
+          "methodName": "ExistsAsync_ShouldReturnTrue_WhenBrandExists",
+          "description": "Test exists check for present brand",
+          "coverage": "CatalogBrandRepository.ExistsAsync method"
+        },
+        {
+          "methodName": "ExistsAsync_ShouldReturnFalse_WhenBrandDoesNotExist",
+          "description": "Test exists check for absent brand",
+          "coverage": "CatalogBrandRepository.ExistsAsync method"
+        }
+      ],
+      "coveragePercentage": 92.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Infrastructure.Repositories/CatalogTypeRepositoryTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldThrowArgumentNullException_WhenContextIsNull",
+          "description": "Test constructor null context validation",
+          "coverage": "CatalogTypeRepository constructor"
+        },
+        {
+          "methodName": "Constructor_ShouldThrowArgumentNullException_WhenLoggerIsNull",
+          "description": "Test constructor null logger validation",
+          "coverage": "CatalogTypeRepository constructor"
+        },
+        {
+          "methodName": "GetAllAsync_ShouldReturnAllCatalogTypes",
+          "description": "Test retrieve all types",
+          "coverage": "CatalogTypeRepository.GetAllAsync method"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnCatalogType_WhenExists",
+          "description": "Test retrieve type by ID",
+          "coverage": "CatalogTypeRepository.GetByIdAsync method"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnNull_WhenNotExists",
+          "description": "Test null return for missing type",
+          "coverage": "CatalogTypeRepository.GetByIdAsync edge case"
+        },
+        {
+          "methodName": "AddAsync_ShouldAddCatalogType",
+          "description": "Test adding type to database",
+          "coverage": "CatalogTypeRepository.AddAsync method"
+        },
+        {
+          "methodName": "UpdateAsync_ShouldUpdateCatalogType",
+          "description": "Test updating type",
+          "coverage": "CatalogTypeRepository.UpdateAsync method"
+        },
+        {
+          "methodName": "DeleteAsync_ShouldDeleteCatalogType_WhenExists",
+          "description": "Test deleting existing type",
+          "coverage": "CatalogTypeRepository.DeleteAsync method"
+        },
+        {
+          "methodName": "DeleteAsync_ShouldNotThrow_WhenItemDoesNotExist",
+          "description": "Test delete for non-existent type",
+          "coverage": "CatalogTypeRepository.DeleteAsync edge case"
+        },
+        {
+          "methodName": "ExistsAsync_ShouldReturnTrue_WhenTypeExists",
+          "description": "Test exists check for present type",
+          "coverage": "CatalogTypeRepository.ExistsAsync method"
+        },
+        {
+          "methodName": "ExistsAsync_ShouldReturnFalse_WhenTypeDoesNotExist",
+          "description": "Test exists check for absent type",
+          "coverage": "CatalogTypeRepository.ExistsAsync method"
+        }
+      ],
+      "coveragePercentage": 92.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Infrastructure.Data/CatalogDbContextTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldCreateContext",
+          "description": "Test DbContext instantiation",
+          "coverage": "CatalogDbContext constructor"
+        },
+        {
+          "methodName": "CatalogItems_ShouldReturnDbSet",
+          "description": "Test CatalogItems DbSet access",
+          "coverage": "CatalogDbContext.CatalogItems property"
+        },
+        {
+          "methodName": "CatalogBrands_ShouldReturnDbSet",
+          "description": "Test CatalogBrands DbSet access",
+          "coverage": "CatalogDbContext.CatalogBrands property"
+        },
+        {
+          "methodName": "CatalogTypes_ShouldReturnDbSet",
+          "description": "Test CatalogTypes DbSet access",
+          "coverage": "CatalogDbContext.CatalogTypes property"
+        },
+        {
+          "methodName": "CatalogItems_ShouldAddAndRetrieveItem",
+          "description": "Test adding and retrieving catalog item",
+          "coverage": "CatalogDbContext CRUD operations"
+        },
+        {
+          "methodName": "CatalogBrands_ShouldAddAndRetrieveItem",
+          "description": "Test adding and retrieving brand",
+          "coverage": "CatalogDbContext CRUD operations"
+        },
+        {
+          "methodName": "CatalogTypes_ShouldAddAndRetrieveItem",
+          "description": "Test adding and retrieving type",
+          "coverage": "CatalogDbContext CRUD operations"
+        },
+        {
+          "methodName": "Context_ShouldSupportMultipleEntities",
+          "description": "Test working with multiple related entities",
+          "coverage": "CatalogDbContext relationships"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Infrastructure.Data.Configurations/CatalogItemConfigurationTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Configure_ShouldSetTableName",
+          "description": "Test table name configuration",
+          "coverage": "CatalogItemConfiguration.Configure method"
+        },
+        {
+          "methodName": "Configure_ShouldSetPrimaryKey",
+          "description": "Test primary key configuration",
+          "coverage": "CatalogItemConfiguration.Configure method"
+        },
+        {
+          "methodName": "Configure_ShouldSetNamePropertyAsRequired",
+          "description": "Test Name property constraints",
+          "coverage": "CatalogItemConfiguration property mapping"
+        },
+        {
+          "methodName": "Configure_ShouldSetDescriptionPropertyMaxLength",
+          "description": "Test Description max length",
+          "coverage": "CatalogItemConfiguration property mapping"
+        },
+        {
+          "methodName": "Configure_ShouldSetPricePropertyPrecision",
+          "description": "Test Price precision configuration",
+          "coverage": "CatalogItemConfiguration property mapping"
+        },
+        {
+          "methodName": "Configure_ShouldSetPictureFileNameAsRequired",
+          "description": "Test PictureFileName constraints",
+          "coverage": "CatalogItemConfiguration property mapping"
+        },
+        {
+          "methodName": "Configure_ShouldSetForeignKeyToCatalogBrand",
+          "description": "Test CatalogBrand relationship",
+          "coverage": "CatalogItemConfiguration relationships"
+        },
+        {
+          "methodName": "Configure_ShouldSetForeignKeyToCatalogType",
+          "description": "Test CatalogType relationship",
+          "coverage": "CatalogItemConfiguration relationships"
+        },
+        {
+          "methodName": "Configuration_ShouldEnforceMaxLength",
+          "description": "Test max length enforcement",
+          "coverage": "CatalogItemConfiguration validation"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Infrastructure.Data.Configurations/CatalogBrandConfigurationTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Configure_ShouldSetTableName",
+          "description": "Test table name configuration",
+          "coverage": "CatalogBrandConfiguration.Configure method"
+        },
+        {
+          "methodName": "Configure_ShouldSetPrimaryKey",
+          "description": "Test primary key configuration",
+          "coverage": "CatalogBrandConfiguration.Configure method"
+        },
+        {
+          "methodName": "Configure_ShouldSetIdPropertyAsRequired",
+          "description": "Test Id property constraints",
+          "coverage": "CatalogBrandConfiguration property mapping"
+        },
+        {
+          "methodName": "Configure_ShouldSetBrandPropertyAsRequired",
+          "description": "Test Brand property constraints",
+          "coverage": "CatalogBrandConfiguration property mapping"
+        },
+        {
+          "methodName": "Configuration_ShouldAllowValidBrand",
+          "description": "Test valid brand insertion",
+          "coverage": "CatalogBrandConfiguration validation"
+        },
+        {
+          "methodName": "Configure_ShouldSetMaxLengthFor100Characters",
+          "description": "Test max length configuration",
+          "coverage": "CatalogBrandConfiguration constraints"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Infrastructure.Data.Configurations/CatalogTypeConfigurationTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Configure_ShouldSetTableName",
+          "description": "Test table name configuration",
+          "coverage": "CatalogTypeConfiguration.Configure method"
+        },
+        {
+          "methodName": "Configure_ShouldSetPrimaryKey",
+          "description": "Test primary key configuration",
+          "coverage": "CatalogTypeConfiguration.Configure method"
+        },
+        {
+          "methodName": "Configure_ShouldSetIdPropertyAsRequired",
+          "description": "Test Id property constraints",
+          "coverage": "CatalogTypeConfiguration property mapping"
+        },
+        {
+          "methodName": "Configure_ShouldSetTypePropertyAsRequired",
+          "description": "Test Type property constraints",
+          "coverage": "CatalogTypeConfiguration property mapping"
+        },
+        {
+          "methodName": "Configuration_ShouldAllowValidType",
+          "description": "Test valid type insertion",
+          "coverage": "CatalogTypeConfiguration validation"
+        },
+        {
+          "methodName": "Configure_ShouldSetMaxLengthFor100Characters",
+          "description": "Test max length configuration",
+          "coverage": "CatalogTypeConfiguration constraints"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Infrastructure.Extensions/ServiceCollectionExtensionsTests.cs",
+      "testMethods": [
+        {
+          "methodName": "AddInfrastructureServices_ShouldRegisterRepositories",
+          "description": "Test repository registration",
+          "coverage": "ServiceCollectionExtensions.AddInfrastructureServices method"
+        },
+        {
+          "methodName": "AddInfrastructureServices_ShouldReturnServiceCollection",
+          "description": "Test fluent interface",
+          "coverage": "ServiceCollectionExtensions return value"
+        },
+        {
+          "methodName": "AddInfrastructureServices_ShouldRegisterDbContext",
+          "description": "Test DbContext registration",
+          "coverage": "ServiceCollectionExtensions DI configuration"
+        }
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Application.Extensions/ServiceCollectionExtensionsTests.cs",
+      "testMethods": [
+        {
+          "methodName": "AddApplicationServices_ShouldRegisterCatalogItemService",
+          "description": "Test service registration",
+          "coverage": "ServiceCollectionExtensions.AddApplicationServices method"
+        },
+        {
+          "methodName": "AddApplicationServices_ShouldReturnServiceCollection",
+          "description": "Test fluent interface",
+          "coverage": "ServiceCollectionExtensions return value"
+        },
+        {
+          "methodName": "AddApplicationServices_ShouldRegisterServiceAsScoped",
+          "description": "Test service lifetime",
+          "coverage": "ServiceCollectionExtensions DI configuration"
+        }
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.ViewModels/CatalogItemViewModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeWithDefaultValues",
+          "description": "Test ViewModel default values",
+          "coverage": "CatalogItemViewModel constructor"
+        },
+        {
+          "methodName": "Name_ShouldSetAndGetValue",
+          "description": "Test Name property",
+          "coverage": "CatalogItemViewModel.Name property"
+        },
+        {
+          "methodName": "Price_ShouldSetAndGetValue",
+          "description": "Test Price property",
+          "coverage": "CatalogItemViewModel.Price property"
+        },
+        {
+          "methodName": "CatalogTypeId_ShouldSetAndGetValue",
+          "description": "Test CatalogTypeId property",
+          "coverage": "CatalogItemViewModel.CatalogTypeId property"
+        },
+        {
+          "methodName": "CatalogBrandId_ShouldSetAndGetValue",
+          "description": "Test CatalogBrandId property",
+          "coverage": "CatalogItemViewModel.CatalogBrandId property"
+        },
+        {
+          "methodName": "OnReorder_ShouldSetAndGetValue",
+          "description": "Test OnReorder property",
+          "coverage": "CatalogItemViewModel.OnReorder property"
+        },
+        {
+          "methodName": "CatalogTypeName_ShouldSetAndGetValue",
+          "description": "Test CatalogTypeName property",
+          "coverage": "CatalogItemViewModel.CatalogTypeName property"
+        },
+        {
+          "methodName": "CatalogBrandName_ShouldSetAndGetValue",
+          "description": "Test CatalogBrandName property",
+          "coverage": "CatalogItemViewModel.CatalogBrandName property"
+        }
+      ],
+      "coveragePercentage": 100.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.ViewModels/PaginatedCatalogItemsViewModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeWithDefaultValues",
+          "description": "Test ViewModel default values",
+          "coverage": "PaginatedCatalogItemsViewModel constructor"
+        },
+        {
+          "methodName": "HasPreviousPage_ShouldReturnFalse_WhenPageIndexIsZero",
+          "description": "Test pagination boundary",
+          "coverage": "PaginatedCatalogItemsViewModel.HasPreviousPage property"
+        },
+        {
+          "methodName": "HasPreviousPage_ShouldReturnTrue_WhenPageIndexIsGreaterThanZero",
+          "description": "Test pagination logic",
+          "coverage": "PaginatedCatalogItemsViewModel.HasPreviousPage property"
+        },
+        {
+          "methodName": "HasNextPage_ShouldReturnFalse_WhenOnLastPage",
+          "description": "Test last page detection",
+          "coverage": "PaginatedCatalogItemsViewModel.HasNextPage property"
+        },
+        {
+          "methodName": "HasNextPage_ShouldReturnTrue_WhenNotOnLastPage",
+          "description": "Test next page availability",
+          "coverage": "PaginatedCatalogItemsViewModel.HasNextPage property"
+        },
+        {
+          "methodName": "CatalogItems_ShouldSetAndGetValue",
+          "description": "Test CatalogItems collection",
+          "coverage": "PaginatedCatalogItemsViewModel.CatalogItems property"
+        }
+      ],
+      "coveragePercentage": 100.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.Pages/IndexModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeWithLogger",
+          "description": "Test PageModel constructor",
+          "coverage": "IndexModel constructor"
+        },
+        {
+          "methodName": "OnGet_ShouldExecuteWithoutError",
+          "description": "Test OnGet execution",
+          "coverage": "IndexModel.OnGet method"
+        },
+        {
+          "methodName": "OnGet_ShouldLogInformation",
+          "description": "Test logging in OnGet",
+          "coverage": "IndexModel logging behavior"
+        }
+      ],
+      "coveragePercentage": 100.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.Pages.Catalog/IndexModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "OnGetAsync_ShouldReturnPageResult",
+          "description": "Test successful page load",
+          "coverage": "Catalog/IndexModel.OnGetAsync method"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldLoadPaginatedItems",
+          "description": "Test data loading",
+          "coverage": "Catalog/IndexModel pagination"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldHandlePageIndex",
+          "description": "Test page index handling",
+          "coverage": "Catalog/IndexModel page navigation"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldRedirectToErrorOnException",
+          "description": "Test error handling",
+          "coverage": "Catalog/IndexModel error path"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.Pages.Catalog/CreateModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "OnGetAsync_ShouldReturnPageResult",
+          "description": "Test create form load",
+          "coverage": "Catalog/CreateModel.OnGetAsync method"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldLoadDropdowns",
+          "description": "Test dropdown population",
+          "coverage": "Catalog/CreateModel dropdown loading"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldRedirectToIndexOnSuccess",
+          "description": "Test successful create",
+          "coverage": "Catalog/CreateModel.OnPostAsync method"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldReturnPageWhenModelStateInvalid",
+          "description": "Test validation errors",
+          "coverage": "Catalog/CreateModel validation"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldCallCreateAsync",
+          "description": "Test service invocation",
+          "coverage": "Catalog/CreateModel service integration"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.Pages.Catalog/EditModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "OnGetAsync_ShouldReturnPageResult_WhenItemExists",
+          "description": "Test edit form load",
+          "coverage": "Catalog/EditModel.OnGetAsync method"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldReturnNotFound_WhenItemDoesNotExist",
+          "description": "Test 404 handling",
+          "coverage": "Catalog/EditModel error handling"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldLoadItemData",
+          "description": "Test data loading",
+          "coverage": "Catalog/EditModel data binding"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldRedirectToIndexOnSuccess",
+          "description": "Test successful update",
+          "coverage": "Catalog/EditModel.OnPostAsync method"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldReturnPageWhenModelStateInvalid",
+          "description": "Test validation errors",
+          "coverage": "Catalog/EditModel validation"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldCallUpdateAsync",
+          "description": "Test service invocation",
+          "coverage": "Catalog/EditModel service integration"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.Pages.Catalog/DetailsModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "OnGetAsync_ShouldReturnPageResult_WhenItemExists",
+          "description": "Test details page load",
+          "coverage": "Catalog/DetailsModel.OnGetAsync method"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldReturnNotFound_WhenItemDoesNotExist",
+          "description": "Test 404 handling",
+          "coverage": "Catalog/DetailsModel error handling"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldLoadItemDetails",
+          "description": "Test data loading with navigation properties",
+          "coverage": "Catalog/DetailsModel data binding"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldRedirectToErrorOnException",
+          "description": "Test exception handling",
+          "coverage": "Catalog/DetailsModel error path"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.Pages.Catalog/DeleteModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "OnGetAsync_ShouldReturnPageResult_WhenItemExists",
+          "description": "Test delete confirmation load",
+          "coverage": "Catalog/DeleteModel.OnGetAsync method"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldReturnNotFound_WhenItemDoesNotExist",
+          "description": "Test 404 handling",
+          "coverage": "Catalog/DeleteModel error handling"
+        },
+        {
+          "methodName": "OnGetAsync_ShouldLoadItemForDeletion",
+          "description": "Test data loading for confirmation",
+          "coverage": "Catalog/DeleteModel data binding"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldRedirectToIndexOnSuccess",
+          "description": "Test successful deletion",
+          "coverage": "Catalog/DeleteModel.OnPostAsync method"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldCallDeleteAsync",
+          "description": "Test service invocation",
+          "coverage": "Catalog/DeleteModel service integration"
+        },
+        {
+          "methodName": "OnPostAsync_ShouldReturnPageOnException",
+          "description": "Test exception handling",
+          "coverage": "Catalog/DeleteModel error path"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/eShopMigrated.Web.Pages/ErrorModelTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeWithLogger",
+          "description": "Test ErrorModel constructor",
+          "coverage": "ErrorModel constructor"
+        },
+        {
+          "methodName": "ShowRequestId_ShouldReturnFalse_WhenRequestIdIsNull",
+          "description": "Test null RequestId",
+          "coverage": "ErrorModel.ShowRequestId property"
+        },
+        {
+          "methodName": "ShowRequestId_ShouldReturnFalse_WhenRequestIdIsEmpty",
+          "description": "Test empty RequestId",
+          "coverage": "ErrorModel.ShowRequestId property"
+        },
+        {
+          "methodName": "ShowRequestId_ShouldReturnTrue_WhenRequestIdHasValue",
+          "description": "Test non-empty RequestId",
+          "coverage": "ErrorModel.ShowRequestId property"
+        },
+        {
+          "methodName": "OnGet_ShouldSetRequestId",
+          "description": "Test OnGet execution",
+          "coverage": "ErrorModel.OnGet method"
+        }
+      ],
+      "coveragePercentage": 100.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP2097/transformed-code/105/studio-workspace/WebForm-rahul",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-24T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 89.5
+  }
+}

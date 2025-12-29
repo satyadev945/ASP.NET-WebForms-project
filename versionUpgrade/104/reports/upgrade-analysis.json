@@ -1,0 +1,69 @@
+{
+  "analysisResults" : {
+    "status" : "success",
+    "message" : "Java upgrade analysis completed successfully",
+    "cached" : false
+  },
+  "dependencyAnalysis" : {
+    "incompatibleDependencies" : [ {
+      "recommendedVersion" : "3.2.0",
+      "currentVersion" : "2.7.15",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "issue" : "Incompatible with Java 17"
+    }, {
+      "recommendedVersion" : "8.2.0",
+      "currentVersion" : "8.0.33",
+      "groupId" : "mysql",
+      "artifactId" : "mysql-connector-java",
+      "issue" : "Needs update for better Java 17 support"
+    } ],
+    "dependenciesNeedingUpdates" : [ {
+      "recommendedVersion" : "3.2.0",
+      "currentVersion" : "2.7.15",
+      "groupId" : "org.springframework.boot",
+      "reason" : "Full Java 17 compatibility and Jakarta EE support",
+      "artifactId" : "spring-boot-starter-parent"
+    }, {
+      "recommendedVersion" : "3.1.0.RELEASE",
+      "currentVersion" : "3.0.4.RELEASE",
+      "groupId" : "org.thymeleaf.extras",
+      "reason" : "Better compatibility with newer Spring Boot versions",
+      "artifactId" : "thymeleaf-extras-java8time"
+    } ]
+  },
+  "reportMetadata" : {
+    "timestamp" : "2025-12-19T03:49:56.52758133",
+    "analysisId" : "104",
+    "reportType" : "Java Upgrade Analysis Report",
+    "version" : "1.0"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "3.11.0",
+    "tool" : "maven",
+    "currentVersion" : "3.11.0",
+    "compatibilityIssues" : [ "Spring Boot version needs update to 3.0+ for full Java 17 support", "Some dependencies may need version updates for Jakarta EE compatibility" ],
+    "upgradeSteps" : [ "Update Spring Boot parent version to 3.0.0 or later", "Update maven-compiler-plugin configuration", "Add jakarta.* dependencies if needed", "Update affected dependency versions" ]
+  },
+  "generatedReports" : {
+    "markdown" : "/studio-app/claude-workspace/versionUpgrade/104/reports/upgrade-analysis.md",
+    "json" : "/studio-app/claude-workspace/versionUpgrade/104/reports/upgrade-analysis.json",
+    "html" : "/studio-app/claude-workspace/versionUpgrade/104/reports/upgrade-analysis.html"
+  },
+  "upgradeSummary" : {
+    "deprecatedApisFound" : 2,
+    "blockersFound" : 3,
+    "criticalBlockers" : 0,
+    "breakingChanges" : 1,
+    "estimatedEffort" : "4-6 hours",
+    "upgradeComplexity" : "Moderate"
+  },
+  "recommendations" : [ "Upgrade Spring Boot to version 3.0+ for full Java 17 compatibility", "Perform javax-to-jakarta namespace migration across all affected files", "Update validation annotations to use Jakarta EE standards", "Consider incremental migration: Spring Boot 2.7.x first, then 3.0+", "Thoroughly test all functionality after migration" ],
+  "projectInformation" : {
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1964/transformed-code/83/studio-workspace/santhoshbbb",
+    "currentVersion" : "11",
+    "projectType" : "java",
+    "platform" : "linux",
+    "targetVersion" : "17"
+  }
+}

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Containerization Analysis Report</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 20px; color: #2d3748;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 40px; margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 5px; background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+        .header h1 {
+            font-size: 2.5rem; font-weight: 700; margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header .subtitle { color: #718096; font-size: 1.1rem; margin-bottom: 20px; }
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 25px; font-weight: 500;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .status-success { background: #c6f6d5; color: #22543d; }
+        .status-partial { background: #fed7aa; color: #c05621; }
+        .status-error { background: #fed7d7; color: #c53030; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .card {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .card-icon {
+            width: 60px; height: 60px; border-radius: 15px; display: flex;
+            align-items: center; justify-content: center; font-size: 24px;
+            margin-bottom: 20px; color: white;
+        }
+        .card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 15px; color: #2d3748; }
+        .metric { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .metric-label { color: #718096; }
+        .metric-value { font-weight: 600; font-size: 1.1rem; }
+        .progress-bar {
+            width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px;
+            overflow: hidden; margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%; border-radius: 4px; transition: width 1s ease;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .details-section {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .details-title {
+            font-size: 1.5rem; font-weight: 600; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .code-block {
+            background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.9rem;
+            overflow-x: auto; white-space: pre-wrap;
+        }
+        .recommendations {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border-left: 4px solid #38b2ac; border-radius: 12px; padding: 20px;
+        }
+        .recommendations h4 { color: #234e52; margin-bottom: 15px; }
+        .recommendations ul { padding-left: 20px; }
+        .recommendations li { margin-bottom: 8px; color: #2d3748; }
+        .footer {
+            text-align: center; color: rgba(255,255,255,0.8); margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .card, .header, .details-section { padding: 20px; }
+        }
+        .animate-in { animation: slideIn 0.6s ease forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="container"><div class="header animate-in">
+    <h1><i class="fas fa-search-plus"></i> Containerization Analysis</h1>
+    <p class="subtitle">Comprehensive analysis of containerization readiness</p>
+    <div class="status-badge status-success">
+        <i class="fas fa-check-circle"></i> Analysis Complete
+    </div>
+</div>
+<div class="grid"><div class="card animate-in" style="animation-delay: 0.1s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2)">
+        <i class="fas fa-project-diagram"></i>
+    </div>
+    <div class="card-title">Project Information</div>
+    <div class="metric">
+        <span class="metric-label">Project Path</span>
+        <span class="metric-value">/modernize-data/studio-data/TNT1001/APP1779/transformed-code/4/studio-workspace/AryanPandey-007</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Technology</span>
+        <span class="metric-value">JAVA</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Execution Time</span>
+        <span class="metric-value">83177 ms</span>
+    </div>
+</div>
+<div class="card animate-in" style="animation-delay: 0.2s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c)">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="card-title">Issues Found</div>
+    <div class="metric">
+        <span class="metric-label">Total Issues</span>
+        <span class="metric-value" style="color: #c53030;">24</span>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: 100%; background: #c53030;"></div>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Critical</span>
+        <span class="metric-value" style="color: #c53030;">6</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">High</span>
+        <span class="metric-value" style="color: #d69e2e;">10</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Medium</span>
+        <span class="metric-value" style="color: #3182ce;">8</span>
+    </div>
+</div>
+<div class="card animate-in" style="animation-delay: 0.3s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe)">
+        <i class="fas fa-chart-pie"></i>
+    </div>
+    <div class="card-title">Readiness Assessment</div>
+    <div class="metric">
+        <span class="metric-label">Overall Status</span>
+        <span class="metric-value">Critical</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Readiness Score</span>
+        <span class="metric-value">35/100</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Estimated Effort</span>
+        <span class="metric-value">18-24 hours</span>
+    </div>
+</div>
+</div><div class="details-section animate-in" style="animation-delay: 0.4s">
+    <div class="details-title">
+        <i class="fas fa-bug"></i>
+        Detailed Containerization Blockers
+    </div>
+<div class="blocker-group">
+    <h3 class="severity-critical"><i class="fas fa-exclamation-circle"></i> Critical Priority Blockers (6)</h3>
+<div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded localhost database hostname</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/DatabaseService.java (line 14)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Database connection uses hardcoded 'localhost' hostname which will fail in container environments where the database runs in a separate container or external service.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application will fail to connect to database in containerized environment, causing complete application failure at startup.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Replace hardcoded hostname with environment variable: String dbHost = System.getenv("DB_HOST"); In Kubernetes, use service name for database discovery.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>private static final String DB_HOST = "localhost";</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded 127.0.0.1 cache server IP</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/DatabaseService.java (line 22)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Redis cache connection uses hardcoded '127.0.0.1' IP address which prevents connection to external cache services in containers.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application will fail to connect to Redis cache, potentially causing caching functionality to fail and performance degradation.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: String redisHost = System.getenv("REDIS_HOST");</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>private static final String REDIS_HOST = "127.0.0.1";</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded server port</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/MiniApp.java (line 15)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_003</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Application server uses hardcoded port 8080, preventing flexible port mapping in container environments.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Port conflicts may occur in container orchestration; cannot adapt to dynamic port assignments or port mapping requirements.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: int port = Integer.parseInt(System.getenv().getOrDefault("SERVER_PORT", "8080"));</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>private static final int SERVER_PORT = 8080;</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded absolute path for configuration file</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/MiniApp.java (line 18)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_001</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Configuration file path is hardcoded as '/opt/app/config/app.properties' which won't exist in container filesystem.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application will fail to load configuration at startup, causing complete application failure.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use relative path from classpath or environment variable: String configPath = System.getenv().getOrDefault("CONFIG_PATH", "./config") + "/app.properties";</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>private static final String CONFIG_FILE_PATH = "/opt/app/config/app.properties";</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded absolute path for log file</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/MiniApp.java (line 19)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_001</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Log file path is hardcoded as '/var/log/mini-app.log' which prevents proper container logging practices.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Logs will be lost when container restarts; violates container logging best practices (should use stdout/stderr).</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Configure logging to output to stdout/stderr for container log collection. Remove file-based logging.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>private static final String LOG_FILE_PATH = "/var/log/mini-app.log";</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded database URL with localhost</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 9)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Database connection URL hardcoded with 'localhost:3306' prevents connection to external database services.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application cannot connect to external database in containerized environment, causing complete failure.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variables: database.url=jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:mini_app_db}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>database.url=jdbc:mysql://localhost:3306/mini_app_db</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div></div><div class="blocker-group">
+    <h3 class="severity-high"><i class="fas fa-exclamation-triangle"></i> High Priority Blockers (12)</h3>
+<div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded external API URL with port</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/DatabaseService.java (line 26)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> External API URL is hardcoded with specific hostname and port, preventing dynamic service discovery in container orchestration.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Cannot adapt to different API endpoints across environments (dev, staging, production) without code changes.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: String apiUrl = System.getenv("EXTERNAL_API_URL");</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>private static final String EXTERNAL_API_URL = "http://api.example.com:8080/v1";</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded payment service URL</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/DatabaseService.java (line 27)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Payment service URL is hardcoded, preventing environment-specific configuration in containerized deployments.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Cannot use different payment service endpoints across environments or container clusters.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: String paymentUrl = System.getenv("PAYMENT_SERVICE_URL");</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>private static final String PAYMENT_SERVICE_URL = "https://payment.internal.company.com/process";</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded absolute path in File constructor</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/MiniApp.java (line 44)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_001</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> File object created with hardcoded absolute path '/opt/app/config/app.properties' preventing container portability.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Configuration file won't be found in container, preventing application initialization.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Load configuration from classpath resources or use environment-based path configuration.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>File configFile = new File(CONFIG_FILE_PATH);</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Static properties file loading</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/MiniApp.java (line 47)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Configuration</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_006</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Application loads properties from static file using FileInputStream, preventing dynamic configuration in containers.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Configuration cannot be dynamically changed across environments without rebuilding container image.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variables or Spring's @ConfigurationProperties with externalized configuration.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>props.load(new FileInputStream(configFile));</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 2.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded absolute log directory path</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/MiniApp.java (line 60)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_001</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Log directory path '/var/log' is hardcoded, preventing container-native logging.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Container may not have permissions to write to /var/log; logs will be lost on container restart.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use stdout/stderr for logging instead of file-based logging. Configure logging framework to use ConsoleAppender.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>File logDir = new File("/var/log");</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded port in ServerSocket</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/MiniApp.java (line 79)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_003</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> ServerSocket binds to hardcoded port 8080, preventing flexible port configuration in containers.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Port conflicts in container orchestration; cannot use dynamic port assignment or Kubernetes service port mapping.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Read port from environment variable: int port = Integer.parseInt(System.getenv().getOrDefault("SERVER_PORT", "8080"));</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>ServerSocket serverSocket = new ServerSocket(SERVER_PORT);</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded server port in properties</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 4)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_003</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Server port hardcoded to 8080 in application.properties prevents dynamic port configuration.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Cannot adapt to container orchestration port requirements or dynamic port assignment.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable substitution: server.port=${SERVER_PORT:8080}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>server.port=8080</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded localhost in properties</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 5)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Server host hardcoded to 'localhost' prevents proper network binding in containers.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application may not be accessible from outside the container due to localhost binding.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use 0.0.0.0 for container network binding or environment variable: server.host=${SERVER_HOST:0.0.0.0}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>server.host=localhost</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded Redis host IP address</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 17)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Redis cache host hardcoded to '127.0.0.1' prevents connection to external cache services.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Cache functionality will fail in containers where Redis runs as separate service.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: cache.redis.host=${REDIS_HOST:localhost}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>cache.redis.host=127.0.0.1</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded external API URL</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 23)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> External API base URL hardcoded with specific host and port.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Cannot adapt to different API endpoints across environments without config changes.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: external.api.base-url=${EXTERNAL_API_URL}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>external.api.base-url=http://api.example.com:8080/v1</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded payment service URL</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 27)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Payment service URL hardcoded preventing environment-specific configuration.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Cannot use different payment endpoints for dev/staging/production environments.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: payment.service.url=${PAYMENT_SERVICE_URL}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>payment.service.url=https://payment.internal.company.com/process</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded monitoring endpoint URL</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 44)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Monitoring endpoint hardcoded with specific host and port preventing dynamic configuration.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Cannot adapt monitoring configuration across different environments or container clusters.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: monitoring.endpoint=${MONITORING_ENDPOINT}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>monitoring.endpoint=http://monitoring.internal.company.com:9090/metrics</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div></div><div class="blocker-group">
+    <h3 class="severity-medium"><i class="fas fa-info-circle"></i> Medium Priority Blockers (6)</h3>
+<div class="blocker-item" style="border-left: 4px solid #3182ce; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-info-circle" style="color: #3182ce; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Local file creation for logging</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #3182ce;">MEDIUM</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/java/com/test/MiniApp.java (line 67)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> StateManagement</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_004</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Application creates log files locally which will be lost on container restart.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Log data is ephemeral and lost when container is restarted or replaced.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Switch to stdout/stderr logging for container log aggregation systems to capture.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>logFile.createNewFile();</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #3182ce; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-info-circle" style="color: #3182ce; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded Redis port</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #3182ce;">MEDIUM</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 18)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_003</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Redis port hardcoded to 6379, preventing flexible service configuration in containers.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Cannot use non-standard Redis ports in containerized deployments.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: cache.redis.port=${REDIS_PORT:6379}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>cache.redis.port=6379</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #3182ce; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-info-circle" style="color: #3182ce; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded config directory path</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #3182ce;">MEDIUM</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 32)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_001</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Application config directory hardcoded to '/opt/app/config' which won't exist in containers.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application cannot find configuration files in container environment.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable or relative path: app.config.directory=${CONFIG_DIR:./config}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>app.config.directory=/opt/app/config</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #3182ce; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-info-circle" style="color: #3182ce; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded log directory path</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #3182ce;">MEDIUM</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 33)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_001</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Log directory hardcoded to '/var/log/mini-app' preventing container-native logging.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Logs written to local filesystem will be lost on container restart; permission issues likely.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Remove file-based logging; configure application to log to stdout/stderr for container log collection.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>app.log.directory=/var/log/mini-app</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #3182ce; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-info-circle" style="color: #3182ce; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded temp directory path</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #3182ce;">MEDIUM</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 34)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_001</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Temp directory hardcoded to '/tmp/mini-app' which may not persist across container restarts.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Temporary files may cause issues if they need to persist; container filesystem is ephemeral.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use environment variable: app.temp.directory=${TEMP_DIR:/tmp/mini-app} or use volume mount if persistence needed.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>app.temp.directory=/tmp/mini-app</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #3182ce; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-info-circle" style="color: #3182ce; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded upload directory path</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #3182ce;">MEDIUM</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> src/main/resources/application.properties (line 35)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> FileIO</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_001</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Upload directory hardcoded to '/opt/uploads' which will lose data on container restart.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Uploaded files will be lost when container restarts or scales; data loss issue.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Use volume mount for persistent storage: app.upload.directory=${UPLOAD_DIR:/data/uploads} and configure persistent volume.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>app.upload.directory=/opt/uploads</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.5 hours</p>
+</div></div></div></div><div class="details-section recommendations animate-in" style="animation-delay: 0.5s">
+    <h4><i class="fas fa-lightbulb"></i> Recommendations</h4>
+    <ul>
+<li>CRITICAL: Replace all hardcoded 'localhost' and '127.0.0.1' references with environment variables to enable external service connections in containers</li>
+<li>CRITICAL: Externalize all file paths using environment variables or use classpath resources for configuration files</li>
+<li>CRITICAL: Make server port configurable via environment variable to support container orchestration port mapping</li>
+<li>HIGH: Remove file-based logging and configure application to log to stdout/stderr for proper container log collection</li>
+<li>HIGH: Externalize all database connection parameters (host, port, credentials) using environment variables</li>
+<li>HIGH: Replace all hardcoded external service URLs with environment variable-based configuration</li>
+<li>MEDIUM: Implement volume mounts strategy for persistent data like uploads directory</li>
+<li>MEDIUM: Add health check endpoint for Kubernetes liveness and readiness probes</li>
+<li>Follow 12-factor app principles: externalize all configuration, treat logs as event streams, and maintain stateless processes</li>
+<li>Use Spring Boot's configuration capabilities with environment variable substitution: ${VAR_NAME:default_value}</li>
+<li>Consider using Spring Cloud Config or Kubernetes ConfigMaps/Secrets for centralized configuration management</li>
+<li>Test containerized application with external services to verify all connectivity works properly</li>
+</ul></div><div class="footer">
+    <p>Generated by Studio AI Engine • 2025-12-15_06-17-28 • Analysis ID: 9f7e2d5c-3a1b-4d8e-9c2f-5b8a1e4d7c9f</p>
+</div>
+</div>
+</body>
+</html>

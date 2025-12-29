@@ -1,0 +1,75 @@
+{
+  "analysisId": "N/A",
+  "status": "success",
+  "projectType": "java",
+  "executiveSummary": {
+    "description": "Test execution completed successfully with all 12 tests passing. JaCoCo coverage report generated. The project has minimal test coverage (13%) indicating that most production code paths are not exercised by the test suite.",
+    "testStatistics": {
+      "total": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "13%",
+    "passRate": "100%",
+    "failRate": "0%",
+    "timeTaken": "96 s"
+  },
+  "codeCoverage": {
+    "overallPercentage": "13%",
+    "lineCoverage": {
+      "percentage": "17%",
+      "covered": 13,
+      "total": 78,
+      "status": "Poor"
+    },
+    "branchCoverage": {
+      "percentage": "14%",
+      "covered": 2,
+      "total": 14,
+      "status": "Poor"
+    },
+    "methodCoverage": {
+      "percentage": "42%",
+      "covered": 5,
+      "total": 12,
+      "status": "Poor"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "0%",
+    "categories": []
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [
+      "No test failures detected",
+      "All tests completed successfully"
+    ],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 12,
+    "totalFilesModified": 4,
+    "PassTestcase": 12,
+    "totalTimeTaken": "1m 36s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1932/transformed-code/35/studio-workspace/mini-java-app-component",
+    "targetVersion": "N/A",
+    "platform": "linux",
+    "timestamp": "2025-12-17T16:42:46Z",
+    "claudeModel": "Claude Sonnet 4.5",
+    "jacocoReportPath": "target/site/jacoco/index.html"
+  }
+}

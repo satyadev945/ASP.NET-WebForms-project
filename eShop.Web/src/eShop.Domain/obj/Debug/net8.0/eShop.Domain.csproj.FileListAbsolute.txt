@@ -1,0 +1,11 @@
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/bin/Debug/net8.0/eShop.Domain.deps.json
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/bin/Debug/net8.0/eShop.Domain.dll
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/bin/Debug/net8.0/eShop.Domain.pdb
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/obj/Debug/net8.0/eShop.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/obj/Debug/net8.0/eShop.Domain.AssemblyInfoInputs.cache
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/obj/Debug/net8.0/eShop.Domain.AssemblyInfo.cs
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/obj/Debug/net8.0/eShop.Domain.csproj.CoreCompileInputs.cache
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/obj/Debug/net8.0/eShop.Domain.dll
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/obj/Debug/net8.0/refint/eShop.Domain.dll
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/obj/Debug/net8.0/eShop.Domain.pdb
+/studio-app/claude-workspace/eShop.Web/src/eShop.Domain/obj/Debug/net8.0/ref/eShop.Domain.dll

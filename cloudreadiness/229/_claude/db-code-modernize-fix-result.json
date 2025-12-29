@@ -1,0 +1,14 @@
+```json
+{
+  "analysisId": "DB-MIGRATE-APP2153-131",
+  "summary": {
+    "issuesFixed": 1,
+    "criticalIssuesFixed": 1,
+    "highIssuesFixed": 0,
+    "mediumIssuesFixed": 0,
+    "lowIssuesFixed": 0,
+    "filesModified": 1,
+    "status": "success"
+  }
+}
+```

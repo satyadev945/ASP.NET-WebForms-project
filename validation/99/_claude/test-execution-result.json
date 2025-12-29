@@ -1,0 +1,154 @@
+{
+  "analysisId": "99",
+  "status": "success",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "Test execution completed with 401 passed and 22 failed tests out of 423 total tests",
+    "testStatistics": {
+      "total": 423,
+      "passed": 401,
+      "failed": 22,
+      "skipped": 0
+    },
+    "testCoverage": "68.97%",
+    "passRate": "94.80%",
+    "failRate": "5.20%",
+    "timeTaken": "803 ms"
+  },
+  "codeCoverage": {
+    "overallPercentage": "68.97%",
+    "lineCoverage": {
+      "percentage": "65.52%",
+      "covered": 498,
+      "total": 760,
+      "status": "Poor"
+    },
+    "branchCoverage": {
+      "percentage": "72.41%",
+      "covered": 42,
+      "total": 58,
+      "status": "Fair"
+    },
+    "methodCoverage": {
+      "percentage": "N/A",
+      "covered": 0,
+      "total": 0,
+      "status": "N/A"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 22,
+    "failurePercentage": "5.20%",
+    "categories": [
+      {
+        "category": "Assembly Loading Issues",
+        "count": 11,
+        "percentage": "50.00%",
+        "impact": "Non-Blocking"
+      },
+      {
+        "category": "Interface Method Validation",
+        "count": 9,
+        "percentage": "40.91%",
+        "impact": "Non-Blocking"
+      },
+      {
+        "category": "Generic Constraint Validation",
+        "count": 2,
+        "percentage": "9.09%",
+        "impact": "Non-Blocking"
+      }
+    ]
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 22,
+    "summary": [
+      "11 tests fail due to missing eShop.Web assembly - web project tests expecting assembly that doesn't exist in test context",
+      "9 tests fail due to interface method parameter validation - expecting CancellationToken parameters in GetAllAsync methods",
+      "2 tests fail due to generic constraint validation - array index out of range when checking constraints"
+    ],
+    "details": [
+      {
+        "category": "Assembly Loading Issues",
+        "count": 11,
+        "examples": [
+          {
+            "testName": "Program_Assembly_CanBeLoaded",
+            "className": "Tests.eShop.Web.ProgramTests",
+            "reason": "Could not load file or assembly 'eShop.Web' - FileNotFoundException"
+          },
+          {
+            "testName": "Program_ClassExists",
+            "className": "Tests.eShop.Web.ProgramTests",
+            "reason": "Could not load file or assembly 'eShop.Web' - FileNotFoundException"
+          },
+          {
+            "testName": "Program_HasMainMethod",
+            "className": "Tests.eShop.Web.ProgramTests",
+            "reason": "Could not load file or assembly 'eShop.Web' - FileNotFoundException"
+          }
+        ]
+      },
+      {
+        "category": "Interface Method Validation",
+        "count": 9,
+        "examples": [
+          {
+            "testName": "ICatalogBrandService_HasGetAllAsyncMethod",
+            "className": "Tests.eShop.Domain.Interfaces.Services.ICatalogBrandServiceTests",
+            "reason": "Expected CancellationToken parameter but got null"
+          },
+          {
+            "testName": "ICatalogItemService_HasGetAllAsyncMethod",
+            "className": "Tests.eShop.Domain.Interfaces.Services.ICatalogItemServiceTests",
+            "reason": "Expected CancellationToken parameter but got null"
+          },
+          {
+            "testName": "ICatalogTypeService_HasGetAllAsyncMethod",
+            "className": "Tests.eShop.Domain.Interfaces.Services.ICatalogTypeServiceTests",
+            "reason": "Expected CancellationToken parameter but got null"
+          }
+        ]
+      },
+      {
+        "category": "Generic Constraint Validation",
+        "count": 2,
+        "examples": [
+          {
+            "testName": "ICatalogTypeRepository_GenericConstraintsAreCorrect",
+            "className": "Tests.eShop.Domain.Interfaces.Repositories.ICatalogTypeRepositoryTests",
+            "reason": "Index was outside the bounds of the array"
+          },
+          {
+            "testName": "ICatalogTypeService_GenericConstraintsAreCorrect",
+            "className": "Tests.eShop.Domain.Interfaces.Services.ICatalogTypeServiceTests",
+            "reason": "Index was outside the bounds of the array"
+          }
+        ]
+      }
+    ]
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0.00%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 423,
+    "totalFilesModified": 1,
+    "PassTestcase": 401,
+    "totalTimeTaken": "0m 0.803s",
+    "FailledTestcase": 22,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1955/transformed-code/81/studio-workspace/dotnet_comp",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "2025-12-19T14:13:30Z",
+    "claudeModel": "Sonnet 4.5",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP1955/transformed-code/81/studio-workspace/dotnet_comp/TestResults/coverage/coverage.cobertura.xml"
+  }
+}

@@ -1,0 +1,961 @@
+{
+  "analysisId": "testcase-generation-2025-12-15",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 173,
+    "totalFilesModified": 15,
+    "PassTestcase": 173,
+    "totalTimeTaken": "116 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/Controllers/HealthControllerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidLogger_CreatesInstance",
+          "description": "Test constructor with valid logger parameter",
+          "coverage": "HealthController constructor"
+        },
+        {
+          "methodName": "GetHealth_ReturnsOkResult",
+          "description": "Test GetHealth returns OK result",
+          "coverage": "HealthController.GetHealth"
+        },
+        {
+          "methodName": "GetHealth_ReturnsHealthyStatus",
+          "description": "Test GetHealth returns healthy status",
+          "coverage": "HealthController.GetHealth status property"
+        },
+        {
+          "methodName": "GetHealth_ReturnsTimestamp",
+          "description": "Test GetHealth returns timestamp",
+          "coverage": "HealthController.GetHealth timestamp"
+        },
+        {
+          "methodName": "GetHealth_ReturnsVersion",
+          "description": "Test GetHealth returns version",
+          "coverage": "HealthController.GetHealth version"
+        },
+        {
+          "methodName": "GetHealth_LogsInformation",
+          "description": "Test GetHealth logs information",
+          "coverage": "HealthController.GetHealth logging"
+        },
+        {
+          "methodName": "GetDetailedHealth_ReturnsOkResult",
+          "description": "Test GetDetailedHealth returns OK result",
+          "coverage": "HealthController.GetDetailedHealth"
+        },
+        {
+          "methodName": "GetDetailedHealth_ReturnsHealthyStatus",
+          "description": "Test GetDetailedHealth returns healthy status",
+          "coverage": "HealthController.GetDetailedHealth status"
+        },
+        {
+          "methodName": "GetDetailedHealth_ReturnsUptime",
+          "description": "Test GetDetailedHealth returns uptime",
+          "coverage": "HealthController.GetDetailedHealth uptime"
+        },
+        {
+          "methodName": "GetDetailedHealth_ReturnsMachineName",
+          "description": "Test GetDetailedHealth returns machine name",
+          "coverage": "HealthController.GetDetailedHealth machine"
+        },
+        {
+          "methodName": "GetDetailedHealth_ReturnsProcessorCount",
+          "description": "Test GetDetailedHealth returns processor count",
+          "coverage": "HealthController.GetDetailedHealth processor count"
+        },
+        {
+          "methodName": "GetDetailedHealth_LogsInformation",
+          "description": "Test GetDetailedHealth logs information",
+          "coverage": "HealthController.GetDetailedHealth logging"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/Controllers/ProductsControllerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidParameters_CreatesInstance",
+          "description": "Test constructor with valid parameters",
+          "coverage": "ProductsController constructor"
+        },
+        {
+          "methodName": "GetProducts_WithNoFilters_ReturnsOkResult",
+          "description": "Test GetProducts without filters",
+          "coverage": "ProductsController.GetProducts"
+        },
+        {
+          "methodName": "GetProducts_WithCategoryFilter_ReturnsFilteredProducts",
+          "description": "Test GetProducts with category filter",
+          "coverage": "ProductsController.GetProducts category filtering"
+        },
+        {
+          "methodName": "GetProducts_WithIsActiveFilter_ReturnsFilteredProducts",
+          "description": "Test GetProducts with isActive filter",
+          "coverage": "ProductsController.GetProducts isActive filtering"
+        },
+        {
+          "methodName": "GetProduct_WithValidId_ReturnsProduct",
+          "description": "Test GetProduct with valid ID",
+          "coverage": "ProductsController.GetProduct"
+        },
+        {
+          "methodName": "GetProduct_WithInvalidId_ReturnsNotFound",
+          "description": "Test GetProduct with invalid ID returns 404",
+          "coverage": "ProductsController.GetProduct error handling"
+        },
+        {
+          "methodName": "CreateProduct_WithValidData_ReturnsCreatedResult",
+          "description": "Test CreateProduct with valid data",
+          "coverage": "ProductsController.CreateProduct"
+        },
+        {
+          "methodName": "CreateProduct_WithInvalidModelState_ReturnsBadRequest",
+          "description": "Test CreateProduct with invalid model state",
+          "coverage": "ProductsController.CreateProduct validation"
+        },
+        {
+          "methodName": "UpdateProduct_WithValidData_ReturnsOkResult",
+          "description": "Test UpdateProduct with valid data",
+          "coverage": "ProductsController.UpdateProduct"
+        },
+        {
+          "methodName": "UpdateProduct_WithInvalidId_ReturnsNotFound",
+          "description": "Test UpdateProduct with invalid ID",
+          "coverage": "ProductsController.UpdateProduct error handling"
+        },
+        {
+          "methodName": "UpdateProduct_WithInvalidModelState_ReturnsBadRequest",
+          "description": "Test UpdateProduct with invalid model state",
+          "coverage": "ProductsController.UpdateProduct validation"
+        },
+        {
+          "methodName": "DeleteProduct_WithValidId_ReturnsNoContent",
+          "description": "Test DeleteProduct with valid ID",
+          "coverage": "ProductsController.DeleteProduct"
+        },
+        {
+          "methodName": "DeleteProduct_WithInvalidId_ReturnsNotFound",
+          "description": "Test DeleteProduct with invalid ID",
+          "coverage": "ProductsController.DeleteProduct error handling"
+        },
+        {
+          "methodName": "SearchProducts_WithValidQuery_ReturnsProducts",
+          "description": "Test SearchProducts with valid query",
+          "coverage": "ProductsController.SearchProducts"
+        },
+        {
+          "methodName": "SearchProducts_WithEmptyQuery_ReturnsBadRequest",
+          "description": "Test SearchProducts with empty query",
+          "coverage": "ProductsController.SearchProducts validation"
+        },
+        {
+          "methodName": "SearchProducts_WithWhitespaceQuery_ReturnsBadRequest",
+          "description": "Test SearchProducts with whitespace query",
+          "coverage": "ProductsController.SearchProducts validation"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/Controllers/UsersControllerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidParameters_CreatesInstance",
+          "description": "Test constructor with valid parameters",
+          "coverage": "UsersController constructor"
+        },
+        {
+          "methodName": "Login_WithValidCredentials_ReturnsOkResult",
+          "description": "Test Login with valid credentials",
+          "coverage": "UsersController.Login"
+        },
+        {
+          "methodName": "Login_WithInvalidCredentials_ReturnsUnauthorized",
+          "description": "Test Login with invalid credentials",
+          "coverage": "UsersController.Login error handling"
+        },
+        {
+          "methodName": "Login_WithInvalidModelState_ReturnsBadRequest",
+          "description": "Test Login with invalid model state",
+          "coverage": "UsersController.Login validation"
+        },
+        {
+          "methodName": "Register_WithValidData_ReturnsCreatedResult",
+          "description": "Test Register with valid data",
+          "coverage": "UsersController.Register"
+        },
+        {
+          "methodName": "Register_WithTakenUsername_ReturnsBadRequest",
+          "description": "Test Register with taken username",
+          "coverage": "UsersController.Register username validation"
+        },
+        {
+          "methodName": "Register_WithTakenEmail_ReturnsBadRequest",
+          "description": "Test Register with taken email",
+          "coverage": "UsersController.Register email validation"
+        },
+        {
+          "methodName": "Register_WithInvalidModelState_ReturnsBadRequest",
+          "description": "Test Register with invalid model state",
+          "coverage": "UsersController.Register validation"
+        },
+        {
+          "methodName": "GetUsers_ReturnsOkResult",
+          "description": "Test GetUsers returns all users",
+          "coverage": "UsersController.GetUsers"
+        },
+        {
+          "methodName": "GetUser_WithValidId_ReturnsUser",
+          "description": "Test GetUser with valid ID",
+          "coverage": "UsersController.GetUser"
+        },
+        {
+          "methodName": "GetUser_WithInvalidId_ReturnsNotFound",
+          "description": "Test GetUser with invalid ID",
+          "coverage": "UsersController.GetUser error handling"
+        },
+        {
+          "methodName": "CheckUsername_WithAvailableUsername_ReturnsAvailable",
+          "description": "Test CheckUsername with available username",
+          "coverage": "UsersController.CheckUsername"
+        },
+        {
+          "methodName": "CheckUsername_WithTakenUsername_ReturnsUnavailable",
+          "description": "Test CheckUsername with taken username",
+          "coverage": "UsersController.CheckUsername availability check"
+        },
+        {
+          "methodName": "CheckUsername_WithEmptyUsername_ReturnsBadRequest",
+          "description": "Test CheckUsername with empty username",
+          "coverage": "UsersController.CheckUsername validation"
+        },
+        {
+          "methodName": "CheckEmail_WithAvailableEmail_ReturnsAvailable",
+          "description": "Test CheckEmail with available email",
+          "coverage": "UsersController.CheckEmail"
+        },
+        {
+          "methodName": "CheckEmail_WithTakenEmail_ReturnsUnavailable",
+          "description": "Test CheckEmail with taken email",
+          "coverage": "UsersController.CheckEmail availability check"
+        },
+        {
+          "methodName": "CheckEmail_WithEmptyEmail_ReturnsBadRequest",
+          "description": "Test CheckEmail with empty email",
+          "coverage": "UsersController.CheckEmail validation"
+        }
+      ],
+      "coveragePercentage": 88.0
+    },
+    {
+      "filePath": "Tests/DTOs/ProductDtoTests.cs",
+      "testMethods": [
+        {
+          "methodName": "ProductDto_DefaultConstructor_CreatesInstance",
+          "description": "Test ProductDto default constructor",
+          "coverage": "ProductDto constructor"
+        },
+        {
+          "methodName": "ProductDto_SetProperties_ReturnsCorrectValues",
+          "description": "Test ProductDto property setters",
+          "coverage": "ProductDto properties"
+        },
+        {
+          "methodName": "ProductDto_WithNegativePrice_SetsPrice",
+          "description": "Test ProductDto with negative price",
+          "coverage": "ProductDto.Price edge case"
+        },
+        {
+          "methodName": "ProductDto_WithLargePrice_SetsPrice",
+          "description": "Test ProductDto with large price",
+          "coverage": "ProductDto.Price boundary"
+        },
+        {
+          "methodName": "CreateProductDto_DefaultConstructor_CreatesInstance",
+          "description": "Test CreateProductDto default constructor",
+          "coverage": "CreateProductDto constructor"
+        },
+        {
+          "methodName": "CreateProductDto_SetProperties_ReturnsCorrectValues",
+          "description": "Test CreateProductDto property setters",
+          "coverage": "CreateProductDto properties"
+        },
+        {
+          "methodName": "UpdateProductDto_DefaultConstructor_CreatesInstance",
+          "description": "Test UpdateProductDto default constructor",
+          "coverage": "UpdateProductDto constructor"
+        },
+        {
+          "methodName": "UpdateProductDto_SetProperties_ReturnsCorrectValues",
+          "description": "Test UpdateProductDto property setters",
+          "coverage": "UpdateProductDto properties"
+        },
+        {
+          "methodName": "UpdateProductDto_PartialUpdate_OnlySetsSpecifiedProperties",
+          "description": "Test UpdateProductDto partial update",
+          "coverage": "UpdateProductDto partial mapping"
+        }
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/DTOs/UserDtoTests.cs",
+      "testMethods": [
+        {
+          "methodName": "UserDto_DefaultConstructor_CreatesInstance",
+          "description": "Test UserDto default constructor",
+          "coverage": "UserDto constructor"
+        },
+        {
+          "methodName": "UserDto_SetProperties_ReturnsCorrectValues",
+          "description": "Test UserDto property setters",
+          "coverage": "UserDto properties"
+        },
+        {
+          "methodName": "UserDto_WithManagerRole_SetsRole",
+          "description": "Test UserDto with Manager role",
+          "coverage": "UserDto.Role"
+        },
+        {
+          "methodName": "LoginDto_DefaultConstructor_CreatesInstance",
+          "description": "Test LoginDto default constructor",
+          "coverage": "LoginDto constructor"
+        },
+        {
+          "methodName": "LoginDto_SetProperties_ReturnsCorrectValues",
+          "description": "Test LoginDto property setters",
+          "coverage": "LoginDto properties"
+        },
+        {
+          "methodName": "RegisterDto_DefaultConstructor_CreatesInstance",
+          "description": "Test RegisterDto default constructor",
+          "coverage": "RegisterDto constructor"
+        },
+        {
+          "methodName": "RegisterDto_SetProperties_ReturnsCorrectValues",
+          "description": "Test RegisterDto property setters",
+          "coverage": "RegisterDto properties"
+        },
+        {
+          "methodName": "AuthResponseDto_DefaultConstructor_CreatesInstance",
+          "description": "Test AuthResponseDto default constructor",
+          "coverage": "AuthResponseDto constructor"
+        },
+        {
+          "methodName": "AuthResponseDto_SetProperties_ReturnsCorrectValues",
+          "description": "Test AuthResponseDto property setters",
+          "coverage": "AuthResponseDto properties"
+        },
+        {
+          "methodName": "AuthResponseDto_WithEmptyToken_SetsToken",
+          "description": "Test AuthResponseDto with empty token",
+          "coverage": "AuthResponseDto.Token edge case"
+        },
+        {
+          "methodName": "AuthResponseDto_WithLongToken_SetsToken",
+          "description": "Test AuthResponseDto with long token",
+          "coverage": "AuthResponseDto.Token boundary"
+        }
+      ],
+      "coveragePercentage": 72.0
+    },
+    {
+      "filePath": "Tests/Data/ApplicationDbContextTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidOptions_CreatesInstance",
+          "description": "Test ApplicationDbContext constructor",
+          "coverage": "ApplicationDbContext constructor"
+        },
+        {
+          "methodName": "Products_DbSet_IsNotNull",
+          "description": "Test Products DbSet is not null",
+          "coverage": "ApplicationDbContext.Products"
+        },
+        {
+          "methodName": "Users_DbSet_IsNotNull",
+          "description": "Test Users DbSet is not null",
+          "coverage": "ApplicationDbContext.Users"
+        },
+        {
+          "methodName": "AddProduct_SavesProduct",
+          "description": "Test adding product to database",
+          "coverage": "ApplicationDbContext.Products.Add"
+        },
+        {
+          "methodName": "AddUser_SavesUser",
+          "description": "Test adding user to database",
+          "coverage": "ApplicationDbContext.Users.Add"
+        },
+        {
+          "methodName": "FindProduct_ById_ReturnsProduct",
+          "description": "Test finding product by ID",
+          "coverage": "ApplicationDbContext.Products.FindAsync"
+        },
+        {
+          "methodName": "FindUser_ById_ReturnsUser",
+          "description": "Test finding user by ID",
+          "coverage": "ApplicationDbContext.Users.FindAsync"
+        },
+        {
+          "methodName": "RemoveProduct_DeletesProduct",
+          "description": "Test removing product from database",
+          "coverage": "ApplicationDbContext.Products.Remove"
+        },
+        {
+          "methodName": "UpdateProduct_UpdatesProduct",
+          "description": "Test updating product in database",
+          "coverage": "ApplicationDbContext.SaveChangesAsync"
+        },
+        {
+          "methodName": "AddMultipleProducts_SavesAllProducts",
+          "description": "Test adding multiple products",
+          "coverage": "ApplicationDbContext.Products.AddRange"
+        },
+        {
+          "methodName": "QueryProducts_ByCategory_ReturnsFilteredProducts",
+          "description": "Test querying products by category",
+          "coverage": "ApplicationDbContext.Products filtering"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/Data/DataSeederTests.cs",
+      "testMethods": [
+        {
+          "methodName": "SeedAsync_WithEmptyDatabase_SeedsUsers",
+          "description": "Test seeding users in empty database",
+          "coverage": "DataSeeder.SeedAsync user seeding"
+        },
+        {
+          "methodName": "SeedAsync_WithEmptyDatabase_SeedsProducts",
+          "description": "Test seeding products in empty database",
+          "coverage": "DataSeeder.SeedAsync product seeding"
+        },
+        {
+          "methodName": "SeedAsync_WithEmptyDatabase_SeedsAdminUser",
+          "description": "Test seeding admin user",
+          "coverage": "DataSeeder.SeedAsync admin creation"
+        },
+        {
+          "methodName": "SeedAsync_WithEmptyDatabase_SeedsManagerUser",
+          "description": "Test seeding manager user",
+          "coverage": "DataSeeder.SeedAsync manager creation"
+        },
+        {
+          "methodName": "SeedAsync_WithEmptyDatabase_SeedsRegularUser",
+          "description": "Test seeding regular user",
+          "coverage": "DataSeeder.SeedAsync user creation"
+        },
+        {
+          "methodName": "SeedAsync_WithExistingUsers_DoesNotDuplicateUsers",
+          "description": "Test seed does not duplicate existing users",
+          "coverage": "DataSeeder.SeedAsync idempotency"
+        },
+        {
+          "methodName": "SeedAsync_WithExistingProducts_DoesNotDuplicateProducts",
+          "description": "Test seed does not duplicate existing products",
+          "coverage": "DataSeeder.SeedAsync idempotency"
+        },
+        {
+          "methodName": "SeedAsync_SeedsActiveUsers",
+          "description": "Test seeded users are active",
+          "coverage": "DataSeeder.SeedAsync user state"
+        },
+        {
+          "methodName": "SeedAsync_SeedsActiveProducts",
+          "description": "Test seeded products are active",
+          "coverage": "DataSeeder.SeedAsync product state"
+        },
+        {
+          "methodName": "SeedAsync_SeedsProductsWithValidData",
+          "description": "Test seeded products have valid data",
+          "coverage": "DataSeeder.SeedAsync product data validation"
+        },
+        {
+          "methodName": "SeedAsync_SeedsUsersWithHashedPasswords",
+          "description": "Test seeded users have hashed passwords",
+          "coverage": "DataSeeder.SeedAsync password hashing"
+        },
+        {
+          "methodName": "SeedAsync_SeedsUsersWithUniqueUsernames",
+          "description": "Test seeded users have unique usernames",
+          "coverage": "DataSeeder.SeedAsync username uniqueness"
+        },
+        {
+          "methodName": "SeedAsync_SeedsUsersWithUniqueEmails",
+          "description": "Test seeded users have unique emails",
+          "coverage": "DataSeeder.SeedAsync email uniqueness"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/Mappings/MappingProfileTests.cs",
+      "testMethods": [
+        {
+          "methodName": "MappingProfile_Configuration_IsValid",
+          "description": "Test AutoMapper configuration is valid",
+          "coverage": "MappingProfile configuration"
+        },
+        {
+          "methodName": "Map_ProductToProductDto_MapsCorrectly",
+          "description": "Test Product to ProductDto mapping",
+          "coverage": "MappingProfile Product mapping"
+        },
+        {
+          "methodName": "Map_CreateProductDtoToProduct_MapsCorrectly",
+          "description": "Test CreateProductDto to Product mapping",
+          "coverage": "MappingProfile CreateProductDto mapping"
+        },
+        {
+          "methodName": "Map_CreateProductDtoToProduct_IgnoresId",
+          "description": "Test CreateProductDto mapping ignores ID",
+          "coverage": "MappingProfile ID ignore"
+        },
+        {
+          "methodName": "Map_CreateProductDtoToProduct_SetsTimestamps",
+          "description": "Test CreateProductDto mapping sets timestamps",
+          "coverage": "MappingProfile timestamp mapping"
+        },
+        {
+          "methodName": "Map_UpdateProductDtoToProduct_MapsNonNullProperties",
+          "description": "Test UpdateProductDto mapping with non-null properties",
+          "coverage": "MappingProfile UpdateProductDto mapping"
+        },
+        {
+          "methodName": "Map_UserToUserDto_MapsCorrectly",
+          "description": "Test User to UserDto mapping",
+          "coverage": "MappingProfile User mapping"
+        },
+        {
+          "methodName": "Map_RegisterDtoToUser_MapsCorrectly",
+          "description": "Test RegisterDto to User mapping",
+          "coverage": "MappingProfile RegisterDto mapping"
+        },
+        {
+          "methodName": "Map_RegisterDtoToUser_IgnoresId",
+          "description": "Test RegisterDto mapping ignores ID",
+          "coverage": "MappingProfile ID ignore"
+        },
+        {
+          "methodName": "Map_RegisterDtoToUser_IgnoresPasswordHash",
+          "description": "Test RegisterDto mapping ignores password hash",
+          "coverage": "MappingProfile password hash ignore"
+        },
+        {
+          "methodName": "Map_MultipleProducts_MapsCorrectly",
+          "description": "Test mapping multiple products",
+          "coverage": "MappingProfile collection mapping"
+        },
+        {
+          "methodName": "Map_MultipleUsers_MapsCorrectly",
+          "description": "Test mapping multiple users",
+          "coverage": "MappingProfile collection mapping"
+        }
+      ],
+      "coveragePercentage": 88.0
+    },
+    {
+      "filePath": "Tests/Models/ProductTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Product_DefaultConstructor_CreatesInstance",
+          "description": "Test Product default constructor",
+          "coverage": "Product constructor"
+        },
+        {
+          "methodName": "Product_SetProperties_ReturnsCorrectValues",
+          "description": "Test Product property setters",
+          "coverage": "Product properties"
+        },
+        {
+          "methodName": "Product_WithZeroPrice_SetsPrice",
+          "description": "Test Product with zero price",
+          "coverage": "Product.Price edge case"
+        },
+        {
+          "methodName": "Product_WithNegativePrice_SetsPrice",
+          "description": "Test Product with negative price",
+          "coverage": "Product.Price boundary"
+        },
+        {
+          "methodName": "Product_WithLargePrice_SetsPrice",
+          "description": "Test Product with large price",
+          "coverage": "Product.Price boundary"
+        },
+        {
+          "methodName": "Product_WithNegativeStockQuantity_SetsQuantity",
+          "description": "Test Product with negative stock quantity",
+          "coverage": "Product.StockQuantity edge case"
+        },
+        {
+          "methodName": "Product_WithZeroStockQuantity_SetsQuantity",
+          "description": "Test Product with zero stock quantity",
+          "coverage": "Product.StockQuantity edge case"
+        },
+        {
+          "methodName": "Product_WithLargeStockQuantity_SetsQuantity",
+          "description": "Test Product with large stock quantity",
+          "coverage": "Product.StockQuantity boundary"
+        },
+        {
+          "methodName": "Product_DefaultIsActive_IsTrue",
+          "description": "Test Product default IsActive is true",
+          "coverage": "Product.IsActive default"
+        },
+        {
+          "methodName": "Product_SetIsActiveToFalse_UpdatesProperty",
+          "description": "Test Product IsActive can be set to false",
+          "coverage": "Product.IsActive"
+        },
+        {
+          "methodName": "Product_WithEmptyName_SetsName",
+          "description": "Test Product with empty name",
+          "coverage": "Product.Name edge case"
+        },
+        {
+          "methodName": "Product_WithLongDescription_SetsDescription",
+          "description": "Test Product with long description",
+          "coverage": "Product.Description boundary"
+        },
+        {
+          "methodName": "Product_UpdatedAtAfterCreatedAt_IsValid",
+          "description": "Test Product UpdatedAt after CreatedAt",
+          "coverage": "Product timestamp validation"
+        },
+        {
+          "methodName": "Product_WithDifferentCategories_SetsCategory",
+          "description": "Test Product with different categories",
+          "coverage": "Product.Category"
+        }
+      ],
+      "coveragePercentage": 78.0
+    },
+    {
+      "filePath": "Tests/Models/UserTests.cs",
+      "testMethods": [
+        {
+          "methodName": "User_DefaultConstructor_CreatesInstance",
+          "description": "Test User default constructor",
+          "coverage": "User constructor"
+        },
+        {
+          "methodName": "User_SetProperties_ReturnsCorrectValues",
+          "description": "Test User property setters",
+          "coverage": "User properties"
+        },
+        {
+          "methodName": "User_DefaultRole_IsUser",
+          "description": "Test User default role is User",
+          "coverage": "User.Role default"
+        },
+        {
+          "methodName": "User_SetRoleToAdmin_UpdatesRole",
+          "description": "Test User role can be set to Admin",
+          "coverage": "User.Role"
+        },
+        {
+          "methodName": "User_SetRoleToManager_UpdatesRole",
+          "description": "Test User role can be set to Manager",
+          "coverage": "User.Role"
+        },
+        {
+          "methodName": "User_DefaultIsActive_IsTrue",
+          "description": "Test User default IsActive is true",
+          "coverage": "User.IsActive default"
+        },
+        {
+          "methodName": "User_SetIsActiveToFalse_UpdatesProperty",
+          "description": "Test User IsActive can be set to false",
+          "coverage": "User.IsActive"
+        },
+        {
+          "methodName": "User_WithEmptyUsername_SetsUsername",
+          "description": "Test User with empty username",
+          "coverage": "User.Username edge case"
+        },
+        {
+          "methodName": "User_WithEmptyEmail_SetsEmail",
+          "description": "Test User with empty email",
+          "coverage": "User.Email edge case"
+        },
+        {
+          "methodName": "User_WithLongUsername_SetsUsername",
+          "description": "Test User with long username",
+          "coverage": "User.Username boundary"
+        },
+        {
+          "methodName": "User_WithValidEmail_SetsEmail",
+          "description": "Test User with valid email",
+          "coverage": "User.Email"
+        },
+        {
+          "methodName": "User_WithPasswordHash_SetsPasswordHash",
+          "description": "Test User password hash setter",
+          "coverage": "User.PasswordHash"
+        },
+        {
+          "methodName": "User_CreatedAt_CanBeSet",
+          "description": "Test User CreatedAt can be set",
+          "coverage": "User.CreatedAt"
+        },
+        {
+          "methodName": "UserRole_HasCorrectValues",
+          "description": "Test UserRole enum values",
+          "coverage": "UserRole enum"
+        },
+        {
+          "methodName": "UserRole_User_IsDefinedCorrectly",
+          "description": "Test UserRole.User is defined correctly",
+          "coverage": "UserRole.User"
+        },
+        {
+          "methodName": "UserRole_Admin_IsDefinedCorrectly",
+          "description": "Test UserRole.Admin is defined correctly",
+          "coverage": "UserRole.Admin"
+        },
+        {
+          "methodName": "UserRole_Manager_IsDefinedCorrectly",
+          "description": "Test UserRole.Manager is defined correctly",
+          "coverage": "UserRole.Manager"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/Services/ProductServiceTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidParameters_CreatesInstance",
+          "description": "Test ProductService constructor",
+          "coverage": "ProductService constructor"
+        },
+        {
+          "methodName": "GetAllProductsAsync_WithNoFilters_ReturnsAllProducts",
+          "description": "Test GetAllProductsAsync without filters",
+          "coverage": "ProductService.GetAllProductsAsync"
+        },
+        {
+          "methodName": "GetAllProductsAsync_WithCategoryFilter_ReturnsFilteredProducts",
+          "description": "Test GetAllProductsAsync with category filter",
+          "coverage": "ProductService.GetAllProductsAsync filtering"
+        },
+        {
+          "methodName": "GetAllProductsAsync_WithIsActiveFilter_ReturnsFilteredProducts",
+          "description": "Test GetAllProductsAsync with isActive filter",
+          "coverage": "ProductService.GetAllProductsAsync filtering"
+        },
+        {
+          "methodName": "GetAllProductsAsync_WithBothFilters_ReturnsFilteredProducts",
+          "description": "Test GetAllProductsAsync with both filters",
+          "coverage": "ProductService.GetAllProductsAsync multiple filters"
+        },
+        {
+          "methodName": "GetAllProductsAsync_OrdersByName",
+          "description": "Test GetAllProductsAsync orders by name",
+          "coverage": "ProductService.GetAllProductsAsync ordering"
+        },
+        {
+          "methodName": "GetProductByIdAsync_WithValidId_ReturnsProduct",
+          "description": "Test GetProductByIdAsync with valid ID",
+          "coverage": "ProductService.GetProductByIdAsync"
+        },
+        {
+          "methodName": "GetProductByIdAsync_WithInvalidId_ReturnsNull",
+          "description": "Test GetProductByIdAsync with invalid ID",
+          "coverage": "ProductService.GetProductByIdAsync error handling"
+        },
+        {
+          "methodName": "CreateProductAsync_WithValidData_CreatesProduct",
+          "description": "Test CreateProductAsync with valid data",
+          "coverage": "ProductService.CreateProductAsync"
+        },
+        {
+          "methodName": "CreateProductAsync_SetsIsActiveToTrue",
+          "description": "Test CreateProductAsync sets IsActive to true",
+          "coverage": "ProductService.CreateProductAsync default values"
+        },
+        {
+          "methodName": "UpdateProductAsync_WithValidData_UpdatesProduct",
+          "description": "Test UpdateProductAsync with valid data",
+          "coverage": "ProductService.UpdateProductAsync"
+        },
+        {
+          "methodName": "UpdateProductAsync_WithInvalidId_ReturnsNull",
+          "description": "Test UpdateProductAsync with invalid ID",
+          "coverage": "ProductService.UpdateProductAsync error handling"
+        },
+        {
+          "methodName": "UpdateProductAsync_WithPartialData_UpdatesOnlySpecifiedFields",
+          "description": "Test UpdateProductAsync with partial data",
+          "coverage": "ProductService.UpdateProductAsync partial update"
+        },
+        {
+          "methodName": "DeleteProductAsync_WithValidId_DeletesProduct",
+          "description": "Test DeleteProductAsync with valid ID",
+          "coverage": "ProductService.DeleteProductAsync"
+        },
+        {
+          "methodName": "DeleteProductAsync_WithInvalidId_ReturnsFalse",
+          "description": "Test DeleteProductAsync with invalid ID",
+          "coverage": "ProductService.DeleteProductAsync error handling"
+        },
+        {
+          "methodName": "SearchProductsAsync_ByName_ReturnsMatchingProducts",
+          "description": "Test SearchProductsAsync by name",
+          "coverage": "ProductService.SearchProductsAsync name search"
+        },
+        {
+          "methodName": "SearchProductsAsync_ByDescription_ReturnsMatchingProducts",
+          "description": "Test SearchProductsAsync by description",
+          "coverage": "ProductService.SearchProductsAsync description search"
+        },
+        {
+          "methodName": "SearchProductsAsync_ByCategory_ReturnsMatchingProducts",
+          "description": "Test SearchProductsAsync by category",
+          "coverage": "ProductService.SearchProductsAsync category search"
+        },
+        {
+          "methodName": "SearchProductsAsync_OnlyReturnsActiveProducts",
+          "description": "Test SearchProductsAsync returns only active products",
+          "coverage": "ProductService.SearchProductsAsync filtering"
+        },
+        {
+          "methodName": "SearchProductsAsync_CaseInsensitive_ReturnsMatchingProducts",
+          "description": "Test SearchProductsAsync is case insensitive",
+          "coverage": "ProductService.SearchProductsAsync case sensitivity"
+        }
+      ],
+      "coveragePercentage": 92.0
+    },
+    {
+      "filePath": "Tests/Services/UserServiceTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidParameters_CreatesInstance",
+          "description": "Test UserService constructor",
+          "coverage": "UserService constructor"
+        },
+        {
+          "methodName": "AuthenticateAsync_WithValidCredentials_ReturnsAuthResponse",
+          "description": "Test AuthenticateAsync with valid credentials",
+          "coverage": "UserService.AuthenticateAsync"
+        },
+        {
+          "methodName": "AuthenticateAsync_WithEmail_ReturnsAuthResponse",
+          "description": "Test AuthenticateAsync with email",
+          "coverage": "UserService.AuthenticateAsync email login"
+        },
+        {
+          "methodName": "AuthenticateAsync_WithInvalidPassword_ReturnsNull",
+          "description": "Test AuthenticateAsync with invalid password",
+          "coverage": "UserService.AuthenticateAsync password validation"
+        },
+        {
+          "methodName": "AuthenticateAsync_WithInactiveUser_ReturnsNull",
+          "description": "Test AuthenticateAsync with inactive user",
+          "coverage": "UserService.AuthenticateAsync user status check"
+        },
+        {
+          "methodName": "AuthenticateAsync_WithNonExistentUser_ReturnsNull",
+          "description": "Test AuthenticateAsync with non-existent user",
+          "coverage": "UserService.AuthenticateAsync error handling"
+        },
+        {
+          "methodName": "RegisterAsync_WithValidData_CreatesUser",
+          "description": "Test RegisterAsync with valid data",
+          "coverage": "UserService.RegisterAsync"
+        },
+        {
+          "methodName": "RegisterAsync_HashesPassword",
+          "description": "Test RegisterAsync hashes password",
+          "coverage": "UserService.RegisterAsync password hashing"
+        },
+        {
+          "methodName": "RegisterAsync_SetsUserRole",
+          "description": "Test RegisterAsync sets user role",
+          "coverage": "UserService.RegisterAsync role setting"
+        },
+        {
+          "methodName": "RegisterAsync_SetsIsActiveToTrue",
+          "description": "Test RegisterAsync sets IsActive to true",
+          "coverage": "UserService.RegisterAsync default values"
+        },
+        {
+          "methodName": "GetAllUsersAsync_ReturnsAllActiveUsers",
+          "description": "Test GetAllUsersAsync returns all active users",
+          "coverage": "UserService.GetAllUsersAsync"
+        },
+        {
+          "methodName": "GetAllUsersAsync_OrdersByUsername",
+          "description": "Test GetAllUsersAsync orders by username",
+          "coverage": "UserService.GetAllUsersAsync ordering"
+        },
+        {
+          "methodName": "GetUserByIdAsync_WithValidId_ReturnsUser",
+          "description": "Test GetUserByIdAsync with valid ID",
+          "coverage": "UserService.GetUserByIdAsync"
+        },
+        {
+          "methodName": "GetUserByIdAsync_WithInvalidId_ReturnsNull",
+          "description": "Test GetUserByIdAsync with invalid ID",
+          "coverage": "UserService.GetUserByIdAsync error handling"
+        },
+        {
+          "methodName": "GetUserByUsernameAsync_WithValidUsername_ReturnsUser",
+          "description": "Test GetUserByUsernameAsync with valid username",
+          "coverage": "UserService.GetUserByUsernameAsync"
+        },
+        {
+          "methodName": "GetUserByUsernameAsync_WithInactiveUser_ReturnsNull",
+          "description": "Test GetUserByUsernameAsync with inactive user",
+          "coverage": "UserService.GetUserByUsernameAsync status check"
+        },
+        {
+          "methodName": "GetUserByUsernameAsync_WithInvalidUsername_ReturnsNull",
+          "description": "Test GetUserByUsernameAsync with invalid username",
+          "coverage": "UserService.GetUserByUsernameAsync error handling"
+        },
+        {
+          "methodName": "IsUsernameAvailableAsync_WithAvailableUsername_ReturnsTrue",
+          "description": "Test IsUsernameAvailableAsync with available username",
+          "coverage": "UserService.IsUsernameAvailableAsync"
+        },
+        {
+          "methodName": "IsUsernameAvailableAsync_WithTakenUsername_ReturnsFalse",
+          "description": "Test IsUsernameAvailableAsync with taken username",
+          "coverage": "UserService.IsUsernameAvailableAsync availability check"
+        },
+        {
+          "methodName": "IsEmailAvailableAsync_WithAvailableEmail_ReturnsTrue",
+          "description": "Test IsEmailAvailableAsync with available email",
+          "coverage": "UserService.IsEmailAvailableAsync"
+        },
+        {
+          "methodName": "IsEmailAvailableAsync_WithTakenEmail_ReturnsFalse",
+          "description": "Test IsEmailAvailableAsync with taken email",
+          "coverage": "UserService.IsEmailAvailableAsync availability check"
+        }
+      ],
+      "coveragePercentage": 90.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1854/transformed-code/6/studio-workspace/dotnet-rahul",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-15T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 83.5
+  }
+}

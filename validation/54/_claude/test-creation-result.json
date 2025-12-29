@@ -1,0 +1,539 @@
+{
+  "analysisId": "testcase-generation-2025-12-18",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 96,
+    "totalFilesModified": 1,
+    "PassTestcase": 96,
+    "totalTimeTaken": "47 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/comp_backend/ProgramTests.cs",
+      "testMethods": [
+        {
+          "methodName": "TestProgramCanBeInstantiated",
+          "description": "Verifies Program class can be instantiated",
+          "coverage": "Program class constructor"
+        }
+      ],
+      "coveragePercentage": 65.0
+    },
+    {
+      "filePath": "Tests/comp_backend.Controllers/COMPControllerTests.cs",
+      "testMethods": [
+        {
+          "methodName": "GetEmployeeData_ReturnsOkResult_WithEmployeeList",
+          "description": "Tests GetEmployeeData returns Ok result with employee data",
+          "coverage": "COMPController.GetEmployeeData method"
+        },
+        {
+          "methodName": "GetEmployeeData_ReturnsInternalServerError_OnException",
+          "description": "Tests GetEmployeeData handles exceptions appropriately",
+          "coverage": "COMPController.GetEmployeeData exception handling"
+        },
+        {
+          "methodName": "GetAllEmployees_ReturnsOkResult_WithEmployeeList",
+          "description": "Tests GetAllEmployees returns Ok result with all employees",
+          "coverage": "COMPController.GetAllEmployees method"
+        },
+        {
+          "methodName": "GetAllEmployees_ReturnsInternalServerError_OnException",
+          "description": "Tests GetAllEmployees handles exceptions appropriately",
+          "coverage": "COMPController.GetAllEmployees exception handling"
+        },
+        {
+          "methodName": "GetEmployeeById_ReturnsOkResult_WithEmployee",
+          "description": "Tests GetEmployeeById returns Ok result with specific employee",
+          "coverage": "COMPController.GetEmployeeById method - found"
+        },
+        {
+          "methodName": "GetEmployeeById_ReturnsNotFound_WhenEmployeeDoesNotExist",
+          "description": "Tests GetEmployeeById returns NotFound when employee doesn't exist",
+          "coverage": "COMPController.GetEmployeeById method - not found"
+        },
+        {
+          "methodName": "GetEmployeeById_ReturnsInternalServerError_OnException",
+          "description": "Tests GetEmployeeById handles exceptions appropriately",
+          "coverage": "COMPController.GetEmployeeById exception handling"
+        },
+        {
+          "methodName": "AddEmployee_ReturnsCreatedResult_WithNewEmployee",
+          "description": "Tests AddEmployee returns Created result with new employee",
+          "coverage": "COMPController.AddEmployee method"
+        },
+        {
+          "methodName": "AddEmployee_ReturnsInternalServerError_OnException",
+          "description": "Tests AddEmployee handles exceptions appropriately",
+          "coverage": "COMPController.AddEmployee exception handling"
+        },
+        {
+          "methodName": "UpdateEmployee_ReturnsOkResult_WhenEmployeeUpdated",
+          "description": "Tests UpdateEmployee returns Ok result when employee is updated",
+          "coverage": "COMPController.UpdateEmployee method - success"
+        },
+        {
+          "methodName": "UpdateEmployee_ReturnsNotFound_WhenEmployeeDoesNotExist",
+          "description": "Tests UpdateEmployee returns NotFound when employee doesn't exist",
+          "coverage": "COMPController.UpdateEmployee method - not found"
+        },
+        {
+          "methodName": "UpdateEmployee_ReturnsInternalServerError_OnException",
+          "description": "Tests UpdateEmployee handles exceptions appropriately",
+          "coverage": "COMPController.UpdateEmployee exception handling"
+        },
+        {
+          "methodName": "DeleteEmployee_ReturnsNoContent_WhenEmployeeDeleted",
+          "description": "Tests DeleteEmployee returns NoContent when employee is deleted",
+          "coverage": "COMPController.DeleteEmployee method - success"
+        },
+        {
+          "methodName": "DeleteEmployee_ReturnsNotFound_WhenEmployeeDoesNotExist",
+          "description": "Tests DeleteEmployee returns NotFound when employee doesn't exist",
+          "coverage": "COMPController.DeleteEmployee method - not found"
+        },
+        {
+          "methodName": "DeleteEmployee_ReturnsInternalServerError_OnException",
+          "description": "Tests DeleteEmployee handles exceptions appropriately",
+          "coverage": "COMPController.DeleteEmployee exception handling"
+        }
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/comp_backend.Data/ApplicationDbContextTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_InitializesContext_WithValidOptions",
+          "description": "Tests ApplicationDbContext constructor initializes correctly",
+          "coverage": "ApplicationDbContext constructor"
+        },
+        {
+          "methodName": "Employees_DbSet_IsNotNull",
+          "description": "Tests Employees DbSet is properly initialized",
+          "coverage": "ApplicationDbContext.Employees property"
+        },
+        {
+          "methodName": "OnModelCreating_ConfiguresEmployeeEntity",
+          "description": "Tests OnModelCreating configures Employee entity correctly",
+          "coverage": "ApplicationDbContext.OnModelCreating method"
+        }
+      ],
+      "coveragePercentage": 70.0
+    },
+    {
+      "filePath": "Tests/comp_backend.Models/EmployeeTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_InitializesEmployee_WithDefaultValues",
+          "description": "Tests Employee constructor initializes with default values",
+          "coverage": "Employee constructor"
+        },
+        {
+          "methodName": "EmployeeId_GetSet_WorksCorrectly",
+          "description": "Tests EmployeeId property getter and setter",
+          "coverage": "Employee.EmployeeId property"
+        },
+        {
+          "methodName": "FirstName_GetSet_WorksCorrectly",
+          "description": "Tests FirstName property getter and setter",
+          "coverage": "Employee.FirstName property"
+        },
+        {
+          "methodName": "LastName_GetSet_WorksCorrectly",
+          "description": "Tests LastName property getter and setter",
+          "coverage": "Employee.LastName property"
+        },
+        {
+          "methodName": "Email_GetSet_WorksCorrectly",
+          "description": "Tests Email property getter and setter",
+          "coverage": "Employee.Email property"
+        },
+        {
+          "methodName": "PhoneNumber_GetSet_WorksCorrectly",
+          "description": "Tests PhoneNumber property getter and setter",
+          "coverage": "Employee.PhoneNumber property"
+        },
+        {
+          "methodName": "Department_GetSet_WorksCorrectly",
+          "description": "Tests Department property getter and setter",
+          "coverage": "Employee.Department property"
+        },
+        {
+          "methodName": "Position_GetSet_WorksCorrectly",
+          "description": "Tests Position property getter and setter",
+          "coverage": "Employee.Position property"
+        },
+        {
+          "methodName": "HireDate_GetSet_WorksCorrectly",
+          "description": "Tests HireDate property getter and setter",
+          "coverage": "Employee.HireDate property"
+        },
+        {
+          "methodName": "Salary_GetSet_WorksCorrectly",
+          "description": "Tests Salary property getter and setter",
+          "coverage": "Employee.Salary property"
+        },
+        {
+          "methodName": "FirstName_CanBeNull",
+          "description": "Tests FirstName can be set to null",
+          "coverage": "Employee.FirstName null handling"
+        },
+        {
+          "methodName": "LastName_CanBeNull",
+          "description": "Tests LastName can be set to null",
+          "coverage": "Employee.LastName null handling"
+        },
+        {
+          "methodName": "Email_CanBeNull",
+          "description": "Tests Email can be set to null",
+          "coverage": "Employee.Email null handling"
+        },
+        {
+          "methodName": "PhoneNumber_CanBeNull",
+          "description": "Tests PhoneNumber can be set to null",
+          "coverage": "Employee.PhoneNumber null handling"
+        },
+        {
+          "methodName": "Department_CanBeNull",
+          "description": "Tests Department can be set to null",
+          "coverage": "Employee.Department null handling"
+        },
+        {
+          "methodName": "Position_CanBeNull",
+          "description": "Tests Position can be set to null",
+          "coverage": "Employee.Position null handling"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/comp_backend.Services/COMPServiceTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_InitializesService_WithValidContext",
+          "description": "Tests COMPService constructor initializes correctly",
+          "coverage": "COMPService constructor"
+        },
+        {
+          "methodName": "Constructor_ThrowsArgumentNullException_WhenContextIsNull",
+          "description": "Tests COMPService constructor throws exception with null context",
+          "coverage": "COMPService constructor null validation"
+        },
+        {
+          "methodName": "GetEmployeeDataAsync_ReturnsEmployeeList",
+          "description": "Tests GetEmployeeDataAsync returns list of employees",
+          "coverage": "COMPService.GetEmployeeDataAsync method"
+        },
+        {
+          "methodName": "GetEmployeeDataAsync_ReturnsEmptyList_WhenNoEmployees",
+          "description": "Tests GetEmployeeDataAsync returns empty list when no employees exist",
+          "coverage": "COMPService.GetEmployeeDataAsync empty case"
+        },
+        {
+          "methodName": "GetAllEmployeesAsync_ReturnsAllEmployees",
+          "description": "Tests GetAllEmployeesAsync returns all employees",
+          "coverage": "COMPService.GetAllEmployeesAsync method"
+        },
+        {
+          "methodName": "GetAllEmployeesAsync_ReturnsEmptyList_WhenNoEmployees",
+          "description": "Tests GetAllEmployeesAsync returns empty list when no employees exist",
+          "coverage": "COMPService.GetAllEmployeesAsync empty case"
+        },
+        {
+          "methodName": "GetEmployeeByIdAsync_ReturnsEmployee_WhenExists",
+          "description": "Tests GetEmployeeByIdAsync returns employee when it exists",
+          "coverage": "COMPService.GetEmployeeByIdAsync method - found"
+        },
+        {
+          "methodName": "GetEmployeeByIdAsync_ReturnsNull_WhenEmployeeDoesNotExist",
+          "description": "Tests GetEmployeeByIdAsync returns null when employee doesn't exist",
+          "coverage": "COMPService.GetEmployeeByIdAsync method - not found"
+        },
+        {
+          "methodName": "AddEmployeeAsync_AddsEmployee_Successfully",
+          "description": "Tests AddEmployeeAsync adds employee successfully",
+          "coverage": "COMPService.AddEmployeeAsync method"
+        },
+        {
+          "methodName": "AddEmployeeAsync_ThrowsArgumentNullException_WhenEmployeeIsNull",
+          "description": "Tests AddEmployeeAsync throws exception with null employee",
+          "coverage": "COMPService.AddEmployeeAsync null validation"
+        },
+        {
+          "methodName": "UpdateEmployeeAsync_UpdatesEmployee_Successfully",
+          "description": "Tests UpdateEmployeeAsync updates employee successfully",
+          "coverage": "COMPService.UpdateEmployeeAsync method - success"
+        },
+        {
+          "methodName": "UpdateEmployeeAsync_ReturnsFalse_WhenEmployeeDoesNotExist",
+          "description": "Tests UpdateEmployeeAsync returns false when employee doesn't exist",
+          "coverage": "COMPService.UpdateEmployeeAsync method - not found"
+        },
+        {
+          "methodName": "UpdateEmployeeAsync_ThrowsArgumentNullException_WhenEmployeeIsNull",
+          "description": "Tests UpdateEmployeeAsync throws exception with null employee",
+          "coverage": "COMPService.UpdateEmployeeAsync null validation"
+        },
+        {
+          "methodName": "DeleteEmployeeAsync_DeletesEmployee_Successfully",
+          "description": "Tests DeleteEmployeeAsync deletes employee successfully",
+          "coverage": "COMPService.DeleteEmployeeAsync method - success"
+        },
+        {
+          "methodName": "DeleteEmployeeAsync_ReturnsFalse_WhenEmployeeDoesNotExist",
+          "description": "Tests DeleteEmployeeAsync returns false when employee doesn't exist",
+          "coverage": "COMPService.DeleteEmployeeAsync method - not found"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/comp_backend.Interfaces/ICOMPServiceTests.cs",
+      "testMethods": [
+        {
+          "methodName": "ICOMPService_IsInterface",
+          "description": "Verifies ICOMPService is an interface",
+          "coverage": "ICOMPService interface definition"
+        },
+        {
+          "methodName": "ICOMPService_HasGetEmployeeDataAsyncMethod",
+          "description": "Verifies ICOMPService has GetEmployeeDataAsync method",
+          "coverage": "ICOMPService.GetEmployeeDataAsync signature"
+        },
+        {
+          "methodName": "ICOMPService_HasGetAllEmployeesAsyncMethod",
+          "description": "Verifies ICOMPService has GetAllEmployeesAsync method",
+          "coverage": "ICOMPService.GetAllEmployeesAsync signature"
+        },
+        {
+          "methodName": "ICOMPService_HasGetEmployeeByIdAsyncMethod",
+          "description": "Verifies ICOMPService has GetEmployeeByIdAsync method",
+          "coverage": "ICOMPService.GetEmployeeByIdAsync signature"
+        },
+        {
+          "methodName": "ICOMPService_HasAddEmployeeAsyncMethod",
+          "description": "Verifies ICOMPService has AddEmployeeAsync method",
+          "coverage": "ICOMPService.AddEmployeeAsync signature"
+        },
+        {
+          "methodName": "ICOMPService_HasUpdateEmployeeAsyncMethod",
+          "description": "Verifies ICOMPService has UpdateEmployeeAsync method",
+          "coverage": "ICOMPService.UpdateEmployeeAsync signature"
+        },
+        {
+          "methodName": "ICOMPService_HasDeleteEmployeeAsyncMethod",
+          "description": "Verifies ICOMPService has DeleteEmployeeAsync method",
+          "coverage": "ICOMPService.DeleteEmployeeAsync signature"
+        }
+      ],
+      "coveragePercentage": 60.0
+    },
+    {
+      "filePath": "Tests/comp_backend.DTOs/EmployeeDTOTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_InitializesEmployeeDTO_WithDefaultValues",
+          "description": "Tests EmployeeDTO constructor initializes with default values",
+          "coverage": "EmployeeDTO constructor"
+        },
+        {
+          "methodName": "EmployeeId_GetSet_WorksCorrectly",
+          "description": "Tests EmployeeId property getter and setter",
+          "coverage": "EmployeeDTO.EmployeeId property"
+        },
+        {
+          "methodName": "FirstName_GetSet_WorksCorrectly",
+          "description": "Tests FirstName property getter and setter",
+          "coverage": "EmployeeDTO.FirstName property"
+        },
+        {
+          "methodName": "LastName_GetSet_WorksCorrectly",
+          "description": "Tests LastName property getter and setter",
+          "coverage": "EmployeeDTO.LastName property"
+        },
+        {
+          "methodName": "Email_GetSet_WorksCorrectly",
+          "description": "Tests Email property getter and setter",
+          "coverage": "EmployeeDTO.Email property"
+        },
+        {
+          "methodName": "PhoneNumber_GetSet_WorksCorrectly",
+          "description": "Tests PhoneNumber property getter and setter",
+          "coverage": "EmployeeDTO.PhoneNumber property"
+        },
+        {
+          "methodName": "Department_GetSet_WorksCorrectly",
+          "description": "Tests Department property getter and setter",
+          "coverage": "EmployeeDTO.Department property"
+        },
+        {
+          "methodName": "Position_GetSet_WorksCorrectly",
+          "description": "Tests Position property getter and setter",
+          "coverage": "EmployeeDTO.Position property"
+        },
+        {
+          "methodName": "HireDate_GetSet_WorksCorrectly",
+          "description": "Tests HireDate property getter and setter",
+          "coverage": "EmployeeDTO.HireDate property"
+        },
+        {
+          "methodName": "Salary_GetSet_WorksCorrectly",
+          "description": "Tests Salary property getter and setter",
+          "coverage": "EmployeeDTO.Salary property"
+        },
+        {
+          "methodName": "FirstName_CanBeNull",
+          "description": "Tests FirstName can be set to null",
+          "coverage": "EmployeeDTO.FirstName null handling"
+        },
+        {
+          "methodName": "LastName_CanBeNull",
+          "description": "Tests LastName can be set to null",
+          "coverage": "EmployeeDTO.LastName null handling"
+        },
+        {
+          "methodName": "Email_CanBeNull",
+          "description": "Tests Email can be set to null",
+          "coverage": "EmployeeDTO.Email null handling"
+        },
+        {
+          "methodName": "PhoneNumber_CanBeNull",
+          "description": "Tests PhoneNumber can be set to null",
+          "coverage": "EmployeeDTO.PhoneNumber null handling"
+        },
+        {
+          "methodName": "Department_CanBeNull",
+          "description": "Tests Department can be set to null",
+          "coverage": "EmployeeDTO.Department null handling"
+        },
+        {
+          "methodName": "Position_CanBeNull",
+          "description": "Tests Position can be set to null",
+          "coverage": "EmployeeDTO.Position null handling"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/comp_backend.Mapping/MappingProfileTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_InitializesMappingProfile",
+          "description": "Tests MappingProfile constructor initializes correctly",
+          "coverage": "MappingProfile constructor"
+        },
+        {
+          "methodName": "MappingProfile_ConfiguresEmployeeToEmployeeDTOMapping",
+          "description": "Tests MappingProfile configures Employee to EmployeeDTO mapping",
+          "coverage": "MappingProfile Employee to EmployeeDTO mapping"
+        },
+        {
+          "methodName": "MappingProfile_ConfiguresEmployeeDTOToEmployeeMapping",
+          "description": "Tests MappingProfile configures EmployeeDTO to Employee mapping",
+          "coverage": "MappingProfile EmployeeDTO to Employee mapping"
+        },
+        {
+          "methodName": "MappingProfile_MapsEmployeeToEmployeeDTO_Correctly",
+          "description": "Tests Employee to EmployeeDTO mapping works correctly",
+          "coverage": "Employee to EmployeeDTO mapping execution"
+        },
+        {
+          "methodName": "MappingProfile_MapsEmployeeDTOToEmployee_Correctly",
+          "description": "Tests EmployeeDTO to Employee mapping works correctly",
+          "coverage": "EmployeeDTO to Employee mapping execution"
+        },
+        {
+          "methodName": "MappingProfile_HandlesNullProperties_InEmployeeToEmployeeDTO",
+          "description": "Tests Employee to EmployeeDTO mapping handles null properties",
+          "coverage": "Employee to EmployeeDTO null handling"
+        },
+        {
+          "methodName": "MappingProfile_HandlesNullProperties_InEmployeeDTOToEmployee",
+          "description": "Tests EmployeeDTO to Employee mapping handles null properties",
+          "coverage": "EmployeeDTO to Employee null handling"
+        }
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/comp_backend.Middleware/ErrorHandlingMiddlewareTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_InitializesMiddleware_WithValidDelegate",
+          "description": "Tests ErrorHandlingMiddleware constructor initializes correctly",
+          "coverage": "ErrorHandlingMiddleware constructor"
+        },
+        {
+          "methodName": "Constructor_ThrowsArgumentNullException_WhenNextIsNull",
+          "description": "Tests ErrorHandlingMiddleware constructor throws exception with null delegate",
+          "coverage": "ErrorHandlingMiddleware constructor null validation"
+        },
+        {
+          "methodName": "InvokeAsync_CallsNext_WhenNoExceptionOccurs",
+          "description": "Tests InvokeAsync calls next middleware when no exception occurs",
+          "coverage": "ErrorHandlingMiddleware.InvokeAsync normal flow"
+        },
+        {
+          "methodName": "InvokeAsync_HandlesException_WhenExceptionOccurs",
+          "description": "Tests InvokeAsync handles exceptions appropriately",
+          "coverage": "ErrorHandlingMiddleware.InvokeAsync exception handling"
+        },
+        {
+          "methodName": "InvokeAsync_ReturnsInternalServerError_OnException",
+          "description": "Tests InvokeAsync returns 500 status code on exception",
+          "coverage": "ErrorHandlingMiddleware.InvokeAsync error response"
+        },
+        {
+          "methodName": "InvokeAsync_LogsException_WhenExceptionOccurs",
+          "description": "Tests InvokeAsync logs exception when it occurs",
+          "coverage": "ErrorHandlingMiddleware.InvokeAsync logging"
+        }
+      ],
+      "coveragePercentage": 70.0
+    },
+    {
+      "filePath": "Tests/comp_backend.Extensions/ServiceCollectionExtensionsTests.cs",
+      "testMethods": [
+        {
+          "methodName": "AddApplicationServices_RegistersServices_Successfully",
+          "description": "Tests AddApplicationServices registers all required services",
+          "coverage": "ServiceCollectionExtensions.AddApplicationServices method"
+        },
+        {
+          "methodName": "AddApplicationServices_ThrowsArgumentNullException_WhenServicesIsNull",
+          "description": "Tests AddApplicationServices throws exception with null services",
+          "coverage": "ServiceCollectionExtensions.AddApplicationServices null validation"
+        },
+        {
+          "methodName": "AddApplicationServices_RegistersDbContext_WithCorrectConfiguration",
+          "description": "Tests AddApplicationServices registers DbContext with correct configuration",
+          "coverage": "ServiceCollectionExtensions.AddApplicationServices DbContext registration"
+        },
+        {
+          "methodName": "AddApplicationServices_RegistersAutoMapper_WithCorrectProfiles",
+          "description": "Tests AddApplicationServices registers AutoMapper with correct profiles",
+          "coverage": "ServiceCollectionExtensions.AddApplicationServices AutoMapper registration"
+        },
+        {
+          "methodName": "AddApplicationServices_RegistersCOMPService_AsScoped",
+          "description": "Tests AddApplicationServices registers COMPService as scoped",
+          "coverage": "ServiceCollectionExtensions.AddApplicationServices COMPService registration"
+        }
+      ],
+      "coveragePercentage": 65.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1940/transformed-code/42/studio-workspace/comp_backend",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-18T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 72.5
+  }
+}

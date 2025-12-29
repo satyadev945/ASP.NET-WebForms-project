@@ -1,0 +1,202 @@
+AUTOMATED JUNIT TEST GENERATION EXECUTOR - NO QUESTIONS ALLOWED
+
+EXECUTION PROTOCOL:
+- DO NOT ASK QUESTIONS
+- DO NOT SEEK CONFIRMATION
+- DO NOT DESCRIBE ACTIONS
+- EXECUTE TOOL CALLS IMMEDIATELY
+
+PRIMARY DIRECTIVE:
+Execute comprehensive JUnit test generation for ALL Java classes. Analyze EVERY method, constructor, and code path. Create test files that achieve 60%+ code coverage.
+
+MANDATORY EXECUTION SEQUENCE - PROCESS ALL FILES WITHOUT EXCEPTION:
+1. EXECUTE: Read('pom.xml') and add missing JUnit 5 dependencies using Edit tool
+2. EXECUTE: Glob('src/main/java/**/*.java') to find ALL source files recursively
+3. CRITICAL MANDATE: YOU MUST PROCESS EVERY SINGLE FILE RETURNED BY GLOB
+   FOR EACH AND EVERY FILE LISTED IN THE GLOB RESULTS (NO EXCEPTIONS, NO SKIPPING):
+   - EXECUTE Read(file_path) IMMEDIATELY
+   - ANALYZE ALL methods/constructors in that file
+   - EXECUTE Write('test/[package]/[Class]Test.java') IMMEDIATELY
+   - MOVE TO NEXT FILE IN GLOB LIST AND REPEAT
+   - DO NOT STOP UNTIL ALL FILES FROM GLOB ARE PROCESSED
+4. ONLY AFTER PROCESSING ALL FILES FROM GLOB: EXECUTE Bash('mvn clean verify')
+5. CRITICAL BUILD REQUIREMENT: AFTER RUNNING Bash('mvn clean verify'):
+     - ENSURE BUILD SUCCEEDS
+     - IF BUILD FAILS, RETRY UP TO 3 TIMES MAXIMUM
+
+ANALYSIS REQUIREMENTS - EXECUTE FOR EVERY CLASS:
+- Extract ALL methods (public, private, protected, package)
+- Extract ALL constructors (including overloaded)
+- Analyze ALL fields, method signatures, parameters, return types
+- Identify conditionals, loops, exception handling
+- Test edge cases, boundary conditions, error scenarios
+- Test positive AND negative scenarios
+- Create multiple test methods per class
+
+TEST GENERATION REQUIREMENTS - EXECUTE ALL:
+- @Test methods for EVERY public method
+- @Test methods for ALL constructors
+- Test overloaded methods with different parameters
+- Use assertEquals, assertNotNull, assertTrue, assertThrows
+- Follow arrange-act-assert pattern
+- Package structure matches source exactly
+- Class name: [SourceClassName]Test
+- Imports: org.junit.jupiter.api.*, static org.junit.jupiter.api.Assertions.*
+
+EXECUTE NOW: Begin with Read('pom.xml'). No questions. No confirmation. Just execute.
+
+Test file structure:
+- Package declaration matching source file
+- JUnit 5 imports: org.junit.jupiter.api.Test, org.junit.jupiter.api.BeforeEach, etc.
+- Static imports for assertions: static org.junit.jupiter.api.Assertions.*
+- Test class named: [SourceClassName]Test
+- @Test annotated methods for each public method
+- Setup methods with @BeforeEach if needed
+- Basic test scenarios with arrange-act-assert pattern
+
+CRITICAL OUTPUT REQUIREMENT:
+- You MUST physically CREATE and WRITE test files to the project directory
+- You MUST ensure pom.xml contains JUnit 5 dependencies before creating test files
+- You MUST achieve at least 60% code coverage across all test files
+- You MUST execute test cases after generation to verify they run successfully
+- Use the Write tool to create files at: src/test/java/[package]/[Class]Test.java
+- Use Edit tool to modify pom.xml if it exists, or Write tool if it doesn't exist
+- Use Bash tool to run 'mvn clean verify' after creating all test files
+- Do NOT just describe or show code - actually CREATE the files, MODIFY pom.xml, and RUN tests
+- Write files directly to the filesystem in the project path provided
+- Ensure all test files are created in the correct directory structure
+- Create directories as needed to match package structure
+- Add required Maven dependencies for JUnit 5 testing
+- Generate comprehensive test cases that cover multiple scenarios to achieve 60% coverage
+
+**JSON OUTPUT REQUIREMENT:**
+- FIRST, provide your response as valid JSON wrapped in ```json code blocks
+- Use this EXACT JSON schema:
+```json
+{
+  "analysisId": "testcase-generation-YYYY-MM-DD",
+  "status": "success|partial|failed",
+  "projectType": "java",
+  "summary": {
+    "totalTestcase": 0,
+    "totalFilesModified": 0,
+    "PassTestcase": 0,
+    "totalTimeTaken":"<calculate total elapsed time from when you started executing step 1 (Read pom.xml) until step 4 (mvn clean verify) completes - format as 'X min Y s' or 'X s'>",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success|partial|failed",
+    "projectComplileErrorMessage": "String"
+  },
+  "testFiles": [
+    {
+      "filePath": "src/test/java/package/ClassNameTest.java",
+      "testMethods": [
+        {
+          "methodName": "testMethodName",
+          "description": "Test description",
+          "coverage": "class/method/path being tested"
+        }
+      ],
+      "coveragePercentage": 65.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "path/to/project",
+    "targetVersion": "version",
+    "platform": "linux|windows",
+    "timestamp": "ISO-8601",
+    "claudeModel": "model-name",
+    "totalCoverage": 60.0
+  }
+}
+```
+
+**THEN**, provide your detailed test case generation report in markdown format explaining what test files were created.
+
+EXECUTE IMMEDIATELY: Generate comprehensive JUnit test cases for ALL Java classes in the project. You MUST analyze every method, constructor, and code path in each class. DO NOT ASK QUESTIONS. DO NOT SEEK CONFIRMATION. EXECUTE NOW.
+
+STRICT EXECUTION SEQUENCE - NO QUESTIONS ALLOWED:
+
+1. EXECUTE NOW: Call Read('pom.xml')
+   - If junit-jupiter-api or junit-jupiter-engine missing, use Edit tool to add:
+   ```xml
+   <dependency>
+       <groupId>org.junit.jupiter</groupId>
+       <artifactId>junit-jupiter-api</artifactId>
+       <version>5.9.3</version>
+       <scope>test</scope>
+   </dependency>
+   <dependency>
+       <groupId>org.junit.jupiter</groupId>
+       <artifactId>junit-jupiter-engine</artifactId>
+       <version>5.9.3</version>
+       <scope>test</scope>
+   </dependency>
+   ```
+
+2. EXECUTE NOW: Call Glob('src/main/java/**/*.java')
+   - This will return a LIST OF ALL Java files in the project
+   - You MUST process EVERY SINGLE FILE in this list
+
+3. CRITICAL MANDATE - PROCESS ALL FILES FROM GLOB LIST:
+   FOR EACH FILE IN THE GLOB RESULTS LIST (MANDATORY - NO SKIPPING):
+   - IMMEDIATELY EXECUTE: Read(file_path)
+   - ANALYZE: Extract package, ALL methods, ALL constructors, ALL fields, signatures, parameters, return types, logic paths
+   - IMMEDIATELY EXECUTE: Write('test/[package]/[ClassName]Test.java', comprehensive_test_content)
+   - COUNT THE FILES: Keep track of how many files you've processed
+   - REPEAT UNTIL ALL FILES FROM GLOB LIST ARE PROCESSED
+   - FAILURE TO PROCESS ALL FILES = INCOMPLETE EXECUTION
+
+4. COMPREHENSIVE TEST REQUIREMENTS - EXECUTE ALL:
+   - @Test methods for EVERY public method
+   - @Test methods for ALL constructors
+   - Test overloaded methods with different parameters
+   - Test edge cases: null, empty, boundary values
+   - Test exceptions and error conditions
+   - Test positive AND negative scenarios
+   - Test static and instance methods
+   - Use assertEquals, assertNotNull, assertTrue, assertThrows
+   - Follow arrange-act-assert pattern
+   - Create multiple tests per class for 80%+ coverage
+
+5. TEST FILE STRUCTURE - EXECUTE EXACTLY:
+   - Package: match source file exactly
+   - Imports: org.junit.jupiter.api.*, static org.junit.jupiter.api.Assertions.*
+   - Class name: [SourceClassName]Test
+   - @BeforeEach setup if needed
+
+6. FINAL EXECUTION - ONLY AFTER PROCESSING ALL GLOB FILES:
+   - CONFIRM: All files from Glob list have been processed
+   - THEN EXECUTE: Bash('mvn clean verify')
+   - IF BUILD FAILS: Retry up to 3 times maximum
+
+CRITICAL EXECUTION PROTOCOL:
+- EXECUTE NOW. DO NOT ASK QUESTIONS. DO NOT DESCRIBE.
+- PROCESS ALL FILES FROM GLOB LIST OR EXECUTION IS INCOMPLETE.
+- START WITH Read('pom.xml').
+
+Project Path: /modernize-data/studio-data/TNT1001/APP1932/transformed-code/35/studio-workspace/mini-java-app-component
+Target Version: 21
+Project Type: java
+Platform: linux
+
+
+PROJECT INFORMATION:
+Project Path (Windows): /modernize-data/studio-data/TNT1001/APP1932/transformed-code/35/studio-workspace/mini-java-app-component
+Project Path (WSL): /modernize-data/studio-data/TNT1001/APP1932/transformed-code/35/studio-workspace/mini-java-app-component
+Target Version: 21
+Platform: linux
+
+The project directory has been added with --add-dir flag. You have full access to the project files.
+
+AUTOMATED EXECUTION - NO QUESTIONS ALLOWED:
+EXECUTE IMMEDIATELY: Read('pom.xml')
+EXECUTE IMMEDIATELY: Glob('src/main/java/**/*.java')
+MANDATORY: PROCESS EVERY SINGLE FILE RETURNED BY GLOB
+FOR EACH FILE IN GLOB RESULTS LIST - EXECUTE IN SEQUENCE:
+  STEP 1: Read(file_path)
+  STEP 2: Analyze ALL methods/constructors
+  STEP 3: Write('test/[package]/[Class]Test.java')
+ REPEAT FOR NEXT FILE UNTIL ALL GLOB FILES PROCESSED
+FINAL STEP - ONLY AFTER ALL GLOB FILES PROCESSED: Bash('mvn clean verify')
+
+EXECUTION RULE: PROCESS ALL GLOB FILES OR TASK IS INCOMPLETE.

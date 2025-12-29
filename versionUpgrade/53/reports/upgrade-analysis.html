@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET Upgrade Analysis Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .card { box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
+        .card-header { font-weight: 600; }
+        .table th { font-weight: 600; }
+        .badge { font-size: 0.875em; }
+        .alert { border-left: 4px solid; }
+        .alert-success { border-left-color: #198754; }
+        .alert-warning { border-left-color: #ffc107; }
+        .alert-danger { border-left-color: #dc3545; }
+        .alert-info { border-left-color: #0dcaf0; }
+    </style>
+</head>
+<body>
+<div class='container mt-4'>
+<div class='row'>
+<div class='col-12'>
+<div class='card mb-4'>
+<div class='card-header bg-primary text-white'>
+<h2><i class='fas fa-arrow-up'></i> .NET Upgrade Analysis Report</h2>
+<p class='mb-0'>Analysis ID: 53 | Generated: 2025-12-18_05-23-35</p>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-info text-white'>
+<h3><i class='fas fa-chart-bar'></i> Analysis Summary</h3>
+</div>
+<div class='card-body'>
+<div class='row'>
+<div class='col-md-3'>
+<div class='text-center'>
+<h4 class='text-danger'>47</h4>
+<p>Total Issues</p>
+</div>
+</div>
+<div class='col-md-3'>
+<div class='text-center'>
+<h4 class='text-warning'>12</h4>
+<p>Critical Issues</p>
+</div>
+</div>
+<div class='col-md-3'>
+<div class='text-center'>
+<h4 class='text-info'>18</h4>
+<p>Deprecated APIs</p>
+</div>
+</div>
+<div class='col-md-3'>
+<div class='text-center'>
+<h4 class='text-success'>11</h4>
+<p>Breaking Changes</p>
+</div>
+</div>
+</div>
+<div class='row mt-3'>
+<div class='col-md-6'>
+<p><strong>Estimated Effort:</strong> <span class='badge bg-secondary'>240-320 hours</span></p>
+</div>
+<div class='col-md-6'>
+<p><strong>Upgrade Complexity:</strong> <span class='badge bg-danger'>Complex</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-secondary text-white'>
+<h3><i class='fas fa-info-circle'></i> Project Information</h3>
+</div>
+<div class='card-body'>
+<div class='row'>
+<div class='col-md-6'>
+<p><strong>Project Path:</strong> <code>/modernize-data/studio-data/TNT1001/APP1940/transformed-code/42/studio-workspace/comp_backend</code></p>
+<p><strong>Current Version:</strong> .NET 4.7.2</p>
+<p><strong>Target Version:</strong> .NET 8</p>
+</div>
+<div class='col-md-6'>
+<p><strong>Platform:</strong> linux</p>
+<p><strong>Project Type:</strong> dotnet</p>
+<p><strong>Analysis Status:</strong> <span class='badge bg-success'>success</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-warning text-dark'>
+<h3><i class='fas fa-exclamation-triangle'></i> Identified Issues</h3>
+</div>
+<div class='card-body'>
+<div class='table-responsive'>
+<table class='table table-striped'>
+<thead class='table-dark'>
+<tr><th>Severity</th><th>Category</th><th>Title</th><th>File</th><th>Line</th><th>Effort</th></tr>
+</thead>
+<tbody>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>deprecated-api</td><td>Entity Framework 6.2.0 is NOT compatible with .NET 8</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>9</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>deprecated-api</td><td>log4net 2.0.10 is legacy and not recommended for .NET 8</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>11</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>System.Web dependency - not available in .NET 8</td><td><code>src/eShopLegacyWebForms/eShopLegacyWebForms.csproj</code></td><td>173</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>System.Web.UI.Page base class incompatible</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>11</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>Global.asax application lifecycle - incompatible pattern</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>17</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>Autofac Web Forms integration incompatible</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>7</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>Web.config configuration system incompatible</td><td><code>src/eShopLegacyWebForms/Web.config</code></td><td>1</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>package-compatibility</td><td>Microsoft.AspNet.Web.Optimization.WebForms incompatible</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>26</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>ScriptManager control incompatible</td><td><code>src/eShopLegacyWebForms/Site.Master</code></td><td>21</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>Master page pattern incompatible</td><td><code>src/eShopLegacyWebForms/Site.Master</code></td><td>1</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>HTTP Modules incompatible</td><td><code>src/eShopLegacyWebForms/Web.config</code></td><td>38</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>data-access</td><td>System.Data.Entity DbContext incompatible</td><td><code>src/eShopLegacyWebForms/Models/CatalogDBContext.cs</code></td><td>8</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>data-access</td><td>Entity Framework 6 EntityTypeConfiguration incompatible</td><td><code>src/eShopLegacyWebForms/Models/CatalogDBContext.cs</code></td><td>29</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>data-access</td><td>EF6 HasRequired/WithMany relationship configuration incompatible</td><td><code>src/eShopLegacyWebForms/Models/CatalogDBContext.cs</code></td><td>79</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>data-access</td><td>Database.SetInitializer pattern incompatible</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>65</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>log4net LogManager incompatible with ILogger pattern</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>13</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Session state usage incompatible</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>44</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Page lifecycle events incompatible</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>22</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>RouteData.Values access pattern incompatible</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>26</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Server control data binding incompatible</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>37</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Response.Redirect usage requires updates</td><td><code>src/eShopLegacyWebForms/Catalog/Create.aspx.cs</code></td><td>48</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>ModelState validation pattern differences</td><td><code>src/eShopLegacyWebForms/Catalog/Create.aspx.cs</code></td><td>32</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Property injection pattern incompatible</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>18</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>GetRouteUrl method incompatible</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>50</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>HyperLink server control incompatible</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>50</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>package-compatibility</td><td>Microsoft.AspNet.FriendlyUrls incompatible</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>19</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>package-compatibility</td><td>Microsoft.AspNet.SessionState.SessionStateModule incompatible</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>23</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>webforms-migration</td><td>ApplicationModule DI registration pattern</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>55</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>webforms-migration</td><td>TargetFrameworkVersion 4.7.2 must be changed to net8.0</td><td><code>src/eShopLegacyWebForms/eShopLegacyWebForms.csproj</code></td><td>19</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>package-compatibility</td><td>ApplicationInsights packages may need updates</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>12</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>webforms-migration</td><td>User control (.ascx) incompatible</td><td><code>src/eShopLegacyWebForms/ViewSwitcher.ascx</code></td><td>1</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>webforms-migration</td><td>Bundle configuration pattern incompatible</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>36</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>webforms-migration</td><td>RouteConfig.RegisterRoutes pattern incompatible</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>35</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>webforms-migration</td><td>Synchronous database operations should be async</td><td><code>src/eShopLegacyWebForms/Services/CatalogService.cs</code></td><td>24</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>data-access</td><td>DbContext disposal pattern differs</td><td><code>src/eShopLegacyWebForms/Services/CatalogService.cs</code></td><td>71</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>webforms-migration</td><td>Legacy project file format</td><td><code>src/eShopLegacyWebForms/eShopLegacyWebForms.csproj</code></td><td>2</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>security</td><td>Request validation mode incompatible</td><td><code>src/eShopLegacyWebForms/Web.config</code></td><td>28</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>package-compatibility</td><td>Modernizr may need updating</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>30</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>package-compatibility</td><td>Respond.js may not be needed</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>34</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>webforms-migration</td><td>TypeScript compilation may need reconfiguration</td><td><code>src/eShopLegacyWebForms/eShopLegacyWebForms.csproj</code></td><td>30</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>package-compatibility</td><td>Antlr3 may not be needed</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>3</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>package-compatibility</td><td>WebGrease may not be needed</td><td><code>src/eShopLegacyWebForms/packages.config</code></td><td>46</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>ContentPlaceHolder pattern needs migration</td><td><code>src/eShopLegacyWebForms/Site.Master</code></td><td>57</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Server-side form tag incompatible</td><td><code>src/eShopLegacyWebForms/Site.Master</code></td><td>20</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Server controls with runat="server" incompatible</td><td><code>src/eShopLegacyWebForms/Site.Master</code></td><td>70</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>architecture</td><td>Direct DbContext injection in service layer</td><td><code>src/eShopLegacyWebForms/Services/CatalogService.cs</code></td><td>13</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>data-access</td><td>HiLo sequence generator pattern needs EF Core migration</td><td><code>src/eShopLegacyWebForms/Models/CatalogItemHiLoGenerator.cs</code></td><td>1</td><td><span class='badge bg-warning'>medium</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-success text-white'>
+<h3><i class='fas fa-lightbulb'></i> Recommendations</h3>
+</div>
+<div class='card-body'>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Migrate Entity Framework 6 to EF Core 8 first. This is the foundation for all data access. Create new DbContext inheriting from Microsoft.EntityFrameworkCore.DbContext, implement IEntityTypeConfiguration<T> for all entities, create initial migration, and test all data access operations.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Replace log4net with Microsoft.Extensions.Logging and Serilog. Update all 7+ files using ILog to use ILogger<T> with constructor injection. Configure logging in Program.cs. This must be done early as it affects all layers.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Convert to SDK-style project file targeting net8.0. Create clean architecture solution structure with Domain, Application, Infrastructure, and Web projects as specified in upgrade rules. This provides the foundation for all other migrations.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Migrate Web.config to appsettings.json. Move connection strings, app settings, and other configuration to JSON format. Implement Options pattern for strongly-typed configuration access. Configure services in Program.cs.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Migrate from Autofac Web Forms integration to ASP.NET Core built-in DI. Convert ApplicationModule to extension methods on IServiceCollection. Replace property injection with constructor injection throughout. Register all services in Program.cs.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Convert all 7 .aspx pages to Razor Pages. Create PageModel classes, migrate Page_Load to OnGet handlers, replace server controls with HTML and Tag Helpers, implement proper form handling with OnPost handlers. Start with simplest pages (About, Contact) then progress to complex pages (Default, Catalog CRUD).</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Convert master pages (Site.Master, Site.Mobile.Master) to Razor layouts (_Layout.cshtml). Remove ScriptManager, replace ContentPlaceHolder with @RenderBody(), convert server controls to HTML, implement responsive design instead of mobile master page.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Convert ViewSwitcher user control to View Component or remove in favor of responsive design. Evaluate if mobile detection is still needed with modern responsive CSS frameworks.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Update CatalogService to use async/await patterns. Convert all database operations to async (ToListAsync, SaveChangesAsync, etc.). Add CancellationToken parameters. Consider implementing repository pattern for better abstraction as per clean architecture rules.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Migrate Global.asax logic to Program.cs. Move routing configuration to endpoint routing, replace HTTP modules with middleware, handle session initialization with middleware, configure all services and middleware in proper order.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Remove Web Optimization and bundles. Move static files to wwwroot folder. Implement modern bundling with WebOptimizer or use build tools (npm, webpack). Update all script and style references in layouts.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Configure ASP.NET Core session middleware. Evaluate if session is truly needed or can be replaced with stateless design. For session usage, implement distributed cache for scalability. Migrate Session_Start logic to middleware or application code.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Create unit test and integration test projects as specified in upgrade rules. Test all data access, business logic, and page functionality. Ensure migration maintains existing functionality.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Ensure antiforgery token validation is enabled for all POST operations. Review authentication/authorization if implemented. Validate all user inputs. Enable HTTPS. Review error handling to avoid information disclosure.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Update all compatible packages to latest versions. Update ApplicationInsights to AspNetCore version. Update Newtonsoft.Json if needed or consider System.Text.Json. Update Bootstrap and jQuery to latest versions. Remove obsolete packages (Modernizr, Respond.js).</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Create migration documentation as specified in upgrade rules: README.md, MIGRATION_NOTES.md, ARCHITECTURE.md, BUILD_VERIFICATION.md. Document all changes, breaking changes, configuration requirements, and deployment instructions.</p>
+</div>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-secondary text-white'>
+<h3><i class='fas fa-tools'></i> Build Tool Analysis</h3>
+</div>
+<div class='card-body'>
+<p><strong>Tool:</strong> dotnet</p>
+<p><strong>Current Version:</strong> ASP.NET Web Forms</p>
+<p><strong>Recommended Version:</strong> 8.0</p>
+<p><strong>Compatibility Issues:</strong></p>
+<ul>
+<li>Migration from Web Forms to .NET 8 required</li>
+</ul>
+<p><strong>Upgrade Steps:</strong></p>
+<ol>
+<li>Migrate to .NET 8</li>
+<li>Update NuGet packages</li>
+<li>Refactor Web Forms to Razor Pages/MVC</li>
+</ol>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-danger text-white'>
+<h3><i class='fas fa-box'></i> Dependency Analysis</h3>
+</div>
+<div class='card-body'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function showIssueDetails(issueId) {
+    // Implementation for showing issue details in a modal
+    alert('Issue details for: ' + issueId);
+}
+</script>
+</body>
+</html>

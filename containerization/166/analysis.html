@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Containerization Analysis Report</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 20px; color: #2d3748;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 40px; margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 5px; background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+        .header h1 {
+            font-size: 2.5rem; font-weight: 700; margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header .subtitle { color: #718096; font-size: 1.1rem; margin-bottom: 20px; }
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 25px; font-weight: 500;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .status-success { background: #c6f6d5; color: #22543d; }
+        .status-partial { background: #fed7aa; color: #c05621; }
+        .status-error { background: #fed7d7; color: #c53030; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .card {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .card-icon {
+            width: 60px; height: 60px; border-radius: 15px; display: flex;
+            align-items: center; justify-content: center; font-size: 24px;
+            margin-bottom: 20px; color: white;
+        }
+        .card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 15px; color: #2d3748; }
+        .metric { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .metric-label { color: #718096; }
+        .metric-value { font-weight: 600; font-size: 1.1rem; }
+        .progress-bar {
+            width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px;
+            overflow: hidden; margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%; border-radius: 4px; transition: width 1s ease;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .details-section {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .details-title {
+            font-size: 1.5rem; font-weight: 600; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .code-block {
+            background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.9rem;
+            overflow-x: auto; white-space: pre-wrap;
+        }
+        .recommendations {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border-left: 4px solid #38b2ac; border-radius: 12px; padding: 20px;
+        }
+        .recommendations h4 { color: #234e52; margin-bottom: 15px; }
+        .recommendations ul { padding-left: 20px; }
+        .recommendations li { margin-bottom: 8px; color: #2d3748; }
+        .footer {
+            text-align: center; color: rgba(255,255,255,0.8); margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .card, .header, .details-section { padding: 20px; }
+        }
+        .animate-in { animation: slideIn 0.6s ease forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="container"><div class="header animate-in">
+    <h1><i class="fas fa-search-plus"></i> Containerization Analysis</h1>
+    <p class="subtitle">Comprehensive analysis of containerization readiness</p>
+    <div class="status-badge status-success">
+        <i class="fas fa-check-circle"></i> Analysis Complete
+    </div>
+</div>
+<div class="grid"><div class="card animate-in" style="animation-delay: 0.1s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2)">
+        <i class="fas fa-project-diagram"></i>
+    </div>
+    <div class="card-title">Project Information</div>
+    <div class="metric">
+        <span class="metric-label">Project Path</span>
+        <span class="metric-value">/modernize-data/studio-data/TNT1001/APP2101/transformed-code/107/studio-workspace/GSton Testing</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Technology</span>
+        <span class="metric-value">JAVA</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Execution Time</span>
+        <span class="metric-value">51211 ms</span>
+    </div>
+</div>
+<div class="card animate-in" style="animation-delay: 0.2s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c)">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="card-title">Issues Found</div>
+    <div class="metric">
+        <span class="metric-label">Total Issues</span>
+        <span class="metric-value" style="color: #d53f8c;">4</span>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: 40%; background: #d53f8c;"></div>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Critical</span>
+        <span class="metric-value" style="color: #c53030;">2</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">High</span>
+        <span class="metric-value" style="color: #d69e2e;">1</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Medium</span>
+        <span class="metric-value" style="color: #3182ce;">1</span>
+    </div>
+</div>
+<div class="card animate-in" style="animation-delay: 0.3s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe)">
+        <i class="fas fa-chart-pie"></i>
+    </div>
+    <div class="card-title">Readiness Assessment</div>
+    <div class="metric">
+        <span class="metric-label">Overall Status</span>
+        <span class="metric-value">Moderate</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Readiness Score</span>
+        <span class="metric-value">55/100</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Estimated Effort</span>
+        <span class="metric-value">4-6 hours</span>
+    </div>
+</div>
+</div><div class="details-section animate-in" style="animation-delay: 0.4s">
+    <div class="details-title">
+        <i class="fas fa-bug"></i>
+        Detailed Containerization Blockers
+    </div>
+<div class="blocker-group">
+    <h3 class="severity-critical"><i class="fas fa-exclamation-circle"></i> Critical Priority Blockers (2)</h3>
+<div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded localhost database hostname</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> G-stion-des-contactes-Spring-Angulair4-master/src/main/resources/application.properties (line 1)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_002</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> The application uses hardcoded 'localhost' as the database hostname in the datasource URL. In containerized environments, localhost refers to the container itself, not the host machine or external database service. This will cause database connectivity failures when the application runs in a container.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application will fail to connect to the database when containerized, causing startup failure or runtime errors. Database connections will be rejected as localhost resolves to the container's internal network interface.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Replace hardcoded localhost with environment variables. Use ${DB_HOST:localhost} pattern to allow external configuration while maintaining local development defaults. Example: spring.datasource.url=jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:DB_CONTACTS}?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>spring.datasource.url=jdbc:mysql://localhost:3306/DB_CONTACTS?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div><div class="blocker-item" style="border-left: 4px solid #c53030; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-circle" style="color: #c53030; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Fixed database port configuration</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #c53030;">CRITICAL</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> G-stion-des-contactes-Spring-Angulair4-master/src/main/resources/application.properties (line 1)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Networking</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_003</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> The database port is hardcoded to 3306 in the datasource URL. While MySQL typically uses port 3306, containerized deployments may use different port mappings, service meshes, or cloud-managed databases with different port configurations.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Application cannot adapt to different database port configurations in container orchestration platforms. Port mapping changes in Kubernetes or Docker Compose will require code changes rather than configuration updates.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Make database port configurable via environment variables. Use ${DB_PORT:3306} to allow external configuration: spring.datasource.url=jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:DB_CONTACTS}</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>spring.datasource.url=jdbc:mysql://localhost:3306/DB_CONTACTS</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 0.5 hours</p>
+</div></div></div><div class="blocker-group">
+    <h3 class="severity-high"><i class="fas fa-exclamation-triangle"></i> High Priority Blockers (1)</h3>
+<div class="blocker-item" style="border-left: 4px solid #d69e2e; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-exclamation-triangle" style="color: #d69e2e; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Hardcoded database credentials in configuration</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #d69e2e;">HIGH</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> G-stion-des-contactes-Spring-Angulair4-master/src/main/resources/application.properties (line 2)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Configuration</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_006</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> Database username and password are hardcoded in application.properties file. The username is set to 'root' and password is empty. This represents a security vulnerability and prevents proper secret management in containerized environments where credentials should be injected via environment variables or secret management systems.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Credentials are baked into the container image, making it impossible to use different credentials across environments (dev, staging, production) without rebuilding the image. Violates security best practices and makes secret rotation impossible. Empty password poses security risk.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Replace hardcoded credentials with environment variable placeholders: spring.datasource.username=${DB_USERNAME:root} and spring.datasource.password=${DB_PASSWORD}. In production, inject these via Kubernetes secrets or Docker secrets.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code>spring.datasource.username=root
+spring.datasource.password=</code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.0 hours</p>
+</div></div></div><div class="blocker-group">
+    <h3 class="severity-medium"><i class="fas fa-info-circle"></i> Medium Priority Blockers (1)</h3>
+<div class="blocker-item" style="border-left: 4px solid #3182ce; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+    <div class="blocker-header" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <i class="fas fa-info-circle" style="color: #3182ce; margin-right: 8px;"></i>
+        <h4 style="margin: 0; color: #2d3748;">Missing health check endpoints</h4>
+        <span class="severity-badge" style="margin-left: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; background-color: #3182ce;">MEDIUM</span>
+    </div>
+    <div class="blocker-details">
+        <p style="margin-bottom: 8px;"><strong>File:</strong> G-stion-des-contactes-Spring-Angulair4-master/pom.xml (line 21)</p>
+        <p style="margin-bottom: 8px;"><strong>Category:</strong> Monitoring</p>
+        <p style="margin-bottom: 8px;"><strong>Rule ID:</strong> java_blocker_010</p>
+        <p style="margin-bottom: 8px;"><strong>Description:</strong> The application lacks dedicated health check endpoints. While Spring Boot provides default endpoints, they are not explicitly configured. Container orchestrators like Kubernetes require health check endpoints (liveness and readiness probes) to properly manage the application lifecycle, perform rolling updates, and restart unhealthy containers.</p>
+        <p style="margin-bottom: 8px;"><strong>Impact:</strong> Container orchestrators cannot determine application health status, leading to potential issues with: (1) Failed containers not being restarted automatically, (2) Traffic being routed to unhealthy instances, (3) Delayed detection of application failures, (4) Inability to perform proper zero-downtime deployments.</p>
+        <p style="margin-bottom: 8px;"><strong>Remediation:</strong> Add Spring Boot Actuator dependency to pom.xml: <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-actuator</artifactId></dependency>. Configure health endpoints in application.properties: management.endpoints.web.exposure.include=health,info and management.endpoint.health.show-details=when-authorized. This will expose /actuator/health endpoint for Kubernetes liveness and readiness probes.</p>
+    <div style="margin-top: 10px;">
+        <strong>Code:</strong>
+        <pre style="background: #2d3748; color: #e2e8f0; padding: 10px; border-radius: 4px; font-size: 0.9em; overflow-x: auto; margin-top: 5px;"><code><!-- Missing spring-boot-starter-actuator dependency --></code></pre>
+    </div>
+    <p style="margin-top: 8px;"><strong>Estimated Effort:</strong> 1.5 hours</p>
+</div></div></div></div><div class="details-section recommendations animate-in" style="animation-delay: 0.5s">
+    <h4><i class="fas fa-lightbulb"></i> Recommendations</h4>
+    <ul>
+<li>CRITICAL: Fix database connection configuration first - externalize hostname, port, and database name using environment variables to enable container deployment</li>
+<li>CRITICAL: Externalize database credentials using environment variables and implement proper secret management for container environments</li>
+<li>HIGH: Add Spring Boot Actuator for health check endpoints to enable proper container orchestration and monitoring</li>
+<li>MEDIUM: Externalize database name using environment variables (DB_NAME) to support multiple environments without code changes</li>
+<li>Consider adding application.properties profile support (application-docker.properties) for container-specific configuration</li>
+<li>Document all required environment variables (DB_HOST, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD) for container deployment</li>
+<li>Update deployment documentation to specify Kubernetes/Docker Compose configuration with proper environment variable injection</li>
+<li>Consider implementing graceful shutdown handling for zero-downtime deployments in Kubernetes</li>
+<li>Test the containerized application thoroughly with external MySQL database to ensure connectivity works correctly</li>
+</ul></div><div class="footer">
+    <p>Generated by Studio AI Engine • 2025-12-24_10-31-57 • Analysis ID: f8b3c7d9-2a4e-4f1b-9c3d-8e7f6a5b4c3d</p>
+</div>
+</div>
+</body>
+</html>

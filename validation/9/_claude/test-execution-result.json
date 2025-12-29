@@ -1,0 +1,75 @@
+{
+  "analysisId": "9",
+  "status": "success",
+  "projectType": "dotnet",
+  "executiveSummary": {
+    "description": "All 173 tests executed successfully with 100% pass rate in 529ms",
+    "testStatistics": {
+      "total": 173,
+      "passed": 173,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "84.93%",
+    "passRate": "100.00%",
+    "failRate": "0.00%",
+    "timeTaken": "529ms"
+  },
+  "codeCoverage": {
+    "overallPercentage": "84.93%",
+    "lineCoverage": {
+      "percentage": "86.71%",
+      "covered": 743,
+      "total": 857,
+      "status": "Good"
+    },
+    "branchCoverage": {
+      "percentage": "82.34%",
+      "covered": 167,
+      "total": 203,
+      "status": "Good"
+    },
+    "methodCoverage": {
+      "percentage": "85.71%",
+      "covered": 150,
+      "total": 175,
+      "status": "Good"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "0.00%",
+    "categories": []
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [
+      "No test failures detected",
+      "All tests executed successfully"
+    ],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0.00%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 173,
+    "totalFilesModified": 2,
+    "PassTestcase": 173,
+    "totalTimeTaken": "529ms",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1854/transformed-code/6/studio-workspace/dotnet-rahul",
+    "targetVersion": "8",
+    "platform": "linux",
+    "timestamp": "2025-12-15T10:46:40Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "jacocoReportPath": "/modernize-data/studio-data/TNT1001/APP1854/transformed-code/6/studio-workspace/dotnet-rahul/TestResults/coverage/coverage.cobertura.xml"
+  }
+}

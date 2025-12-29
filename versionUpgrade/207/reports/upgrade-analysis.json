@@ -1,0 +1,54 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 0,
+    "deprecatedApisFound" : 0,
+    "totalIssues" : 0,
+    "compatibilityScore" : 100,
+    "criticalIssues" : 0,
+    "highIssues" : 0,
+    "lowIssues" : 0,
+    "breakingChanges" : 0,
+    "estimatedEffort" : "0 hours",
+    "upgradeComplexity" : "N/A - Already on Target Version"
+  },
+  "metadata" : {
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "N/A",
+    "source" : "Claude AI Analysis",
+    "currentVersion" : ".NET 6",
+    "targetVersion" : ".NET 8",
+    "timestamp" : "2025-12-26T13:57:03.986433424Z"
+  },
+  "buildToolAnalysis" : { },
+  "analysisId" : "dotnet-upgrade-analysis-2025-12-26",
+  "issues" : [ ],
+  "recommendations" : [ {
+    "category" : "project-status",
+    "priority" : "informational",
+    "recommendation" : "The project is already targeting .NET 8.0 (net8.0), which matches the target version specified. No framework upgrade is required.",
+    "estimatedEffort" : "0 hours"
+  }, {
+    "category" : "package-versions",
+    "priority" : "low",
+    "recommendation" : "Consider updating Swashbuckle.AspNetCore from 6.4.0 to the latest 6.x version (6.8.1) for bug fixes and improvements, though this is optional.",
+    "estimatedEffort" : "0.5 hours"
+  }, {
+    "category" : "best-practices",
+    "priority" : "low",
+    "recommendation" : "The project already follows .NET 8 best practices: ImplicitUsings enabled, Nullable reference types enabled, top-level statements used, and minimal API pattern implemented.",
+    "estimatedEffort" : "0 hours"
+  }, {
+    "category" : "code-quality",
+    "priority" : "low",
+    "recommendation" : "Consider using TimeProvider.System (which is already registered in DI) for testable time-dependent operations if needed in the future.",
+    "estimatedEffort" : "0 hours"
+  } ],
+  "dependencies" : {
+    "incompatible" : [ ],
+    "upgradeable" : [ ]
+  }
+}

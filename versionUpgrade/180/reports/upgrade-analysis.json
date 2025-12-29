@@ -1,0 +1,52 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 0,
+    "deprecatedApisFound" : 0,
+    "totalIssues" : 1,
+    "compatibilityScore" : 98,
+    "criticalIssues" : 0,
+    "highIssues" : 0,
+    "lowIssues" : 1,
+    "breakingChanges" : 0,
+    "estimatedEffort" : "0-1 hours",
+    "upgradeComplexity" : "Simple"
+  },
+  "metadata" : {
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "N/A",
+    "source" : "Claude AI Analysis",
+    "currentVersion" : ".NET 6",
+    "targetVersion" : ".NET 8",
+    "timestamp" : "2025-12-26T05:50:11.860963746Z"
+  },
+  "buildToolAnalysis" : { },
+  "analysisId" : "dotnet-upgrade-analysis-2025-12-26",
+  "issues" : [ {
+    "severity" : "low",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update the Swashbuckle.AspNetCore package to the latest version compatible with .NET 8.",
+    "breakingChange" : false,
+    "filePath" : "/modernize-data/studio-data/TNT1001/APP2135/transformed-code/117/studio-workspace/santhosh00013/MinimalAPIProject.csproj",
+    "impact" : "Minimal impact, current version is compatible with .NET 8 but updating would provide latest features and security fixes.",
+    "description" : "The Swashbuckle.AspNetCore package is on version 6.4.0, which is relatively old but compatible with .NET 8. Consider updating to the latest version for improved features and security patches.",
+    "effort" : "low",
+    "id" : "issue-1",
+    "category" : "package-references",
+    "title" : "Update Swashbuckle.AspNetCore package",
+    "lineNumber" : 11
+  } ],
+  "recommendations" : [ {
+    "category" : "package-references",
+    "priority" : "low",
+    "recommendation" : "Update the Swashbuckle.AspNetCore package to the latest version for improved features and security fixes.",
+    "estimatedEffort" : "less than 1 hour"
+  } ],
+  "dependencies" : {
+    "incompatible" : [ ],
+    "upgradeable" : [ ]
+  }
+}

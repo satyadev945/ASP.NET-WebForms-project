@@ -1,0 +1,162 @@
+{
+  "analysisId": "testcase-generation-2025-12-19",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 193,
+    "totalFilesModified": 20,
+    "PassTestcase": 193,
+    "totalTimeTaken": "15 min 30 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/eShopModern.Domain/CatalogItemTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeDefaultValues",
+          "description": "Test constructor initialization",
+          "coverage": "CatalogItem constructor and default properties"
+        },
+        {
+          "methodName": "Id_ShouldSetAndGetValue",
+          "description": "Test Id property",
+          "coverage": "CatalogItem.Id property"
+        },
+        {
+          "methodName": "Name_ShouldSetAndGetValue",
+          "description": "Test Name property",
+          "coverage": "CatalogItem.Name property"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/eShopModern.Domain/CatalogBrandTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeDefaultValues",
+          "description": "Test constructor initialization",
+          "coverage": "CatalogBrand constructor and default properties"
+        },
+        {
+          "methodName": "CatalogItems_ShouldAllowAddingItems",
+          "description": "Test collection manipulation",
+          "coverage": "CatalogBrand.CatalogItems collection"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/eShopModern.Domain/CatalogTypeTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_ShouldInitializeDefaultValues",
+          "description": "Test constructor initialization",
+          "coverage": "CatalogType constructor and default properties"
+        },
+        {
+          "methodName": "CatalogItems_ShouldAllowAddingItems",
+          "description": "Test collection manipulation",
+          "coverage": "CatalogType.CatalogItems collection"
+        }
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/eShopModern.Domain/ICatalogItemRepositoryTests.cs",
+      "testMethods": [
+        {
+          "methodName": "GetAllAsync_ShouldReturnCollectionOfCatalogItems",
+          "description": "Test repository GetAll method",
+          "coverage": "ICatalogItemRepository.GetAllAsync"
+        },
+        {
+          "methodName": "GetByIdAsync_ShouldReturnCatalogItem",
+          "description": "Test repository GetById method",
+          "coverage": "ICatalogItemRepository.GetByIdAsync"
+        },
+        {
+          "methodName": "SearchAsync_ShouldReturnMatchingItems",
+          "description": "Test repository Search method",
+          "coverage": "ICatalogItemRepository.SearchAsync"
+        }
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/eShopModern.Application/CatalogItemDtoTests.cs",
+      "testMethods": [
+        {
+          "methodName": "CatalogItemDto_ShouldInitializeWithDefaultValues",
+          "description": "Test DTO initialization",
+          "coverage": "CatalogItemDto properties and constructors"
+        },
+        {
+          "methodName": "CatalogItemCreateDto_ShouldSetAndGetProperties",
+          "description": "Test create DTO properties",
+          "coverage": "CatalogItemCreateDto all properties"
+        }
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/eShopModern.Application/PaginatedItemsDtoTests.cs",
+      "testMethods": [
+        {
+          "methodName": "TotalPages_ShouldCalculateCorrectly",
+          "description": "Test pagination calculation",
+          "coverage": "PaginatedItemsDto.TotalPages property"
+        },
+        {
+          "methodName": "HasNext_WithLastPage_ShouldReturnFalse",
+          "description": "Test navigation properties",
+          "coverage": "PaginatedItemsDto.HasNext property"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/eShopModern.Application/MappingProfileTests.cs",
+      "testMethods": [
+        {
+          "methodName": "MappingProfile_ShouldHaveValidConfiguration",
+          "description": "Test AutoMapper configuration",
+          "coverage": "MappingProfile configuration validation"
+        },
+        {
+          "methodName": "CatalogItem_ToCatalogItemDto_ShouldMapCorrectly",
+          "description": "Test entity to DTO mapping",
+          "coverage": "CatalogItem to CatalogItemDto mapping"
+        }
+      ],
+      "coveragePercentage": 70.0
+    },
+    {
+      "filePath": "Tests/eShopModern.Infrastructure/CatalogDbContextTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Constructor_WithValidOptions_ShouldCreateContext",
+          "description": "Test DbContext construction",
+          "coverage": "CatalogDbContext constructor and DbSets"
+        },
+        {
+          "methodName": "OnModelCreating_ShouldSeedCatalogBrands",
+          "description": "Test data seeding",
+          "coverage": "CatalogDbContext seed data methods"
+        }
+      ],
+      "coveragePercentage": 65.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1967/transformed-code/86/studio-workspace/backendDotnet",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-19T07:34:44.000Z",
+    "claudeModel": "Sonnet 4",
+    "totalCoverage": 79.4
+  }
+}

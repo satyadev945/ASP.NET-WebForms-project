@@ -1,0 +1,44 @@
+{
+  "assessmentId" : "build-compilation-2025-12-18",
+  "status" : "success",
+  "buildType" : null,
+  "message" : null,
+  "summary" : {
+    "totalIssues" : 0,
+    "issuesFixed" : 0,
+    "issuesFailed" : 0,
+    "issuesSkipped" : 0,
+    "filesModified" : 0,
+    "buildStatus" : "SUCCESS",
+    "successRate" : 1.0,
+    "status" : "success"
+  },
+  "issues" : [ ],
+  "fixes" : [ ],
+  "failedIssues" : [ ],
+  "buildConfiguration" : {
+    "buildType" : "dotnet",
+    "buildToolVersion" : "8.0",
+    "issuesFound" : [ ],
+    "fixesApplied" : [ ],
+    "dotnetVersion" : "net8.0"
+  },
+  "dependencies" : {
+    "issuesFixed" : [ ],
+    "issuesRemaining" : [ ]
+  },
+  "recommendations" : [ "Build completed successfully with no compilation errors", "All 4 projects (eShop.Domain, eShop.Application, eShop.Infrastructure, eShop.Web) built successfully", "No further action required" ],
+  "metadata" : {
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1940/transformed-code/42/studio-workspace/comp_backend",
+    "buildType" : "dotnet",
+    "timestamp" : "2025-12-18T05:39:46.179855631Z",
+    "executionTimeMs" : 27049,
+    "claudeModel" : "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "dotnetVersion" : "net8.0"
+  },
+  "reportPaths" : {
+    "json" : "/studio-app/claude-workspace/validation/54/reports/build-compilation.json"
+  },
+  "cached" : false,
+  "dotnetVersion" : null
+}

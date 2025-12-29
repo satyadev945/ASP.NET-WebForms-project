@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Containerization Generation Report</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 20px; color: #2d3748;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 40px; margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 5px; background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+        .header h1 {
+            font-size: 2.5rem; font-weight: 700; margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header .subtitle { color: #718096; font-size: 1.1rem; margin-bottom: 20px; }
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 25px; font-weight: 500;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .status-success { background: #c6f6d5; color: #22543d; }
+        .status-partial { background: #fed7aa; color: #c05621; }
+        .status-error { background: #fed7d7; color: #c53030; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .card {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .card-icon {
+            width: 60px; height: 60px; border-radius: 15px; display: flex;
+            align-items: center; justify-content: center; font-size: 24px;
+            margin-bottom: 20px; color: white;
+        }
+        .card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 15px; color: #2d3748; }
+        .metric { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .metric-label { color: #718096; }
+        .metric-value { font-weight: 600; font-size: 1.1rem; }
+        .progress-bar {
+            width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px;
+            overflow: hidden; margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%; border-radius: 4px; transition: width 1s ease;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .details-section {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .details-title {
+            font-size: 1.5rem; font-weight: 600; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .code-block {
+            background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.9rem;
+            overflow-x: auto; white-space: pre-wrap;
+        }
+        .recommendations {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border-left: 4px solid #38b2ac; border-radius: 12px; padding: 20px;
+        }
+        .recommendations h4 { color: #234e52; margin-bottom: 15px; }
+        .recommendations ul { padding-left: 20px; }
+        .recommendations li { margin-bottom: 8px; color: #2d3748; }
+        .footer {
+            text-align: center; color: rgba(255,255,255,0.8); margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .card, .header, .details-section { padding: 20px; }
+        }
+        .animate-in { animation: slideIn 0.6s ease forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="container"><div class="header animate-in">
+    <h1><i class="fas fa-rocket"></i> Containerization Generation Report</h1>
+    <p class="subtitle">Docker and Kubernetes artifacts generation results</p>
+<div class="status-badge status-success">
+    <i class="fas fa-check-circle"></i> Generation SUCCESS
+</div>
+</div><div class="grid"><div class="card animate-in" style="animation-delay: 0.1s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2)">
+        <i class="fas fa-project-diagram"></i>
+    </div>
+    <div class="card-title">Project Information</div>
+    <div class="metric">
+        <span class="metric-label">Project Path</span>
+        <span class="metric-value">/modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Technology</span>
+        <span class="metric-value">JAVA</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Execution Time</span>
+        <span class="metric-value">265715 ms</span>
+    </div>
+</div>
+<div class="card animate-in" style="animation-delay: 0.2s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #48bb78, #38a169)">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="card-title">Generation Results</div>
+    <div class="metric">
+        <span class="metric-label">Total Artifacts</span>
+        <span class="metric-value" style="color: #38a169;">7</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Docker Files</span>
+        <span class="metric-value">3</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Kubernetes Files</span>
+        <span class="metric-value">0</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Scripts</span>
+        <span class="metric-value">4</span>
+    </div>
+</div>
+<div class="card animate-in" style="animation-delay: 0.3s">
+    <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe)">
+        <i class="fas fa-shipping-fast"></i>
+    </div>
+    <div class="card-title">Deployment Status</div>
+    <div class="metric">
+        <span class="metric-label">Ready for Deployment</span>
+        <span class="metric-value" style="color: #38a169;">Ready</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Output Directory</span>
+        <span class="metric-value">generated/artifacts</span>
+    </div>
+    <div class="metric">
+        <span class="metric-label">Generated Files</span>
+        <span class="metric-value">10</span>
+    </div>
+</div>
+</div><div class="details-section animate-in" style="animation-delay: 0.4s">
+    <div class="details-title">
+        <i class="fas fa-file-code"></i>
+        Generated Artifacts
+    </div>
+<div class="file-item" style="border-left: 4px solid #2496ed; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-cube" style="color: #2496ed; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">Dockerfile</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #2496ed; color: white;">DOCKER</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/Dockerfile
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #326ce5; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-dharmachakra" style="color: #326ce5; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">docker-compose.yml</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #326ce5; color: white;">KUBERNETES</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/docker-compose.yml
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #718096; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-file" style="color: #718096; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">.dockerignore</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #718096; color: white;">OTHER</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/.dockerignore
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #4caf50; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-terminal" style="color: #4caf50; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">build-push.bat</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #4caf50; color: white;">SCRIPT</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/scripts/build-push.bat
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #4caf50; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-terminal" style="color: #4caf50; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">deploy-image.bat</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #4caf50; color: white;">SCRIPT</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/scripts/deploy-image.bat
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #ff9800; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-cog" style="color: #ff9800; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">task-definition.json</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #ff9800; color: white;">CONFIG</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/ecs/task-definition.json
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #ff9800; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-cog" style="color: #ff9800; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">service-definition.json</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #ff9800; color: white;">CONFIG</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/ecs/service-definition.json
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #4caf50; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-terminal" style="color: #4caf50; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">deploy-image.sh</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #4caf50; color: white;">SCRIPT</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/scripts/deploy-image.sh
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #718096; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-file" style="color: #718096; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">DEPLOYMENT.md</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #718096; color: white;">OTHER</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/docs/DEPLOYMENT.md
+    </div>
+</div>
+<div class="file-item" style="border-left: 4px solid #4caf50; margin-bottom: 15px; padding: 12px; background: #f7fafc; border-radius: 6px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <i class="fas fa-terminal" style="color: #4caf50; margin-right: 8px;"></i>
+        <strong style="color: #2d3748;">build-push.sh</strong>
+        <span style="margin-left: auto; padding: 2px 6px; border-radius: 8px; font-size: 0.8em; background-color: #4caf50; color: white;">SCRIPT</span>
+    </div>
+    <div style="font-size: 0.9em; color: #4a5568;">
+        📁 /modernize-data/studio-data/TNT1001/APP1823/transformed-code/3/studio-workspace/dddd/scripts/build-push.sh
+    </div>
+</div>
+</div><div class="details-section recommendations animate-in" style="animation-delay: 0.5s">
+    <h4><i class="fas fa-lightbulb"></i> Deployment Recommendations</h4>
+    <ul>
+<li>Configure JVM heap size (-Xmx512m -Xms256m) appropriate for container memory limits to avoid OOM errors</li>
+<li>Use AWS Secrets Manager or Systems Manager Parameter Store for sensitive configuration (database credentials, API keys) instead of environment variables</li>
+<li>Enable Container Insights for enhanced monitoring and observability of ECS tasks and services</li>
+<li>Implement health check endpoints at /mini-app/actuator/health for Spring Boot applications to enable proper load balancer health checks</li>
+<li>Use private subnets with NAT Gateway for production deployments to enhance security and reduce attack surface</li>
+<li>Configure CloudWatch log retention policies to manage storage costs while maintaining compliance requirements</li>
+<li>Implement auto-scaling policies based on CPU and memory utilization to handle variable traffic loads efficiently</li>
+<li>Enable ECR image scanning to detect vulnerabilities in container images before deployment</li>
+<li>Use IAM roles with least privilege principle - separate task execution role and task role with minimal required permissions</li>
+<li>Implement structured logging with JSON output for better log analysis and troubleshooting in CloudWatch Logs Insights</li>
+<li>Consider using AWS X-Ray for distributed tracing to diagnose performance bottlenecks in microservices architecture</li>
+<li>Set up CloudWatch alarms for critical metrics (CPU > 80%, Memory > 80%, unhealthy tasks) to enable proactive monitoring</li>
+</ul></div><div class="footer">
+    <p>Generated by Studio AI Engine • 2025-12-12_05-42-32 • Analysis ID: ecs-java-dddd-20251212-001</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 2,
+    "deprecatedApisFound" : 2,
+    "totalIssues" : 4,
+    "compatibilityScore" : 80,
+    "criticalIssues" : 0,
+    "highIssues" : 2,
+    "lowIssues" : 0,
+    "estimatedEffort" : "4-6 hours",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Moderate"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1979/transformed-code/89/studio-workspace/santhosh001",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "17",
+    "timestamp" : "2025-12-22T05:27:59.874749264Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 17", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 17", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-22",
+  "issues" : [ {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven-compiler-plugin to version 3.11.0 or later. Change line 37 from '<version>3.8.1</version>' to '<version>3.11.0</version>' or newer.",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The Maven compiler plugin version 3.8.1 is outdated for Java 17 compilation. While it may work, newer versions (3.11.0+) provide better Java 17 support and address various compilation issues with newer Java language features.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Plugin Version Outdated",
+    "lineNumber" : 37
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update lines 13-14 to specify Java 17: '<maven.compiler.source>17</maven.compiler.source>' and '<maven.compiler.target>17</maven.compiler.target>'. Also update lines 39-40 in the maven-compiler-plugin configuration.",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The pom.xml currently specifies Java 11 as both source and target version. This must be updated to Java 17 to complete the upgrade.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Java Version Configuration Needs Update",
+    "lineNumber" : 13
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update Spring Boot to version 2.7.18 (latest 2.x) for minimal changes, or consider Spring Boot 3.x for full Java 17 optimization (requires Jakarta EE migration). Change line 28 to '<version>2.7.18</version>' for low-risk upgrade.",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Spring Boot 2.7.0 is compatible with Java 17, but it's recommended to upgrade to Spring Boot 2.7.x latest patch version or Spring Boot 3.x for better Java 17 support and security updates. Spring Boot 3.x requires migration to Jakarta EE (javax.* to jakarta.* packages).",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot Version Compatibility",
+    "lineNumber" : 28
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Remove line 36 (Class.forName call) and the corresponding catch block for ClassNotFoundException (lines 50-51). Modern JDBC drivers are automatically registered and this code is redundant.",
+    "breakingChange" : true,
+    "filePath" : "src/main/java/com/test/DatabaseService.java",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "The explicit loading of JDBC driver using Class.forName() is not necessary since JDBC 4.0 (Java 6+). While not breaking in Java 17, this is considered legacy code and the pattern is no longer required as drivers are auto-loaded via the Service Provider mechanism.",
+    "effort" : "medium",
+    "id" : "issue-4",
+    "category" : "upgrade-analysis",
+    "title" : "Explicit JDBC Driver Loading Not Required",
+    "lineNumber" : 36
+  } ],
+  "recommendations" : [ "\"description\": \"Spring Boot 2.7.0 is compatible with Java 17, but it's recommended to upgrade to Spring Boot 2.7.x latest patch version or Spring Boot 3.x for better Java 17 support and security updates. Spring Boot 3.x requires migration to Jakarta EE (javax.* to jakarta.* packages).\",", "\"recommendedVersion\": \"3.8.7+\",", "\"maven-compiler-plugin version 3.8.1 should be updated to 3.11.0+ for optimal Java 17 support\",", "\"recommendedVersion\": \"2.7.18\",", "\"recommendedVersion\": \"8.0.33+\"," ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "17",
+      "issue" : "Targets Java 11 instead of 17",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 17 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET Upgrade Analysis Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .card { box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
+        .card-header { font-weight: 600; }
+        .table th { font-weight: 600; }
+        .badge { font-size: 0.875em; }
+        .alert { border-left: 4px solid; }
+        .alert-success { border-left-color: #198754; }
+        .alert-warning { border-left-color: #ffc107; }
+        .alert-danger { border-left-color: #dc3545; }
+        .alert-info { border-left-color: #0dcaf0; }
+    </style>
+</head>
+<body>
+<div class='container mt-4'>
+<div class='row'>
+<div class='col-12'>
+<div class='card mb-4'>
+<div class='card-header bg-primary text-white'>
+<h2><i class='fas fa-arrow-up'></i> .NET Upgrade Analysis Report</h2>
+<p class='mb-0'>Analysis ID: 55 | Generated: 2025-12-18_08-21-35</p>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-info text-white'>
+<h3><i class='fas fa-chart-bar'></i> Analysis Summary</h3>
+</div>
+<div class='card-body'>
+<div class='row'>
+<div class='col-md-3'>
+<div class='text-center'>
+<h4 class='text-danger'>47</h4>
+<p>Total Issues</p>
+</div>
+</div>
+<div class='col-md-3'>
+<div class='text-center'>
+<h4 class='text-warning'>12</h4>
+<p>Critical Issues</p>
+</div>
+</div>
+<div class='col-md-3'>
+<div class='text-center'>
+<h4 class='text-info'>18</h4>
+<p>Deprecated APIs</p>
+</div>
+</div>
+<div class='col-md-3'>
+<div class='text-center'>
+<h4 class='text-success'>11</h4>
+<p>Breaking Changes</p>
+</div>
+</div>
+</div>
+<div class='row mt-3'>
+<div class='col-md-6'>
+<p><strong>Estimated Effort:</strong> <span class='badge bg-secondary'>120-160 hours</span></p>
+</div>
+<div class='col-md-6'>
+<p><strong>Upgrade Complexity:</strong> <span class='badge bg-danger'>Complex</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-secondary text-white'>
+<h3><i class='fas fa-info-circle'></i> Project Information</h3>
+</div>
+<div class='card-body'>
+<div class='row'>
+<div class='col-md-6'>
+<p><strong>Project Path:</strong> <code>/modernize-data/studio-data/TNT1001/APP1947/transformed-code/43/studio-workspace/dotnetCOmp</code></p>
+<p><strong>Current Version:</strong> .NET 4.7.2</p>
+<p><strong>Target Version:</strong> .NET 8</p>
+</div>
+<div class='col-md-6'>
+<p><strong>Platform:</strong> linux</p>
+<p><strong>Project Type:</strong> dotnet</p>
+<p><strong>Analysis Status:</strong> <span class='badge bg-success'>success</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-warning text-dark'>
+<h3><i class='fas fa-exclamation-triangle'></i> Identified Issues</h3>
+</div>
+<div class='card-body'>
+<div class='table-responsive'>
+<table class='table table-striped'>
+<thead class='table-dark'>
+<tr><th>Severity</th><th>Category</th><th>Title</th><th>File</th><th>Line</th><th>Effort</th></tr>
+</thead>
+<tbody>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>package-compatibility</td><td>Entity Framework 6.2.0 Not Compatible with .NET 8</td><td><code>packages.config</code></td><td>9</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>package-compatibility</td><td>log4net 2.0.10 Legacy Logging Not Recommended for .NET 8</td><td><code>packages.config</code></td><td>11</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>deprecated-api</td><td>System.Web Reference Not Available in .NET 8</td><td><code>src/eShopLegacyWebForms/eShopLegacyWebForms.csproj</code></td><td>173</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>deprecated-api</td><td>HttpContext.Current Usage</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>43</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>Web Forms Page Lifecycle Events</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>22</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>ASP.NET Web Forms Server Controls</td><td><code>src/eShopLegacyWebForms/Default.aspx</code></td><td>12</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>webforms-migration</td><td>Master Pages Not Supported</td><td><code>src/eShopLegacyWebForms/Site.Master</code></td><td>1</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>configuration</td><td>Web.config Not Used in .NET 8</td><td><code>src/eShopLegacyWebForms/Web.config</code></td><td>1</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>application-lifecycle</td><td>Global.asax Application Events</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>29</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>dependency-injection</td><td>Autofac Web Forms Integration</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>50</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>data-access</td><td>Entity Framework 6 DbContext Implementation</td><td><code>src/eShopLegacyWebForms/Models/CatalogDBContext.cs</code></td><td>8</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-danger'>critical</span></td><td>data-access</td><td>Entity Framework 6 Configuration API</td><td><code>src/eShopLegacyWebForms/Models/CatalogDBContext.cs</code></td><td>29</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>package-compatibility</td><td>Autofac.Web Package Not Compatible</td><td><code>packages.config</code></td><td>7</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>package-compatibility</td><td>Microsoft.AspNet Web Forms Packages</td><td><code>packages.config</code></td><td>19</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>session-state</td><td>Session State Usage</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>43</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>http-modules</td><td>HTTP Modules Configuration</td><td><code>src/eShopLegacyWebForms/Web.config</code></td><td>38</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>data-access</td><td>Synchronous Database Operations</td><td><code>src/eShopLegacyWebForms/Services/CatalogService.cs</code></td><td>22</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>data-access</td><td>Database Initializer Pattern</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>65</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>routing</td><td>Web Forms Routing Configuration</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>32</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>bundling</td><td>System.Web.Optimization Bundling</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>33</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>logging</td><td>log4net Static Logger Pattern</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>13</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>project-structure</td><td>Old-Style Project File Format</td><td><code>src/eShopLegacyWebForms/eShopLegacyWebForms.csproj</code></td><td>2</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>target-framework</td><td>Target Framework .NET Framework 4.7.2</td><td><code>src/eShopLegacyWebForms/eShopLegacyWebForms.csproj</code></td><td>19</td><td><span class='badge bg-danger'>high</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>ViewSwitcher User Control</td><td><code>src/eShopLegacyWebForms/ViewSwitcher.ascx</code></td><td>1</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>application-insights</td><td>Application Insights Web Forms Integration</td><td><code>packages.config</code></td><td>14</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Data Binding Expressions</td><td><code>src/eShopLegacyWebForms/Default.aspx</code></td><td>58</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-warning'>high</span></td><td>webforms-migration</td><td>Page Property Injection</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>18</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>configuration</td><td>ConfigurationManager Usage</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>53</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>data-access</td><td>Include Navigation Property Loading</td><td><code>src/eShopLegacyWebForms/Services/CatalogService.cs</code></td><td>27</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>data-access</td><td>Entry State Modification</td><td><code>src/eShopLegacyWebForms/Services/CatalogService.cs</code></td><td>61</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>dependency-management</td><td>packages.config Format</td><td><code>packages.config</code></td><td>1</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>page-lifecycle</td><td>Response.Redirect Usage</td><td><code>src/eShopLegacyWebForms/Catalog/Create.aspx.cs</code></td><td>48</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>validation</td><td>ModelState Validation</td><td><code>src/eShopLegacyWebForms/Catalog/Create.aspx.cs</code></td><td>32</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>webforms-migration</td><td>GetRouteUrl Pattern</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>50</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>http-handlers</td><td>IHttpHandler Pattern</td><td><code>N/A</code></td><td>0</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>static-files</td><td>Static File Serving Configuration</td><td><code>N/A</code></td><td>0</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-info'>medium</span></td><td>mobile-detection</td><td>Mobile Master Page</td><td><code>src/eShopLegacyWebForms/Site.Mobile.Master</code></td><td>1</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>naming-conventions</td><td>Underscore Prefix in Class Names</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>11</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>project-structure</td><td>Models in Wrong Location</td><td><code>src/eShopLegacyWebForms/Models/</code></td><td>0</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>security</td><td>Input Validation on Parse Operations</td><td><code>src/eShopLegacyWebForms/Catalog/Create.aspx.cs</code></td><td>38</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>error-handling</td><td>Missing Error Handling in Services</td><td><code>src/eShopLegacyWebForms/Services/CatalogService.cs</code></td><td>22</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>dispose-pattern</td><td>Manual Dispose Pattern</td><td><code>src/eShopLegacyWebForms/Services/CatalogService.cs</code></td><td>71</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>constants</td><td>Magic Numbers for Pagination</td><td><code>src/eShopLegacyWebForms/Default.aspx.cs</code></td><td>15</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>data-access</td><td>HiLo ID Generation Pattern</td><td><code>src/eShopLegacyWebForms/Models/CatalogItemHiLoGenerator.cs</code></td><td>0</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>telemetry</td><td>ActivityId Correlation Pattern</td><td><code>src/eShopLegacyWebForms/Global.asax.cs</code></td><td>72</td><td><span class='badge bg-success'>low</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>testing</td><td>No Unit Tests Found</td><td><code>N/A</code></td><td>0</td><td><span class='badge bg-warning'>medium</span></td></tr>
+<tr><td><span class='badge bg-success'>low</span></td><td>documentation</td><td>Missing Documentation</td><td><code>N/A</code></td><td>0</td><td><span class='badge bg-success'>low</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-success text-white'>
+<h3><i class='fas fa-lightbulb'></i> Recommendations</h3>
+</div>
+<div class='card-body'>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Begin migration by addressing critical blockers: (1) Migrate Entity Framework 6 to EF Core 8, (2) Remove all System.Web dependencies, (3) Convert project to SDK-style .csproj targeting net8.0, (4) Replace Web.config with appsettings.json, (5) Migrate Global.asax to Program.cs</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Implement clean architecture with separate projects for Domain, Application, Infrastructure, and Web layers. Move entities to Domain, services to Application, data access to Infrastructure, and UI to Web (Razor Pages).</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Convert all 7 .aspx pages to Razor Pages (.cshtml). Replace Master Pages with _Layout.cshtml. Convert server controls to Razor syntax. Replace Page_Load with OnGet/OnPost handlers. Eliminate ViewState dependencies.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Migrate all data access to EF Core patterns: Convert DbContext, update entity configurations to IEntityTypeConfiguration<T>, implement repository pattern, make all operations async, add proper error handling and logging.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Replace Autofac Web Forms integration with ASP.NET Core DI. Move service registration to Program.cs. Replace property injection with constructor injection. Remove IContainerProviderAccessor pattern.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Replace log4net with Microsoft.Extensions.Logging or Serilog. Update all logging calls to structured logging. Configure logging in Program.cs. Remove log4Net.xml configuration.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Migrate all configuration from Web.config to appsettings.json. Replace ConfigurationManager with IConfiguration. Implement Options pattern for strongly-typed configuration. Handle environment-specific settings.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Create comprehensive test projects for unit and integration tests. Test all service layer logic, repository implementations, and page handlers. Aim for 80%+ code coverage. Use xUnit, FluentAssertions, and Moq.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Evaluate if session state is truly needed. If required, configure ASP.NET Core session middleware. Consider distributed cache for web farm scenarios. Replace with stateless alternatives where possible.</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Reorganize static files into wwwroot structure. Configure static file middleware. Replace System.Web.Optimization bundling with modern approach (CDN, Webpack, or ASP.NET Core bundling).</p>
+</div>
+<div class='alert alert-info'>
+<h5><i class='fas fa-arrow-right'></i> Recommendation</h5>
+<p>Create comprehensive documentation including README.md, ARCHITECTURE.md, MIGRATION_NOTES.md, and API documentation. Document all breaking changes and migration steps taken.</p>
+</div>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-secondary text-white'>
+<h3><i class='fas fa-tools'></i> Build Tool Analysis</h3>
+</div>
+<div class='card-body'>
+<p><strong>Tool:</strong> dotnet</p>
+<p><strong>Current Version:</strong> ASP.NET Web Forms</p>
+<p><strong>Recommended Version:</strong> 8.0</p>
+<p><strong>Compatibility Issues:</strong></p>
+<ul>
+<li>Migration from Web Forms to .NET 8 required</li>
+</ul>
+<p><strong>Upgrade Steps:</strong></p>
+<ol>
+<li>Migrate to .NET 8</li>
+<li>Update NuGet packages</li>
+<li>Refactor Web Forms to Razor Pages/MVC</li>
+</ol>
+</div>
+</div>
+<div class='card mb-4'>
+<div class='card-header bg-danger text-white'>
+<h3><i class='fas fa-box'></i> Dependency Analysis</h3>
+</div>
+<div class='card-body'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function showIssueDetails(issueId) {
+    // Implementation for showing issue details in a modal
+    alert('Issue details for: ' + issueId);
+}
+</script>
+</body>
+</html>

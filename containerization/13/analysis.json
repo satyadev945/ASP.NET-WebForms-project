@@ -1,0 +1,65 @@
+```json
+{
+  "analysisId": "8e92914e-b2be-4ad9-9b40-e41e19403bc7",
+  "summary": {
+    "totalBlockers": 2,
+    "criticalBlockers": 0,
+    "highBlockers": 1,
+    "mediumBlockers": 1,
+    "lowBlockers": 0,
+    "estimatedEffort": "2-4 hours",
+    "overallReadiness": "Ready",
+    "readinessScore": 85
+  },
+  "blockers": [
+    {
+      "id": "blocker-1",
+      "severity": "high",
+      "category": "Monitoring",
+      "title": "Missing health check endpoints",
+      "description": "The application lacks health check endpoints which are essential for container orchestrators (Kubernetes, Docker Swarm) to manage application lifecycle, perform readiness and liveness probes. Without health endpoints, the orchestrator cannot determine if the application is ready to serve traffic or if it needs to be restarted.",
+      "filePath": "spring-boot-monolith-master/pom.xml",
+      "lineNumber": 27,
+      "codeSnippet": "<!-- No spring-boot-actuator dependency found in pom.xml -->\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-data-jpa</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n</dependencies>",
+      "impact": "Container orchestrators cannot perform health checks, leading to potential issues with: 1) Traffic being routed to unhealthy instances, 2) Failed containers not being restarted automatically, 3) Inability to perform rolling updates safely, 4) No visibility into application readiness during startup.",
+      "remediation": "Add Spring Boot Actuator dependency to pom.xml:\n<dependency>\n    <groupId>org.springframework.boot</groupId>\n    <artifactId>spring-boot-starter-actuator</artifactId>\n</dependency>\n\nConfigure health endpoints in application.properties:\nmanagement.endpoints.web.exposure.include=health,info\nmanagement.endpoint.health.show-details=always\nmanagement.health.defaults.enabled=true",
+      "estimatedHours": 1.5,
+      "requiresArchitecturalChange": false,
+      "priority": 1,
+      "ruleId": "java_blocker_010"
+    },
+    {
+      "id": "blocker-2",
+      "severity": "medium",
+      "category": "Configuration",
+      "title": "Empty application.properties - No externalized configuration",
+      "description": "The application.properties file is empty, which means the application is likely using default Spring Boot configurations. While this works for development, containerized applications need externalized configuration for database connections, server ports, and other environment-specific settings. Without environment-specific configuration, the application cannot adapt to different container environments (dev, staging, production).",
+      "filePath": "spring-boot-monolith-master/src/main/resources/application.properties",
+      "lineNumber": 1,
+      "codeSnippet": "# application.properties is empty (0 bytes)\n# No database configuration\n# No server port configuration\n# No logging configuration",
+      "impact": "Application cannot be configured for different environments without rebuilding the container image. This affects: 1) Database connection settings, 2) Server port configuration, 3) Logging levels, 4) Feature flags or environment-specific behavior. The application may work with embedded H2 database for testing but will need external database configuration for production deployment.",
+      "remediation": "Add environment-variable-based configuration to application.properties:\n\n# Server Configuration\nserver.port=${SERVER_PORT:8080}\n\n# Database Configuration (example for external database)\nspring.datasource.url=${DB_URL:jdbc:h2:mem:testdb}\nspring.datasource.username=${DB_USERNAME:sa}\nspring.datasource.password=${DB_PASSWORD:}\nspring.datasource.driver-class-name=${DB_DRIVER:org.h2.Driver}\n\n# JPA Configuration\nspring.jpa.hibernate.ddl-auto=${JPA_DDL_AUTO:update}\nspring.jpa.show-sql=${JPA_SHOW_SQL:false}\n\n# Logging Configuration\nlogging.level.root=${LOG_LEVEL_ROOT:INFO}\nlogging.level.cz.zubal=${LOG_LEVEL_APP:INFO}\n\nThis allows configuration via environment variables in containers while providing sensible defaults.",
+      "estimatedHours": 2.0,
+      "requiresArchitecturalChange": false,
+      "priority": 2,
+      "ruleId": "java_blocker_006"
+    }
+  ],
+  "recommendations": [
+    "Add Spring Boot Actuator for health check endpoints to enable Kubernetes readiness and liveness probes",
+    "Externalize configuration using environment variables in application.properties for database connections, server port, and logging",
+    "The application uses in-memory H2 database (test scope only) - ensure external database configuration is provided via environment variables for production deployment",
+    "Consider adding environment-specific Spring profiles (dev, staging, prod) for better configuration management",
+    "The application architecture is well-suited for containerization with Spring Boot framework and embedded Tomcat server",
+    "No hardcoded file paths, hostnames, or OS-specific commands detected - good containerization practices already in place",
+    "Update to latest Spring Boot version (currently using 2.0.0.RELEASE from 2018) for better container support and security patches"
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1876/transformed-code/13/studio-workspace/comp1",
+    "projectType": "java",
+    "timestamp": "2025-12-16T12:41:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "rulesVersion": "1.0"
+  }
+}
+```

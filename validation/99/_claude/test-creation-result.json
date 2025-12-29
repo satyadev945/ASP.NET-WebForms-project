@@ -1,0 +1,286 @@
+{
+  "analysisId": "testcase-generation-2025-12-19",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 70,
+    "totalFilesModified": 2,
+    "PassTestcase": 70,
+    "totalTimeTaken": "8 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/ConversionLibrary/ConversionHelperTests.cs",
+      "testMethods": [
+        {
+          "methodName": "AddCallerCaller_WithValidInputs_ReturnsExpectedSum",
+          "description": "Tests AddCallerCaller with two positive integers",
+          "coverage": "ConversionHelper.AddCallerCaller"
+        },
+        {
+          "methodName": "AddCallerCaller_WithNegativeNumbers_ReturnsExpectedSum",
+          "description": "Tests AddCallerCaller with negative integers",
+          "coverage": "ConversionHelper.AddCallerCaller"
+        },
+        {
+          "methodName": "AddCallerCaller_WithZero_ReturnsExpectedSum",
+          "description": "Tests AddCallerCaller with zero values",
+          "coverage": "ConversionHelper.AddCallerCaller"
+        },
+        {
+          "methodName": "AddCallerCaller_WithLargeNumbers_ReturnsExpectedSum",
+          "description": "Tests AddCallerCaller with large integer values",
+          "coverage": "ConversionHelper.AddCallerCaller"
+        },
+        {
+          "methodName": "SubtractCallerCaller_WithValidInputs_ReturnsExpectedDifference",
+          "description": "Tests SubtractCallerCaller with two positive integers",
+          "coverage": "ConversionHelper.SubtractCallerCaller"
+        },
+        {
+          "methodName": "SubtractCallerCaller_WithNegativeNumbers_ReturnsExpectedDifference",
+          "description": "Tests SubtractCallerCaller with negative integers",
+          "coverage": "ConversionHelper.SubtractCallerCaller"
+        },
+        {
+          "methodName": "SubtractCallerCaller_WithZero_ReturnsExpectedDifference",
+          "description": "Tests SubtractCallerCaller with zero values",
+          "coverage": "ConversionHelper.SubtractCallerCaller"
+        },
+        {
+          "methodName": "MultiplyCallerCaller_WithValidInputs_ReturnsExpectedProduct",
+          "description": "Tests MultiplyCallerCaller with two positive integers",
+          "coverage": "ConversionHelper.MultiplyCallerCaller"
+        },
+        {
+          "methodName": "MultiplyCallerCaller_WithNegativeNumbers_ReturnsExpectedProduct",
+          "description": "Tests MultiplyCallerCaller with negative integers",
+          "coverage": "ConversionHelper.MultiplyCallerCaller"
+        },
+        {
+          "methodName": "MultiplyCallerCaller_WithZero_ReturnsZero",
+          "description": "Tests MultiplyCallerCaller with zero values",
+          "coverage": "ConversionHelper.MultiplyCallerCaller"
+        },
+        {
+          "methodName": "DivideCallerCaller_WithValidInputs_ReturnsExpectedQuotient",
+          "description": "Tests DivideCallerCaller with valid divisor",
+          "coverage": "ConversionHelper.DivideCallerCaller"
+        },
+        {
+          "methodName": "DivideCallerCaller_WithZeroDivisor_ThrowsDivideByZeroException",
+          "description": "Tests DivideCallerCaller with zero divisor throws exception",
+          "coverage": "ConversionHelper.DivideCallerCaller exception handling"
+        },
+        {
+          "methodName": "DivideCallerCaller_WithNegativeNumbers_ReturnsExpectedQuotient",
+          "description": "Tests DivideCallerCaller with negative numbers",
+          "coverage": "ConversionHelper.DivideCallerCaller"
+        },
+        {
+          "methodName": "ExecuteOperation_WithAddOperation_ReturnsSum",
+          "description": "Tests ExecuteOperation with add operation",
+          "coverage": "ConversionHelper.ExecuteOperation"
+        },
+        {
+          "methodName": "ExecuteOperation_WithSubtractOperation_ReturnsDifference",
+          "description": "Tests ExecuteOperation with subtract operation",
+          "coverage": "ConversionHelper.ExecuteOperation"
+        },
+        {
+          "methodName": "ExecuteOperation_WithMultiplyOperation_ReturnsProduct",
+          "description": "Tests ExecuteOperation with multiply operation",
+          "coverage": "ConversionHelper.ExecuteOperation"
+        },
+        {
+          "methodName": "ExecuteOperation_WithDivideOperation_ReturnsQuotient",
+          "description": "Tests ExecuteOperation with divide operation",
+          "coverage": "ConversionHelper.ExecuteOperation"
+        },
+        {
+          "methodName": "ExecuteOperation_WithInvalidOperation_ThrowsArgumentException",
+          "description": "Tests ExecuteOperation with invalid operation throws exception",
+          "coverage": "ConversionHelper.ExecuteOperation exception handling"
+        },
+        {
+          "methodName": "ExecuteOperation_WithEmptyOperation_ThrowsArgumentException",
+          "description": "Tests ExecuteOperation with empty operation string",
+          "coverage": "ConversionHelper.ExecuteOperation"
+        },
+        {
+          "methodName": "ExecuteOperation_WithDivideByZero_ThrowsDivideByZeroException",
+          "description": "Tests ExecuteOperation with divide by zero",
+          "coverage": "ConversionHelper.ExecuteOperation exception handling"
+        }
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/ConversionLibrary/MathOperationsTests.cs",
+      "testMethods": [
+        {
+          "methodName": "Add_WithPositiveNumbers_ReturnsExpectedSum",
+          "description": "Tests Add method with positive integers",
+          "coverage": "MathOperations.Add"
+        },
+        {
+          "methodName": "Add_WithNegativeNumbers_ReturnsExpectedSum",
+          "description": "Tests Add method with negative integers",
+          "coverage": "MathOperations.Add"
+        },
+        {
+          "methodName": "Add_WithZero_ReturnsExpectedSum",
+          "description": "Tests Add method with zero values",
+          "coverage": "MathOperations.Add"
+        },
+        {
+          "methodName": "Add_WithMaxValue_HandlesOverflow",
+          "description": "Tests Add method with integer overflow scenario",
+          "coverage": "MathOperations.Add edge case"
+        },
+        {
+          "methodName": "Subtract_WithPositiveNumbers_ReturnsExpectedDifference",
+          "description": "Tests Subtract method with positive integers",
+          "coverage": "MathOperations.Subtract"
+        },
+        {
+          "methodName": "Subtract_WithNegativeNumbers_ReturnsExpectedDifference",
+          "description": "Tests Subtract method with negative integers",
+          "coverage": "MathOperations.Subtract"
+        },
+        {
+          "methodName": "Subtract_WithZero_ReturnsExpectedDifference",
+          "description": "Tests Subtract method with zero values",
+          "coverage": "MathOperations.Subtract"
+        },
+        {
+          "methodName": "Subtract_WithMinValue_HandlesUnderflow",
+          "description": "Tests Subtract method with integer underflow scenario",
+          "coverage": "MathOperations.Subtract edge case"
+        },
+        {
+          "methodName": "Multiply_WithPositiveNumbers_ReturnsExpectedProduct",
+          "description": "Tests Multiply method with positive integers",
+          "coverage": "MathOperations.Multiply"
+        },
+        {
+          "methodName": "Multiply_WithNegativeNumbers_ReturnsExpectedProduct",
+          "description": "Tests Multiply method with negative integers",
+          "coverage": "MathOperations.Multiply"
+        },
+        {
+          "methodName": "Multiply_WithZero_ReturnsZero",
+          "description": "Tests Multiply method with zero values",
+          "coverage": "MathOperations.Multiply"
+        },
+        {
+          "methodName": "Multiply_WithOne_ReturnsOriginalNumber",
+          "description": "Tests Multiply method with identity element",
+          "coverage": "MathOperations.Multiply"
+        },
+        {
+          "methodName": "Divide_WithValidDivisor_ReturnsExpectedQuotient",
+          "description": "Tests Divide method with valid divisor",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Divide_WithZeroDivisor_ThrowsDivideByZeroException",
+          "description": "Tests Divide method with zero divisor throws exception",
+          "coverage": "MathOperations.Divide exception handling"
+        },
+        {
+          "methodName": "Divide_WithNegativeNumbers_ReturnsExpectedQuotient",
+          "description": "Tests Divide method with negative numbers",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Divide_WithOne_ReturnsOriginalNumber",
+          "description": "Tests Divide method with identity element",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Divide_WithEqualNumbers_ReturnsOne",
+          "description": "Tests Divide method when dividend equals divisor",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Add_WithLargeNumbers_ReturnsExpectedSum",
+          "description": "Tests Add method with large integer values",
+          "coverage": "MathOperations.Add"
+        },
+        {
+          "methodName": "Subtract_WithLargeNumbers_ReturnsExpectedDifference",
+          "description": "Tests Subtract method with large integer values",
+          "coverage": "MathOperations.Subtract"
+        },
+        {
+          "methodName": "Multiply_WithLargeNumbers_ReturnsExpectedProduct",
+          "description": "Tests Multiply method with large integer values",
+          "coverage": "MathOperations.Multiply"
+        },
+        {
+          "methodName": "Divide_WithLargeNumbers_ReturnsExpectedQuotient",
+          "description": "Tests Divide method with large integer values",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Add_WithMixedSigns_ReturnsExpectedSum",
+          "description": "Tests Add method with mixed positive and negative numbers",
+          "coverage": "MathOperations.Add"
+        },
+        {
+          "methodName": "Subtract_WithMixedSigns_ReturnsExpectedDifference",
+          "description": "Tests Subtract method with mixed positive and negative numbers",
+          "coverage": "MathOperations.Subtract"
+        },
+        {
+          "methodName": "Multiply_WithMixedSigns_ReturnsExpectedProduct",
+          "description": "Tests Multiply method with mixed positive and negative numbers",
+          "coverage": "MathOperations.Multiply"
+        },
+        {
+          "methodName": "Divide_WithMixedSigns_ReturnsExpectedQuotient",
+          "description": "Tests Divide method with mixed positive and negative numbers",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Divide_WithNegativeDividendPositiveDivisor_ReturnsNegativeQuotient",
+          "description": "Tests Divide method with negative dividend and positive divisor",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Divide_WithPositiveDividendNegativeDivisor_ReturnsNegativeQuotient",
+          "description": "Tests Divide method with positive dividend and negative divisor",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Divide_WithBothNegative_ReturnsPositiveQuotient",
+          "description": "Tests Divide method with both negative numbers",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Divide_IntegerDivision_TruncatesResult",
+          "description": "Tests Divide method truncates decimal results",
+          "coverage": "MathOperations.Divide"
+        },
+        {
+          "methodName": "Constructor_CreatesInstance_Successfully",
+          "description": "Tests MathOperations constructor creates instance",
+          "coverage": "MathOperations constructor"
+        }
+      ],
+      "coveragePercentage": 95.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1955/transformed-code/81/studio-workspace/dotnet_comp",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-19T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 90.0
+  }
+}

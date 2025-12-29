@@ -1,0 +1,69 @@
+{
+  "analysisResults" : {
+    "message" : "Java upgrade analysis completed successfully",
+    "cached" : false,
+    "status" : "success"
+  },
+  "dependencyAnalysis" : {
+    "incompatibleDependencies" : [ {
+      "artifactId" : "spring-boot-starter-parent",
+      "issue" : "Incompatible with Java 21",
+      "recommendedVersion" : "3.2.0",
+      "currentVersion" : "2.7.15",
+      "groupId" : "org.springframework.boot"
+    }, {
+      "artifactId" : "mysql-connector-java",
+      "issue" : "Needs update for better Java 21 support",
+      "recommendedVersion" : "8.2.0",
+      "currentVersion" : "8.0.33",
+      "groupId" : "mysql"
+    } ],
+    "dependenciesNeedingUpdates" : [ {
+      "reason" : "Full Java 21 compatibility and Jakarta EE support",
+      "artifactId" : "spring-boot-starter-parent",
+      "recommendedVersion" : "3.2.0",
+      "currentVersion" : "2.7.15",
+      "groupId" : "org.springframework.boot"
+    }, {
+      "reason" : "Better compatibility with newer Spring Boot versions",
+      "artifactId" : "thymeleaf-extras-java8time",
+      "recommendedVersion" : "3.1.0.RELEASE",
+      "currentVersion" : "3.0.4.RELEASE",
+      "groupId" : "org.thymeleaf.extras"
+    } ]
+  },
+  "reportMetadata" : {
+    "version" : "1.0",
+    "timestamp" : "2025-12-12T05:18:05.518599672",
+    "analysisId" : "1",
+    "reportType" : "Java Upgrade Analysis Report"
+  },
+  "buildToolAnalysis" : {
+    "upgradeSteps" : [ "Update Spring Boot parent version to 3.0.0 or later", "Update maven-compiler-plugin configuration", "Add jakarta.* dependencies if needed", "Update affected dependency versions" ],
+    "recommendedVersion" : "3.11.0",
+    "tool" : "maven",
+    "currentVersion" : "3.11.0",
+    "compatibilityIssues" : [ "Spring Boot version needs update to 3.0+ for full Java 21 support", "Some dependencies may need version updates for Jakarta EE compatibility" ]
+  },
+  "generatedReports" : {
+    "markdown" : "/studio-app/claude-workspace/versionUpgrade/1/reports/upgrade-analysis.md",
+    "json" : "/studio-app/claude-workspace/versionUpgrade/1/reports/upgrade-analysis.json",
+    "html" : "/studio-app/claude-workspace/versionUpgrade/1/reports/upgrade-analysis.html"
+  },
+  "upgradeSummary" : {
+    "deprecatedApisFound" : 2,
+    "blockersFound" : 4,
+    "criticalBlockers" : 0,
+    "breakingChanges" : 2,
+    "estimatedEffort" : "4-6 hours",
+    "upgradeComplexity" : "Simple"
+  },
+  "recommendations" : [ "Upgrade Spring Boot to version 3.0+ for full Java 21 compatibility", "Perform javax-to-jakarta namespace migration across all affected files", "Update validation annotations to use Jakarta EE standards", "Consider incremental migration: Spring Boot 2.7.x first, then 3.0+", "Thoroughly test all functionality after migration" ],
+  "projectInformation" : {
+    "targetVersion" : "21",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1821/transformed-code/1/studio-workspace/component1",
+    "currentVersion" : "11",
+    "projectType" : "java",
+    "platform" : "linux"
+  }
+}

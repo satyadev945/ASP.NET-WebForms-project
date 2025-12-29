@@ -1,0 +1,104 @@
+// Stream output parsed to extract the final analysis result
+// Raw output saved as upgrade-analysis-result.json
+
+{
+  "summary" : {
+    "mediumIssues" : 1,
+    "deprecatedApisFound" : 3,
+    "totalIssues" : 4,
+    "compatibilityScore" : 80,
+    "criticalIssues" : 0,
+    "highIssues" : 3,
+    "lowIssues" : 0,
+    "estimatedEffort" : "4-6 hours",
+    "breakingChanges" : 0,
+    "upgradeComplexity" : "Moderate"
+  },
+  "metadata" : {
+    "currentJavaVersion" : "11",
+    "rulesVersion" : "1.0",
+    "claudeModel" : "claude-sonnet-4",
+    "projectPath" : "/modernize-data/studio-data/TNT1001/APP1929/transformed-code/34/studio-workspace/mini-java-app-component",
+    "source" : "Claude AI Analysis",
+    "targetJavaVersion" : "21",
+    "timestamp" : "2025-12-17T14:12:13.041651555Z"
+  },
+  "buildToolAnalysis" : {
+    "recommendedVersion" : "Spring Boot 2.7.x or 3.x",
+    "compatibilityIssues" : [ "Java version needs update to 21", "Maven compiler plugin may need updates" ],
+    "upgradeSteps" : [ "Update java.version to 21", "Update maven-compiler-plugin if needed", "Add explicit versions for all dependencies", "Update third-party dependency versions" ],
+    "tool" : "maven",
+    "currentVersion" : "Spring Boot 2.7.x"
+  },
+  "analysisId" : "java-upgrade-analysis-2025-12-17",
+  "issues" : [ {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven-compiler-plugin to version 3.11.0 or higher for full Java 21 support",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Maven compiler plugin version 3.8.1 may not be fully compatible with Java 21. Newer plugin versions provide better support for modern Java features.",
+    "effort" : "medium",
+    "id" : "issue-1",
+    "category" : "upgrade-analysis",
+    "title" : "Maven Compiler Plugin Version Compatibility",
+    "lineNumber" : 37
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Update maven.compiler.source and maven.compiler.target to 21",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Build configuration still targets Java 11. Must be updated to Java 21 for upgrade compatibility.",
+    "effort" : "medium",
+    "id" : "issue-2",
+    "category" : "upgrade-analysis",
+    "title" : "Java Version Configuration Update Required",
+    "lineNumber" : 13
+  }, {
+    "severity" : "high",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Upgrade Spring Boot to version 3.2.0 or higher for full Java 21 support",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "Spring Boot 2.7.0 has limited support for Java 21. Spring Boot 3.x series is recommended for full Java 21 compatibility.",
+    "effort" : "medium",
+    "id" : "issue-3",
+    "category" : "upgrade-analysis",
+    "title" : "Spring Boot Version Compatibility",
+    "lineNumber" : 28
+  }, {
+    "severity" : "medium",
+    "codeSnippet" : "See analysis for details",
+    "remediation" : "Consider upgrading to MySQL Connector 8.2.0 or higher for optimal Java 21 support",
+    "breakingChange" : true,
+    "filePath" : "pom.xml",
+    "impact" : "Java 17 compatibility issue",
+    "description" : "MySQL Connector 8.0.33 is compatible with Java 21 but newer versions are available with better support.",
+    "effort" : "medium",
+    "id" : "issue-4",
+    "category" : "upgrade-analysis",
+    "title" : "MySQL Connector Compatibility",
+    "lineNumber" : 22
+  } ],
+  "recommendations" : [ "\"description\": \"Spring Boot 2.7.0 has limited support for Java 21. Spring Boot 3.x series is recommended for full Java 21 compatibility.\",", "\"recommendedVersion\": \"3.11.0+\",", "\"recommendedVersion\": \"3.2.0+\",", "\"recommendedVersion\": \"8.2.0+\"," ],
+  "dependencies" : {
+    "incompatible" : [ {
+      "recommendedVersion" : "21",
+      "issue" : "Targets Java 11 instead of 21",
+      "groupId" : "java.version",
+      "artifactId" : "java.version",
+      "currentVersion" : "11"
+    } ],
+    "upgradeable" : [ {
+      "reason" : "Better Java 21 support and new features",
+      "recommendedVersion" : "3.1.5",
+      "groupId" : "org.springframework.boot",
+      "artifactId" : "spring-boot-starter-parent",
+      "currentVersion" : "2.7.15"
+    } ]
+  }
+}

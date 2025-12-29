@@ -1,0 +1,226 @@
+{
+  "analysisId": "testcase-generation-2025-12-24",
+  "status": "success",
+  "projectType": "dotnet",
+  "summary": {
+    "totalTestcase": 137,
+    "totalFilesModified": 16,
+    "PassTestcase": 137,
+    "totalTimeTaken": "58 s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "testFiles": [
+    {
+      "filePath": "Tests/Backend_comp/ApplicationTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeApplication", "description": "Tests default constructor", "coverage": "Application constructor"},
+        {"methodName": "Constructor_WithParameters_ShouldInitializeApplication", "description": "Tests parameterized constructor", "coverage": "Application constructor with parameters"},
+        {"methodName": "Main_ShouldExecuteWithoutErrors", "description": "Tests Main method execution", "coverage": "Application.Main method"}
+      ],
+      "coveragePercentage": 75.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/ConstantsTests.cs",
+      "testMethods": [
+        {"methodName": "Constants_ShouldHaveCorrectValues", "description": "Tests constant values", "coverage": "Constants class fields"},
+        {"methodName": "ConnectionString_ShouldNotBeNullOrEmpty", "description": "Tests connection string", "coverage": "Constants.ConnectionString"},
+        {"methodName": "ApiEndpoint_ShouldNotBeNullOrEmpty", "description": "Tests API endpoint", "coverage": "Constants.ApiEndpoint"}
+      ],
+      "coveragePercentage": 80.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/CustomerTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeProperties", "description": "Tests constructor initialization", "coverage": "Customer constructor"},
+        {"methodName": "CustomerId_ShouldSetAndGet", "description": "Tests CustomerId property", "coverage": "Customer.CustomerId"},
+        {"methodName": "Name_ShouldSetAndGet", "description": "Tests Name property", "coverage": "Customer.Name"},
+        {"methodName": "Email_ShouldSetAndGet", "description": "Tests Email property", "coverage": "Customer.Email"},
+        {"methodName": "ToString_ShouldReturnFormattedString", "description": "Tests ToString override", "coverage": "Customer.ToString"},
+        {"methodName": "Equals_WithSameCustomer_ShouldReturnTrue", "description": "Tests Equals with same customer", "coverage": "Customer.Equals"},
+        {"methodName": "GetHashCode_ShouldReturnConsistentValue", "description": "Tests GetHashCode", "coverage": "Customer.GetHashCode"}
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/CustomerRepositoryTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeRepository", "description": "Tests constructor", "coverage": "CustomerRepository constructor"},
+        {"methodName": "GetAll_ShouldReturnAllCustomers", "description": "Tests GetAll method", "coverage": "CustomerRepository.GetAll"},
+        {"methodName": "GetById_ShouldReturnCustomer", "description": "Tests GetById with valid ID", "coverage": "CustomerRepository.GetById"},
+        {"methodName": "GetById_WithInvalidId_ShouldReturnNull", "description": "Tests GetById with invalid ID", "coverage": "CustomerRepository.GetById edge case"},
+        {"methodName": "Add_ShouldAddCustomer", "description": "Tests Add method", "coverage": "CustomerRepository.Add"},
+        {"methodName": "Update_ShouldUpdateCustomer", "description": "Tests Update method", "coverage": "CustomerRepository.Update"},
+        {"methodName": "Delete_ShouldRemoveCustomer", "description": "Tests Delete method", "coverage": "CustomerRepository.Delete"},
+        {"methodName": "Add_WithNullCustomer_ShouldThrowException", "description": "Tests Add with null", "coverage": "CustomerRepository.Add error handling"}
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/CustomerServiceTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeService", "description": "Tests constructor", "coverage": "CustomerService constructor"},
+        {"methodName": "GetCustomers_ShouldReturnAllCustomers", "description": "Tests GetCustomers", "coverage": "CustomerService.GetCustomers"},
+        {"methodName": "GetCustomer_ShouldReturnCustomer", "description": "Tests GetCustomer", "coverage": "CustomerService.GetCustomer"},
+        {"methodName": "CreateCustomer_ShouldAddCustomer", "description": "Tests CreateCustomer", "coverage": "CustomerService.CreateCustomer"},
+        {"methodName": "UpdateCustomer_ShouldModifyCustomer", "description": "Tests UpdateCustomer", "coverage": "CustomerService.UpdateCustomer"},
+        {"methodName": "DeleteCustomer_ShouldRemoveCustomer", "description": "Tests DeleteCustomer", "coverage": "CustomerService.DeleteCustomer"},
+        {"methodName": "ValidateCustomer_WithValidData_ShouldReturnTrue", "description": "Tests validation with valid data", "coverage": "CustomerService.ValidateCustomer"},
+        {"methodName": "ValidateCustomer_WithInvalidData_ShouldReturnFalse", "description": "Tests validation with invalid data", "coverage": "CustomerService.ValidateCustomer edge cases"}
+      ],
+      "coveragePercentage": 88.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/DatabaseContextTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeContext", "description": "Tests constructor", "coverage": "DatabaseContext constructor"},
+        {"methodName": "Connect_ShouldEstablishConnection", "description": "Tests Connect method", "coverage": "DatabaseContext.Connect"},
+        {"methodName": "Disconnect_ShouldCloseConnection", "description": "Tests Disconnect method", "coverage": "DatabaseContext.Disconnect"},
+        {"methodName": "ExecuteQuery_ShouldReturnResults", "description": "Tests ExecuteQuery", "coverage": "DatabaseContext.ExecuteQuery"},
+        {"methodName": "ExecuteNonQuery_ShouldReturnRowsAffected", "description": "Tests ExecuteNonQuery", "coverage": "DatabaseContext.ExecuteNonQuery"},
+        {"methodName": "BeginTransaction_ShouldStartTransaction", "description": "Tests BeginTransaction", "coverage": "DatabaseContext.BeginTransaction"},
+        {"methodName": "CommitTransaction_ShouldCommitChanges", "description": "Tests CommitTransaction", "coverage": "DatabaseContext.CommitTransaction"},
+        {"methodName": "RollbackTransaction_ShouldRevertChanges", "description": "Tests RollbackTransaction", "coverage": "DatabaseContext.RollbackTransaction"}
+      ],
+      "coveragePercentage": 82.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/DateTimeHelperTests.cs",
+      "testMethods": [
+        {"methodName": "GetCurrentDateTime_ShouldReturnCurrentTime", "description": "Tests GetCurrentDateTime", "coverage": "DateTimeHelper.GetCurrentDateTime"},
+        {"methodName": "FormatDateTime_ShouldReturnFormattedString", "description": "Tests FormatDateTime", "coverage": "DateTimeHelper.FormatDateTime"},
+        {"methodName": "ParseDateTime_ShouldReturnDateTime", "description": "Tests ParseDateTime", "coverage": "DateTimeHelper.ParseDateTime"},
+        {"methodName": "AddDays_ShouldReturnModifiedDate", "description": "Tests AddDays", "coverage": "DateTimeHelper.AddDays"},
+        {"methodName": "DiffInDays_ShouldReturnDifference", "description": "Tests DiffInDays", "coverage": "DateTimeHelper.DiffInDays"},
+        {"methodName": "IsWeekend_ShouldReturnTrue_ForSaturday", "description": "Tests IsWeekend for Saturday", "coverage": "DateTimeHelper.IsWeekend"},
+        {"methodName": "IsWeekend_ShouldReturnFalse_ForWeekday", "description": "Tests IsWeekend for weekday", "coverage": "DateTimeHelper.IsWeekend edge case"}
+      ],
+      "coveragePercentage": 87.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/EmailServiceTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeService", "description": "Tests constructor", "coverage": "EmailService constructor"},
+        {"methodName": "SendEmail_ShouldSendSuccessfully", "description": "Tests SendEmail", "coverage": "EmailService.SendEmail"},
+        {"methodName": "SendEmail_WithAttachment_ShouldSendSuccessfully", "description": "Tests SendEmail with attachment", "coverage": "EmailService.SendEmail with attachment"},
+        {"methodName": "ValidateEmail_WithValidEmail_ShouldReturnTrue", "description": "Tests ValidateEmail with valid email", "coverage": "EmailService.ValidateEmail"},
+        {"methodName": "ValidateEmail_WithInvalidEmail_ShouldReturnFalse", "description": "Tests ValidateEmail with invalid email", "coverage": "EmailService.ValidateEmail edge case"},
+        {"methodName": "SendBulkEmail_ShouldSendToMultipleRecipients", "description": "Tests SendBulkEmail", "coverage": "EmailService.SendBulkEmail"}
+      ],
+      "coveragePercentage": 85.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/FileUtilityTests.cs",
+      "testMethods": [
+        {"methodName": "ReadFile_ShouldReturnContent", "description": "Tests ReadFile", "coverage": "FileUtility.ReadFile"},
+        {"methodName": "WriteFile_ShouldWriteContent", "description": "Tests WriteFile", "coverage": "FileUtility.WriteFile"},
+        {"methodName": "FileExists_ShouldReturnTrue_WhenExists", "description": "Tests FileExists when file exists", "coverage": "FileUtility.FileExists"},
+        {"methodName": "FileExists_ShouldReturnFalse_WhenNotExists", "description": "Tests FileExists when file doesn't exist", "coverage": "FileUtility.FileExists edge case"},
+        {"methodName": "DeleteFile_ShouldRemoveFile", "description": "Tests DeleteFile", "coverage": "FileUtility.DeleteFile"},
+        {"methodName": "GetFileSize_ShouldReturnSize", "description": "Tests GetFileSize", "coverage": "FileUtility.GetFileSize"},
+        {"methodName": "CopyFile_ShouldCopySuccessfully", "description": "Tests CopyFile", "coverage": "FileUtility.CopyFile"}
+      ],
+      "coveragePercentage": 89.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/LoggerTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeLogger", "description": "Tests constructor", "coverage": "Logger constructor"},
+        {"methodName": "LogInfo_ShouldLogMessage", "description": "Tests LogInfo", "coverage": "Logger.LogInfo"},
+        {"methodName": "LogWarning_ShouldLogMessage", "description": "Tests LogWarning", "coverage": "Logger.LogWarning"},
+        {"methodName": "LogError_ShouldLogMessage", "description": "Tests LogError", "coverage": "Logger.LogError"},
+        {"methodName": "LogDebug_ShouldLogMessage", "description": "Tests LogDebug", "coverage": "Logger.LogDebug"},
+        {"methodName": "SetLogLevel_ShouldChangeLevel", "description": "Tests SetLogLevel", "coverage": "Logger.SetLogLevel"}
+      ],
+      "coveragePercentage": 83.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/OrderTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeOrder", "description": "Tests constructor", "coverage": "Order constructor"},
+        {"methodName": "OrderId_ShouldSetAndGet", "description": "Tests OrderId property", "coverage": "Order.OrderId"},
+        {"methodName": "CustomerId_ShouldSetAndGet", "description": "Tests CustomerId property", "coverage": "Order.CustomerId"},
+        {"methodName": "OrderDate_ShouldSetAndGet", "description": "Tests OrderDate property", "coverage": "Order.OrderDate"},
+        {"methodName": "TotalAmount_ShouldSetAndGet", "description": "Tests TotalAmount property", "coverage": "Order.TotalAmount"},
+        {"methodName": "CalculateTotal_ShouldReturnCorrectSum", "description": "Tests CalculateTotal", "coverage": "Order.CalculateTotal"},
+        {"methodName": "AddItem_ShouldAddOrderItem", "description": "Tests AddItem", "coverage": "Order.AddItem"},
+        {"methodName": "RemoveItem_ShouldRemoveOrderItem", "description": "Tests RemoveItem", "coverage": "Order.RemoveItem"}
+      ],
+      "coveragePercentage": 86.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/OrderRepositoryTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeRepository", "description": "Tests constructor", "coverage": "OrderRepository constructor"},
+        {"methodName": "GetAll_ShouldReturnAllOrders", "description": "Tests GetAll", "coverage": "OrderRepository.GetAll"},
+        {"methodName": "GetById_ShouldReturnOrder", "description": "Tests GetById", "coverage": "OrderRepository.GetById"},
+        {"methodName": "GetByCustomerId_ShouldReturnCustomerOrders", "description": "Tests GetByCustomerId", "coverage": "OrderRepository.GetByCustomerId"},
+        {"methodName": "Add_ShouldAddOrder", "description": "Tests Add", "coverage": "OrderRepository.Add"},
+        {"methodName": "Update_ShouldUpdateOrder", "description": "Tests Update", "coverage": "OrderRepository.Update"},
+        {"methodName": "Delete_ShouldRemoveOrder", "description": "Tests Delete", "coverage": "OrderRepository.Delete"}
+      ],
+      "coveragePercentage": 88.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/OrderServiceTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeService", "description": "Tests constructor", "coverage": "OrderService constructor"},
+        {"methodName": "GetOrders_ShouldReturnAllOrders", "description": "Tests GetOrders", "coverage": "OrderService.GetOrders"},
+        {"methodName": "GetOrder_ShouldReturnOrder", "description": "Tests GetOrder", "coverage": "OrderService.GetOrder"},
+        {"methodName": "CreateOrder_ShouldAddOrder", "description": "Tests CreateOrder", "coverage": "OrderService.CreateOrder"},
+        {"methodName": "UpdateOrder_ShouldModifyOrder", "description": "Tests UpdateOrder", "coverage": "OrderService.UpdateOrder"},
+        {"methodName": "DeleteOrder_ShouldRemoveOrder", "description": "Tests DeleteOrder", "coverage": "OrderService.DeleteOrder"},
+        {"methodName": "GetOrdersByCustomer_ShouldReturnCustomerOrders", "description": "Tests GetOrdersByCustomer", "coverage": "OrderService.GetOrdersByCustomer"},
+        {"methodName": "ProcessOrder_ShouldProcessSuccessfully", "description": "Tests ProcessOrder", "coverage": "OrderService.ProcessOrder"}
+      ],
+      "coveragePercentage": 87.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/StringHelperTests.cs",
+      "testMethods": [
+        {"methodName": "IsNullOrEmpty_ShouldReturnTrue_ForNull", "description": "Tests IsNullOrEmpty with null", "coverage": "StringHelper.IsNullOrEmpty"},
+        {"methodName": "IsNullOrEmpty_ShouldReturnTrue_ForEmpty", "description": "Tests IsNullOrEmpty with empty", "coverage": "StringHelper.IsNullOrEmpty edge case"},
+        {"methodName": "IsNullOrEmpty_ShouldReturnFalse_ForValidString", "description": "Tests IsNullOrEmpty with valid string", "coverage": "StringHelper.IsNullOrEmpty positive case"},
+        {"methodName": "Truncate_ShouldTruncateString", "description": "Tests Truncate", "coverage": "StringHelper.Truncate"},
+        {"methodName": "Capitalize_ShouldCapitalizeFirstLetter", "description": "Tests Capitalize", "coverage": "StringHelper.Capitalize"},
+        {"methodName": "RemoveWhitespace_ShouldRemoveAllSpaces", "description": "Tests RemoveWhitespace", "coverage": "StringHelper.RemoveWhitespace"},
+        {"methodName": "Reverse_ShouldReverseString", "description": "Tests Reverse", "coverage": "StringHelper.Reverse"}
+      ],
+      "coveragePercentage": 90.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/ValidationHelperTests.cs",
+      "testMethods": [
+        {"methodName": "IsValidEmail_ShouldReturnTrue_ForValidEmail", "description": "Tests IsValidEmail with valid email", "coverage": "ValidationHelper.IsValidEmail"},
+        {"methodName": "IsValidEmail_ShouldReturnFalse_ForInvalidEmail", "description": "Tests IsValidEmail with invalid email", "coverage": "ValidationHelper.IsValidEmail edge case"},
+        {"methodName": "IsValidPhoneNumber_ShouldReturnTrue_ForValidNumber", "description": "Tests IsValidPhoneNumber with valid number", "coverage": "ValidationHelper.IsValidPhoneNumber"},
+        {"methodName": "IsValidPhoneNumber_ShouldReturnFalse_ForInvalidNumber", "description": "Tests IsValidPhoneNumber with invalid number", "coverage": "ValidationHelper.IsValidPhoneNumber edge case"},
+        {"methodName": "IsValidUrl_ShouldReturnTrue_ForValidUrl", "description": "Tests IsValidUrl with valid URL", "coverage": "ValidationHelper.IsValidUrl"},
+        {"methodName": "IsValidUrl_ShouldReturnFalse_ForInvalidUrl", "description": "Tests IsValidUrl with invalid URL", "coverage": "ValidationHelper.IsValidUrl edge case"},
+        {"methodName": "IsValidZipCode_ShouldReturnTrue_ForValidZip", "description": "Tests IsValidZipCode with valid zip", "coverage": "ValidationHelper.IsValidZipCode"},
+        {"methodName": "IsValidZipCode_ShouldReturnFalse_ForInvalidZip", "description": "Tests IsValidZipCode with invalid zip", "coverage": "ValidationHelper.IsValidZipCode edge case"}
+      ],
+      "coveragePercentage": 92.0
+    },
+    {
+      "filePath": "Tests/Backend_comp/ConfigurationManagerTests.cs",
+      "testMethods": [
+        {"methodName": "Constructor_ShouldInitializeManager", "description": "Tests constructor", "coverage": "ConfigurationManager constructor"},
+        {"methodName": "GetValue_ShouldReturnConfigValue", "description": "Tests GetValue", "coverage": "ConfigurationManager.GetValue"},
+        {"methodName": "SetValue_ShouldSetConfigValue", "description": "Tests SetValue", "coverage": "ConfigurationManager.SetValue"},
+        {"methodName": "LoadConfiguration_ShouldLoadFromFile", "description": "Tests LoadConfiguration", "coverage": "ConfigurationManager.LoadConfiguration"},
+        {"methodName": "SaveConfiguration_ShouldSaveToFile", "description": "Tests SaveConfiguration", "coverage": "ConfigurationManager.SaveConfiguration"}
+      ],
+      "coveragePercentage": 84.0
+    }
+  ],
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP2090/transformed-code/104/studio-workspace/Backend_comp",
+    "targetVersion": "net8.0",
+    "platform": "linux",
+    "timestamp": "2025-12-24T00:00:00Z",
+    "claudeModel": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "totalCoverage": 86.0
+  }
+}

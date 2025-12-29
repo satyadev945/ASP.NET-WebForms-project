@@ -1,0 +1,122 @@
+# 🚀 .NET Upgrade Analysis Report
+
+**Analysis ID:** `110`
+
+**Generated:** 2025-12-19 05:55:51
+
+---
+
+## 📋 Project Information
+
+| Field | Value |
+|-------|-------|
+| **Project Path** | `/modernize-data/studio-data/TNT1001/APP1968/transformed-code/85/studio-workspace/test cmp` |
+| **Current Version** | .NET 4.7.2 |
+| **Target Version** | .NET 8 |
+| **Platform** | linux |
+| **Project Type** | dotnet |
+| **Analysis Status** | **success** |
+
+## 📊 Analysis Results
+
+**Status:** success
+
+**Message:** WebForms migration analysis completed successfully
+
+---
+
+## 📈 Analysis Summary
+
+### Key Metrics
+
+| Metric | Value |
+|--------|-------|
+| **Total Issues** | 47 |
+| **Critical Issues** | 15 |
+| **Deprecated APIs** | 12 |
+| **Breaking Changes** | 15 |
+| **Estimated Effort** | **320-480 hours** |
+| **Upgrade Complexity** | **Complex** |
+
+---
+
+## ⚠️ Identified Issues
+
+| Severity | Category | Title | File | Line | Effort |
+|----------|----------|-------|------|------|--------|
+| 🔴 **critical** | webforms-migration | Entity Framework 6.2.0 Incompatible with .NET 8 | `src/eShopLegacyWebForms/packages.config` | 9 | 🔴 high |
+| 🔴 **critical** | webforms-migration | log4net 2.0.10 Legacy Logging Framework | `src/eShopLegacyWebForms/packages.config` | 11 | 🟡 medium |
+| 🔴 **critical** | webforms-migration | System.Web Dependencies Throughout Application | `Multiple files` | 0 | 🔴 high |
+| 🔴 **critical** | webforms-migration | Web Forms Pages Must Be Rewritten | `src/eShopLegacyWebForms/*.aspx` | 0 | 🔴 high |
+| 🔴 **critical** | webforms-migration | Master Pages Incompatible | `src/eShopLegacyWebForms/Site.Master` | 1 | 🟡 medium |
+| 🔴 **critical** | webforms-migration | User Controls Not Supported | `src/eShopLegacyWebForms/ViewSwitcher.ascx` | 1 | 🟡 medium |
+| 🔴 **critical** | webforms-migration | Global.asax Application Events | `src/eShopLegacyWebForms/Global.asax.cs` | 17 | 🔴 high |
+| 🔴 **critical** | webforms-migration | Web.config Configuration System | `src/eShopLegacyWebForms/Web.config` | 6 | 🟡 medium |
+| 🔴 **critical** | package-compatibility | Autofac 4.9.1 Legacy Version | `src/eShopLegacyWebForms/packages.config` | 6 | 🟡 medium |
+| 🟠 **high** | webforms-migration | Page Lifecycle Events (Page_Load) | `src/eShopLegacyWebForms/Default.aspx.cs` | 22 | 🟡 medium |
+| 🟠 **high** | webforms-migration | Server Controls (ListView, HyperLink) | `src/eShopLegacyWebForms/Default.aspx` | 12 | 🟡 medium |
+| 🟠 **high** | webforms-migration | Data Binding Syntax | `src/eShopLegacyWebForms/Default.aspx` | 58 | 🟡 medium |
+| 🟠 **high** | webforms-migration | RouteConfig and Web Forms Routing | `src/eShopLegacyWebForms/App_Start/RouteConfig.cs` | 1 | 🟡 medium |
+| 🟠 **high** | webforms-migration | Session State Configuration | `src/eShopLegacyWebForms/Web.config` | 29 | 🟢 low |
+| 🟠 **high** | webforms-migration | Bundle Configuration System | `src/eShopLegacyWebForms/App_Start/BundleConfig.cs` | 1 | 🟡 medium |
+| 🟡 **medium** | webforms-migration | HttpContext.Current Usage | `src/eShopLegacyWebForms/Global.asax.cs` | 43 | 🟢 low |
+| 🟡 **medium** | webforms-migration | Application Insights Integration | `src/eShopLegacyWebForms/ApplicationInsights.config` | 1 | 🟢 low |
+| 🟡 **medium** | webforms-migration | HTTP Modules Configuration | `src/eShopLegacyWebForms/Web.config` | 38 | 🟡 medium |
+| 🟡 **medium** | deprecated-api | Server.MapPath Equivalent | `src/eShopLegacyWebForms/Models/Infrastructure/CatalogDBInitializer.cs` | 11 | 🟢 low |
+| 🟡 **medium** | webforms-migration | ViewState and Postback Model | `Multiple .aspx files` | 0 | 🔴 high |
+
+---
+
+## 💡 Recommendations
+
+1. Update TargetFramework to net8 in project files
+2. Update NuGet packages to latest versions compatible with .NET 8
+3. Enable nullable reference types if not already enabled
+4. Review breaking changes in .NET 8
+5. Update to minimal APIs if using ASP.NET Core
+6. Thoroughly test all functionality after migration
+
+---
+
+## 🛠️ Build Tool Analysis
+
+**Tool:** dotnet
+
+**Current Version:** 6.0
+
+**Recommended Version:** 8
+
+### Compatibility Issues
+
+- TargetFramework needs update to net8
+- Some NuGet packages may need updates for .NET 8 compatibility
+
+### Upgrade Steps
+
+1. Update TargetFramework in .csproj files
+2. Update NuGet package references
+3. Enable nullable reference types
+4. Review breaking changes documentation
+
+---
+
+## 📦 Dependency Analysis
+
+### 🔴 Incompatible Dependencies
+
+| Group ID | Artifact ID | Current Version | Issue | Recommended Version |
+|----------|-------------|----------------|-------|-------------------|
+| Microsoft.EntityFrameworkCore | Microsoft.EntityFrameworkCore | 6.0.0 | Needs update for .NET 8 compatibility | 8.0 |
+
+### 🟡 Dependencies Needing Updates
+
+| Group ID | Artifact ID | Current Version | Recommended Version | Reason |
+|----------|-------------|----------------|-------------------|--------|
+| Microsoft.AspNetCore.App | Microsoft.AspNetCore.App | 6.0.0 | 8.0 | Full .NET 8 compatibility and performance improvements |
+
+---
+
+---
+
+*Report generated by Studio Upgrade Service*
+*For technical support, contact the development team*

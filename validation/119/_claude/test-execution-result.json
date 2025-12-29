@@ -1,0 +1,75 @@
+{
+  "analysisId": "TNT1001-APP1977-88",
+  "status": "success",
+  "projectType": "java",
+  "executiveSummary": {
+    "description": "All 42 tests executed successfully with 100% pass rate. Code coverage achieved 54% overall with 0 failures.",
+    "testStatistics": {
+      "total": 42,
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0
+    },
+    "testCoverage": "54%",
+    "passRate": "100%",
+    "failRate": "0%",
+    "timeTaken": "15 s"
+  },
+  "codeCoverage": {
+    "overallPercentage": "48%",
+    "lineCoverage": {
+      "percentage": "54%",
+      "covered": 48,
+      "total": 84,
+      "status": "Poor"
+    },
+    "branchCoverage": {
+      "percentage": "35%",
+      "covered": 5,
+      "total": 14,
+      "status": "Poor"
+    },
+    "methodCoverage": {
+      "percentage": "54%",
+      "covered": 11,
+      "total": 13,
+      "status": "Poor"
+    }
+  },
+  "failedTestAnalysis": {
+    "totalFailed": 0,
+    "failurePercentage": "0%",
+    "categories": []
+  },
+  "blockingFailures": [],
+  "nonBlockingFailures": {
+    "count": 0,
+    "summary": [
+      "No test failures detected",
+      "All tests passed successfully"
+    ],
+    "details": []
+  },
+  "skippedTests": {
+    "count": 0,
+    "percentage": "0%",
+    "tests": []
+  },
+  "summary": {
+    "totalTestcase": 42,
+    "totalFilesModified": 1,
+    "PassTestcase": 42,
+    "totalTimeTaken": "15s",
+    "FailledTestcase": 0,
+    "projectComplileStatus": "success",
+    "projectComplileErrorMessage": ""
+  },
+  "metadata": {
+    "projectPath": "/modernize-data/studio-data/TNT1001/APP1977/transformed-code/88/studio-workspace/santhosh00",
+    "targetVersion": "Java 17",
+    "platform": "linux",
+    "timestamp": "2025-12-22T02:08:27Z",
+    "claudeModel": "Claude Sonnet 4.5",
+    "jacocoReportPath": "target/site/jacoco/index.html"
+  }
+}
