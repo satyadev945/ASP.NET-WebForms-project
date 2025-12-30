@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Films Application</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <hgroup class="title">
+                <h2>Creating a project for the discipline "Technologies for building web systems" - exercise</h2>
+            </hgroup>
+
+            <div class="text-center my-4">
+                <img src="~/images/web_site.png" alt="Website" class="img-fluid" style="max-width: 300px;" />
+            </div>
+
+            <div class="text-center">
+                <a href="https://moodle.unwe.bg" class="btn btn-primary btn-lg" target="_blank">
+                    Learn More >>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <h3>Films</h3>
+        <p>Manage your film collection. Add, edit, and organize films with detailed information.</p>
+        <p><a class="btn btn-outline-primary" asp-controller="Films" asp-action="Index">View Films &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h3>Actors</h3>
+        <p>Manage actor information and their filmography. Keep track of your favorite actors.</p>
+        <p><a class="btn btn-outline-primary" asp-controller="Actors" asp-action="Index">View Actors &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h3>Directors</h3>
+        <p>Organize director information and their directing credits in your film database.</p>
+        <p><a class="btn btn-outline-primary" asp-controller="Directors" asp-action="Index">View Directors &raquo;</a></p>
+    </div>
+</div>

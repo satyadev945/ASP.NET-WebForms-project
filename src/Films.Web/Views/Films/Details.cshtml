@@ -1,0 +1,64 @@
+@model Films.Domain.DTOs.FilmDto
+@{
+    ViewData["Title"] = "Film Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>Film Details</h2>
+
+            <div class="card">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Name" style="height: 400px; object-fit: cover;">
+                }
+                <div class="card-body">
+                    <h3 class="card-title">@Model.Name</h3>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Year:</strong> @Model.Year</p>
+                            @if (!string.IsNullOrEmpty(Model.Genre))
+                            {
+                                <p><strong>Genre:</strong> @Model.Genre</p>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Created:</strong> @Model.CreatedDate.ToString("dd/MM/yyyy")</p>
+                            <p><strong>Created By:</strong> @Model.CreatedBy</p>
+                            @if (Model.ModifiedDate.HasValue)
+                            {
+                                <p><strong>Modified:</strong> @Model.ModifiedDate.Value.ToString("dd/MM/yyyy")</p>
+                                <p><strong>Modified By:</strong> @Model.ModifiedBy</p>
+                            }
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        <hr>
+                        <div>
+                            <strong>Description:</strong>
+                            <p class="mt-2">@Model.Description</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-between">
+                <div>
+                    <a asp-controller="Films" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a asp-controller="Films" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger ms-2">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                </div>
+                <a asp-controller="Films" asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
