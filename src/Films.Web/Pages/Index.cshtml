@@ -1,0 +1,51 @@
+@page
+@model Films.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Films Management System</h1>
+    <p>Manage your film database, actors, and users efficiently.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Films</h5>
+                <p class="card-text">Manage your film collection with detailed information about genres, directors, and ratings.</p>
+                <a asp-page="/Films/Index" class="btn btn-primary">View Films</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Actors</h5>
+                <p class="card-text">Maintain a comprehensive database of actors and their filmographies.</p>
+                <a asp-page="/Actors/Index" class="btn btn-primary">View Actors</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Users</h5>
+                <p class="card-text">Manage system users and their access permissions.</p>
+                <a asp-page="/Users/Index" class="btn btn-primary">View Users</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Migration Complete!</h4>
+            <p>This application has been successfully migrated from ASP.NET Web Forms to ASP.NET Core 8 with Razor Pages.</p>
+            <hr>
+            <p class="mb-0">The new architecture provides better performance, maintainability, and modern web development patterns.</p>
+        </div>
+    </div>
+</div>

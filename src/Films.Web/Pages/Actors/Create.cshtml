@@ -1,0 +1,36 @@
+@page
+@model Films.Web.Pages.Actors.CreateModel
+@{
+    ViewData["Title"] = "Create Actor";
+}
+
+<h2>Create Actor</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Actor.Name" class="form-label"></label>
+                <input asp-for="Actor.Name" class="form-control" />
+                <span asp-validation-for="Actor.Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Actor.Description" class="form-label"></label>
+                <textarea asp-for="Actor.Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Actor.Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
