@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "b3k8eaAqd4oTk4EU7O3Bh45Givfz3ZLxMqAF+wv3fXM=",
+  "Source": "Films.Web",
+  "BasePath": "_content/Films.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Films.Web/wwwroot",
+      "Source": "Films.Web",
+      "ContentRoot": "/modernize-data/studio-data/TNT1001/APP1090/transformed-code/48/studio-workspace/backendDotnet/src/Films.Web/wwwroot/",
+      "BasePath": "_content/Films.Web",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/modernize-data/studio-data/TNT1001/APP1090/transformed-code/48/studio-workspace/backendDotnet/src/Films.Web/wwwroot/css/site.css",
+      "SourceId": "Films.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/modernize-data/studio-data/TNT1001/APP1090/transformed-code/48/studio-workspace/backendDotnet/src/Films.Web/wwwroot/",
+      "BasePath": "_content/Films.Web",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/modernize-data/studio-data/TNT1001/APP1090/transformed-code/48/studio-workspace/backendDotnet/src/Films.Web/wwwroot/js/site.js",
+      "SourceId": "Films.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/modernize-data/studio-data/TNT1001/APP1090/transformed-code/48/studio-workspace/backendDotnet/src/Films.Web/wwwroot/",
+      "BasePath": "_content/Films.Web",
+      "RelativePath": "js/site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/site.js"
+    }
+  ]
+}
