@@ -1,0 +1,62 @@
+@page
+@model Films.Web.Pages.FilmPages.IndexModel
+@{
+    ViewData["Title"] = "Films";
+}
+
+<h1>Films</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
+</p>
+
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.SuccessMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<form method="get">
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <input type="text" name="searchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search films..." />
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-secondary">Search</button>
+            <a asp-page="./Index" class="btn btn-outline-secondary">Clear</a>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Films)
+{
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Year</td>
+            <td>@(item.Description?.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description)</td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@if (!Model.Films.Any())
+{
+    <p class="text-muted">No films found.</p>
+}
