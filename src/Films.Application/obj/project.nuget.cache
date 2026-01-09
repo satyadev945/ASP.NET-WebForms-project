@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "jLxiQsyHVao=",
+  "success": true,
+  "projectFilePath": "/modernize-data/studio-data/TNT1001/APP1137/transformed-code/82/studio-workspace/dotnetBackend/src/Films.Application/Films.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/studioai/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/studioai/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
