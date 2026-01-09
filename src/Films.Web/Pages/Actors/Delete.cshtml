@@ -1,0 +1,28 @@
+@page
+@model Films.Web.Pages.Actors.DeleteModel
+@{
+    ViewData["Title"] = "Delete Actor";
+}
+
+<h1>Delete Actor</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Actor?.Name</dd>
+
+        <dt class="col-sm-3">Sex</dt>
+        <dd class="col-sm-9">@Model.Actor?.SexName</dd>
+
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Actor?.Description</dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
