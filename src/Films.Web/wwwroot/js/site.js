@@ -1,0 +1,1 @@
+// site.js - main JavaScript file for Films application

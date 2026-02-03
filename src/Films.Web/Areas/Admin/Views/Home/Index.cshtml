@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Admin Dashboard</h1>
+    <p>Welcome to the administrator panel.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Manage Films</h5>
+                <p class="card-text">Add, edit, and delete films from the database.</p>
+                <a asp-area="Admin" asp-controller="Films" asp-action="Index" class="btn btn-primary">Manage Films</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Manage Actors</h5>
+                <p class="card-text">Add, edit, and delete actors from the database.</p>
+                <a asp-area="Admin" asp-controller="Actors" asp-action="Index" class="btn btn-primary">Manage Actors</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Back to Site</h5>
+                <p class="card-text">Return to the main website.</p>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-secondary">Go to Site</a>
+            </div>
+        </div>
+    </div>
+</div>
