@@ -1,0 +1,1480 @@
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Infrastructure/DependencyInjection.cs
+FN:13,Microsoft.Extensions.DependencyInjection.IServiceCollection Films.Infrastructure.DependencyInjection::AddInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)
+FNDA:0,Microsoft.Extensions.DependencyInjection.IServiceCollection Films.Infrastructure.DependencyInjection::AddInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:21,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:29,0
+DA:30,0
+LF:12
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Infrastructure/Data/FilmsDbContext.cs
+FN:12,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.Actor> Films.Infrastructure.Data.FilmsDbContext::get_Actors()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.Actor> Films.Infrastructure.Data.FilmsDbContext::get_Actors()
+DA:13,0
+FN:13,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.DirectedBy> Films.Infrastructure.Data.FilmsDbContext::get_DirectedBys()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.DirectedBy> Films.Infrastructure.Data.FilmsDbContext::get_DirectedBys()
+DA:14,0
+FN:14,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.Film> Films.Infrastructure.Data.FilmsDbContext::get_Films()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.Film> Films.Infrastructure.Data.FilmsDbContext::get_Films()
+DA:15,0
+FN:15,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.RefAF> Films.Infrastructure.Data.FilmsDbContext::get_RefAFs()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.RefAF> Films.Infrastructure.Data.FilmsDbContext::get_RefAFs()
+DA:16,0
+FN:16,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.RefDAF> Films.Infrastructure.Data.FilmsDbContext::get_RefDAFs()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.RefDAF> Films.Infrastructure.Data.FilmsDbContext::get_RefDAFs()
+DA:17,0
+FN:17,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.Right> Films.Infrastructure.Data.FilmsDbContext::get_Rights()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.Right> Films.Infrastructure.Data.FilmsDbContext::get_Rights()
+DA:18,0
+FN:18,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.Sex> Films.Infrastructure.Data.FilmsDbContext::get_Sexes()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.Sex> Films.Infrastructure.Data.FilmsDbContext::get_Sexes()
+DA:19,0
+FN:19,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.TypeUser> Films.Infrastructure.Data.FilmsDbContext::get_TypeUsers()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.TypeUser> Films.Infrastructure.Data.FilmsDbContext::get_TypeUsers()
+DA:20,0
+FN:20,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.User> Films.Infrastructure.Data.FilmsDbContext::get_Users()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.User> Films.Infrastructure.Data.FilmsDbContext::get_Users()
+DA:21,0
+FN:21,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.UserRight> Films.Infrastructure.Data.FilmsDbContext::get_UserRights()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Films.Domain.Entities.UserRight> Films.Infrastructure.Data.FilmsDbContext::get_UserRights()
+DA:22,0
+FN:24,System.Void Films.Infrastructure.Data.FilmsDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Films.Infrastructure.Data.FilmsDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:25,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+FN:8,System.Void Films.Infrastructure.Data.FilmsDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Films.Infrastructure.Data.FilmsDbContext>)
+FNDA:0,System.Void Films.Infrastructure.Data.FilmsDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Films.Infrastructure.Data.FilmsDbContext>)
+DA:9,0
+DA:10,0
+DA:11,0
+LF:115
+LH:0
+BRF:0
+BRH:0
+FNF:12
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Program.cs
+FN:3,System.Void Program::<Main>$(System.String[])
+FNDA:0,System.Void Program::<Main>$(System.String[])
+DA:4,0
+DA:7,0
+DA:8,0
+DA:11,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:33,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:46,0
+DA:47,0
+DA:49,0
+DA:50,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:61,0
+BRDA:36,199,0,0
+BRDA:36,199,1,0
+LF:41
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Areas/Admin/Views/Home/Index.cshtml
+FN:1,System.Void AspNetCoreGeneratedDocument.Areas_Admin_Views_Home_Index/<ExecuteAsync>d__15::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Areas_Admin_Views_Home_Index/<ExecuteAsync>d__15::MoveNext()
+DA:2,0
+BRDA:2,546,0,0
+BRDA:2,546,1,0
+BRDA:2,1168,0,0
+BRDA:2,1168,1,0
+BRDA:2,1790,0,0
+BRDA:2,1790,1,0
+LF:1
+LH:0
+BRF:6
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Areas/Admin/Views/_ViewStart.cshtml
+FN:1,System.Void AspNetCoreGeneratedDocument.Areas_Admin_Views__ViewStart/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Areas_Admin_Views__ViewStart/<ExecuteAsync>d__0::MoveNext()
+DA:2,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/Account/Login.cshtml
+FN:2,System.Void AspNetCoreGeneratedDocument.Views_Account_Login/<ExecuteAsync>d__19::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views_Account_Login/<ExecuteAsync>d__19::MoveNext()
+DA:3,0
+BRDA:3,475,0,0
+BRDA:3,475,1,0
+LF:1
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/Account/Register.cshtml
+FN:2,System.Void AspNetCoreGeneratedDocument.Views_Account_Register/<ExecuteAsync>d__19::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views_Account_Register/<ExecuteAsync>d__19::MoveNext()
+DA:3,0
+BRDA:3,475,0,0
+BRDA:3,475,1,0
+LF:1
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/Home/About.cshtml
+FN:1,System.Void AspNetCoreGeneratedDocument.Views_Home_About/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views_Home_About/<ExecuteAsync>d__0::MoveNext()
+DA:2,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/Home/Contact.cshtml
+FN:1,System.Void AspNetCoreGeneratedDocument.Views_Home_Contact/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views_Home_Contact/<ExecuteAsync>d__0::MoveNext()
+DA:2,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/Home/Index.cshtml
+FN:1,System.Void AspNetCoreGeneratedDocument.Views_Home_Index/<ExecuteAsync>d__13::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views_Home_Index/<ExecuteAsync>d__13::MoveNext()
+DA:2,0
+BRDA:2,474,0,0
+BRDA:2,474,1,0
+BRDA:2,1042,0,0
+BRDA:2,1042,1,0
+LF:1
+LH:0
+BRF:4
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/Home/Privacy.cshtml
+FN:1,System.Void AspNetCoreGeneratedDocument.Views_Home_Privacy/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views_Home_Privacy/<ExecuteAsync>d__0::MoveNext()
+DA:2,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/Shared/_Layout.cshtml
+FN:32,System.Void AspNetCoreGeneratedDocument.Views_Shared__Layout/<<ExecuteAsync>b__30_1>d::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views_Shared__Layout/<<ExecuteAsync>b__30_1>d::MoveNext()
+DA:33,0
+DA:34,0
+DA:38,0
+BRDA:33,672,0,0
+BRDA:33,672,1,0
+BRDA:33,1294,0,0
+BRDA:33,1294,1,0
+BRDA:33,1916,0,0
+BRDA:33,1916,1,0
+BRDA:33,2538,0,0
+BRDA:33,2538,1,0
+BRDA:33,3160,0,0
+BRDA:33,3160,1,0
+BRDA:33,3371,0,0
+BRDA:34,3832,0,0
+BRDA:34,3832,1,0
+BRDA:33,3371,1,0
+BRDA:38,4358,0,0
+BRDA:38,4358,1,0
+BRDA:38,5048,0,0
+BRDA:38,5048,1,0
+BRDA:38,5524,0,0
+BRDA:38,5524,1,0
+BRDA:38,6000,0,0
+BRDA:38,6000,1,0
+BRDA:38,6625,0,0
+BRDA:38,6625,1,0
+LF:3
+LH:0
+BRF:24
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/Shared/_LoginPartial.cshtml
+FN:3,System.Void AspNetCoreGeneratedDocument.Views_Shared__LoginPartial/<ExecuteAsync>d__16::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views_Shared__LoginPartial/<ExecuteAsync>d__16::MoveNext()
+DA:4,0
+DA:5,0
+DA:14,0
+DA:16,0
+DA:23,0
+BRDA:4,104,0,0
+BRDA:4,104,1,0
+BRDA:4,117,0,0
+BRDA:5,163,0,0
+BRDA:5,163,1,0
+BRDA:5,681,0,0
+BRDA:5,681,1,0
+BRDA:4,117,1,0
+BRDA:16,1327,0,0
+BRDA:16,1327,1,0
+BRDA:16,1949,0,0
+BRDA:16,1949,1,0
+LF:5
+LH:0
+BRF:12
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Views/_ViewStart.cshtml
+FN:1,System.Void AspNetCoreGeneratedDocument.Views__ViewStart/<ExecuteAsync>d__0::MoveNext()
+FNDA:0,System.Void AspNetCoreGeneratedDocument.Views__ViewStart/<ExecuteAsync>d__0::MoveNext()
+DA:2,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Models/ErrorViewModel.cs
+FN:4,System.String Films.Web.Models.ErrorViewModel::get_RequestId()
+FNDA:0,System.String Films.Web.Models.ErrorViewModel::get_RequestId()
+DA:5,0
+FN:6,System.Boolean Films.Web.Models.ErrorViewModel::get_ShowRequestId()
+FNDA:0,System.Boolean Films.Web.Models.ErrorViewModel::get_ShowRequestId()
+DA:7,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Models/LoginViewModel.cs
+FN:8,System.String Films.Web.Models.LoginViewModel::get_Username()
+FNDA:0,System.String Films.Web.Models.LoginViewModel::get_Username()
+DA:9,0
+FN:13,System.String Films.Web.Models.LoginViewModel::get_Password()
+FNDA:0,System.String Films.Web.Models.LoginViewModel::get_Password()
+DA:14,0
+FN:16,System.Boolean Films.Web.Models.LoginViewModel::get_RememberMe()
+FNDA:0,System.Boolean Films.Web.Models.LoginViewModel::get_RememberMe()
+DA:17,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Models/RegisterViewModel.cs
+FN:9,System.String Films.Web.Models.RegisterViewModel::get_Username()
+FNDA:0,System.String Films.Web.Models.RegisterViewModel::get_Username()
+DA:10,0
+FN:14,System.String Films.Web.Models.RegisterViewModel::get_Email()
+FNDA:0,System.String Films.Web.Models.RegisterViewModel::get_Email()
+DA:15,0
+FN:20,System.String Films.Web.Models.RegisterViewModel::get_Password()
+FNDA:0,System.String Films.Web.Models.RegisterViewModel::get_Password()
+DA:21,0
+FN:25,System.String Films.Web.Models.RegisterViewModel::get_ConfirmPassword()
+FNDA:0,System.String Films.Web.Models.RegisterViewModel::get_ConfirmPassword()
+DA:26,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Controllers/AccountController.cs
+FN:23,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.AccountController::Login(System.String)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.AccountController::Login(System.String)
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+FN:101,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.AccountController::Register(System.String)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.AccountController::Register(System.String)
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+FN:15,System.Void Films.Web.Controllers.AccountController::.ctor(Films.Application.Interfaces.IUserService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Controllers.AccountController>)
+FNDA:0,System.Void Films.Web.Controllers.AccountController::.ctor(Films.Application.Interfaces.IUserService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Controllers.AccountController>)
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+FN:31,System.Void Films.Web.Controllers.AccountController/<Login>d__4::MoveNext()
+FNDA:0,System.Void Films.Web.Controllers.AccountController/<Login>d__4::MoveNext()
+DA:32,0
+DA:33,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:41,0
+DA:42,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:53,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,0
+DA:86,0
+DA:89,0
+DA:90,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:98,0
+BRDA:35,65,0,0
+BRDA:35,65,1,0
+BRDA:44,290,0,0
+BRDA:47,454,0,0
+BRDA:47,454,1,0
+BRDA:62,774,0,0
+BRDA:62,774,1,0
+BRDA:67,906,1,0
+BRDA:67,906,0,0
+BRDA:86,1270,0,0
+BRDA:86,1270,1,0
+BRDA:44,290,1,0
+FN:170,System.Void Films.Web.Controllers.AccountController/<Logout>d__7::MoveNext()
+FNDA:0,System.Void Films.Web.Controllers.AccountController/<Logout>d__7::MoveNext()
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+FN:109,System.Void Films.Web.Controllers.AccountController/<Register>d__6::MoveNext()
+FNDA:0,System.Void Films.Web.Controllers.AccountController/<Register>d__6::MoveNext()
+DA:110,0
+DA:111,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:134,0
+DA:135,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:158,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:166,0
+BRDA:113,65,0,0
+BRDA:113,65,1,0
+BRDA:121,280,0,0
+BRDA:121,280,1,0
+BRDA:158,915,0,0
+BRDA:158,915,1,0
+LF:109
+LH:0
+BRF:18
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Controllers/FilmsController.cs
+FN:11,System.Void Films.Web.Controllers.FilmsController::.ctor(Films.Application.Interfaces.IFilmService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Controllers.FilmsController>)
+FNDA:0,System.Void Films.Web.Controllers.FilmsController::.ctor(Films.Application.Interfaces.IFilmService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Controllers.FilmsController>)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+FN:32,System.Void Films.Web.Controllers.FilmsController/<Details>d__4::MoveNext()
+FNDA:0,System.Void Films.Web.Controllers.FilmsController/<Details>d__4::MoveNext()
+DA:33,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:42,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:49,0
+BRDA:37,173,0,0
+BRDA:37,173,1,0
+FN:18,System.Void Films.Web.Controllers.FilmsController/<Index>d__3::MoveNext()
+FNDA:0,System.Void Films.Web.Controllers.FilmsController/<Index>d__3::MoveNext()
+DA:19,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:30,0
+LF:26
+LH:0
+BRF:2
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Controllers/HomeController.cs
+FN:33,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.HomeController::Privacy()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.HomeController::Privacy()
+DA:34,0
+DA:35,0
+DA:36,0
+FN:38,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.HomeController::About()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.HomeController::About()
+DA:39,0
+DA:40,0
+DA:41,0
+FN:43,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.HomeController::Contact()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.HomeController::Contact()
+DA:44,0
+DA:45,0
+DA:46,0
+FN:49,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.HomeController::Error()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Controllers.HomeController::Error()
+DA:50,0
+DA:51,0
+DA:52,0
+BRDA:51,14,0,0
+BRDA:51,14,1,0
+BRDA:51,26,0,0
+BRDA:51,26,1,0
+FN:12,System.Void Films.Web.Controllers.HomeController::.ctor(Films.Application.Interfaces.IFilmService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Controllers.HomeController>)
+FNDA:0,System.Void Films.Web.Controllers.HomeController::.ctor(Films.Application.Interfaces.IFilmService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Controllers.HomeController>)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+FN:19,System.Void Films.Web.Controllers.HomeController/<Index>d__3::MoveNext()
+FNDA:0,System.Void Films.Web.Controllers.HomeController/<Index>d__3::MoveNext()
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:31,0
+BRDA:29,244,0,0
+BRDA:29,244,1,0
+BRDA:29,256,0,0
+BRDA:29,256,1,0
+LF:26
+LH:0
+BRF:8
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Areas/Admin/Controllers/ActorsController.cs
+FN:55,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Areas.Admin.Controllers.ActorsController::Create()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Areas.Admin.Controllers.ActorsController::Create()
+DA:56,0
+DA:57,0
+DA:58,0
+FN:15,System.Void Films.Web.Areas.Admin.Controllers.ActorsController::.ctor(Films.Application.Interfaces.IActorService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Areas.Admin.Controllers.ActorsController>)
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.ActorsController::.ctor(Films.Application.Interfaces.IActorService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Areas.Admin.Controllers.ActorsController>)
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+FN:62,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Create>d__6::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Create>d__6::MoveNext()
+DA:63,0
+DA:64,0
+DA:65,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+BRDA:64,33,0,0
+BRDA:64,33,1,0
+FN:123,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Delete>d__9::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Delete>d__9::MoveNext()
+DA:124,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:132,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:139,0
+BRDA:128,173,0,0
+BRDA:128,173,1,0
+FN:143,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<DeleteConfirmed>d__10::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<DeleteConfirmed>d__10::MoveNext()
+DA:144,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:155,0
+FN:36,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Details>d__4::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Details>d__4::MoveNext()
+DA:37,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:46,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:53,0
+BRDA:41,173,0,0
+BRDA:41,173,1,0
+FN:80,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Edit>d__7::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Edit>d__7::MoveNext()
+DA:81,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:89,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:96,0
+BRDA:85,173,0,0
+BRDA:85,173,1,0
+FN:100,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Edit>d__8::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Edit>d__8::MoveNext()
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:107,0
+DA:108,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+BRDA:102,39,0,0
+BRDA:102,39,1,0
+BRDA:107,77,0,0
+BRDA:107,77,1,0
+FN:22,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Index>d__3::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.ActorsController/<Index>d__3::MoveNext()
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:34,0
+LF:93
+LH:0
+BRF:12
+BRH:0
+FNF:9
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Areas/Admin/Controllers/FilmsController.cs
+FN:54,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Areas.Admin.Controllers.FilmsController::Create()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Areas.Admin.Controllers.FilmsController::Create()
+DA:55,0
+DA:56,0
+DA:57,0
+FN:14,System.Void Films.Web.Areas.Admin.Controllers.FilmsController::.ctor(Films.Application.Interfaces.IFilmService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Areas.Admin.Controllers.FilmsController>)
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.FilmsController::.ctor(Films.Application.Interfaces.IFilmService,Microsoft.Extensions.Logging.ILogger`1<Films.Web.Areas.Admin.Controllers.FilmsController>)
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+FN:61,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Create>d__6::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Create>d__6::MoveNext()
+DA:62,0
+DA:63,0
+DA:64,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+BRDA:63,33,0,0
+BRDA:63,33,1,0
+FN:122,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Delete>d__9::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Delete>d__9::MoveNext()
+DA:123,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:131,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:138,0
+BRDA:127,173,0,0
+BRDA:127,173,1,0
+FN:142,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<DeleteConfirmed>d__10::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<DeleteConfirmed>d__10::MoveNext()
+DA:143,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:154,0
+FN:35,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Details>d__4::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Details>d__4::MoveNext()
+DA:36,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:52,0
+BRDA:40,173,0,0
+BRDA:40,173,1,0
+FN:79,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Edit>d__7::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Edit>d__7::MoveNext()
+DA:80,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:88,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:95,0
+BRDA:84,173,0,0
+BRDA:84,173,1,0
+FN:99,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Edit>d__8::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Edit>d__8::MoveNext()
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:106,0
+DA:107,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+BRDA:101,39,0,0
+BRDA:101,39,1,0
+BRDA:106,77,0,0
+BRDA:106,77,1,0
+FN:21,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Index>d__3::MoveNext()
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.FilmsController/<Index>d__3::MoveNext()
+DA:22,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:33,0
+LF:93
+LH:0
+BRF:12
+BRH:0
+FNF:9
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Web/Areas/Admin/Controllers/HomeController.cs
+FN:17,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Areas.Admin.Controllers.HomeController::Index()
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult Films.Web.Areas.Admin.Controllers.HomeController::Index()
+DA:18,0
+DA:19,0
+DA:20,0
+FN:11,System.Void Films.Web.Areas.Admin.Controllers.HomeController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Films.Web.Areas.Admin.Controllers.HomeController>)
+FNDA:0,System.Void Films.Web.Areas.Admin.Controllers.HomeController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Films.Web.Areas.Admin.Controllers.HomeController>)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+LF:7
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Application/Services/ActorService.cs
+FN:11,System.Void Films.Application.Services.ActorService::.ctor(Films.Application.Common.Interfaces.IFilmsDbContext)
+FNDA:0,System.Void Films.Application.Services.ActorService::.ctor(Films.Application.Common.Interfaces.IFilmsDbContext)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+FN:33,System.Void Films.Application.Services.ActorService/<CreateActorAsync>d__4::MoveNext()
+FNDA:0,System.Void Films.Application.Services.ActorService/<CreateActorAsync>d__4::MoveNext()
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+FN:47,System.Void Films.Application.Services.ActorService/<DeleteActorAsync>d__6::MoveNext()
+FNDA:0,System.Void Films.Application.Services.ActorService/<DeleteActorAsync>d__6::MoveNext()
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+BRDA:50,198,0,0
+BRDA:50,198,1,0
+FN:24,System.Void Films.Application.Services.ActorService/<GetActorByIdAsync>d__3::MoveNext()
+FNDA:0,System.Void Films.Application.Services.ActorService/<GetActorByIdAsync>d__3::MoveNext()
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+FN:17,System.Void Films.Application.Services.ActorService/<GetAllActorsAsync>d__2::MoveNext()
+FNDA:0,System.Void Films.Application.Services.ActorService/<GetAllActorsAsync>d__2::MoveNext()
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+FN:40,System.Void Films.Application.Services.ActorService/<UpdateActorAsync>d__5::MoveNext()
+FNDA:0,System.Void Films.Application.Services.ActorService/<UpdateActorAsync>d__5::MoveNext()
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+LF:34
+LH:0
+BRF:2
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Application/Services/DirectedByService.cs
+FN:11,System.Void Films.Application.Services.DirectedByService::.ctor(Films.Application.Common.Interfaces.IFilmsDbContext)
+FNDA:0,System.Void Films.Application.Services.DirectedByService::.ctor(Films.Application.Common.Interfaces.IFilmsDbContext)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+FN:30,System.Void Films.Application.Services.DirectedByService/<CreateDirectorAsync>d__4::MoveNext()
+FNDA:0,System.Void Films.Application.Services.DirectedByService/<CreateDirectorAsync>d__4::MoveNext()
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+FN:44,System.Void Films.Application.Services.DirectedByService/<DeleteDirectorAsync>d__6::MoveNext()
+FNDA:0,System.Void Films.Application.Services.DirectedByService/<DeleteDirectorAsync>d__6::MoveNext()
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+BRDA:47,198,0,0
+BRDA:47,198,1,0
+FN:17,System.Void Films.Application.Services.DirectedByService/<GetAllDirectorsAsync>d__2::MoveNext()
+FNDA:0,System.Void Films.Application.Services.DirectedByService/<GetAllDirectorsAsync>d__2::MoveNext()
+DA:18,0
+DA:19,0
+DA:20,0
+FN:22,System.Void Films.Application.Services.DirectedByService/<GetDirectorByIdAsync>d__3::MoveNext()
+FNDA:0,System.Void Films.Application.Services.DirectedByService/<GetDirectorByIdAsync>d__3::MoveNext()
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+FN:37,System.Void Films.Application.Services.DirectedByService/<UpdateDirectorAsync>d__5::MoveNext()
+FNDA:0,System.Void Films.Application.Services.DirectedByService/<UpdateDirectorAsync>d__5::MoveNext()
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+LF:31
+LH:0
+BRF:2
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Application/Services/FilmService.cs
+FN:11,System.Void Films.Application.Services.FilmService::.ctor(Films.Application.Common.Interfaces.IFilmsDbContext)
+FNDA:0,System.Void Films.Application.Services.FilmService::.ctor(Films.Application.Common.Interfaces.IFilmsDbContext)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+FN:33,System.Void Films.Application.Services.FilmService/<CreateFilmAsync>d__4::MoveNext()
+FNDA:0,System.Void Films.Application.Services.FilmService/<CreateFilmAsync>d__4::MoveNext()
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+FN:47,System.Void Films.Application.Services.FilmService/<DeleteFilmAsync>d__6::MoveNext()
+FNDA:0,System.Void Films.Application.Services.FilmService/<DeleteFilmAsync>d__6::MoveNext()
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+BRDA:50,198,0,0
+BRDA:50,198,1,0
+FN:17,System.Void Films.Application.Services.FilmService/<GetAllFilmsAsync>d__2::MoveNext()
+FNDA:0,System.Void Films.Application.Services.FilmService/<GetAllFilmsAsync>d__2::MoveNext()
+DA:18,0
+DA:19,0
+DA:20,0
+FN:22,System.Void Films.Application.Services.FilmService/<GetFilmByIdAsync>d__3::MoveNext()
+FNDA:0,System.Void Films.Application.Services.FilmService/<GetFilmByIdAsync>d__3::MoveNext()
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+FN:40,System.Void Films.Application.Services.FilmService/<UpdateFilmAsync>d__5::MoveNext()
+FNDA:0,System.Void Films.Application.Services.FilmService/<UpdateFilmAsync>d__5::MoveNext()
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+LF:34
+LH:0
+BRF:2
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Application/Services/UserService.cs
+FN:121,System.String Films.Application.Services.UserService::HashPassword(System.String)
+FNDA:0,System.String Films.Application.Services.UserService::HashPassword(System.String)
+DA:122,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:130,0
+FN:13,System.Void Films.Application.Services.UserService::.ctor(Films.Application.Common.Interfaces.IFilmsDbContext)
+FNDA:0,System.Void Films.Application.Services.UserService::.ctor(Films.Application.Common.Interfaces.IFilmsDbContext)
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+FN:97,System.Void Films.Application.Services.UserService/<AddRightToUserAsync>d__10::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<AddRightToUserAsync>d__10::MoveNext()
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:105,0
+DA:106,0
+DA:107,0
+FN:58,System.Void Films.Application.Services.UserService/<CreateUserAsync>d__6::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<CreateUserAsync>d__6::MoveNext()
+DA:59,0
+DA:61,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+FN:75,System.Void Films.Application.Services.UserService/<DeleteUserAsync>d__8::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<DeleteUserAsync>d__8::MoveNext()
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+BRDA:78,198,0,0
+BRDA:78,198,1,0
+FN:19,System.Void Films.Application.Services.UserService/<GetAllUsersAsync>d__2::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<GetAllUsersAsync>d__2::MoveNext()
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+FN:26,System.Void Films.Application.Services.UserService/<GetUserByIdAsync>d__3::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<GetUserByIdAsync>d__3::MoveNext()
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+FN:35,System.Void Films.Application.Services.UserService/<GetUserByUsernameAsync>d__4::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<GetUserByUsernameAsync>d__4::MoveNext()
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+FN:86,System.Void Films.Application.Services.UserService/<GetUserRightsAsync>d__9::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<GetUserRightsAsync>d__9::MoveNext()
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:94,0
+DA:95,0
+FN:109,System.Void Films.Application.Services.UserService/<RemoveRightFromUserAsync>d__11::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<RemoveRightFromUserAsync>d__11::MoveNext()
+DA:110,0
+DA:111,0
+DA:112,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+BRDA:114,397,0,0
+BRDA:114,397,1,0
+FN:68,System.Void Films.Application.Services.UserService/<UpdateUserAsync>d__7::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<UpdateUserAsync>d__7::MoveNext()
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+FN:44,System.Void Films.Application.Services.UserService/<ValidateUserCredentialsAsync>d__5::MoveNext()
+FNDA:0,System.Void Films.Application.Services.UserService/<ValidateUserCredentialsAsync>d__5::MoveNext()
+DA:45,0
+DA:46,0
+DA:47,0
+DA:49,0
+DA:50,0
+DA:54,0
+DA:55,0
+DA:56,0
+BRDA:49,303,0,0
+BRDA:49,303,1,0
+LF:82
+LH:0
+BRF:6
+BRH:0
+FNF:12
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/Actor.cs
+FN:4,System.Int32 Films.Domain.Entities.Actor::get_Id()
+FNDA:2,System.Int32 Films.Domain.Entities.Actor::get_Id()
+DA:5,2
+FN:5,System.String Films.Domain.Entities.Actor::get_FirstName()
+FNDA:3,System.String Films.Domain.Entities.Actor::get_FirstName()
+DA:6,3
+FN:6,System.String Films.Domain.Entities.Actor::get_LastName()
+FNDA:3,System.String Films.Domain.Entities.Actor::get_LastName()
+DA:7,3
+FN:7,System.Nullable`1<System.DateTime> Films.Domain.Entities.Actor::get_DateOfBirth()
+FNDA:2,System.Nullable`1<System.DateTime> Films.Domain.Entities.Actor::get_DateOfBirth()
+DA:8,2
+FN:8,System.Nullable`1<System.Int32> Films.Domain.Entities.Actor::get_SexId()
+FNDA:2,System.Nullable`1<System.Int32> Films.Domain.Entities.Actor::get_SexId()
+DA:9,2
+FN:11,Films.Domain.Entities.Sex Films.Domain.Entities.Actor::get_Sex()
+FNDA:0,Films.Domain.Entities.Sex Films.Domain.Entities.Actor::get_Sex()
+DA:12,0
+FN:12,System.Collections.Generic.ICollection`1<Films.Domain.Entities.RefAF> Films.Domain.Entities.Actor::get_FilmReferences()
+FNDA:1,System.Collections.Generic.ICollection`1<Films.Domain.Entities.RefAF> Films.Domain.Entities.Actor::get_FilmReferences()
+DA:13,1
+LF:7
+LH:6
+BRF:0
+BRH:0
+FNF:7
+FNH:6
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/DirectedBy.cs
+FN:4,System.Int32 Films.Domain.Entities.DirectedBy::get_Id()
+FNDA:2,System.Int32 Films.Domain.Entities.DirectedBy::get_Id()
+DA:5,2
+FN:5,System.String Films.Domain.Entities.DirectedBy::get_Name()
+FNDA:3,System.String Films.Domain.Entities.DirectedBy::get_Name()
+DA:6,3
+FN:8,System.Collections.Generic.ICollection`1<Films.Domain.Entities.RefDAF> Films.Domain.Entities.DirectedBy::get_FilmReferences()
+FNDA:1,System.Collections.Generic.ICollection`1<Films.Domain.Entities.RefDAF> Films.Domain.Entities.DirectedBy::get_FilmReferences()
+DA:9,1
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/Film.cs
+FN:4,System.Int32 Films.Domain.Entities.Film::get_Id()
+FNDA:2,System.Int32 Films.Domain.Entities.Film::get_Id()
+DA:5,2
+FN:5,System.String Films.Domain.Entities.Film::get_Name()
+FNDA:3,System.String Films.Domain.Entities.Film::get_Name()
+DA:6,3
+FN:6,System.Nullable`1<System.Int32> Films.Domain.Entities.Film::get_Year()
+FNDA:2,System.Nullable`1<System.Int32> Films.Domain.Entities.Film::get_Year()
+DA:7,2
+FN:7,System.String Films.Domain.Entities.Film::get_Description()
+FNDA:2,System.String Films.Domain.Entities.Film::get_Description()
+DA:8,2
+FN:10,System.Collections.Generic.ICollection`1<Films.Domain.Entities.RefAF> Films.Domain.Entities.Film::get_ActorReferences()
+FNDA:1,System.Collections.Generic.ICollection`1<Films.Domain.Entities.RefAF> Films.Domain.Entities.Film::get_ActorReferences()
+DA:11,1
+FN:11,System.Collections.Generic.ICollection`1<Films.Domain.Entities.RefDAF> Films.Domain.Entities.Film::get_DirectorReferences()
+FNDA:1,System.Collections.Generic.ICollection`1<Films.Domain.Entities.RefDAF> Films.Domain.Entities.Film::get_DirectorReferences()
+DA:12,1
+LF:6
+LH:6
+BRF:0
+BRH:0
+FNF:6
+FNH:6
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/RefAF.cs
+FN:4,System.Int32 Films.Domain.Entities.RefAF::get_Id()
+FNDA:0,System.Int32 Films.Domain.Entities.RefAF::get_Id()
+DA:5,0
+FN:5,System.Int32 Films.Domain.Entities.RefAF::get_ActorId()
+FNDA:0,System.Int32 Films.Domain.Entities.RefAF::get_ActorId()
+DA:6,0
+FN:6,System.Int32 Films.Domain.Entities.RefAF::get_FilmId()
+FNDA:0,System.Int32 Films.Domain.Entities.RefAF::get_FilmId()
+DA:7,0
+FN:9,Films.Domain.Entities.Actor Films.Domain.Entities.RefAF::get_Actor()
+FNDA:0,Films.Domain.Entities.Actor Films.Domain.Entities.RefAF::get_Actor()
+DA:10,0
+FN:10,Films.Domain.Entities.Film Films.Domain.Entities.RefAF::get_Film()
+FNDA:0,Films.Domain.Entities.Film Films.Domain.Entities.RefAF::get_Film()
+DA:11,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/RefDAF.cs
+FN:4,System.Int32 Films.Domain.Entities.RefDAF::get_Id()
+FNDA:0,System.Int32 Films.Domain.Entities.RefDAF::get_Id()
+DA:5,0
+FN:5,System.Int32 Films.Domain.Entities.RefDAF::get_DirectedById()
+FNDA:0,System.Int32 Films.Domain.Entities.RefDAF::get_DirectedById()
+DA:6,0
+FN:6,System.Int32 Films.Domain.Entities.RefDAF::get_FilmId()
+FNDA:0,System.Int32 Films.Domain.Entities.RefDAF::get_FilmId()
+DA:7,0
+FN:9,Films.Domain.Entities.DirectedBy Films.Domain.Entities.RefDAF::get_DirectedBy()
+FNDA:0,Films.Domain.Entities.DirectedBy Films.Domain.Entities.RefDAF::get_DirectedBy()
+DA:10,0
+FN:10,Films.Domain.Entities.Film Films.Domain.Entities.RefDAF::get_Film()
+FNDA:0,Films.Domain.Entities.Film Films.Domain.Entities.RefDAF::get_Film()
+DA:11,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/Right.cs
+FN:4,System.Int32 Films.Domain.Entities.Right::get_Id()
+FNDA:2,System.Int32 Films.Domain.Entities.Right::get_Id()
+DA:5,2
+FN:5,System.String Films.Domain.Entities.Right::get_Name()
+FNDA:3,System.String Films.Domain.Entities.Right::get_Name()
+DA:6,3
+FN:8,System.Collections.Generic.ICollection`1<Films.Domain.Entities.UserRight> Films.Domain.Entities.Right::get_UserRights()
+FNDA:1,System.Collections.Generic.ICollection`1<Films.Domain.Entities.UserRight> Films.Domain.Entities.Right::get_UserRights()
+DA:9,1
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/Sex.cs
+FN:4,System.Int32 Films.Domain.Entities.Sex::get_Id()
+FNDA:2,System.Int32 Films.Domain.Entities.Sex::get_Id()
+DA:5,2
+FN:5,System.String Films.Domain.Entities.Sex::get_Name()
+FNDA:3,System.String Films.Domain.Entities.Sex::get_Name()
+DA:6,3
+FN:8,System.Collections.Generic.ICollection`1<Films.Domain.Entities.Actor> Films.Domain.Entities.Sex::get_Actors()
+FNDA:1,System.Collections.Generic.ICollection`1<Films.Domain.Entities.Actor> Films.Domain.Entities.Sex::get_Actors()
+DA:9,1
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/TypeUser.cs
+FN:4,System.Int32 Films.Domain.Entities.TypeUser::get_Id()
+FNDA:2,System.Int32 Films.Domain.Entities.TypeUser::get_Id()
+DA:5,2
+FN:5,System.String Films.Domain.Entities.TypeUser::get_Name()
+FNDA:3,System.String Films.Domain.Entities.TypeUser::get_Name()
+DA:6,3
+FN:8,System.Collections.Generic.ICollection`1<Films.Domain.Entities.User> Films.Domain.Entities.TypeUser::get_Users()
+FNDA:1,System.Collections.Generic.ICollection`1<Films.Domain.Entities.User> Films.Domain.Entities.TypeUser::get_Users()
+DA:9,1
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/User.cs
+FN:4,System.Int32 Films.Domain.Entities.User::get_Id()
+FNDA:2,System.Int32 Films.Domain.Entities.User::get_Id()
+DA:5,2
+FN:5,System.String Films.Domain.Entities.User::get_Username()
+FNDA:3,System.String Films.Domain.Entities.User::get_Username()
+DA:6,3
+FN:6,System.String Films.Domain.Entities.User::get_Password()
+FNDA:3,System.String Films.Domain.Entities.User::get_Password()
+DA:7,3
+FN:7,System.String Films.Domain.Entities.User::get_Email()
+FNDA:3,System.String Films.Domain.Entities.User::get_Email()
+DA:8,3
+FN:8,System.Nullable`1<System.Int32> Films.Domain.Entities.User::get_TypeUserId()
+FNDA:2,System.Nullable`1<System.Int32> Films.Domain.Entities.User::get_TypeUserId()
+DA:9,2
+FN:11,Films.Domain.Entities.TypeUser Films.Domain.Entities.User::get_TypeUser()
+FNDA:0,Films.Domain.Entities.TypeUser Films.Domain.Entities.User::get_TypeUser()
+DA:12,0
+FN:12,System.Collections.Generic.ICollection`1<Films.Domain.Entities.UserRight> Films.Domain.Entities.User::get_UserRights()
+FNDA:1,System.Collections.Generic.ICollection`1<Films.Domain.Entities.UserRight> Films.Domain.Entities.User::get_UserRights()
+DA:13,1
+LF:7
+LH:6
+BRF:0
+BRH:0
+FNF:7
+FNH:6
+end_of_record
+SF:/modernize-data/studio-data/TNT1001/APP1129/transformed-code/17/studio-workspace/DOTNET-TESTING-10/src/Films.Domain/Entities/UserRight.cs
+FN:4,System.Int32 Films.Domain.Entities.UserRight::get_Id()
+FNDA:0,System.Int32 Films.Domain.Entities.UserRight::get_Id()
+DA:5,0
+FN:5,System.Int32 Films.Domain.Entities.UserRight::get_UserId()
+FNDA:0,System.Int32 Films.Domain.Entities.UserRight::get_UserId()
+DA:6,0
+FN:6,System.Int32 Films.Domain.Entities.UserRight::get_RightId()
+FNDA:0,System.Int32 Films.Domain.Entities.UserRight::get_RightId()
+DA:7,0
+FN:9,Films.Domain.Entities.User Films.Domain.Entities.UserRight::get_User()
+FNDA:0,Films.Domain.Entities.User Films.Domain.Entities.UserRight::get_User()
+DA:10,0
+FN:10,Films.Domain.Entities.Right Films.Domain.Entities.UserRight::get_Right()
+FNDA:0,Films.Domain.Entities.Right Films.Domain.Entities.UserRight::get_Right()
+DA:11,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
