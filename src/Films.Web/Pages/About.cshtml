@@ -1,0 +1,36 @@
+@page
+@model Films.Web.Pages.AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <h3>Films Application</h3>
+        <p>
+            This is a modern .NET 8 application for managing films, actors, and directors.
+            The application has been migrated from ASP.NET Web Forms to ASP.NET Core using
+            clean architecture principles.
+        </p>
+
+        <h4>Features</h4>
+        <ul>
+            <li>Manage films with detailed information</li>
+            <li>Track actors and their roles</li>
+            <li>Manage directors and their filmography</li>
+            <li>User authentication and authorization</li>
+            <li>Search and filter capabilities</li>
+        </ul>
+
+        <h4>Technology Stack</h4>
+        <ul>
+            <li>.NET 8</li>
+            <li>ASP.NET Core Razor Pages</li>
+            <li>Entity Framework Core 8.0</li>
+            <li>SQL Server</li>
+            <li>Clean Architecture</li>
+        </ul>
+    </div>
+</div>

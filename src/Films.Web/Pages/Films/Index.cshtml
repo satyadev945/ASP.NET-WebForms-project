@@ -1,0 +1,45 @@
+@page
+@model Films.Web.Pages.Films.IndexModel
+@{
+    ViewData["Title"] = "Films";
+}
+
+<h1>Films</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Film</a>
+</p>
+
+<form method="get">
+    <div class="form-group">
+        <input type="text" name="searchString" value="@Model.SearchString" class="form-control" placeholder="Search films..." />
+        <button type="submit" class="btn btn-secondary mt-2">Search</button>
+        <a asp-page="./Index" class="btn btn-link mt-2">Clear</a>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Genre</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model.Films)
+        {
+            <tr>
+                <td>@film.Title</td>
+                <td>@film.Year</td>
+                <td>@film.Genre</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@film.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-page="./Edit" asp-route-id="@film.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="./Delete" asp-route-id="@film.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
