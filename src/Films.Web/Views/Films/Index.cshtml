@@ -1,0 +1,53 @@
+@model IEnumerable<Films.Domain.Entities.Film>
+
+@{
+    ViewData["Title"] = "Films";
+}
+
+<h1>Films</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Film</a>
+</p>
+
+<form asp-action="Search" method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search films..." value="@ViewData["SearchTerm"]" />
+        <button type="submit" class="btn btn-outline-secondary">Search</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Genre</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@(item.Year?.ToString() ?? "N/A")</td>
+                    <td>@(item.Genre ?? "Unknown")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No films found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
