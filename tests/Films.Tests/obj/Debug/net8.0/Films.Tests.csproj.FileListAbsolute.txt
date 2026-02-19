@@ -156,3 +156,4 @@
 /modernize-data/studio-data/TNT1001/APP1412/transformed-code/65/studio-workspace/dotnetTest/tests/Films.Tests/obj/Debug/net8.0/Films.Tests.pdb
 /modernize-data/studio-data/TNT1001/APP1412/transformed-code/65/studio-workspace/dotnetTest/tests/Films.Tests/obj/Debug/net8.0/Films.Tests.genruntimeconfig.cache
 /modernize-data/studio-data/TNT1001/APP1412/transformed-code/65/studio-workspace/dotnetTest/tests/Films.Tests/obj/Debug/net8.0/ref/Films.Tests.dll
+/modernize-data/studio-data/TNT1001/APP1412/transformed-code/65/studio-workspace/dotnetTest/tests/Films.Tests/bin/Debug/net8.0/CoverletSourceRootsMapping_Films.Tests

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "31lg4WRywhc=",
+  "dgSpecHash": "RjYbs/l+Q6c=",
   "success": true,
   "projectFilePath": "/modernize-data/studio-data/TNT1001/APP1412/transformed-code/65/studio-workspace/dotnetTest/tests/Films.Tests/Films.Tests.csproj",
   "expectedPackageFiles": [
     "/app/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/app/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
     "/app/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
+    "/app/.nuget/packages/coverlet.msbuild/8.0.0/coverlet.msbuild.8.0.0.nupkg.sha512",
     "/app/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/app/.nuget/packages/microsoft.codecoverage/17.8.0/microsoft.codecoverage.17.8.0.nupkg.sha512",
     "/app/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
