@@ -2,9 +2,9 @@
 <CoverageSession>
   <Summary numSequencePoints="472" visitedSequencePoints="175" numBranchPoints="22" visitedBranchPoints="3" sequenceCoverage="37.07" branchCoverage="13.63" maxCyclomaticComplexity="71" minCyclomaticComplexity="0" visitedClasses="8" numClasses="33" visitedMethods="24" numMethods="106" />
   <Modules>
-    <Module hash="4E06D0D0-B574-4717-A1FA-D607428B87B3">
+    <Module hash="D8E8C49E-7077-4538-8D2A-1CE80F67CDFA">
       <ModulePath>Films.Infrastructure.dll</ModulePath>
-      <ModuleTime>2026-02-19T03:20:49</ModuleTime>
+      <ModuleTime>2026-02-19T03:50:40</ModuleTime>
       <ModuleName>Films.Infrastructure</ModuleName>
       <Files>
         <File uid="1" fullPath="/modernize-data/studio-data/TNT1001/APP1412/transformed-code/65/studio-workspace/dotnetTest/src/Films.Infrastructure/Services/ActorService.cs" />
@@ -933,16 +933,16 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="2C5BB823-8EA9-4ABE-A720-450FFFD5D747">
+    <Module hash="D922F339-E74E-4FFB-9EA0-CB5D98F91CA7">
       <ModulePath>Films.Application.dll</ModulePath>
-      <ModuleTime>2026-02-19T03:20:49</ModuleTime>
+      <ModuleTime>2026-02-19T03:50:40</ModuleTime>
       <ModuleName>Films.Application</ModuleName>
       <Files />
       <Classes />
     </Module>
-    <Module hash="B83C566D-49B6-4751-AC61-B6E407649278">
+    <Module hash="23541A93-7A9A-4AA4-9CEA-541B09B4AEE1">
       <ModulePath>Films.Domain.dll</ModulePath>
-      <ModuleTime>2026-02-19T03:20:49</ModuleTime>
+      <ModuleTime>2026-02-19T03:50:40</ModuleTime>
       <ModuleName>Films.Domain</ModuleName>
       <Files>
         <File uid="5" fullPath="/modernize-data/studio-data/TNT1001/APP1412/transformed-code/65/studio-workspace/dotnetTest/src/Films.Domain/Entities/Actor.cs" />
