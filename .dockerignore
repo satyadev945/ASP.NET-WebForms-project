@@ -1,0 +1,72 @@
+# Build artifacts
+bin/
+obj/
+out/
+publish/
+
+# IDE and editor files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+README.md
+LICENSE
+CHANGELOG.md
+
+# Docker files
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Test files
+tests/
+*.Tests/
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.temp
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# Development settings
+appsettings.Development.json
+launchSettings.json
+
+# CI/CD files
+.github/
+.gitlab-ci.yml
+azure-pipelines.yml
+Jenkinsfile
+
+# Scripts
+scripts/
+*.sh
+*.bat
+*.ps1
+
+# ECS deployment files
+ecs/
+docs/

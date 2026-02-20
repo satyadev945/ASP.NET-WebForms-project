@@ -8,12 +8,17 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Serilog
+// Configure environment variables and configuration sources
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+// Configure Serilog - Console only for containerized environments
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
     .WriteTo.Console()
-    .WriteTo.File("logs/films-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 builder.Host.UseSerilog();
@@ -32,8 +37,21 @@ builder.Services.AddScoped<IFilmRepository, FilmRepository>();
 // Register services
 builder.Services.AddScoped<IFilmService, FilmService>();
 
-// Add session support
-builder.Services.AddDistributedMemoryCache();
+// Add distributed cache - Redis for containerized environments
+var redisConnection = builder.Configuration.GetConnectionString("Redis");
+if (!string.IsNullOrEmpty(redisConnection))
+{
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = redisConnection;
+    });
+}
+else
+{
+    // Fallback to memory cache for local development
+    builder.Services.AddDistributedMemoryCache();
+}
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -54,6 +72,10 @@ builder.Services.AddAuthentication("CookieAuth")
 
 builder.Services.AddAuthorization();
 
+// Add health checks
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<FilmsDbContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
@@ -71,6 +93,17 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
+
+// Map health check endpoints
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/health/ready", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions 
+{ 
+    Predicate = _ => true 
+});
+app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions 
+{ 
+    Predicate = _ => false 
+});
 
 app.MapControllerRoute(
     name: "default",

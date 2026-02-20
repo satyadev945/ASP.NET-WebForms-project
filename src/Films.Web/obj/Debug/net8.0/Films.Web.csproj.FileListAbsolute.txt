@@ -149,3 +149,6 @@
 /modernize-data/studio-data/TNT1001/APP1425/transformed-code/69/studio-workspace/backendcomp/src/Films.Web/obj/Debug/net8.0/Films.Web.pdb
 /modernize-data/studio-data/TNT1001/APP1425/transformed-code/69/studio-workspace/backendcomp/src/Films.Web/obj/Debug/net8.0/Films.Web.genruntimeconfig.cache
 /modernize-data/studio-data/TNT1001/APP1425/transformed-code/69/studio-workspace/backendcomp/src/Films.Web/obj/Debug/net8.0/ref/Films.Web.dll
+/modernize-data/studio-data/TNT1001/APP1505/transformed-code/104/studio-workspace/dotnetback/src/Films.Web/obj/Debug/net8.0/Films.Web.dll
+/modernize-data/studio-data/TNT1001/APP1505/transformed-code/104/studio-workspace/dotnetback/src/Films.Web/obj/Debug/net8.0/refint/Films.Web.dll
+/modernize-data/studio-data/TNT1001/APP1505/transformed-code/104/studio-workspace/dotnetback/src/Films.Web/obj/Debug/net8.0/Films.Web.pdb

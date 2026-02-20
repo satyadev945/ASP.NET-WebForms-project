@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  films-web:
+    image: films-web:latest
+    container_name: films-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=${DB_CONNECTION_STRING:-Server=host.docker.internal;Database=FilmsDb;User Id=sa;Password=YourPassword123;TrustServerCertificate=True;MultipleActiveResultSets=true}
+      - ConnectionStrings__Redis=${REDIS_CONNECTION_STRING:-}
+      - DOTNET_RUNNING_IN_CONTAINER=true
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - films-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:80/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  films-network:
+    driver: bridge
