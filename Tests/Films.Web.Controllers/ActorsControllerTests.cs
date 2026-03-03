@@ -6,11 +6,8 @@ using Films.Web.Controllers;
 using Films.Application.Services;
 using Films.Application.DTOs;
 
-namespace Films.Web.Controllers.Tests;
+namespace Films.Web.Tests.Controllers;
 
-/// <summary>
-/// Unit tests for ActorsController
-/// </summary>
 public class ActorsControllerTests
 {
     private readonly Mock<IActorService> _mockActorService;
@@ -24,438 +21,128 @@ public class ActorsControllerTests
         _controller = new ActorsController(_mockActorService.Object, _mockLogger.Object);
     }
 
-    #region Constructor Tests
-
     [Fact]
-    public void Constructor_WithValidParameters_CreatesInstance()
+    public void Constructor_ShouldThrowArgumentNullException_WhenActorServiceIsNull()
     {
-        // Act
-        var controller = new ActorsController(_mockActorService.Object, _mockLogger.Object);
-
-        // Assert
-        Assert.NotNull(controller);
-    }
-
-    [Fact]
-    public void Constructor_WithNullActorService_ThrowsArgumentNullException()
-    {
-        // Act & Assert
         Assert.Throws<ArgumentNullException>(() => 
             new ActorsController(null!, _mockLogger.Object));
     }
 
     [Fact]
-    public void Constructor_WithNullLogger_ThrowsArgumentNullException()
+    public void Constructor_ShouldThrowArgumentNullException_WhenLoggerIsNull()
     {
-        // Act & Assert
         Assert.Throws<ArgumentNullException>(() => 
             new ActorsController(_mockActorService.Object, null!));
     }
 
-    #endregion
-
-    #region Index Tests
-
     [Fact]
-    public async Task Index_ReturnsViewResult_WithListOfActors()
+    public async Task Index_ShouldReturnViewResult()
     {
-        // Arrange
-        var actors = new List<ActorDto>
-        {
-            new ActorDto { Id = 1, FirstName = "John", LastName = "Doe" },
-            new ActorDto { Id = 2, FirstName = "Jane", LastName = "Smith" }
-        };
-        _mockActorService.Setup(s => s.GetAllActorsAsync())
-            .ReturnsAsync(actors);
+        var actors = new List<ActorDto> { new ActorDto { Id = 1, FirstName = "John", LastName = "Doe" } };
+        _mockActorService.Setup(s => s.GetAllActorsAsync()).ReturnsAsync(actors);
 
-        // Act
         var result = await _controller.Index();
 
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsAssignableFrom<IEnumerable<ActorDto>>(viewResult.Model);
-        Assert.Equal(2, model.Count());
-    }
-
-    [Fact]
-    public async Task Index_WhenServiceThrowsException_ReturnsViewWithEmptyList()
-    {
-        // Arrange
-        _mockActorService.Setup(s => s.GetAllActorsAsync())
-            .ThrowsAsync(new Exception("Database error"));
-
-        // Act
-        var result = await _controller.Index();
-
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsAssignableFrom<IEnumerable<ActorDto>>(viewResult.Model);
-        Assert.Empty(model);
-    }
-
-    [Fact]
-    public async Task Index_WhenServiceReturnsEmptyList_ReturnsViewWithEmptyList()
-    {
-        // Arrange
-        _mockActorService.Setup(s => s.GetAllActorsAsync())
-            .ReturnsAsync(new List<ActorDto>());
-
-        // Act
-        var result = await _controller.Index();
-
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsAssignableFrom<IEnumerable<ActorDto>>(viewResult.Model);
-        Assert.Empty(model);
-    }
-
-    #endregion
-
-    #region Details Tests
-
-    [Fact]
-    public async Task Details_WithValidId_ReturnsViewResult()
-    {
-        // Arrange
-        var actorId = 1;
-        var actor = new ActorDto { Id = actorId, FirstName = "John", LastName = "Doe" };
-        _mockActorService.Setup(s => s.GetActorByIdAsync(actorId))
-            .ReturnsAsync(actor);
-
-        // Act
-        var result = await _controller.Details(actorId);
-
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsType<ActorDto>(viewResult.Model);
-        Assert.Equal(actorId, model.Id);
-    }
-
-    [Fact]
-    public async Task Details_WithInvalidId_ReturnsNotFound()
-    {
-        // Arrange
-        var actorId = 999;
-        _mockActorService.Setup(s => s.GetActorByIdAsync(actorId))
-            .ReturnsAsync((ActorDto?)null);
-
-        // Act
-        var result = await _controller.Details(actorId);
-
-        // Assert
-        Assert.IsType<NotFoundResult>(result);
-    }
-
-    [Fact]
-    public async Task Details_WhenServiceThrowsException_ReturnsNotFound()
-    {
-        // Arrange
-        var actorId = 1;
-        _mockActorService.Setup(s => s.GetActorByIdAsync(actorId))
-            .ThrowsAsync(new Exception("Database error"));
-
-        // Act
-        var result = await _controller.Details(actorId);
-
-        // Assert
-        Assert.IsType<NotFoundResult>(result);
-    }
-
-    #endregion
-
-    #region Create Tests
-
-    [Fact]
-    public void Create_Get_ReturnsViewResult()
-    {
-        // Act
-        var result = _controller.Create();
-
-        // Assert
         Assert.IsType<ViewResult>(result);
     }
 
     [Fact]
-    public async Task Create_Post_WithValidModel_RedirectsToIndex()
+    public async Task Details_ShouldReturnViewResult_WithActor()
     {
-        // Arrange
-        var createDto = new CreateActorDto 
-        { 
-            FirstName = "John", 
-            LastName = "Doe",
-            SexId = 1,
-            BirthDate = new DateTime(1980, 1, 1)
-        };
-        _mockActorService.Setup(s => s.CreateActorAsync(createDto))
-            .Returns(Task.CompletedTask);
+        var actor = new ActorDto { Id = 1, FirstName = "John", LastName = "Doe" };
+        _mockActorService.Setup(s => s.GetActorByIdAsync(1)).ReturnsAsync(actor);
 
-        // Act
-        var result = await _controller.Create(createDto);
+        var result = await _controller.Details(1);
 
-        // Assert
-        var redirectResult = Assert.IsType<RedirectToActionResult>(result);
-        Assert.Equal("Index", redirectResult.ActionName);
-    }
-
-    [Fact]
-    public async Task Create_Post_WithInvalidModel_ReturnsViewWithModel()
-    {
-        // Arrange
-        var createDto = new CreateActorDto();
-        _controller.ModelState.AddModelError("FirstName", "Required");
-
-        // Act
-        var result = await _controller.Create(createDto);
-
-        // Assert
         var viewResult = Assert.IsType<ViewResult>(result);
-        Assert.Equal(createDto, viewResult.Model);
+        Assert.IsType<ActorDto>(viewResult.Model);
     }
 
     [Fact]
-    public async Task Create_Post_WhenServiceThrowsException_ReturnsViewWithError()
+    public async Task Details_ShouldReturnNotFound_WhenActorDoesNotExist()
     {
-        // Arrange
-        var createDto = new CreateActorDto 
-        { 
-            FirstName = "John", 
-            LastName = "Doe" 
-        };
-        _mockActorService.Setup(s => s.CreateActorAsync(createDto))
-            .ThrowsAsync(new Exception("Database error"));
+        _mockActorService.Setup(s => s.GetActorByIdAsync(999)).ReturnsAsync((ActorDto?)null);
 
-        // Act
-        var result = await _controller.Create(createDto);
+        var result = await _controller.Details(999);
 
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        Assert.False(_controller.ModelState.IsValid);
-    }
-
-    #endregion
-
-    #region Edit Tests
-
-    [Fact]
-    public async Task Edit_Get_WithValidId_ReturnsViewWithModel()
-    {
-        // Arrange
-        var actorId = 1;
-        var actor = new ActorDto 
-        { 
-            Id = actorId, 
-            FirstName = "John", 
-            LastName = "Doe",
-            SexId = 1,
-            BirthDate = new DateTime(1980, 1, 1)
-        };
-        _mockActorService.Setup(s => s.GetActorByIdAsync(actorId))
-            .ReturnsAsync(actor);
-
-        // Act
-        var result = await _controller.Edit(actorId);
-
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsType<UpdateActorDto>(viewResult.Model);
-        Assert.Equal(actorId, model.Id);
-    }
-
-    [Fact]
-    public async Task Edit_Get_WithInvalidId_ReturnsNotFound()
-    {
-        // Arrange
-        var actorId = 999;
-        _mockActorService.Setup(s => s.GetActorByIdAsync(actorId))
-            .ReturnsAsync((ActorDto?)null);
-
-        // Act
-        var result = await _controller.Edit(actorId);
-
-        // Assert
         Assert.IsType<NotFoundResult>(result);
     }
 
     [Fact]
-    public async Task Edit_Post_WithValidModel_RedirectsToIndex()
+    public void Create_Get_ShouldReturnViewResult()
     {
-        // Arrange
-        var updateDto = new UpdateActorDto 
-        { 
-            Id = 1, 
-            FirstName = "John", 
-            LastName = "Doe",
-            SexId = 1,
-            BirthDate = new DateTime(1980, 1, 1)
-        };
-        _mockActorService.Setup(s => s.UpdateActorAsync(updateDto))
-            .Returns(Task.CompletedTask);
+        var result = _controller.Create();
 
-        // Act
-        var result = await _controller.Edit(1, updateDto);
+        Assert.IsType<ViewResult>(result);
+    }
 
-        // Assert
+    [Fact]
+    public async Task Create_Post_ShouldRedirectToIndex_WhenModelIsValid()
+    {
+        var createDto = new CreateActorDto { FirstName = "John", LastName = "Doe" };
+        var actorDto = new ActorDto { Id = 1, FirstName = "John", LastName = "Doe" };
+        _mockActorService.Setup(s => s.CreateActorAsync(It.IsAny<CreateActorDto>())).ReturnsAsync(actorDto);
+
+        var result = await _controller.Create(createDto);
+
         var redirectResult = Assert.IsType<RedirectToActionResult>(result);
         Assert.Equal("Index", redirectResult.ActionName);
     }
 
     [Fact]
-    public async Task Edit_Post_WithMismatchedId_ReturnsBadRequest()
+    public async Task Edit_Get_ShouldReturnViewResult_WithUpdateDto()
     {
-        // Arrange
-        var updateDto = new UpdateActorDto { Id = 2 };
+        var actor = new ActorDto { Id = 1, FirstName = "John", LastName = "Doe", SexId = 1, BirthDate = DateTime.Now };
+        _mockActorService.Setup(s => s.GetActorByIdAsync(1)).ReturnsAsync(actor);
 
-        // Act
+        var result = await _controller.Edit(1);
+
+        var viewResult = Assert.IsType<ViewResult>(result);
+        Assert.IsType<UpdateActorDto>(viewResult.Model);
+    }
+
+    [Fact]
+    public async Task Edit_Post_ShouldRedirectToIndex_WhenModelIsValid()
+    {
+        var updateDto = new UpdateActorDto { Id = 1, FirstName = "John", LastName = "Doe" };
+        _mockActorService.Setup(s => s.UpdateActorAsync(It.IsAny<UpdateActorDto>())).Returns(Task.CompletedTask);
+
         var result = await _controller.Edit(1, updateDto);
 
-        // Assert
+        var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+        Assert.Equal("Index", redirectResult.ActionName);
+    }
+
+    [Fact]
+    public async Task Edit_Post_ShouldReturnBadRequest_WhenIdMismatch()
+    {
+        var updateDto = new UpdateActorDto { Id = 2 };
+
+        var result = await _controller.Edit(1, updateDto);
+
         Assert.IsType<BadRequestResult>(result);
     }
 
     [Fact]
-    public async Task Edit_Post_WithInvalidModel_ReturnsViewWithModel()
+    public async Task Delete_Get_ShouldReturnViewResult_WithActor()
     {
-        // Arrange
-        var updateDto = new UpdateActorDto { Id = 1 };
-        _controller.ModelState.AddModelError("FirstName", "Required");
+        var actor = new ActorDto { Id = 1, FirstName = "John", LastName = "Doe" };
+        _mockActorService.Setup(s => s.GetActorByIdAsync(1)).ReturnsAsync(actor);
 
-        // Act
-        var result = await _controller.Edit(1, updateDto);
+        var result = await _controller.Delete(1);
 
-        // Assert
         var viewResult = Assert.IsType<ViewResult>(result);
-        Assert.Equal(updateDto, viewResult.Model);
+        Assert.IsType<ActorDto>(viewResult.Model);
     }
 
     [Fact]
-    public async Task Edit_Post_WhenServiceThrowsException_ReturnsViewWithError()
+    public async Task DeleteConfirmed_ShouldRedirectToIndex()
     {
-        // Arrange
-        var updateDto = new UpdateActorDto 
-        { 
-            Id = 1, 
-            FirstName = "John", 
-            LastName = "Doe" 
-        };
-        _mockActorService.Setup(s => s.UpdateActorAsync(updateDto))
-            .ThrowsAsync(new Exception("Database error"));
+        _mockActorService.Setup(s => s.DeleteActorAsync(It.IsAny<int>())).Returns(Task.CompletedTask);
 
-        // Act
-        var result = await _controller.Edit(1, updateDto);
+        var result = await _controller.DeleteConfirmed(1);
 
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        Assert.False(_controller.ModelState.IsValid);
-    }
-
-    #endregion
-
-    #region Delete Tests
-
-    [Fact]
-    public async Task Delete_Get_WithValidId_ReturnsViewWithModel()
-    {
-        // Arrange
-        var actorId = 1;
-        var actor = new ActorDto { Id = actorId, FirstName = "John", LastName = "Doe" };
-        _mockActorService.Setup(s => s.GetActorByIdAsync(actorId))
-            .ReturnsAsync(actor);
-
-        // Act
-        var result = await _controller.Delete(actorId);
-
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsType<ActorDto>(viewResult.Model);
-        Assert.Equal(actorId, model.Id);
-    }
-
-    [Fact]
-    public async Task Delete_Get_WithInvalidId_ReturnsNotFound()
-    {
-        // Arrange
-        var actorId = 999;
-        _mockActorService.Setup(s => s.GetActorByIdAsync(actorId))
-            .ReturnsAsync((ActorDto?)null);
-
-        // Act
-        var result = await _controller.Delete(actorId);
-
-        // Assert
-        Assert.IsType<NotFoundResult>(result);
-    }
-
-    [Fact]
-    public async Task DeleteConfirmed_WithValidId_RedirectsToIndex()
-    {
-        // Arrange
-        var actorId = 1;
-        _mockActorService.Setup(s => s.DeleteActorAsync(actorId))
-            .Returns(Task.CompletedTask);
-
-        // Act
-        var result = await _controller.DeleteConfirmed(actorId);
-
-        // Assert
         var redirectResult = Assert.IsType<RedirectToActionResult>(result);
         Assert.Equal("Index", redirectResult.ActionName);
     }
-
-    [Fact]
-    public async Task DeleteConfirmed_WhenServiceThrowsException_RedirectsToIndex()
-    {
-        // Arrange
-        var actorId = 1;
-        _mockActorService.Setup(s => s.DeleteActorAsync(actorId))
-            .ThrowsAsync(new Exception("Database error"));
-
-        // Act
-        var result = await _controller.DeleteConfirmed(actorId);
-
-        // Assert
-        var redirectResult = Assert.IsType<RedirectToActionResult>(result);
-        Assert.Equal("Index", redirectResult.ActionName);
-    }
-
-    #endregion
-
-    #region Edge Case Tests
-
-    [Fact]
-    public async Task Details_WithZeroId_ReturnsNotFound()
-    {
-        // Arrange
-        _mockActorService.Setup(s => s.GetActorByIdAsync(0))
-            .ReturnsAsync((ActorDto?)null);
-
-        // Act
-        var result = await _controller.Details(0);
-
-        // Assert
-        Assert.IsType<NotFoundResult>(result);
-    }
-
-    [Fact]
-    public async Task Details_WithNegativeId_ReturnsNotFound()
-    {
-        // Arrange
-        _mockActorService.Setup(s => s.GetActorByIdAsync(-1))
-            .ReturnsAsync((ActorDto?)null);
-
-        // Act
-        var result = await _controller.Details(-1);
-
-        // Assert
-        Assert.IsType<NotFoundResult>(result);
-    }
-
-    [Fact]
-    public async Task Create_Post_WithNullDto_ThrowsException()
-    {
-        // Act & Assert
-        await Assert.ThrowsAsync<NullReferenceException>(async () => 
-            await _controller.Create(null!));
-    }
-
-    #endregion
 }

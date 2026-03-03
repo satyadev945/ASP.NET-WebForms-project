@@ -1,0 +1,6 @@
+{
+  "Films.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/modernize-data\/studio-data\/TNT1001\/APP1146\/transformed-code\/37\/studio-workspace\/backendComp\/src\/Films.Application",
+  "Films.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/modernize-data\/studio-data\/TNT1001\/APP1146\/transformed-code\/37\/studio-workspace\/backendComp\/src\/Films.Domain",
+  "Films.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/modernize-data\/studio-data\/TNT1001\/APP1146\/transformed-code\/37\/studio-workspace\/backendComp\/src\/Films.Infrastructure",
+  "Films.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/modernize-data\/studio-data\/TNT1001\/APP1146\/transformed-code\/37\/studio-workspace\/backendComp\/src\/Films.Web"
+}
