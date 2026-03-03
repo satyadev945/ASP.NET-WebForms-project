@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Films Application</h1>
+    <p>Manage your film collection with ease.</p>
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Films</h5>
+                    <p class="card-text">Browse and manage your film collection.</p>
+                    <a asp-controller="Films" asp-action="Index" class="btn btn-primary">View Films</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Actors</h5>
+                    <p class="card-text">Browse and manage actors information.</p>
+                    <a asp-controller="Actors" asp-action="Index" class="btn btn-primary">View Actors</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
