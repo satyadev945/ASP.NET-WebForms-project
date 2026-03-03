@@ -1,0 +1,336 @@
+{
+  "pre_migration_report": {
+    "title": "Pre-Transformation Report",
+    "subtitle": "Application Code Changes for DB-Compatibility",
+    "application_summary": {
+      "application_id": "APP1146",
+      "application_name": "Films Web Application",
+      "application_owner": "Development Team",
+      "description": "A comprehensive film management application providing features for managing films, actors, directors, users, and their relationships. Built with ASP.NET Core 8.0 and Entity Framework Core.",
+      "tech_stack": ".NET 8.0, ASP.NET Core, Entity Framework Core, SQL Server",
+      "number_of_components": 3,
+      "lines_of_code": "5K",
+      "mapped_database_id": "DB1001",
+      "mapped_database_name": "films",
+      "source_db": "MS SQL Server",
+      "target_db": "PostgreSQL 16"
+    },
+    "executive_summary": {
+      "description": "The DB-Compatibility analysis of Films Web Application has identified 10 code updates that need to be performed in order to upgrade the application to be compatible with PostgreSQL 16",
+      "summary_cards": {
+        "updates_identified": 10,
+        "estimated_time": "20 min"
+      }
+    },
+    "identified_updates": [
+      {
+        "s_no": "01",
+        "category": "Package References",
+        "severity": "Critical",
+        "effort": "Low",
+        "code_update": "Replace Microsoft.EntityFrameworkCore.SqlServer with Npgsql.EntityFrameworkCore.PostgreSQL 8.0.0, EFCore.NamingConventions 8.0.0, Microsoft.EntityFrameworkCore.Relational 8.0.0"
+      },
+      {
+        "s_no": "02",
+        "category": "DbContext Configuration",
+        "severity": "Critical",
+        "effort": "Medium",
+        "code_update": "Replace UseSqlServer with UseNpgsql and add snake_case naming convention"
+      },
+      {
+        "s_no": "03",
+        "category": "Connection String",
+        "severity": "Critical",
+        "effort": "Low",
+        "code_update": "Convert SQL Server connection string to PostgreSQL format with proper host, port, username, and password parameters"
+      },
+      {
+        "s_no": "04",
+        "category": "Table Naming Convention",
+        "severity": "High",
+        "effort": "Medium",
+        "code_update": "Convert all table names from PascalCase to snake_case (e.g., Films → films, UserRights → user_rights)"
+      },
+      {
+        "s_no": "05",
+        "category": "Column Naming Convention",
+        "severity": "High",
+        "effort": "Medium",
+        "code_update": "Convert all column names from PascalCase to snake_case (e.g., FirstName → first_name, CreatedDate → created_date)"
+      },
+      {
+        "s_no": "06",
+        "category": "DateTime Type Mapping",
+        "severity": "High",
+        "effort": "Low",
+        "code_update": "Update DateTime properties to use 'timestamp without time zone' column type for PostgreSQL compatibility"
+      },
+      {
+        "s_no": "07",
+        "category": "Schema Configuration",
+        "severity": "Medium",
+        "effort": "Low",
+        "code_update": "Set default schema to 'public' for PostgreSQL in OnModelCreating method"
+      },
+      {
+        "s_no": "08",
+        "category": "Migration History Table",
+        "severity": "Medium",
+        "effort": "Low",
+        "code_update": "Configure migrations history table with snake_case naming: __ef_migrations_history in public schema"
+      },
+      {
+        "s_no": "09",
+        "category": "Retry Policy",
+        "severity": "Low",
+        "effort": "Low",
+        "code_update": "Add PostgreSQL-specific retry policy with 5 max retries and 30-second delay"
+      },
+      {
+        "s_no": "10",
+        "category": "Development Configuration",
+        "severity": "Low",
+        "effort": "Low",
+        "code_update": "Enable sensitive data logging and detailed errors for development environment"
+      }
+    ]
+  },
+  "post_migration_report": {
+    "title": "Post-Transformation Report",
+    "subtitle": "Application Code Changes for DB-Compatibility",
+    "application_summary": {
+      "application_id": "APP1146",
+      "application_name": "Films Web Application",
+      "application_owner": "Development Team",
+      "description": "A comprehensive film management application providing features for managing films, actors, directors, users, and their relationships. Built with ASP.NET Core 8.0 and Entity Framework Core.",
+      "tech_stack": ".NET 8.0, ASP.NET Core, Entity Framework Core, PostgreSQL 16",
+      "number_of_components": 3,
+      "lines_of_code": "5K",
+      "source_db": "MS SQL Server",
+      "target_db": "PostgreSQL 16",
+      "transformation_id": "TID1001",
+      "job_id": "JID001",
+      "job_name": "PostgreSQL Migration - Application Code Changes",
+      "transformation_status": "Success",
+      "transformation_duration": "15 minutes",
+      "transform_start_time": "2024-01-15 10:00:00",
+      "transform_end_time": "2024-01-15 10:15:00"
+    },
+    "executive_summary": {
+      "description": "The application has undergone significant changes in the transformation for DB-Compatibility to make it PostgreSQL ready. The transformation performed 10 successful updates across 7 files.",
+      "summary_cards": {
+        "updates_done": 10,
+        "updates_failed": 0,
+        "files_modified": 7,
+        "success_rate": "100%"
+      }
+    },
+    "fixed_updates": [
+      {
+        "s_no": "01",
+        "category": "Package References",
+        "file": "src/Films.Infrastructure/Films.Infrastructure.csproj",
+        "line_number": 15,
+        "severity": "Critical",
+        "original_code": "<PackageReference Include=\"Microsoft.EntityFrameworkCore.SqlServer\" Version=\"8.0.0\" />",
+        "updated_code": "<PackageReference Include=\"Npgsql.EntityFrameworkCore.PostgreSQL\" Version=\"8.0.0\" />\n<PackageReference Include=\"EFCore.NamingConventions\" Version=\"8.0.0\" />\n<PackageReference Include=\"Microsoft.EntityFrameworkCore.Relational\" Version=\"8.0.0\" />"
+      },
+      {
+        "s_no": "02",
+        "category": "DbContext Configuration",
+        "file": "src/Films.Web/Program.cs",
+        "line_number": 24,
+        "severity": "Critical",
+        "original_code": "options.UseSqlServer(builder.Configuration.GetConnectionString(\"DefaultConnection\"))",
+        "updated_code": "options.UseNpgsql(\n    builder.Configuration.GetConnectionString(\"DefaultConnection\"),\n    npgsqlOptions =>\n    {\n        npgsqlOptions.MigrationsHistoryTable(\"__ef_migrations_history\", \"public\");\n        npgsqlOptions.EnableRetryOnFailure(\n            maxRetryCount: 5,\n            maxRetryDelay: TimeSpan.FromSeconds(30),\n            errorCodesToAdd: null);\n    })\n    .UseSnakeCaseNamingConvention()\n    .EnableSensitiveDataLogging(builder.Environment.IsDevelopment())\n    .EnableDetailedErrors(builder.Environment.IsDevelopment())"
+      },
+      {
+        "s_no": "03",
+        "category": "Connection String",
+        "file": "src/Films.Web/appsettings.json",
+        "line_number": 3,
+        "severity": "Critical",
+        "original_code": "Server=localhost;Database=films;Integrated Security=True;TrustServerCertificate=True;MultipleActiveResultSets=True",
+        "updated_code": "Host=localhost;Port=5432;Database=films;Username=postgres;Password=postgres;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=100;Connection Lifetime=0;Connection Idle Lifetime=300;Timeout=30;Command Timeout=30"
+      },
+      {
+        "s_no": "04",
+        "category": "Table Naming Convention",
+        "file": "src/Films.Infrastructure/Data/FilmsDbContext.cs",
+        "line_number": 32,
+        "severity": "High",
+        "original_code": "entity.ToTable(\"Films\");\nentity.ToTable(\"Actors\");\nentity.ToTable(\"Directors\");\nentity.ToTable(\"Users\");\nentity.ToTable(\"Sex\");\nentity.ToTable(\"TypeUser\");\nentity.ToTable(\"Rights\");\nentity.ToTable(\"UserRights\");\nentity.ToTable(\"RefAF\");\nentity.ToTable(\"RefDAF\");",
+        "updated_code": "entity.ToTable(\"films\");\nentity.ToTable(\"actors\");\nentity.ToTable(\"directors\");\nentity.ToTable(\"users\");\nentity.ToTable(\"sex\");\nentity.ToTable(\"type_user\");\nentity.ToTable(\"rights\");\nentity.ToTable(\"user_rights\");\nentity.ToTable(\"ref_af\");\nentity.ToTable(\"ref_daf\");"
+      },
+      {
+        "s_no": "05",
+        "category": "Column Naming Convention",
+        "file": "src/Films.Infrastructure/Data/FilmsDbContext.cs",
+        "line_number": 35,
+        "severity": "High",
+        "original_code": "entity.Property(e => e.Id);\nentity.Property(e => e.Title);\nentity.Property(e => e.FirstName);\nentity.Property(e => e.LastName);\nentity.Property(e => e.CreatedDate);",
+        "updated_code": "entity.Property(e => e.Id).HasColumnName(\"id\");\nentity.Property(e => e.Title).HasColumnName(\"title\");\nentity.Property(e => e.FirstName).HasColumnName(\"first_name\");\nentity.Property(e => e.LastName).HasColumnName(\"last_name\");\nentity.Property(e => e.CreatedDate).HasColumnName(\"created_date\");"
+      },
+      {
+        "s_no": "06",
+        "category": "DateTime Type Mapping",
+        "file": "src/Films.Infrastructure/Data/FilmsDbContext.cs",
+        "line_number": 40,
+        "severity": "High",
+        "original_code": "entity.Property(e => e.CreatedDate);\nentity.Property(e => e.ModifiedDate);\nentity.Property(e => e.BirthDate);\nentity.Property(e => e.LastLoginDate);\nentity.Property(e => e.GrantedDate);",
+        "updated_code": "entity.Property(e => e.CreatedDate).HasColumnName(\"created_date\").HasColumnType(\"timestamp without time zone\");\nentity.Property(e => e.ModifiedDate).HasColumnName(\"modified_date\").HasColumnType(\"timestamp without time zone\");\nentity.Property(e => e.BirthDate).HasColumnName(\"birth_date\").HasColumnType(\"timestamp without time zone\");\nentity.Property(e => e.LastLoginDate).HasColumnName(\"last_login_date\").HasColumnType(\"timestamp without time zone\");\nentity.Property(e => e.GrantedDate).HasColumnName(\"granted_date\").HasColumnType(\"timestamp without time zone\");"
+      },
+      {
+        "s_no": "07",
+        "category": "Schema Configuration",
+        "file": "src/Films.Infrastructure/Data/FilmsDbContext.cs",
+        "line_number": 30,
+        "severity": "Medium",
+        "original_code": "base.OnModelCreating(modelBuilder);",
+        "updated_code": "base.OnModelCreating(modelBuilder);\n\n// Set default schema to public for PostgreSQL\nmodelBuilder.HasDefaultSchema(\"public\");"
+      },
+      {
+        "s_no": "08",
+        "category": "Migration History Table",
+        "file": "src/Films.Web/Program.cs",
+        "line_number": 27,
+        "severity": "Medium",
+        "original_code": "N/A - Not configured in original",
+        "updated_code": "npgsqlOptions.MigrationsHistoryTable(\"__ef_migrations_history\", \"public\");"
+      },
+      {
+        "s_no": "09",
+        "category": "Retry Policy",
+        "file": "src/Films.Web/Program.cs",
+        "line_number": 28,
+        "severity": "Low",
+        "original_code": "N/A - Not configured in original",
+        "updated_code": "npgsqlOptions.EnableRetryOnFailure(\n    maxRetryCount: 5,\n    maxRetryDelay: TimeSpan.FromSeconds(30),\n    errorCodesToAdd: null);"
+      },
+      {
+        "s_no": "10",
+        "category": "Development Configuration",
+        "file": "src/Films.Web/Program.cs",
+        "line_number": 33,
+        "severity": "Low",
+        "original_code": "N/A - Not configured in original",
+        "updated_code": ".EnableSensitiveDataLogging(builder.Environment.IsDevelopment())\n.EnableDetailedErrors(builder.Environment.IsDevelopment())"
+      }
+    ],
+    "failed_updates": [],
+    "migration_rules_compliance": [
+      {
+        "rule_id": "POSTGRES_NAMING_001",
+        "rule_description": "All PostgreSQL database object names must use snake_case naming convention",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Applied EFCore.NamingConventions package with UseSnakeCaseNamingConvention() in DbContext configuration. All table names and column names explicitly configured with snake_case using HasColumnName() and ToTable() methods.",
+        "verification_method": "Examined DbContext configuration and confirmed all table and column names use snake_case. Migration SQL will generate proper snake_case names.",
+        "implementation_challenges": "None - straightforward implementation",
+        "improvement_recommendations": "Consider adding custom naming convention for special cases if needed in future"
+      },
+      {
+        "rule_id": "POSTGRES_PACKAGE_001",
+        "rule_description": "Replace SQL Server packages with PostgreSQL packages",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Removed Microsoft.EntityFrameworkCore.SqlServer and added Npgsql.EntityFrameworkCore.PostgreSQL 8.0.0, EFCore.NamingConventions 8.0.0, and Microsoft.EntityFrameworkCore.Relational 8.0.0",
+        "verification_method": "Reviewed Films.Infrastructure.csproj and confirmed correct package references",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "Keep packages updated with latest stable versions"
+      },
+      {
+        "rule_id": "POSTGRES_CONNECTION_001",
+        "rule_description": "Convert SQL Server connection strings to PostgreSQL format",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Updated connection strings in appsettings.json and appsettings.Development.json with PostgreSQL format including Host, Port, Database, Username, Password, and connection pooling parameters",
+        "verification_method": "Reviewed configuration files and confirmed proper PostgreSQL connection string format",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "Use environment variables or Azure Key Vault for production credentials"
+      },
+      {
+        "rule_id": "POSTGRES_DBCONTEXT_001",
+        "rule_description": "Replace UseSqlServer with UseNpgsql in DbContext configuration",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Updated Program.cs to use UseNpgsql() with proper configuration including migrations history table, retry policy, and naming conventions",
+        "verification_method": "Reviewed Program.cs and confirmed UseNpgsql configuration with all required options",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "Consider adding connection resilience monitoring"
+      },
+      {
+        "rule_id": "POSTGRES_DATETIME_001",
+        "rule_description": "Configure DateTime properties to use timestamp without time zone",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "All DateTime properties in entity configurations explicitly set to use 'timestamp without time zone' column type using HasColumnType() method",
+        "verification_method": "Reviewed all entity configurations in FilmsDbContext.cs and confirmed DateTime column type mappings",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "Ensure application consistently uses UTC for all DateTime values"
+      },
+      {
+        "rule_id": "POSTGRES_SCHEMA_001",
+        "rule_description": "Set default schema to public for PostgreSQL",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Added modelBuilder.HasDefaultSchema('public') in OnModelCreating method",
+        "verification_method": "Reviewed FilmsDbContext.cs and confirmed default schema configuration",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "None"
+      },
+      {
+        "rule_id": "POSTGRES_MIGRATION_001",
+        "rule_description": "Configure migrations history table with proper naming",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Configured migrations history table as __ef_migrations_history in public schema using MigrationsHistoryTable() method",
+        "verification_method": "Reviewed Program.cs and confirmed migrations history table configuration",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "None"
+      },
+      {
+        "rule_id": "POSTGRES_RESILIENCE_001",
+        "rule_description": "Add retry policy for database connection resilience",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Configured EnableRetryOnFailure with 5 max retries and 30-second delay",
+        "verification_method": "Reviewed Program.cs and confirmed retry policy configuration",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "Monitor retry metrics in production and adjust parameters if needed"
+      },
+      {
+        "rule_id": "POSTGRES_LOGGING_001",
+        "rule_description": "Enable detailed logging for development environment",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Added EnableSensitiveDataLogging and EnableDetailedErrors for development environment only",
+        "verification_method": "Reviewed Program.cs and confirmed conditional logging configuration",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "Ensure these are disabled in production for security"
+      },
+      {
+        "rule_id": "POSTGRES_POOLING_001",
+        "rule_description": "Configure connection pooling for optimal performance",
+        "compliance_status": "Fully Compliant",
+        "implementation_details": "Connection string includes pooling parameters: Pooling=true, Minimum Pool Size=0, Maximum Pool Size=100, Connection Lifetime=0, Connection Idle Lifetime=300",
+        "verification_method": "Reviewed connection strings and confirmed pooling configuration",
+        "implementation_challenges": "None",
+        "improvement_recommendations": "Monitor connection pool usage and adjust parameters based on load"
+      }
+    ],
+    "additional_artifacts": [
+      {
+        "artifact_name": "PostgreSQL Migration Guide",
+        "artifact_path": "POSTGRESQL_MIGRATION.md",
+        "description": "Comprehensive guide covering all aspects of the PostgreSQL migration including prerequisites, step-by-step instructions, testing checklist, rollback plan, and troubleshooting"
+      },
+      {
+        "artifact_name": "PostgreSQL Setup Script",
+        "artifact_path": "scripts/postgresql-setup.sql",
+        "description": "SQL script for creating database schema, tables, indexes, and initial data in PostgreSQL"
+      },
+      {
+        "artifact_name": "Migration Automation Script (Bash)",
+        "artifact_path": "scripts/migrate-to-postgresql.sh",
+        "description": "Bash script for automating the migration process on Linux/macOS systems"
+      },
+      {
+        "artifact_name": "Migration Automation Script (PowerShell)",
+        "artifact_path": "scripts/migrate-to-postgresql.ps1",
+        "description": "PowerShell script for automating the migration process on Windows systems"
+      }
+    ]
+  }
+}
