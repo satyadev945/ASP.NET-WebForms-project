@@ -2,9 +2,9 @@
 <CoverageSession>
   <Summary numSequencePoints="880" visitedSequencePoints="0" numBranchPoints="130" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="0" maxCyclomaticComplexity="100" minCyclomaticComplexity="45" visitedClasses="0" numClasses="69" visitedMethods="0" numMethods="198" />
   <Modules>
-    <Module hash="58940986-B1E5-4F9A-8BEA-653FA0C8163C">
+    <Module hash="B564305A-A754-4A54-A271-C8A5D8007DCD">
       <ModulePath>Films.Domain.dll</ModulePath>
-      <ModuleTime>2026-03-03T10:58:56</ModuleTime>
+      <ModuleTime>2026-03-03T11:06:48</ModuleTime>
       <ModuleName>Films.Domain</ModuleName>
       <Files>
         <File uid="1" fullPath="/modernize-data/studio-data/TNT1001/APP1146/transformed-code/37/studio-workspace/backendComp/src/Films.Domain/Entities/Actor.cs" />
@@ -884,9 +884,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="73545C13-28D1-4D13-A5FA-D4516645B592">
+    <Module hash="4BABAEBA-E605-46A2-860D-A21426CC0D61">
       <ModulePath>Films.Web.dll</ModulePath>
-      <ModuleTime>2026-03-03T10:58:56</ModuleTime>
+      <ModuleTime>2026-03-03T11:06:48</ModuleTime>
       <ModuleName>Films.Web</ModuleName>
       <Files>
         <File uid="11" fullPath="/modernize-data/studio-data/TNT1001/APP1146/transformed-code/37/studio-workspace/backendComp/src/Films.Web/Program.cs" />
@@ -1822,9 +1822,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="7D7E6A93-01FC-43CF-AEC1-8A0D7DAE3573">
+    <Module hash="2D0E25DD-0173-4201-B2FC-6A7F9BB00359">
       <ModulePath>Films.Infrastructure.dll</ModulePath>
-      <ModuleTime>2026-03-03T10:58:56</ModuleTime>
+      <ModuleTime>2026-03-03T11:06:48</ModuleTime>
       <ModuleName>Films.Infrastructure</ModuleName>
       <Files>
         <File uid="22" fullPath="/modernize-data/studio-data/TNT1001/APP1146/transformed-code/37/studio-workspace/backendComp/src/Films.Infrastructure/Repositories/Repository.cs" />
@@ -2470,9 +2470,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="A90875D6-6AD5-46F7-BCBF-9552C5A1B840">
+    <Module hash="C9E3E8F5-8834-49FF-8ED5-8282669F3042">
       <ModulePath>Films.Application.dll</ModulePath>
-      <ModuleTime>2026-03-03T10:58:56</ModuleTime>
+      <ModuleTime>2026-03-03T11:06:48</ModuleTime>
       <ModuleName>Films.Application</ModuleName>
       <Files>
         <File uid="25" fullPath="/modernize-data/studio-data/TNT1001/APP1146/transformed-code/37/studio-workspace/backendComp/src/Films.Application/Services/ActorService.cs" />
