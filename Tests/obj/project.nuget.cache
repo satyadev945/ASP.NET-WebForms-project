@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "PV04+yW6Zgg=",
+  "dgSpecHash": "tBhoN0yszSk=",
   "success": true,
   "projectFilePath": "/modernize-data/studio-data/TNT1001/APP1146/transformed-code/37/studio-workspace/backendComp/Tests/Films.Web.Tests.csproj",
   "expectedPackageFiles": [
     "/app/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/app/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
     "/app/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
+    "/app/.nuget/packages/coverlet.msbuild/8.0.0/coverlet.msbuild.8.0.0.nupkg.sha512",
     "/app/.nuget/packages/efcore.namingconventions/8.0.0/efcore.namingconventions.8.0.0.nupkg.sha512",
     "/app/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
     "/app/.nuget/packages/microsoft.aspnetcore.mvc.testing/8.0.0/microsoft.aspnetcore.mvc.testing.8.0.0.nupkg.sha512",

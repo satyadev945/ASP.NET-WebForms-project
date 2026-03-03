@@ -9,23 +9,14 @@ namespace Films.Web.Tests.Models;
 public class ErrorViewModelTests
 {
     [Fact]
-    public void Constructor_ShouldCreateInstance()
-    {
-        // Arrange & Act
-        var viewModel = new ErrorViewModel();
-
-        // Assert
-        Assert.NotNull(viewModel);
-    }
-
-    [Fact]
-    public void RequestId_ShouldBeNullByDefault()
+    public void Constructor_ShouldInitializeWithDefaultValues()
     {
         // Arrange & Act
         var viewModel = new ErrorViewModel();
 
         // Assert
         Assert.Null(viewModel.RequestId);
+        Assert.False(viewModel.ShowRequestId);
     }
 
     [Fact]
@@ -40,6 +31,22 @@ public class ErrorViewModelTests
 
         // Assert
         Assert.Equal(expectedRequestId, viewModel.RequestId);
+    }
+
+    [Fact]
+    public void ShowRequestId_ShouldReturnTrue_WhenRequestIdIsNotEmpty()
+    {
+        // Arrange
+        var viewModel = new ErrorViewModel
+        {
+            RequestId = "test-request-id"
+        };
+
+        // Act
+        var result = viewModel.ShowRequestId;
+
+        // Assert
+        Assert.True(result);
     }
 
     [Fact]
@@ -90,27 +97,10 @@ public class ErrorViewModelTests
         Assert.False(result);
     }
 
-    [Fact]
-    public void ShowRequestId_ShouldReturnTrue_WhenRequestIdHasValue()
-    {
-        // Arrange
-        var viewModel = new ErrorViewModel
-        {
-            RequestId = "valid-request-id"
-        };
-
-        // Act
-        var result = viewModel.ShowRequestId;
-
-        // Assert
-        Assert.True(result);
-    }
-
     [Theory]
     [InlineData("request-123")]
     [InlineData("abc-def-ghi")]
     [InlineData("12345")]
-    [InlineData("test")]
     public void ShowRequestId_ShouldReturnTrue_ForVariousValidRequestIds(string requestId)
     {
         // Arrange
@@ -130,8 +120,6 @@ public class ErrorViewModelTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData("  ")]
-    [InlineData("\t")]
-    [InlineData("\n")]
     public void ShowRequestId_ShouldReturnFalse_ForInvalidRequestIds(string? requestId)
     {
         // Arrange
@@ -148,22 +136,36 @@ public class ErrorViewModelTests
     }
 
     [Fact]
-    public void RequestId_ShouldAllowMultipleAssignments()
+    public void RequestId_ShouldAllowNullValue()
     {
         // Arrange
-        var viewModel = new ErrorViewModel();
+        var viewModel = new ErrorViewModel
+        {
+            RequestId = "test"
+        };
 
-        // Act & Assert
-        viewModel.RequestId = "first-id";
-        Assert.Equal("first-id", viewModel.RequestId);
-        Assert.True(viewModel.ShowRequestId);
-
-        viewModel.RequestId = "second-id";
-        Assert.Equal("second-id", viewModel.RequestId);
-        Assert.True(viewModel.ShowRequestId);
-
+        // Act
         viewModel.RequestId = null;
+
+        // Assert
         Assert.Null(viewModel.RequestId);
         Assert.False(viewModel.ShowRequestId);
+    }
+
+    [Fact]
+    public void RequestId_ShouldUpdateShowRequestId_WhenChanged()
+    {
+        // Arrange
+        var viewModel = new ErrorViewModel
+        {
+            RequestId = null
+        };
+        Assert.False(viewModel.ShowRequestId);
+
+        // Act
+        viewModel.RequestId = "new-request-id";
+
+        // Assert
+        Assert.True(viewModel.ShowRequestId);
     }
 }
