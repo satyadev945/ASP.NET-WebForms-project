@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
@@ -14,6 +15,11 @@ namespace FIlms
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
+            
+            // Register Web API routes first (before other routes)
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            
+            // Register other configurations
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
